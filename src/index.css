@@ -7,41 +7,68 @@
     scroll-behavior: smooth;
   }
 
-  ::selection {
-    background-color: rgba(56, 189, 248, 0.25);
-    color: #e2e8f0;
+  /* Ocultar cursor nativo — el CustomCursor lo reemplaza en desktop */
+  @media (hover: hover) {
+    *,
+    *::before,
+    *::after {
+      cursor: none !important;
+    }
   }
 
-  /* Custom scrollbar */
+  ::selection {
+    background-color: rgba(56, 189, 248, 0.25);
+    color: inherit;
+  }
+
+  /* Scrollbar — dark */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: #09090b;
+    background: transparent;
   }
-  ::-webkit-scrollbar-thumb {
+  .dark ::-webkit-scrollbar-thumb {
     background: #27272a;
     border-radius: 3px;
   }
-  ::-webkit-scrollbar-thumb:hover {
+  .dark ::-webkit-scrollbar-thumb:hover {
     background: #38bdf8;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d4d4d8;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0ea5e9;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-sky-400 via-violet-400 to-emerald-400 bg-clip-text text-transparent;
-  }
-
-  .border-gradient {
-    border-image: linear-gradient(135deg, #38bdf8, #a78bfa) 1;
+    @apply bg-gradient-to-r from-sky-500 via-violet-500 to-emerald-500 bg-clip-text text-transparent;
   }
 
   .glow-blue {
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.15), 0 0 40px rgba(56, 189, 248, 0.05);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.12), 0 0 40px rgba(56, 189, 248, 0.04);
   }
 
   .glow-violet {
-    box-shadow: 0 0 20px rgba(167, 139, 250, 0.15), 0 0 40px rgba(167, 139, 250, 0.05);
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.12), 0 0 40px rgba(167, 139, 250, 0.04);
+  }
+
+  /* Grid de fondo — dark */
+  .bg-dot-grid {
+    background-image:
+      radial-gradient(circle, rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Grid de fondo — light */
+  .light .bg-dot-grid,
+  :root:not(.dark) .bg-dot-grid {
+    background-image:
+      radial-gradient(circle, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 }

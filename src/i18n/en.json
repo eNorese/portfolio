@@ -1,0 +1,182 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "stack": "Stack",
+    "projects": "Projects",
+    "contact": "Contact",
+    "cta": "Let's talk"
+  },
+  "hero": {
+    "available": "Available for projects",
+    "greeting": "> Hey, I'm",
+    "typewriter": [
+      "Backend Developer",
+      "Cloud Architect",
+      "Azure Specialist",
+      "Augmented Engineer"
+    ],
+    "description": "I build solid backend architectures on Azure. From database design to serverless in production, every decision is engineered to scale.",
+    "cta_projects": "See my work",
+    "cta_contact": "Let's talk",
+    "scroll": "scroll"
+  },
+  "about": {
+    "section_label": "02. /about",
+    "title_1": "About",
+    "title_2": "me",
+    "bio_1": "Computer Engineer focused on backend and cloud architecture. Specialized in the Microsoft Azure ecosystem, I've led critical system migrations and designed scalable architectures under real pressure.",
+    "bio_2": "I work under an Augmented Engineering model: I use AI as a force multiplier to deliver faster without sacrificing system integrity.",
+    "differentiator_label": "Edge",
+    "differentiator": "I don't build AI models. I use them strategically to amplify every technical decision, reduce time-to-market, and focus on what matters: architecture and business logic.",
+    "metrics": {
+      "years_teamwork": "3+",
+      "years_teamwork_label": "years at TeamWork",
+      "years_exp": "4+",
+      "years_exp_label": "years of experience",
+      "erp_label": "critical ERP migration",
+      "erp_sublabel": "0 data loss",
+      "cert_label": "Certification path",
+      "cert_value": "AZ-900 / AZ-204"
+    },
+    "interests": {
+      "cybersecurity": "Cybersecurity",
+      "cybersecurity_desc": "Pentesting & hardening",
+      "ai_rag": "AI / RAG",
+      "ai_rag_desc": "Augmented Engineering",
+      "djing": "DJing",
+      "djing_desc": "Mixing & production",
+      "fpv": "FPV Drones",
+      "fpv_desc": "@eNorese.fpv"
+    },
+    "quote": "Architecture is a silent conversation between a system and its future.",
+    "quote_author": "— Enzo Norese"
+  },
+  "experience": {
+    "section_label": "03. /experience",
+    "title_1": "Professional",
+    "title_2": "experience",
+    "featured_badge": "★ Current",
+    "full_time": "Full-time",
+    "part_time": "Part-time",
+    "jobs": [
+      {
+        "company": "TeamWork Chile",
+        "role": "Backend Developer",
+        "period": "Jul 2022 – Present · 3 years 9 months",
+        "type": "full_time",
+        "location": "Providencia, Santiago, Chile",
+        "description": "End-to-end recruitment software development. Database design, APIs, Azure Functions, cloud service integration and real-time messaging with SignalR.",
+        "highlights": [
+          "Technical lead for ERP migration Softland → Rex+ (0 data loss)",
+          "Serverless architecture with Azure Functions and TypeScript",
+          "Service integration: Blob, Queue, Table Storage, SignalR",
+          "Standardization, technical documentation and CI/CD"
+        ],
+        "tags": ["Node.js", "TypeScript", "Azure Functions", "SQL Server", "PostgreSQL", "CosmosDB", "React.js", "SignalR", "Azure Storage", "CI/CD"],
+        "isFeatured": true
+      },
+      {
+        "company": "Prodigio Chile",
+        "role": "Software Developer",
+        "period": "Apr 2021 – Jan 2022 · 10 months",
+        "type": "part_time",
+        "location": "Chile · Remote",
+        "description": "Maintenance and development of new features in integration APIs. Incident resolution and CI/CD flow management.",
+        "highlights": [
+          "Development and maintenance of integration APIs",
+          "Production incident resolution",
+          "CI/CD flow management"
+        ],
+        "tags": ["C#", ".NET Core 3.1", "Node.js", "CI/CD"],
+        "isFeatured": false
+      },
+      {
+        "company": "Soc. Electrónica Solari",
+        "role": "Electronics Technician",
+        "period": "Mar 2015 – Feb 2021 · 6 years",
+        "type": "full_time",
+        "location": "Santiago, Chile",
+        "description": "Repair and maintenance of electronic equipment. Specialization in digital cameras and printers. This phase forged a systematic diagnostic mindset directly applied to debugging and software architecture today.",
+        "highlights": [
+          "Precision equipment diagnosis and repair",
+          "Specialization in digital cameras and printers",
+          "Foundational training in systematic thinking applied to software"
+        ],
+        "tags": ["Electronics", "Diagnostics", "Hardware", "Systems"],
+        "isFeatured": false
+      }
+    ]
+  },
+  "stack": {
+    "section_label": "04. /stack",
+    "title_1": "Tech",
+    "title_2": "stack",
+    "categories": {
+      "cloud": "Cloud & Azure",
+      "backend": "Backend",
+      "databases": "Databases",
+      "ai": "AI-Augmented Dev",
+      "frontend": "Frontend"
+    }
+  },
+  "projects": {
+    "section_label": "05. /projects",
+    "title_1": "My",
+    "title_2": "projects",
+    "description": "Projects that demonstrate solid architectures and real engineering solutions.",
+    "private_label": "Enterprise project",
+    "coming_soon": "Coming soon",
+    "wip": "In progress",
+    "no_repo": "No public repository",
+    "main_project": {
+      "title": "ERP Migration: Softland → Rex+",
+      "role": "Technical Lead",
+      "description": "Full transition of the enterprise resource planning system. Design and execution of the complete ETL strategy: extraction, transformation and data loading guaranteeing zero data loss. Precise mapping of all business processes and deployment without interrupting operations.",
+      "metric_1": "0 data loss",
+      "metric_2": "100% operational continuity",
+      "tags": ["ETL", "Migration", "Architecture", "Technical Lead", "ERP"]
+    },
+    "placeholders": [
+      {
+        "title": "Azure Serverless Platform",
+        "description": "Microservices platform on Azure Functions with CosmosDB, SignalR and Queue Storage. Designed for high availability.",
+        "tags": ["Azure", "TypeScript", "Serverless"]
+      },
+      {
+        "title": "RAG Documentation Engine",
+        "description": "Semantic search engine over internal technical documentation using vector embeddings and RAG architecture.",
+        "tags": ["RAG", "LLMs", "pgvector"]
+      }
+    ]
+  },
+  "contact": {
+    "section_label": "06. /contact",
+    "title_1": "Have a project that needs",
+    "title_2": "solid cloud architecture?",
+    "subtitle": "Let's talk.",
+    "description": "Available for projects, cloud consulting or backend positions. Write to me.",
+    "form": {
+      "name_label": "Name",
+      "name_placeholder": "Your name",
+      "email_label": "Email",
+      "email_placeholder": "you@email.com",
+      "subject_label": "Subject",
+      "subject_placeholder": "Select a subject",
+      "subject_options": ["Project", "Job", "Consulting", "Other"],
+      "message_label": "Message",
+      "message_placeholder": "Tell me about your project...",
+      "submit": "Send message",
+      "sending": "Sending...",
+      "success_title": "Message sent!",
+      "success_desc": "Thanks for reaching out. I'll get back to you shortly.",
+      "send_another": "Send another message"
+    },
+    "direct_contact": "Direct contact",
+    "social_title": "Social media"
+  },
+  "footer": {
+    "tagline": "// architecture that scales · code that endures",
+    "copyright": "© 2025 Enzo · Santiago, Chile"
+  }
+}
