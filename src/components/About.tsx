@@ -57,12 +57,14 @@ export function About() {
             {stats.map(({ value, label }) => (
               <div
                 key={label}
-                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 flex flex-col items-center text-center"
+                className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 flex flex-col items-center text-center cursor-default transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-lg hover:shadow-indigo-500/10 dark:hover:shadow-indigo-500/5"
               >
-                <span className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">
+                <span className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-1 transition-transform duration-300 group-hover:scale-110">
                   {value}
                 </span>
-                <span className="text-xs text-gray-500 dark:text-gray-400 leading-tight">{label}</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 leading-tight transition-colors duration-300 group-hover:text-gray-700 dark:group-hover:text-gray-300">
+                  {label}
+                </span>
               </div>
             ))}
           </div>

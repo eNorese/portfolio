@@ -157,7 +157,16 @@
       "placeholder_name": "John Doe",
       "placeholder_email": "john@example.com",
       "placeholder_message": "Hi, I'd love to talk about...",
-      "send": "Send Message"
+      "send": "Send Message",
+      "sending": "Sending...",
+      "sent": "Message Sent!",
+      "error_name_required": "Name is required",
+      "error_name_min": "Name must be at least 2 characters",
+      "error_email_required": "Email is required",
+      "error_email_invalid": "Enter a valid email address",
+      "error_message_required": "Message is required",
+      "error_message_min": "Message must be at least 10 characters",
+      "success_message": "Thanks! I'll get back to you soon."
     },
     "info": {
       "email_label": "Email",

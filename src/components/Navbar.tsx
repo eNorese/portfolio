@@ -50,12 +50,17 @@ export function Navbar() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id)
+            // Hero entering view → clear active section
+            setActiveSection(entry.target.id === 'home' ? '' : entry.target.id)
           }
         })
       },
       { rootMargin: '-64px 0px -50% 0px', threshold: 0 }
     )
+
+    // Observe hero so we can clear the active link when back at the top
+    const hero = document.getElementById('home')
+    if (hero) observer.observe(hero)
 
     NAV_LINKS.forEach(({ key }) => {
       const el = document.getElementById(key)
