@@ -75,14 +75,19 @@ export function Hero() {
   const { resolvedTheme }  = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  const sectionRef = useRef<HTMLElement>(null)
-  const canvasRef  = useRef<HTMLCanvasElement>(null)
-  const dropsRef   = useRef<Drop[]>([])
-  const starsRef   = useRef<Star[]>([])
-  const mouseRef   = useRef({ x: 0, y: 0 })
-  const rafRef     = useRef<number>(0)
+  const sectionRef   = useRef<HTMLElement>(null)
+  const canvasRef    = useRef<HTMLCanvasElement>(null)
+  const spotlightRef   = useRef<HTMLDivElement>(null)
+  const spotTargetRef  = useRef({ x: 0, y: 0 })   // where cursor actually is
+  const spotPosRef     = useRef({ x: 0, y: 0 })   // interpolated position
+  const spotRafRef     = useRef<number>(0)
+  const isInsideRef    = useRef(false)
+  const dropsRef       = useRef<Drop[]>([])
+  const starsRef       = useRef<Star[]>([])
+  const mouseRef       = useRef({ x: 0, y: 0 })
+  const rafRef         = useRef<number>(0)
   // Keep a ref so the rAF draw loop always reads the current theme
-  const isDarkRef  = useRef(true)
+  const isDarkRef      = useRef(true)
 
   const [pixels,         setPixels]         = useState<DataPixel[]>([])
   const [glowName,       setGlowName]       = useState(false)
@@ -109,6 +114,32 @@ export function Hero() {
         blue: Math.random() > 0.4,
       }))
     )
+  }, [])
+
+  // Spotlight lerp loop — runs independently of canvas rAF
+  useEffect(() => {
+    const EASE = 0.11   // lower = smoother lag; 0.11 ≈ slightly snappier trailing
+
+    const tick = () => {
+      const pos    = spotPosRef.current
+      const target = spotTargetRef.current
+      pos.x += (target.x - pos.x) * EASE
+      pos.y += (target.y - pos.y) * EASE
+
+      const spot = spotlightRef.current
+      if (spot && isInsideRef.current) {
+        const color = isDarkRef.current
+          ? 'rgba(99,102,241,0.12)'
+          : 'rgba(99,102,241,0.14)'
+        spot.style.background =
+          `radial-gradient(700px circle at ${pos.x}px ${pos.y}px, ${color}, transparent 65%)`
+      }
+
+      spotRafRef.current = requestAnimationFrame(tick)
+    }
+
+    spotRafRef.current = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(spotRafRef.current)
   }, [])
 
   // Canvas animation loop
@@ -192,11 +223,23 @@ export function Hero() {
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
     const rect = sectionRef.current?.getBoundingClientRect()
     if (!rect) return
-    mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    mouseRef.current = { x, y }
+    spotTargetRef.current = { x, y }
+
+    if (!isInsideRef.current) {
+      // Snap interpolated position to cursor on first entry — avoids slide from (0,0)
+      spotPosRef.current = { x, y }
+      isInsideRef.current = true
+      if (spotlightRef.current) spotlightRef.current.style.opacity = '1'
+    }
   }, [])
 
   const handleMouseLeave = useCallback(() => {
     mouseRef.current = { x: 0, y: 0 }
+    isInsideRef.current = false
+    if (spotlightRef.current) spotlightRef.current.style.opacity = '0'
   }, [])
 
   // Derived from resolved theme (safe after mount)
@@ -215,6 +258,13 @@ export function Hero() {
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{ zIndex: 0 }}
+      />
+
+      {/* ── Cursor spotlight ── */}
+      <div
+        ref={spotlightRef}
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 3, opacity: 0, transition: 'opacity 0.5s ease' }}
       />
 
       {/* ── Ambient blobs ── */}
@@ -373,6 +423,12 @@ export function Hero() {
           <div className="h-px w-10 bg-gray-300/70 dark:bg-gray-700/60" />
         </div>
       </div>
+
+      {/* ── Bottom fade into About section (gray-50 / gray-900) ── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900"
+        style={{ zIndex: 9 }}
+      />
 
       {/* ── Scroll indicator ── */}
       <div
