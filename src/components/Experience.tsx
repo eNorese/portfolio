@@ -144,7 +144,7 @@ export function Experience() {
   }, [])
 
   return (
-    <section id="experience" className="py-24 bg-white dark:bg-gray-950">
+    <section id="experience" className="relative py-24 bg-white dark:bg-gray-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header — fade up */}
@@ -182,6 +182,9 @@ export function Experience() {
           ))}
         </div>
       </div>
+
+      {/* fade → Skills (gray-50 / gray-900) */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900" />
     </section>
   )
 }

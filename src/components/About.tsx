@@ -14,7 +14,7 @@ export function About() {
   ]
 
   return (
-    <section id="about" className="py-24 bg-gray-50 dark:bg-gray-900">
+    <section id="about" className="relative py-24 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
@@ -70,6 +70,9 @@ export function About() {
           </div>
         </div>
       </div>
+
+      {/* fade → Experience (white / gray-950) */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-white dark:to-gray-950" />
     </section>
   )
 }
