@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const SKILLS_DATA = {
@@ -9,9 +10,77 @@ const SKILLS_DATA = {
   tools: ['Git', 'Linux', 'Elasticsearch', 'Kafka', 'Grafana', 'Jest'],
 } as const
 
+// Extract the leading number and the rest: "70%" → { num: 70, suffix: "%" }
+function parseMetric(metric: string): { num: number; suffix: string } {
+  const match = metric.match(/^(\d+)(.*)$/)
+  if (!match) return { num: 0, suffix: metric }
+  return { num: parseInt(match[1], 10), suffix: match[2] }
+}
+
+// Count-up card: animates the number when it enters the viewport
+function StoryCard({
+  metric,
+  label,
+  description,
+}: {
+  metric: string
+  label: string
+  description: string
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+  const [count, setCount] = useState(0)
+  const { num, suffix } = parseMetric(metric)
+
+  // Trigger animation once when the card scrolls into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.4 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
+
+  // rAF count-up with ease-out cubic
+  useEffect(() => {
+    if (!inView || num === 0) return
+    const duration = 1400
+    const start = performance.now()
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setCount(Math.round(eased * num))
+      if (progress < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  }, [inView, num])
+
+  return (
+    <div
+      ref={ref}
+      className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300 dark:hover:border-indigo-700 hover:shadow-lg hover:shadow-indigo-500/10 dark:hover:shadow-indigo-500/5"
+    >
+      {/* Animated metric */}
+      <div className="text-3xl font-bold tabular-nums text-indigo-600 dark:text-indigo-400 mb-1 transition-transform duration-300 group-hover:scale-110">
+        {count}{suffix}
+      </div>
+      <div className="text-sm font-semibold text-gray-900 dark:text-white mb-2">{label}</div>
+      <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{description}</p>
+    </div>
+  )
+}
+
 export function Skills() {
   const { locale, t } = useLanguage()
   const stories = locale.skills.stories
+  // Track which badge (by "category:skill" key) is hovered
+  const [hoveredBadge, setHoveredBadge] = useState<string | null>(null)
 
   return (
     <section id="skills" className="py-24 bg-gray-50 dark:bg-gray-900">
@@ -28,25 +97,39 @@ export function Skills() {
           <p className="mt-2 text-gray-500 dark:text-gray-400 text-sm">{t('skills.subtitle')}</p>
         </div>
 
-        {/* Skills grid */}
+        {/* Skill category cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {(Object.keys(SKILLS_DATA) as Array<keyof typeof SKILLS_DATA>).map((category) => (
             <div
               key={category}
-              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5"
+              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 transition-all duration-300 hover:border-indigo-200 dark:hover:border-indigo-800 hover:shadow-md hover:shadow-indigo-500/5"
             >
               <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">
                 {t(`skills.categories.${category}`)}
               </h3>
               <div className="flex flex-wrap gap-1.5">
-                {SKILLS_DATA[category].map((skill) => (
-                  <span
-                    key={skill}
-                    className="text-xs px-2.5 py-1 rounded-md bg-gray-100 dark:bg-gray-700/60 text-gray-700 dark:text-gray-300"
-                  >
-                    {skill}
-                  </span>
-                ))}
+                {SKILLS_DATA[category].map((skill) => {
+                  const id = `${category}:${skill}`
+                  const isHovered = hoveredBadge === id
+                  // Dim sibling badges when one is hovered in this card
+                  const isDimmed = hoveredBadge?.startsWith(`${category}:`) && !isHovered
+                  return (
+                    <span
+                      key={skill}
+                      onMouseEnter={() => setHoveredBadge(id)}
+                      onMouseLeave={() => setHoveredBadge(null)}
+                      className={`text-xs px-2.5 py-1 rounded-md cursor-default select-none transition-all duration-200 ${
+                        isHovered
+                          ? 'bg-indigo-600 dark:bg-indigo-500 text-white scale-105 shadow-sm shadow-indigo-500/30 -translate-y-px'
+                          : isDimmed
+                          ? 'bg-gray-100 dark:bg-gray-700/60 text-gray-400 dark:text-gray-500 scale-95 opacity-50'
+                          : 'bg-gray-100 dark:bg-gray-700/60 text-gray-700 dark:text-gray-300'
+                      }`}
+                    >
+                      {skill}
+                    </span>
+                  )
+                })}
               </div>
             </div>
           ))}
@@ -58,20 +141,12 @@ export function Skills() {
         </h3>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {stories.map((story, index) => (
-            <div
+            <StoryCard
               key={index}
-              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 text-center group hover:border-indigo-300 dark:hover:border-indigo-700 transition-colors duration-200"
-            >
-              <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-1 group-hover:scale-110 transition-transform duration-200">
-                {story.metric}
-              </div>
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                {story.label}
-              </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-                {story.description}
-              </p>
-            </div>
+              metric={story.metric}
+              label={story.label}
+              description={story.description}
+            />
           ))}
         </div>
       </div>

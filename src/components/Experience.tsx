@@ -39,9 +39,14 @@ export function Experience() {
                       {job.company}
                     </p>
                   </div>
-                  <span className="shrink-0 text-xs text-gray-400 dark:text-gray-500 font-mono mt-0.5">
-                    {job.period}
-                  </span>
+                  <div className="shrink-0 flex flex-col items-start sm:items-end gap-0.5">
+                    <span className="text-xs text-gray-500 dark:text-gray-400 font-mono">
+                      {job.period}
+                    </span>
+                    <span className="text-xs text-gray-400 dark:text-gray-500 font-mono">
+                      {job.duration}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Location */}

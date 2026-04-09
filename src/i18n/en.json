@@ -13,7 +13,8 @@
     "description": "I design and build scalable, resilient systems that power modern applications. Passionate about clean architecture, distributed systems, and developer experience.",
     "cta_work": "View My Work",
     "cta_contact": "Get In Touch",
-    "scroll": "Scroll to explore"
+    "scroll": "Scroll to explore",
+    "cv_download": "Download CV"
   },
   "about": {
     "section_title": "About Me",
@@ -40,6 +41,7 @@
         "role": "Azure Cloud Developer",
         "company": "TeamWork Chile",
         "period": "Jul 2022 – Present",
+        "duration": "3 yrs 10 mos",
         "location": "Providencia, Santiago · Full-time",
         "description": "Developed a full-cycle recruitment and selection platform on Microsoft Azure. Key responsibilities include Node.js API development, React client applications, serverless functions with Azure Functions and TypeScript, multi-database design (SQL Server, PostgreSQL, CosmosDB, MongoDB, Redis cache), real-time messaging via Azure SignalR, Event Bus Service integration, blob/queue/table storage, backend architecture design, API and database documentation, and CI/CD pipelines with GitHub Actions.",
         "tags": ["Node.js", "TypeScript", "React", "Azure Functions", "SQL Server", "PostgreSQL", "CosmosDB", "GitHub Actions"]
@@ -48,6 +50,7 @@
         "role": "Software Developer",
         "company": "Prodigio Chile",
         "period": "Apr 2021 – Jan 2022",
+        "duration": "10 mos",
         "location": "Chile · Part-time",
         "description": "Maintained, debugged, and developed new features for integration APIs built with C# (.NET Core 3.1) and JavaScript (Node.js). Also responsible for maintaining continuous integration and deployment workflows.",
         "tags": ["C# / .NET Core", "Node.js", "JavaScript", "CI/CD"]
@@ -56,6 +59,7 @@
         "role": "Electronics Technician",
         "company": "Sociedad Electronica Solari",
         "period": "Mar 2015 – Feb 2021",
+        "duration": "6 yrs",
         "location": "Greater Santiago · Full-time",
         "description": "Responsible for repairing and maintaining a wide variety of electronic equipment, with specialization in digital cameras and printers.",
         "tags": ["Electronics", "Hardware Repair", "Diagnostics"]

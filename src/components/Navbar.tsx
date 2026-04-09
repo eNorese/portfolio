@@ -78,7 +78,7 @@ export function Navbar() {
           ? [
               'backdrop-blur-xl backdrop-saturate-150',
               'bg-white/60 dark:bg-gray-950/65',
-              'border-b border-white/60 dark:border-white/5',
+              'border-b border-gray-200/10 dark:border-white/[0.04]',
               'shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.35)]',
             ].join(' ')
           : 'bg-transparent'
@@ -176,7 +176,7 @@ export function Navbar() {
           mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="backdrop-blur-xl bg-white/90 dark:bg-gray-950/90 border-t border-white/60 dark:border-white/5 px-4 py-3 space-y-1">
+        <div className="backdrop-blur-xl bg-white/90 dark:bg-gray-950/90 border-t border-gray-200/10 dark:border-white/[0.04] px-4 py-3 space-y-1">
           {NAV_LINKS.map(({ key, href }) => {
             const isActive = activeSection === key
             return (

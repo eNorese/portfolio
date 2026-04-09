@@ -13,7 +13,8 @@
     "description": "Diseño y construyo sistemas escalables y resilientes que potencian aplicaciones modernas. Apasionado por la arquitectura limpia, los sistemas distribuidos y la experiencia del desarrollador.",
     "cta_work": "Ver Mi Trabajo",
     "cta_contact": "Contactarme",
-    "scroll": "Desliza para explorar"
+    "scroll": "Desliza para explorar",
+    "cv_download": "Descargar CV"
   },
   "about": {
     "section_title": "Sobre Mí",
@@ -40,6 +41,7 @@
         "role": "Azure Cloud Developer",
         "company": "TeamWork Chile",
         "period": "jul. 2022 – actualidad",
+        "duration": "3 años 10 meses",
         "location": "Providencia, Santiago · Jornada completa",
         "description": "Colaboré en el desarrollo de un software de reclutamiento y selección, abarcando desde el reclutamiento hasta la contratación. Con foco en servicios Azure, mis responsabilidades incluyeron diseño de bases de datos (SQL Server, PostgreSQL, CosmosDB, MongoDB, Redis), desarrollo de APIs con Node.js, aplicaciones con React, funciones serverless con Azure Functions y TypeScript, integración de almacenamiento blob/queue/table, mensajería con Event Bus y Azure SignalR en tiempo real, diseño de arquitectura backend, documentación y CI/CD con GitHub Actions.",
         "tags": ["Node.js", "TypeScript", "React", "Azure Functions", "SQL Server", "PostgreSQL", "CosmosDB", "GitHub Actions"]
@@ -48,6 +50,7 @@
         "role": "Software Developer",
         "company": "Prodigio Chile",
         "period": "abr. 2021 – ene. 2022",
+        "duration": "10 meses",
         "location": "Chile · Jornada parcial",
         "description": "Encargado de mantener, resolver incidencias y desarrollar nuevas funcionalidades de APIs de integración programadas con C# (.NET Core 3.1) y JavaScript (Node.js). Mantención de flujos de integración y despliegue continuo (CI/CD).",
         "tags": ["C# / .NET Core", "Node.js", "JavaScript", "CI/CD"]
@@ -56,6 +59,7 @@
         "role": "Técnico Electrónico",
         "company": "Sociedad Electronica Solari",
         "period": "mar. 2015 – feb. 2021",
+        "duration": "6 años",
         "location": "Gran Santiago · Jornada completa",
         "description": "Encargado de reparar y hacer mantención a una variedad de equipos electrónicos, especializado en cámaras digitales e impresoras.",
         "tags": ["Electrónica", "Reparación de Hardware", "Diagnóstico"]

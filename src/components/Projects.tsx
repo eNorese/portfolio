@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 function ExternalLinkIcon() {
@@ -18,15 +19,122 @@ function GitHubIcon() {
   )
 }
 
+// ── 3D tilt card ─────────────────────────────────────────────────────
+type ProjectItem = {
+  title: string
+  description: string
+  tags: readonly string[] | string[]
+  live: string
+  code: string
+}
+
+function ProjectCard({ project, t }: { project: ProjectItem; t: (k: string) => string }) {
+  const cardRef  = useRef<HTMLDivElement>(null)
+  const glareRef = useRef<HTMLDivElement>(null)
+
+  function onMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const card  = cardRef.current
+    const glare = glareRef.current
+    if (!card) return
+
+    const r  = card.getBoundingClientRect()
+    const x  = e.clientX - r.left
+    const y  = e.clientY - r.top
+    const rx = ((y - r.height / 2) / (r.height / 2)) * -9
+    const ry = ((x - r.width  / 2) / (r.width  / 2)) *  9
+
+    card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.03,1.03,1.03)`
+    card.style.boxShadow = [
+      '0 25px 55px rgba(99,102,241,0.18)',
+      '0 10px 25px rgba(0,0,0,0.12)',
+      'inset 0 0 0 1px rgba(99,102,241,0.22)',
+    ].join(',')
+
+    if (glare) {
+      glare.style.background =
+        `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.07) 0%, transparent 65%)`
+    }
+  }
+
+  function onMouseLeave() {
+    const card  = cardRef.current
+    const glare = glareRef.current
+    if (card) {
+      card.style.transform = ''
+      card.style.boxShadow = ''
+    }
+    if (glare) glare.style.background = 'none'
+  }
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      className="group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 cursor-default"
+      style={{
+        transition: 'transform 0.5s ease, box-shadow 0.4s ease',
+        willChange: 'transform',
+        transformStyle: 'preserve-3d',
+      }}
+    >
+      {/* Glare / light reflection overlay */}
+      <div
+        ref={glareRef}
+        className="absolute inset-0 rounded-xl pointer-events-none"
+        style={{ transition: 'background 0.12s ease', zIndex: 1 }}
+      />
+
+      {/* Card content — sits above glare */}
+      <div className="relative flex flex-col flex-1" style={{ zIndex: 2 }}>
+        <h3 className="font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
+          {project.title}
+        </h3>
+
+        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4 flex-1">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-4 pt-2 border-t border-gray-200 dark:border-gray-800">
+          <a
+            href={project.live}
+            className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
+          >
+            <ExternalLinkIcon />
+            {t('projects.view_live')}
+          </a>
+          <a
+            href={project.code}
+            className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
+          >
+            <GitHubIcon />
+            {t('projects.view_code')}
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ── Section ──────────────────────────────────────────────────────────
 export function Projects() {
   const { locale, t } = useLanguage()
-  const projects = locale.projects.items
 
   return (
     <section id="projects" className="py-24 bg-white dark:bg-gray-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Section header */}
         <div className="mb-14">
           <p className="text-xs font-mono tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mb-2">
             04 —
@@ -37,53 +145,9 @@ export function Projects() {
           <p className="mt-2 text-gray-500 dark:text-gray-400 text-sm">{t('projects.subtitle')}</p>
         </div>
 
-        {/* Project grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="group flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 hover:border-indigo-300 dark:hover:border-indigo-800 transition-all duration-200 hover:shadow-md hover:shadow-indigo-500/5"
-            >
-              {/* Title */}
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
-                {project.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4 flex-1">
-                {project.description}
-              </p>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-1.5 mb-4">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* Links */}
-              <div className="flex items-center gap-4 pt-2 border-t border-gray-200 dark:border-gray-800">
-                <a
-                  href={project.live}
-                  className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
-                >
-                  <ExternalLinkIcon />
-                  {t('projects.view_live')}
-                </a>
-                <a
-                  href={project.code}
-                  className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
-                >
-                  <GitHubIcon />
-                  {t('projects.view_code')}
-                </a>
-              </div>
-            </div>
+          {locale.projects.items.map((project, i) => (
+            <ProjectCard key={i} project={project} t={t} />
           ))}
         </div>
       </div>

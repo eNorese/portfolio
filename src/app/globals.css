@@ -30,3 +30,30 @@ html {
 section[id] {
   scroll-margin-top: 64px;
 }
+
+/* ── Hero animations ───────────────────────────────────────────── */
+
+/* Data pixel blink */
+@keyframes pixel-blink {
+  0%, 100% { opacity: 0;   transform: scale(0.4); }
+  50%       { opacity: 1;   transform: scale(1);   }
+}
+
+/* Scroll indicator / text breathing */
+@keyframes breathe {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 0.9;  }
+}
+
+/* Scroll dot bob */
+@keyframes scroll-bob {
+  0%, 100% { transform: translateY(0);   opacity: 0.55; }
+  50%       { transform: translateY(4px); opacity: 1;    }
+}
+
+/* WhatsApp floating button pulse ring */
+@keyframes whatsapp-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(37,211,102,0.45), 0 4px 20px rgba(37,211,102,0.35); }
+  60%  { box-shadow: 0 0 0 14px rgba(37,211,102,0),   0 4px 25px rgba(37,211,102,0.5);  }
+  100% { box-shadow: 0 0 0 0   rgba(37,211,102,0),    0 4px 20px rgba(37,211,102,0.35); }
+}
