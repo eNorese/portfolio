@@ -6,6 +6,68 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ── Theme transition ───────────────────────────────────────────── */
+
+/*
+ * Modern browsers (Chrome 111+, Edge 111+, Safari 18+):
+ * View Transitions API — full-page cross-fade when toggling dark/light.
+ * The browser captures before/after snapshots and fades between them.
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Language toggle — slide-blur in/out, faster than the theme crossfade */
+:root.lang-switching::view-transition-old(root) {
+  animation-name: lang-out;
+  animation-duration: 0.25s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}
+:root.lang-switching::view-transition-new(root) {
+  animation-name: lang-in;
+  animation-duration: 0.25s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}
+@keyframes lang-out {
+  from { opacity: 1; transform: translateY(0);    filter: blur(0); }
+  to   { opacity: 0; transform: translateY(-7px); filter: blur(4px); }
+}
+@keyframes lang-in {
+  from { opacity: 0; transform: translateY(7px);  filter: blur(4px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+
+/* Firefox fallback — body fades out, language swaps at midpoint, fades back */
+@keyframes lang-fade {
+  0%, 100% { opacity: 1; }
+  40%, 60%  { opacity: 0; }
+}
+body.lang-switching {
+  animation: lang-fade 0.32s ease both;
+}
+
+/*
+ * Firefox fallback — transitions on background & text color so structural
+ * elements don't jump abruptly. Tailwind utilities keep their own durations
+ * because they are declared later in the cascade (inside @layer utilities).
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html,
+  body,
+  header,
+  footer,
+  section,
+  nav,
+  main,
+  aside {
+    transition: background-color 0.4s ease, color 0.3s ease;
+  }
+}
+
 @layer base {
   body {
     @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-50 antialiased;

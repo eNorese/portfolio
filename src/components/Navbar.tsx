@@ -73,8 +73,35 @@ export function Navbar() {
     }
   }, [])
 
-  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
-  const toggleLanguage = () => setLanguage(language === 'en' ? 'es' : 'en')
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    // View Transitions API: full-page cross-fade (Chrome / Edge / Safari 18+)
+    // Falls back to instant change + CSS transition on unsupported browsers
+    if (!('startViewTransition' in document)) {
+      setTheme(next)
+      return
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ;(document as any).startViewTransition(() => setTheme(next))
+  }
+  const toggleLanguage = () => {
+    const next = language === 'en' ? 'es' : 'en'
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const svt: ((cb: () => void) => { finished: Promise<void> }) | undefined = (document as any).startViewTransition?.bind(document)
+
+    if (!svt) {
+      // Firefox fallback: fade body out, swap language at opacity-0, fade in
+      document.body.classList.add('lang-switching')
+      setTimeout(() => setLanguage(next), 130)
+      setTimeout(() => document.body.classList.remove('lang-switching'), 340)
+      return
+    }
+
+    document.documentElement.classList.add('lang-switching')
+    svt(() => setLanguage(next))
+      .finished.finally(() => document.documentElement.classList.remove('lang-switching'))
+  }
 
   return (
     <header
