@@ -1,53 +1,45 @@
-import { createContext, useContext, useState } from 'react'
-import es from '../i18n/es.json'
-import en from '../i18n/en.json'
+'use client'
 
-type Lang = 'es' | 'en'
+import { createContext, useContext, useState, ReactNode } from 'react'
+import en from '@/i18n/en.json'
+import es from '@/i18n/es.json'
 
-const translations: Record<Lang, typeof es> = { es, en }
+type Language = 'en' | 'es'
+
+const translations = { en, es }
 
 interface LanguageContextType {
-  lang: Lang
-  setLang: (lang: Lang) => void
-  // Acceso dot-notation para strings. Para arrays/objetos usa t() con cast.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  t: (key: string) => any
+  language: Language
+  setLanguage: (lang: Language) => void
+  t: (key: string) => string
+  locale: typeof en
 }
 
-const LanguageContext = createContext<LanguageContextType>({
-  lang: 'es',
-  setLang: () => {},
-  t: (key) => key,
-})
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(() => {
-    const stored = localStorage.getItem('lang') as Lang | null
-    return stored === 'en' ? 'en' : 'es'
-  })
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [language, setLanguage] = useState<Language>('en')
 
-  const setLang = (newLang: Lang) => {
-    setLangState(newLang)
-    localStorage.setItem('lang', newLang)
-  }
+  const locale = translations[language] as typeof en
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const t = (key: string): any => {
-    const parts = key.split('.')
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let val: any = translations[lang]
-    for (const part of parts) {
-      val = val?.[part]
-      if (val === undefined) return key
+  const t = (key: string): string => {
+    const keys = key.split('.')
+    let value: unknown = locale
+    for (const k of keys) {
+      value = (value as Record<string, unknown>)?.[k]
     }
-    return val
+    return typeof value === 'string' ? value : key
   }
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>{children}</LanguageContext.Provider>
+    <LanguageContext.Provider value={{ language, setLanguage, t, locale }}>
+      {children}
+    </LanguageContext.Provider>
   )
 }
 
 export function useLanguage() {
-  return useContext(LanguageContext)
+  const context = useContext(LanguageContext)
+  if (!context) throw new Error('useLanguage must be used within LanguageProvider')
+  return context
 }

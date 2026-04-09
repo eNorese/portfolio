@@ -2,181 +2,170 @@
   "nav": {
     "about": "Sobre mí",
     "experience": "Experiencia",
-    "stack": "Stack",
+    "skills": "Habilidades",
     "projects": "Proyectos",
-    "contact": "Contacto",
-    "cta": "Hablemos"
+    "contact": "Contacto"
   },
   "hero": {
-    "available": "Disponible para proyectos",
-    "greeting": "> Hola, soy",
-    "typewriter": [
-      "Backend Developer",
-      "Cloud Architect",
-      "Azure Specialist",
-      "Augmented Engineer"
-    ],
-    "description": "Construyo arquitecturas backend sólidas sobre Azure. Del diseño de la base de datos al serverless en producción, cada decisión está pensada para escalar.",
-    "cta_projects": "Ver mi trabajo",
-    "cta_contact": "Hablemos",
-    "scroll": "scroll"
+    "greeting": "Hola, soy",
+    "name": "Enzo Norese",
+    "title": "Desarrollador Backend & Arquitecto Cloud",
+    "description": "Diseño y construyo sistemas escalables y resilientes que potencian aplicaciones modernas. Apasionado por la arquitectura limpia, los sistemas distribuidos y la experiencia del desarrollador.",
+    "cta_work": "Ver Mi Trabajo",
+    "cta_contact": "Contactarme",
+    "scroll": "Desliza para explorar"
   },
   "about": {
-    "section_label": "02. /sobre-mí",
-    "title_1": "Sobre",
-    "title_2": "mí",
-    "bio_1": "Ingeniero en Informática con foco en backend y arquitectura cloud. Especializado en el ecosistema Microsoft Azure, he liderado migraciones de sistemas críticos y diseñado arquitecturas escalables bajo presión real.",
-    "bio_2": "Trabajo bajo un modelo de Ingeniería Aumentada: uso la IA como multiplicador de fuerza para entregar más rápido sin sacrificar la solidez del sistema.",
-    "differentiator_label": "Diferencial",
-    "differentiator": "No desarrollo modelos de IA. Los uso estratégicamente para amplificar cada decisión técnica, reducir el time-to-market y enfocarme en lo que importa: la arquitectura y la lógica de negocio.",
-    "metrics": {
-      "years_teamwork": "3+",
-      "years_teamwork_label": "años en TeamWork",
-      "years_exp": "4+",
-      "years_exp_label": "años de experiencia",
-      "erp_label": "migración ERP crítica",
-      "erp_sublabel": "0 pérdida de datos",
-      "cert_label": "Ruta de certificación",
-      "cert_value": "AZ-900 / AZ-204"
-    },
-    "interests": {
-      "cybersecurity": "Ciberseguridad",
-      "cybersecurity_desc": "Pentesting & hardening",
-      "ai_rag": "IA / RAG",
-      "ai_rag_desc": "Ingeniería Aumentada",
-      "djing": "DJing",
-      "djing_desc": "Mezclas y producción",
-      "fpv": "FPV Drones",
-      "fpv_desc": "@eNorese.fpv"
-    },
-    "quote": "La arquitectura es una conversación silenciosa entre el sistema y su futuro.",
-    "quote_author": "— Enzo Norese"
+    "section_title": "Sobre Mí",
+    "subtitle": "Un poco sobre quién soy",
+    "bio_1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "bio_2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "bio_3": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    "years_value": "6+",
+    "projects_value": "40+",
+    "technologies_value": "30+",
+    "coffees_value": "∞",
+    "stats": {
+      "years": "Años de Experiencia",
+      "projects": "Proyectos Entregados",
+      "technologies": "Tecnologías",
+      "coffees": "Cafés Consumidos"
+    }
   },
   "experience": {
-    "section_label": "03. /experiencia",
-    "title_1": "Experiencia",
-    "title_2": "profesional",
-    "featured_badge": "★ Actual",
-    "full_time": "Jornada completa",
-    "part_time": "Jornada parcial",
+    "section_title": "Experiencia",
+    "subtitle": "Mi trayectoria profesional",
     "jobs": [
       {
+        "role": "Azure Cloud Developer",
         "company": "TeamWork Chile",
-        "role": "Backend Developer",
-        "period": "Jul 2022 – Actualidad · 3 años 9 meses",
-        "type": "full_time",
-        "location": "Providencia, Santiago, Chile",
-        "description": "Desarrollo de un software de reclutamiento y selección end-to-end. Diseño y programación de bases de datos, APIs, Azure Functions, integración de servicios cloud y mensajería en tiempo real con SignalR.",
-        "highlights": [
-          "Liderazgo técnico de la migración ERP Softland → Rex+ (0 pérdida de datos)",
-          "Arquitectura serverless con Azure Functions y TypeScript",
-          "Integración de servicios: Blob, Queue, Table Storage, SignalR",
-          "Estandarización, documentación técnica y CI/CD"
-        ],
-        "tags": ["Node.js", "TypeScript", "Azure Functions", "SQL Server", "PostgreSQL", "CosmosDB", "React.js", "SignalR", "Azure Storage", "CI/CD"],
-        "isFeatured": true
+        "period": "jul. 2022 – actualidad",
+        "location": "Providencia, Santiago · Jornada completa",
+        "description": "Colaboré en el desarrollo de un software de reclutamiento y selección, abarcando desde el reclutamiento hasta la contratación. Con foco en servicios Azure, mis responsabilidades incluyeron diseño de bases de datos (SQL Server, PostgreSQL, CosmosDB, MongoDB, Redis), desarrollo de APIs con Node.js, aplicaciones con React, funciones serverless con Azure Functions y TypeScript, integración de almacenamiento blob/queue/table, mensajería con Event Bus y Azure SignalR en tiempo real, diseño de arquitectura backend, documentación y CI/CD con GitHub Actions.",
+        "tags": ["Node.js", "TypeScript", "React", "Azure Functions", "SQL Server", "PostgreSQL", "CosmosDB", "GitHub Actions"]
       },
       {
-        "company": "Prodigio Chile",
         "role": "Software Developer",
-        "period": "Abr 2021 – Ene 2022 · 10 meses",
-        "type": "part_time",
-        "location": "Chile · Remoto",
-        "description": "Mantención y desarrollo de nuevas funcionalidades en APIs de integración. Resolución de incidencias y gestión de flujos de integración y despliegue continuo.",
-        "highlights": [
-          "Desarrollo y mantención de APIs de integración",
-          "Resolución de incidencias en producción",
-          "Gestión de flujos CI/CD"
-        ],
-        "tags": ["C#", ".NET Core 3.1", "Node.js", "CI/CD"],
-        "isFeatured": false
+        "company": "Prodigio Chile",
+        "period": "abr. 2021 – ene. 2022",
+        "location": "Chile · Jornada parcial",
+        "description": "Encargado de mantener, resolver incidencias y desarrollar nuevas funcionalidades de APIs de integración programadas con C# (.NET Core 3.1) y JavaScript (Node.js). Mantención de flujos de integración y despliegue continuo (CI/CD).",
+        "tags": ["C# / .NET Core", "Node.js", "JavaScript", "CI/CD"]
       },
       {
-        "company": "Soc. Electrónica Solari",
         "role": "Técnico Electrónico",
-        "period": "Mar 2015 – Feb 2021 · 6 años",
-        "type": "full_time",
-        "location": "Gran Santiago, Chile",
-        "description": "Reparación y mantención de equipos electrónicos. Especialización en cámaras digitales e impresoras. Esta etapa forjó la capacidad de diagnóstico sistemático que hoy se aplica directamente en debugging y arquitectura de software.",
-        "highlights": [
-          "Diagnóstico y reparación de equipos de precisión",
-          "Especialización en cámaras digitales e impresoras",
-          "Base formativa de pensamiento sistemático aplicado al software"
-        ],
-        "tags": ["Electrónica", "Diagnóstico", "Hardware", "Sistemas"],
-        "isFeatured": false
+        "company": "Sociedad Electronica Solari",
+        "period": "mar. 2015 – feb. 2021",
+        "location": "Gran Santiago · Jornada completa",
+        "description": "Encargado de reparar y hacer mantención a una variedad de equipos electrónicos, especializado en cámaras digitales e impresoras.",
+        "tags": ["Electrónica", "Reparación de Hardware", "Diagnóstico"]
       }
     ]
   },
-  "stack": {
-    "section_label": "04. /stack",
-    "title_1": "Stack",
-    "title_2": "tecnológico",
+  "skills": {
+    "section_title": "Habilidades y Logros",
+    "subtitle": "Tecnologías con las que trabajo e hitos de los que me enorgullezco",
+    "stories_title": "Historias de Éxito",
     "categories": {
-      "cloud": "Cloud & Azure",
+      "frontend": "Frontend",
       "backend": "Backend",
-      "databases": "Bases de datos",
-      "ai": "AI-Augmented Dev",
-      "frontend": "Frontend"
-    }
-  },
-  "projects": {
-    "section_label": "05. /proyectos",
-    "title_1": "Mis",
-    "title_2": "proyectos",
-    "description": "Proyectos que demuestran arquitecturas sólidas y soluciones de ingeniería real.",
-    "private_label": "Proyecto empresarial",
-    "coming_soon": "Próximamente",
-    "wip": "En construcción",
-    "no_repo": "Sin repositorio público",
-    "main_project": {
-      "title": "Migración ERP: Softland → Rex+",
-      "role": "Liderazgo Técnico",
-      "description": "Transición integral del sistema de planificación de recursos empresariales. Diseño y ejecución de la estrategia ETL completa: extracción, transformación y carga de datos garantizando cero pérdida de información. Mapeo preciso de todos los procesos de negocio y despliegue sin interrumpir la operación.",
-      "metric_1": "0 pérdida de datos",
-      "metric_2": "100% continuidad operacional",
-      "tags": ["ETL", "Migración", "Arquitectura", "Liderazgo Técnico", "ERP"]
+      "cloud": "Cloud & DevOps",
+      "tools": "Herramientas & Datos"
     },
-    "placeholders": [
+    "stories": [
       {
-        "title": "Azure Serverless Platform",
-        "description": "Plataforma de microservicios sobre Azure Functions con CosmosDB, SignalR y Queue Storage. Diseñada para alta disponibilidad.",
-        "tags": ["Azure", "TypeScript", "Serverless"]
+        "metric": "70%",
+        "label": "API más rápida",
+        "description": "Reduje el tiempo de respuesta promedio de la API de 350ms a 105ms mediante caché estratégico y optimización de consultas."
       },
       {
-        "title": "RAG Documentation Engine",
-        "description": "Motor de búsqueda semántica sobre documentación técnica interna usando embeddings vectoriales y arquitectura RAG.",
-        "tags": ["RAG", "LLMs", "pgvector"]
+        "metric": "1M+",
+        "label": "Usuarios Atendidos",
+        "description": "Lideré la arquitectura de un sistema distribuido que maneja más de un millón de usuarios activos diarios con 99.9% de uptime."
+      },
+      {
+        "metric": "35%",
+        "label": "Reducción de Costos",
+        "description": "Reduje los costos de infraestructura cloud en un 35% mediante optimización de recursos e instancias reservadas."
+      },
+      {
+        "metric": "10x",
+        "label": "Velocidad de Deploy",
+        "description": "Reduje el tiempo de despliegue de 4 horas a 20 minutos implementando un pipeline CI/CD completamente automatizado."
+      }
+    ]
+  },
+  "projects": {
+    "section_title": "Proyectos",
+    "subtitle": "Una selección de cosas que he construido",
+    "view_live": "Demo en Vivo",
+    "view_code": "Código Fuente",
+    "items": [
+      {
+        "title": "CloudMonitor",
+        "description": "Dashboard de monitoreo de infraestructura en tiempo real con detección de anomalías, alertas y análisis de costos. Construido para equipos DevOps que gestionan entornos multi-cloud.",
+        "tags": ["Node.js", "React", "Azure", "PostgreSQL"],
+        "live": "#",
+        "code": "#"
+      },
+      {
+        "title": "DevFlow",
+        "description": "Plataforma de productividad para desarrolladores que integra GitHub, Jira y Slack en un flujo de trabajo unificado. Reduce el cambio de contexto y mejora la velocidad del equipo.",
+        "tags": ["Next.js", "TypeScript", "PostgreSQL", "Redis"],
+        "live": "#",
+        "code": "#"
+      },
+      {
+        "title": "SecureGate",
+        "description": "API gateway liviano con rate limiting integrado, autenticación JWT y transformación de requests. Reemplazo drop-in para proyectos pequeños.",
+        "tags": ["Node.js", "Redis", "Docker", "TypeScript"],
+        "live": "#",
+        "code": "#"
+      },
+      {
+        "title": "DataPilot",
+        "description": "Constructor visual de pipelines ETL que permite a los equipos crear, programar y monitorear flujos de datos sin escribir código. Soporta más de 20 conectores.",
+        "tags": ["Python", "React", "Azure Functions", "SQL Server"],
+        "live": "#",
+        "code": "#"
+      },
+      {
+        "title": "ERP Bridge",
+        "description": "Kit de migración para sistemas ERP que maneja mapeo de datos, validación y rollback. Utilizado para migrar más de 5 años de datos operacionales con cero downtime.",
+        "tags": ["Node.js", "TypeScript", "SQL Server", "Azure"],
+        "live": "#",
+        "code": "#"
+      },
+      {
+        "title": "LogStream",
+        "description": "Plataforma distribuida de agregación y análisis de logs. Ingiere millones de eventos por segundo con búsqueda en tiempo real y capacidades de alerta.",
+        "tags": ["Node.js", "Azure Event Hubs", "Elasticsearch", "Docker"],
+        "live": "#",
+        "code": "#"
       }
     ]
   },
   "contact": {
-    "section_label": "06. /contacto",
-    "title_1": "¿Tienes un proyecto que necesita",
-    "title_2": "arquitectura cloud sólida?",
-    "subtitle": "Hablemos.",
-    "description": "Disponible para proyectos, consultoría cloud o posiciones backend. Escríbeme.",
+    "section_title": "Contacto",
+    "subtitle": "Trabajemos juntos",
+    "description": "Actualmente estoy abierto a nuevas oportunidades. Ya sea que tengas un proyecto en mente, una pregunta o simplemente quieras saludar — mi bandeja de entrada siempre está abierta.",
     "form": {
-      "name_label": "Nombre",
-      "name_placeholder": "Tu nombre",
-      "email_label": "Email",
-      "email_placeholder": "tu@email.com",
-      "subject_label": "Asunto",
-      "subject_placeholder": "Selecciona un asunto",
-      "subject_options": ["Proyecto", "Trabajo", "Consulta", "Otro"],
-      "message_label": "Mensaje",
-      "message_placeholder": "Cuéntame sobre tu proyecto...",
-      "submit": "Enviar mensaje",
-      "sending": "Enviando...",
-      "success_title": "¡Mensaje enviado!",
-      "success_desc": "Gracias por escribirme. Te responderé a la brevedad.",
-      "send_another": "Enviar otro mensaje"
+      "placeholder_name": "Juan Pérez",
+      "placeholder_email": "juan@ejemplo.com",
+      "placeholder_message": "Hola, me gustaría hablar sobre...",
+      "send": "Enviar Mensaje"
     },
-    "direct_contact": "Contacto directo",
-    "social_title": "Redes sociales"
+    "info": {
+      "email_label": "Email",
+      "location_label": "Ubicación",
+      "location_value": "Santiago, Chile",
+      "availability_label": "Disponibilidad",
+      "availability_value": "Abierto a oportunidades"
+    }
   },
   "footer": {
-    "tagline": "// arquitectura que escala · código que perdura",
-    "copyright": "© 2025 Enzo · Santiago, Chile"
+    "made_with": "Construido con",
+    "and": "y",
+    "rights": "Todos los derechos reservados."
   }
 }

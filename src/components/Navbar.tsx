@@ -1,172 +1,204 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Terminal, Sun, Moon } from 'lucide-react'
-import { useTheme } from '../contexts/ThemeContext'
-import { useLanguage } from '../contexts/LanguageContext'
+'use client'
 
-export default function Navbar() {
+import { useState, useEffect } from 'react'
+import { useTheme } from 'next-themes'
+import { useLanguage } from '@/contexts/LanguageContext'
+
+const NAV_LINKS = [
+  { key: 'about', href: '#about' },
+  { key: 'experience', href: '#experience' },
+  { key: 'skills', href: '#skills' },
+  { key: 'projects', href: '#projects' },
+  { key: 'contact', href: '#contact' },
+] as const
+
+function SunIcon() {
+  return (
+    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+    </svg>
+  )
+}
+
+function MoonIcon() {
+  return (
+    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+    </svg>
+  )
+}
+
+export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const { theme, toggleTheme } = useTheme()
-  const { lang, setLang, t } = useLanguage()
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const [activeSection, setActiveSection] = useState<string>('')
+  const { theme, setTheme } = useTheme()
+  const { language, setLanguage, t } = useLanguage()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
+    setMounted(true)
+
+    // Glass effect trigger on scroll
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    // Active section detection via IntersectionObserver
+    // rootMargin: top offset = navbar height, bottom = cut at 50% viewport
+    // so a section is "active" when it occupies the top half of the visible area
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: '-64px 0px -50% 0px', threshold: 0 }
+    )
+
+    NAV_LINKS.forEach(({ key }) => {
+      const el = document.getElementById(key)
+      if (el) observer.observe(el)
+    })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      observer.disconnect()
+    }
   }, [])
 
-  const NAV_LINKS = [
-    { labelKey: 'nav.about', href: '#about' },
-    { labelKey: 'nav.experience', href: '#experience' },
-    { labelKey: 'nav.stack', href: '#stack' },
-    { labelKey: 'nav.projects', href: '#projects' },
-    { labelKey: 'nav.contact', href: '#contact' },
-  ]
-
-  const handleNavClick = (href: string) => {
-    setMenuOpen(false)
-    const el = document.querySelector(href)
-    el?.scrollIntoView({ behavior: 'smooth' })
-  }
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
+  const toggleLanguage = () => setLanguage(language === 'en' ? 'es' : 'en')
 
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-200/60 dark:border-zinc-800/60 shadow-sm dark:shadow-lg dark:shadow-black/20'
+          ? [
+              'backdrop-blur-xl backdrop-saturate-150',
+              'bg-white/60 dark:bg-gray-950/65',
+              'border-b border-white/60 dark:border-white/5',
+              'shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.35)]',
+            ].join(' ')
           : 'bg-transparent'
       }`}
     >
-      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <button
-          onClick={() => handleNavClick('#hero')}
-          className="flex items-center gap-2 group"
-        >
-          <Terminal
-            size={18}
-            className="text-sky-500 dark:text-sky-400 group-hover:text-violet-500 dark:group-hover:text-violet-400 transition-colors"
-          />
-          <span className="font-mono font-semibold text-zinc-800 dark:text-zinc-100 tracking-tight text-sm">
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+
+          {/* Logo */}
+          <a
+            href="#"
+            className="text-base font-bold tracking-tight text-gray-900 dark:text-white"
+            onClick={() => setMobileOpen(false)}
+          >
             eNorese
-            <span className="text-sky-500 dark:text-sky-400 animate-blink">_</span>
-          </span>
-        </button>
+            <span className="text-indigo-600 dark:text-indigo-400">.</span>
+          </a>
 
-        {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-0.5">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <button
-                onClick={() => handleNavClick(link.href)}
-                className="relative px-3.5 py-2 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors group"
-              >
-                {t(link.labelKey)}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px w-0 bg-sky-500 dark:bg-sky-400 group-hover:w-4/5 transition-all duration-300" />
-              </button>
-            </li>
-          ))}
-        </ul>
-
-        {/* Right controls */}
-        <div className="flex items-center gap-2">
-          {/* Language toggle */}
-          <div className="hidden md:flex items-center rounded-lg border border-zinc-200 dark:border-zinc-800 overflow-hidden text-xs font-mono">
-            <button
-              onClick={() => setLang('es')}
-              className={`px-2.5 py-1.5 transition-colors ${
-                lang === 'es'
-                  ? 'bg-sky-500 text-white'
-                  : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
-              }`}
-            >
-              ES
-            </button>
-            <button
-              onClick={() => setLang('en')}
-              className={`px-2.5 py-1.5 transition-colors ${
-                lang === 'en'
-                  ? 'bg-sky-500 text-white'
-                  : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
-              }`}
-            >
-              EN
-            </button>
+          {/* Desktop nav links */}
+          <div className="hidden md:flex items-center gap-7">
+            {NAV_LINKS.map(({ key, href }) => {
+              const isActive = activeSection === key
+              return (
+                <a
+                  key={key}
+                  href={href}
+                  className={`relative text-sm transition-colors duration-200 pb-0.5 ${
+                    isActive
+                      ? 'text-indigo-600 dark:text-indigo-400'
+                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                  }`}
+                >
+                  {t(`nav.${key}`)}
+                  {/* Animated underline indicator */}
+                  <span
+                    className={`absolute bottom-0 left-0 h-px bg-indigo-600 dark:bg-indigo-400 transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0'
+                    }`}
+                  />
+                </a>
+              )
+            })}
           </div>
 
-          {/* Theme toggle */}
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all"
-          >
-            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
-          </button>
+          {/* Controls */}
+          <div className="flex items-center gap-2">
+            {/* Language toggle */}
+            <button
+              onClick={toggleLanguage}
+              aria-label="Toggle language"
+              className="h-8 px-2.5 rounded-md text-xs font-semibold tracking-wide text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200"
+            >
+              {language === 'en' ? 'ES' : 'EN'}
+            </button>
 
-          {/* CTA Desktop */}
-          <button
-            onClick={() => handleNavClick('#contact')}
-            className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg border border-sky-500/60 text-sky-600 dark:text-sky-400 hover:bg-sky-500/10 hover:border-sky-500 transition-all duration-200"
-          >
-            {t('nav.cta')}
-          </button>
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="w-8 h-8 flex items-center justify-center rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200"
+            >
+              {mounted ? (theme === 'dark' ? <SunIcon /> : <MoonIcon />) : <span className="w-4 h-4" />}
+            </button>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setMenuOpen((v) => !v)}
-            className="md:hidden p-2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+              className="md:hidden w-8 h-8 flex flex-col items-center justify-center gap-1.5 rounded-md text-gray-500 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200"
+            >
+              <span
+                className={`block w-5 h-px bg-current transition-all duration-300 origin-center ${
+                  mobileOpen ? 'rotate-45 translate-y-[3.5px]' : ''
+                }`}
+              />
+              <span
+                className={`block w-5 h-px bg-current transition-all duration-300 ${
+                  mobileOpen ? 'opacity-0 scale-x-0' : ''
+                }`}
+              />
+              <span
+                className={`block w-5 h-px bg-current transition-all duration-300 origin-center ${
+                  mobileOpen ? '-rotate-45 -translate-y-[3.5px]' : ''
+                }`}
+              />
+            </button>
+          </div>
         </div>
       </nav>
 
       {/* Mobile menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.22 }}
-            className="md:hidden bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800"
-          >
-            <ul className="px-4 py-3 flex flex-col gap-1">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <button
-                    onClick={() => handleNavClick(link.href)}
-                    className="w-full text-left px-4 py-3 text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 rounded-lg transition-all"
-                  >
-                    {t(link.labelKey)}
-                  </button>
-                </li>
-              ))}
-              {/* Mobile lang toggle */}
-              <li className="flex items-center gap-2 px-4 py-2 mt-1">
-                <span className="text-xs font-mono text-zinc-400">Lang:</span>
-                <button
-                  onClick={() => setLang('es')}
-                  className={`text-xs font-mono px-2 py-1 rounded ${lang === 'es' ? 'bg-sky-500 text-white' : 'text-zinc-400'}`}
-                >
-                  ES
-                </button>
-                <button
-                  onClick={() => setLang('en')}
-                  className={`text-xs font-mono px-2 py-1 rounded ${lang === 'en' ? 'bg-sky-500 text-white' : 'text-zinc-400'}`}
-                >
-                  EN
-                </button>
-              </li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="backdrop-blur-xl bg-white/90 dark:bg-gray-950/90 border-t border-white/60 dark:border-white/5 px-4 py-3 space-y-1">
+          {NAV_LINKS.map(({ key, href }) => {
+            const isActive = activeSection === key
+            return (
+              <a
+                key={key}
+                href={href}
+                className={`flex items-center gap-2 py-2.5 px-3 rounded-lg text-sm transition-colors duration-200 ${
+                  isActive
+                    ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/80 dark:bg-indigo-950/40'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10'
+                }`}
+                onClick={() => setMobileOpen(false)}
+              >
+                {isActive && (
+                  <span className="w-1 h-1 rounded-full bg-indigo-600 dark:bg-indigo-400 shrink-0" />
+                )}
+                {t(`nav.${key}`)}
+              </a>
+            )
+          })}
+        </div>
+      </div>
+    </header>
   )
 }

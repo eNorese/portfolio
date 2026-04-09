@@ -1,13 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm create:*)",
-      "Bash(1:*)",
-      "Bash(npx create-vite@latest . --template react-ts)",
       "Bash(npm install:*)",
-      "Bash(npx tsc:*)",
-      "Bash(npm run:*)",
-      "Bash(node:*)"
+      "Bash(npx next:*)"
     ]
   }
 }
