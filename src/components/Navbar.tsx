@@ -93,8 +93,8 @@ export function Navbar() {
     if (!svt) {
       // Firefox fallback: fade body out, swap language at opacity-0, fade in
       document.body.classList.add('lang-switching')
-      setTimeout(() => setLanguage(next), 130)
-      setTimeout(() => document.body.classList.remove('lang-switching'), 340)
+      setTimeout(() => setLanguage(next), 180)
+      setTimeout(() => document.body.classList.remove('lang-switching'), 420)
       return
     }
 

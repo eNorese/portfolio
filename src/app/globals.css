@@ -19,35 +19,37 @@ html {
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Language toggle — slide-blur in/out, faster than the theme crossfade */
+/* Language toggle — soft scale + blur, no directional movement */
 :root.lang-switching::view-transition-old(root) {
   animation-name: lang-out;
-  animation-duration: 0.25s;
-  animation-timing-function: ease;
+  animation-duration: 0.22s;
+  animation-timing-function: ease-in;
   animation-fill-mode: both;
 }
 :root.lang-switching::view-transition-new(root) {
   animation-name: lang-in;
-  animation-duration: 0.25s;
-  animation-timing-function: ease;
+  animation-duration: 0.28s;
+  animation-timing-function: ease-out;
   animation-fill-mode: both;
 }
 @keyframes lang-out {
-  from { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  to   { opacity: 0; transform: translateY(-7px); filter: blur(4px); }
+  from { opacity: 1; transform: scale(1);    filter: blur(0px); }
+  to   { opacity: 0; transform: scale(0.96); filter: blur(5px); }
 }
 @keyframes lang-in {
-  from { opacity: 0; transform: translateY(7px);  filter: blur(4px); }
-  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+  from { opacity: 0; transform: scale(1.04); filter: blur(5px); }
+  to   { opacity: 1; transform: scale(1);    filter: blur(0px); }
 }
 
-/* Firefox fallback — body fades out, language swaps at midpoint, fades back */
+/* Firefox fallback — soft fade out/in, language swaps at the trough */
 @keyframes lang-fade {
-  0%, 100% { opacity: 1; }
-  40%, 60%  { opacity: 0; }
+  0%   { opacity: 1;    filter: blur(0px); }
+  45%  { opacity: 0;    filter: blur(4px); }
+  55%  { opacity: 0;    filter: blur(4px); }
+  100% { opacity: 1;    filter: blur(0px); }
 }
 body.lang-switching {
-  animation: lang-fade 0.32s ease both;
+  animation: lang-fade 0.4s ease both;
 }
 
 /*
