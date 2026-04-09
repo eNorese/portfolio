@@ -78,15 +78,10 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
         scrolled
-          ? [
-              'backdrop-blur-xl backdrop-saturate-150',
-              'bg-white/60 dark:bg-gray-950/65',
-              'border-b border-gray-200/10 dark:border-white/[0.04]',
-              'shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.35)]',
-            ].join(' ')
-          : 'bg-transparent'
+          ? 'backdrop-blur-xl backdrop-saturate-150 bg-white/60 dark:bg-gray-950/65 border-gray-200/10 dark:border-white/[0.04] shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.35)]'
+          : 'bg-transparent border-transparent'
       }`}
     >
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
