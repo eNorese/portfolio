@@ -152,8 +152,9 @@ export function Hero() {
     const resize = () => {
       canvas.width  = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
-      dropsRef.current = createDrops(58, canvas.width, canvas.height)
-      starsRef.current = createStars(110, canvas.width, canvas.height)
+      const isMobile = canvas.width < 768
+      dropsRef.current = createDrops(isMobile ? 25 : 58, canvas.width, canvas.height)
+      starsRef.current = createStars(isMobile ? 50 : 110, canvas.width, canvas.height)
     }
     resize()
     window.addEventListener('resize', resize)

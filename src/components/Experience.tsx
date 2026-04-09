@@ -138,9 +138,20 @@ export function Experience() {
       line.style.transform = `scaleY(${progress})`
     }
 
-    window.addEventListener('scroll', update, { passive: true })
+    let ticking = false
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true
+        requestAnimationFrame(() => {
+          update()
+          ticking = false
+        })
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
     update()   // run once on mount in case section is already in view
-    return () => window.removeEventListener('scroll', update)
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
