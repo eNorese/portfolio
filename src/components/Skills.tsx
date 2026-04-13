@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const SKILLS_DATA = {
-  frontend: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML/CSS'],
-  backend: ['Node.js', 'Express', 'TypeScript', 'SQL Server', 'PostgreSQL', 'Redis'],
-  cloud: ['Microsoft Azure', 'Azure Functions', 'Docker', 'Terraform', 'CI/CD', 'Nginx'],
-  tools: ['Git', 'Linux', 'Elasticsearch', 'Kafka', 'Grafana', 'Jest'],
+  frontend: ['React', 'Next.js', 'TypeScript', 'Vite', 'Tailwind CSS', 'react-i18next'],
+  backend: ['Node.js', 'Express', 'TypeScript', 'Python', 'C# (.NET)', 'PostgreSQL', 'SQL Server', 'CosmosDB'],
+  cloud: ['Microsoft Azure', 'Azure Functions', 'Azure Service Bus', 'Azure SignalR', 'Azure Blob Storage', 'GitHub Actions'],
+  tools: ['Claude API', 'GPT-4o', 'Azure Doc Intelligence', 'Microsoft Graph API', 'JWT / JWKS', 'Git'],
 } as const
 
 // Extract the leading number and the rest: "70%" → { num: 70, suffix: "%" }

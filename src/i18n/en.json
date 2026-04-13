@@ -19,9 +19,9 @@
   "about": {
     "section_title": "About Me",
     "subtitle": "A little bit about who I am",
-    "bio_1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "bio_2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "bio_3": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    "bio_1": "Computer Engineer with a background in electronics, specialized in backend development and cloud solutions architecture. At TeamWork Capacitación Ltda. in Santiago, I operate as technical lead and solutions architect — designing and building high-impact systems that power real operations.",
+    "bio_2": "I lead two key initiatives: the Softland → Rex+ ERP migration (completed with zero data loss and zero downtime) and the Digital 24/7 Recruiter — an AI-powered mass recruitment agent on Azure serverless, with a cascaded multi-model pipeline (Claude, GPT-4o, Gemini) designed to process tens of thousands of applications during peak demand periods like Cyber Day.",
+    "bio_3": "My engineering philosophy — \"Augmented Engineering\" — positions AI tools as technical capability multipliers, not replacements for sound engineering judgment. My path from electronics technician to cloud architect gives me a broad perspective that spans from hardware diagnostics to modern distributed systems.",
     "years_value": "6+",
     "projects_value": "40+",
     "technologies_value": "30+",
@@ -38,13 +38,13 @@
     "subtitle": "My professional journey",
     "jobs": [
       {
-        "role": "Azure Cloud Developer",
-        "company": "TeamWork Chile",
+        "role": "Programmer / Technical Lead & Solutions Architect",
+        "company": "TeamWork Capacitación Ltda.",
         "period": "Jul 2022 – Present",
         "duration": "3 yrs 10 mos",
-        "location": "Providencia, Santiago · Full-time",
-        "description": "Developed a full-cycle recruitment and selection platform on Microsoft Azure. Key responsibilities include Node.js API development, React client applications, serverless functions with Azure Functions and TypeScript, multi-database design (SQL Server, PostgreSQL, CosmosDB, MongoDB, Redis cache), real-time messaging via Azure SignalR, Event Bus Service integration, blob/queue/table storage, backend architecture design, API and database documentation, and CI/CD pipelines with GitHub Actions.",
-        "tags": ["Node.js", "TypeScript", "React", "Azure Functions", "SQL Server", "PostgreSQL", "CosmosDB", "GitHub Actions"]
+        "location": "Santiago, Chile · Full-time",
+        "description": "De facto technical lead and solutions architect responsible for two high-impact projects. (1) ERP Softland → Rex+ Migration: critical migration completed with zero data loss and no operational disruption, involving deep analysis of legacy data structures, cross-system schema mapping, and exhaustive data integrity validation. (2) Digital 24/7 Recruiter: AI-powered mass recruitment agent on Azure Functions v4 (Premium Plan) with a cascaded multi-model pipeline (Claude, GPT-4o, Gemini) for cost-optimized screening. Features async ingestion via Azure Service Bus, PostgreSQL staging schema, Microsoft 365 Graph API, Azure Blob Storage, Azure Document Intelligence for image CVs, WhatsApp OTP, and Google Maps Places API with Haversine distance calculation.",
+        "tags": ["Node.js", "TypeScript", "Azure Functions", "PostgreSQL", "CosmosDB", "Azure Service Bus", "Claude API", "Microsoft Graph API"]
       },
       {
         "role": "Software Developer",
@@ -78,24 +78,24 @@
     },
     "stories": [
       {
-        "metric": "70%",
-        "label": "Faster API",
-        "description": "Reduced average API response time from 350ms to 105ms through strategic caching and query optimization."
+        "metric": "100%",
+        "label": "Data Preserved",
+        "description": "Migrated 5+ years of operational data from Softland to Rex+ with 100% data integrity and zero operational downtime."
       },
       {
-        "metric": "1M+",
-        "label": "Users Served",
-        "description": "Led architecture of a distributed system handling over one million daily active users with 99.9% uptime."
+        "metric": "3",
+        "label": "LLMs in Pipeline",
+        "description": "Built a cascaded multi-model AI pipeline integrating Claude, GPT-4o, and Gemini to optimize cost and accuracy in mass recruitment screening."
       },
       {
-        "metric": "35%",
-        "label": "Cost Reduction",
-        "description": "Cut cloud infrastructure costs by 35% through resource right-sizing and reserved instance planning."
+        "metric": "10K+",
+        "label": "Apps per Peak",
+        "description": "Architected the Digital 24/7 Recruiter to process tens of thousands of applications per peak demand period, fully automated on Azure serverless."
       },
       {
-        "metric": "10x",
-        "label": "Deploy Speed",
-        "description": "Reduced deployment time from 4 hours to 20 minutes by implementing a fully automated CI/CD pipeline."
+        "metric": "6+",
+        "label": "Years in Tech",
+        "description": "From electronics technician to backend developer and cloud architect — a technical path spanning hardware diagnostics, C#/.NET, and modern Azure cloud systems."
       }
     ]
   },
@@ -106,44 +106,44 @@
     "view_code": "Source Code",
     "items": [
       {
-        "title": "CloudMonitor",
-        "description": "Real-time infrastructure monitoring dashboard with anomaly detection, alerting, and cost analysis. Built for DevOps teams managing multi-cloud environments.",
-        "tags": ["Node.js", "React", "Azure", "PostgreSQL"],
+        "title": "Digital 24/7 Recruiter",
+        "description": "AI-powered mass recruitment agent on Azure serverless. Cascaded multi-model pipeline (Claude, GPT-4o, Gemini) for cost-optimized screening, async ingestion via Azure Service Bus, WhatsApp OTP, Azure Document Intelligence for image CVs, and Haversine distance calculation. Built to scale to tens of thousands of applications during peak demand periods.",
+        "tags": ["TypeScript", "Azure Functions", "Claude API", "PostgreSQL", "Azure Service Bus", "Node.js"],
         "live": "#",
         "code": "#"
       },
       {
-        "title": "DevFlow",
-        "description": "Developer productivity platform that integrates GitHub, Jira, and Slack into a unified workflow. Reduces context switching and improves team velocity.",
-        "tags": ["Next.js", "TypeScript", "PostgreSQL", "Redis"],
+        "title": "ERP Migration: Softland → Rex+",
+        "description": "High-risk enterprise ERP migration completed with zero data loss and no operational disruption. Required deep analysis of legacy data structures, cross-system schema mapping, and exhaustive integrity validation across 5+ years of operational data.",
+        "tags": ["TypeScript", "Node.js", "SQL Server", "PostgreSQL", "Azure"],
         "live": "#",
         "code": "#"
       },
       {
-        "title": "SecureGate",
-        "description": "Lightweight API gateway with built-in rate limiting, JWT authentication, and request transformation. Drop-in replacement for Azure API Management in small projects.",
-        "tags": ["Node.js", "Redis", "Docker", "TypeScript"],
+        "title": "TypeScript Password Library",
+        "description": "Static class library for password management: secure hashing, verification, random generation, and complexity evaluation. Designed as a drop-in module for Node.js backend services.",
+        "tags": ["TypeScript", "Node.js", "Security"],
         "live": "#",
         "code": "#"
       },
       {
-        "title": "DataPilot",
-        "description": "Visual ETL pipeline builder that lets teams create, schedule, and monitor data workflows without writing code. Supports 20+ data source connectors.",
-        "tags": ["Python", "React", "Azure Functions", "SQL Server"],
+        "title": "PDF & Image Text Extractor",
+        "description": "REST API that extracts structured text from PDF and image files using Anthropic's Claude API. Built with Express.js and Multer for multipart file handling, enabling document processing workflows.",
+        "tags": ["Node.js", "Express.js", "TypeScript", "Claude API", "Multer"],
         "live": "#",
         "code": "#"
       },
       {
-        "title": "ERP Bridge",
-        "description": "Migration toolkit for ERP systems that handles data mapping, validation, and rollback. Used to migrate 5+ years of operational data with zero downtime.",
-        "tags": ["Node.js", "TypeScript", "SQL Server", "Azure"],
+        "title": "Azure SignalR Real-time PoC",
+        "description": "Proof of concept for scalable real-time messaging using Azure SignalR Service with Azure Functions. Demonstrates event-driven WebSocket communication patterns for distributed applications.",
+        "tags": ["TypeScript", "Azure Functions", "Azure SignalR", "Node.js"],
         "live": "#",
         "code": "#"
       },
       {
-        "title": "LogStream",
-        "description": "Distributed log aggregation and analysis platform. Ingests millions of events per second with real-time search and alerting capabilities.",
-        "tags": ["Node.js", "Azure Event Hubs", "Elasticsearch", "Docker"],
+        "title": "Chilean Job Market Scraper",
+        "description": "Python web scraper covering 6 major Chilean job portals (Bumeran, LinkedIn, Indeed, and others). Aggregates and normalizes job listings across portals for market intelligence and analysis.",
+        "tags": ["Python", "Web Scraping", "Data Analysis"],
         "live": "#",
         "code": "#"
       }
@@ -177,8 +177,6 @@
     }
   },
   "footer": {
-    "made_with": "Built with",
-    "and": "and",
     "rights": "All rights reserved."
   }
 }

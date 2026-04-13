@@ -19,9 +19,9 @@
   "about": {
     "section_title": "Sobre Mí",
     "subtitle": "Un poco sobre quién soy",
-    "bio_1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "bio_2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "bio_3": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    "bio_1": "Ingeniero en Informática con base en electrónica, especializado en desarrollo backend y arquitectura de soluciones cloud. En TeamWork Capacitación Ltda. (Santiago, Chile), opero como líder técnico y arquitecto de soluciones — diseñando y construyendo sistemas de alto impacto que potencian operaciones reales.",
+    "bio_2": "Lidero dos iniciativas clave: la migración ERP Softland → Rex+ (completada con cero pérdida de datos y cero downtime) y el Reclutador Digital 24/7 — un agente IA para reclutamiento masivo sobre arquitectura serverless en Azure, con pipeline multi-modelo en cascada (Claude, GPT-4o, Gemini) diseñado para procesar decenas de miles de postulaciones en períodos de alta demanda como el Cyber Day.",
+    "bio_3": "Mi filosofía de ingeniería — \"Ingeniería Aumentada\" — posiciona las herramientas de IA como multiplicadores de capacidad técnica, no como sustitutos del criterio ingenieril. Mi trayectoria desde técnico electrónico hasta arquitecto cloud me otorga una visión amplia que abarca desde el diagnóstico de hardware hasta los sistemas distribuidos modernos.",
     "years_value": "6+",
     "projects_value": "40+",
     "technologies_value": "30+",
@@ -38,13 +38,13 @@
     "subtitle": "Mi trayectoria profesional",
     "jobs": [
       {
-        "role": "Azure Cloud Developer",
-        "company": "TeamWork Chile",
+        "role": "Programador / Líder Técnico & Arquitecto de Soluciones",
+        "company": "TeamWork Capacitación Ltda.",
         "period": "jul. 2022 – actualidad",
         "duration": "3 años 10 meses",
-        "location": "Providencia, Santiago · Jornada completa",
-        "description": "Colaboré en el desarrollo de un software de reclutamiento y selección, abarcando desde el reclutamiento hasta la contratación. Con foco en servicios Azure, mis responsabilidades incluyeron diseño de bases de datos (SQL Server, PostgreSQL, CosmosDB, MongoDB, Redis), desarrollo de APIs con Node.js, aplicaciones con React, funciones serverless con Azure Functions y TypeScript, integración de almacenamiento blob/queue/table, mensajería con Event Bus y Azure SignalR en tiempo real, diseño de arquitectura backend, documentación y CI/CD con GitHub Actions.",
-        "tags": ["Node.js", "TypeScript", "React", "Azure Functions", "SQL Server", "PostgreSQL", "CosmosDB", "GitHub Actions"]
+        "location": "Santiago, Chile · Jornada completa",
+        "description": "Líder técnico y arquitecto de soluciones de facto, responsable de dos proyectos de alto impacto. (1) Migración ERP Softland → Rex+: migración crítica completada con cero pérdida de datos y sin interrupción operacional, que implicó análisis profundo de estructuras legacy, mapeo de esquemas entre sistemas y validación exhaustiva de integridad de datos. (2) Reclutador Digital 24/7: agente IA para reclutamiento masivo sobre Azure Functions v4 (Premium Plan) con pipeline multi-modelo en cascada (Claude, GPT-4o, Gemini) para screening optimizado en costos. Incluye ingesta asíncrona vía Azure Service Bus, esquema de staging en PostgreSQL, Microsoft 365 Graph API, Azure Blob Storage, Azure Document Intelligence para CVs en imagen, OTP por WhatsApp y Google Maps Places API con cálculo de distancia Haversine.",
+        "tags": ["Node.js", "TypeScript", "Azure Functions", "PostgreSQL", "CosmosDB", "Azure Service Bus", "Claude API", "Microsoft Graph API"]
       },
       {
         "role": "Software Developer",
@@ -78,24 +78,24 @@
     },
     "stories": [
       {
-        "metric": "70%",
-        "label": "API más rápida",
-        "description": "Reduje el tiempo de respuesta promedio de la API de 350ms a 105ms mediante caché estratégico y optimización de consultas."
+        "metric": "100%",
+        "label": "Datos Preservados",
+        "description": "Migré más de 5 años de datos operacionales de Softland a Rex+ con 100% de integridad de datos y cero downtime operacional."
       },
       {
-        "metric": "1M+",
-        "label": "Usuarios Atendidos",
-        "description": "Lideré la arquitectura de un sistema distribuido que maneja más de un millón de usuarios activos diarios con 99.9% de uptime."
+        "metric": "3",
+        "label": "LLMs en Pipeline",
+        "description": "Construí un pipeline IA multi-modelo en cascada (Claude, GPT-4o, Gemini) para optimizar costo y precisión en el screening de reclutamiento masivo."
       },
       {
-        "metric": "35%",
-        "label": "Reducción de Costos",
-        "description": "Reduje los costos de infraestructura cloud en un 35% mediante optimización de recursos e instancias reservadas."
+        "metric": "10K+",
+        "label": "Apps por Peak",
+        "description": "Arquitecté el Reclutador Digital 24/7 para procesar decenas de miles de postulaciones por período de alta demanda, completamente automatizado sobre serverless en Azure."
       },
       {
-        "metric": "10x",
-        "label": "Velocidad de Deploy",
-        "description": "Reduje el tiempo de despliegue de 4 horas a 20 minutos implementando un pipeline CI/CD completamente automatizado."
+        "metric": "6+",
+        "label": "Años en Tecnología",
+        "description": "De técnico electrónico a desarrollador backend y arquitecto cloud — una trayectoria que abarca diagnóstico de hardware, C#/.NET y sistemas modernos en Azure."
       }
     ]
   },
@@ -106,44 +106,44 @@
     "view_code": "Código Fuente",
     "items": [
       {
-        "title": "CloudMonitor",
-        "description": "Dashboard de monitoreo de infraestructura en tiempo real con detección de anomalías, alertas y análisis de costos. Construido para equipos DevOps que gestionan entornos multi-cloud.",
-        "tags": ["Node.js", "React", "Azure", "PostgreSQL"],
+        "title": "Reclutador Digital 24/7",
+        "description": "Agente IA para reclutamiento masivo sobre arquitectura serverless en Azure. Pipeline multi-modelo en cascada (Claude, GPT-4o, Gemini) para screening optimizado en costos, ingesta asíncrona vía Azure Service Bus, OTP por WhatsApp, Azure Document Intelligence para CVs en imagen y cálculo de distancia Haversine. Diseñado para escalar a decenas de miles de postulaciones en períodos de alta demanda.",
+        "tags": ["TypeScript", "Azure Functions", "Claude API", "PostgreSQL", "Azure Service Bus", "Node.js"],
         "live": "#",
         "code": "#"
       },
       {
-        "title": "DevFlow",
-        "description": "Plataforma de productividad para desarrolladores que integra GitHub, Jira y Slack en un flujo de trabajo unificado. Reduce el cambio de contexto y mejora la velocidad del equipo.",
-        "tags": ["Next.js", "TypeScript", "PostgreSQL", "Redis"],
+        "title": "Migración ERP: Softland → Rex+",
+        "description": "Migración crítica de ERP empresarial completada con cero pérdida de datos y sin interrupción operacional. Requirió análisis profundo de estructuras legacy, mapeo de esquemas entre sistemas y validación exhaustiva de integridad a lo largo de más de 5 años de datos operacionales.",
+        "tags": ["TypeScript", "Node.js", "SQL Server", "PostgreSQL", "Azure"],
         "live": "#",
         "code": "#"
       },
       {
-        "title": "SecureGate",
-        "description": "API gateway liviano con rate limiting integrado, autenticación JWT y transformación de requests. Reemplazo drop-in para proyectos pequeños.",
-        "tags": ["Node.js", "Redis", "Docker", "TypeScript"],
+        "title": "Librería TypeScript de Contraseñas",
+        "description": "Librería de clase estática para gestión de contraseñas: hashing seguro, verificación, generación aleatoria y evaluación de complejidad. Diseñada como módulo drop-in para servicios backend en Node.js.",
+        "tags": ["TypeScript", "Node.js", "Security"],
         "live": "#",
         "code": "#"
       },
       {
-        "title": "DataPilot",
-        "description": "Constructor visual de pipelines ETL que permite a los equipos crear, programar y monitorear flujos de datos sin escribir código. Soporta más de 20 conectores.",
-        "tags": ["Python", "React", "Azure Functions", "SQL Server"],
+        "title": "Extractor de Texto PDF e Imagen",
+        "description": "API REST que extrae texto estructurado desde archivos PDF e imagen usando la API de Claude de Anthropic. Construida con Express.js y Multer para manejo de archivos multipart, habilitando flujos de procesamiento documental.",
+        "tags": ["Node.js", "Express.js", "TypeScript", "Claude API", "Multer"],
         "live": "#",
         "code": "#"
       },
       {
-        "title": "ERP Bridge",
-        "description": "Kit de migración para sistemas ERP que maneja mapeo de datos, validación y rollback. Utilizado para migrar más de 5 años de datos operacionales con cero downtime.",
-        "tags": ["Node.js", "TypeScript", "SQL Server", "Azure"],
+        "title": "PoC Tiempo Real con Azure SignalR",
+        "description": "Prueba de concepto de mensajería en tiempo real escalable usando Azure SignalR Service con Azure Functions. Demuestra patrones de comunicación WebSocket orientada a eventos para aplicaciones distribuidas.",
+        "tags": ["TypeScript", "Azure Functions", "Azure SignalR", "Node.js"],
         "live": "#",
         "code": "#"
       },
       {
-        "title": "LogStream",
-        "description": "Plataforma distribuida de agregación y análisis de logs. Ingiere millones de eventos por segundo con búsqueda en tiempo real y capacidades de alerta.",
-        "tags": ["Node.js", "Azure Event Hubs", "Elasticsearch", "Docker"],
+        "title": "Scraper Mercado Laboral Chileno",
+        "description": "Web scraper en Python que cubre 6 grandes portales de empleo chilenos (Bumeran, LinkedIn, Indeed, entre otros). Agrega y normaliza ofertas laborales para análisis e inteligencia de mercado.",
+        "tags": ["Python", "Web Scraping", "Data Analysis"],
         "live": "#",
         "code": "#"
       }
@@ -177,8 +177,6 @@
     }
   },
   "footer": {
-    "made_with": "Construido con",
-    "and": "y",
     "rights": "Todos los derechos reservados."
   }
 }

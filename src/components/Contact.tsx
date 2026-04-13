@@ -118,18 +118,6 @@ export function Contact() {
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <div className="mt-0.5 w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/60 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-                  <MailIcon />
-                </div>
-                <div>
-                  <p className="text-xs text-gray-400 dark:text-gray-500 mb-0.5">
-                    {t('contact.info.email_label')}
-                  </p>
-                  <p className="text-sm text-gray-700 dark:text-gray-300">hello@enorese.dev</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="mt-0.5 w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/60 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
                   <MapPinIcon />
                 </div>
                 <div>
