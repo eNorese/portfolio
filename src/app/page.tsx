@@ -9,6 +9,7 @@ const Projects = dynamic(() => import('@/components/Projects').then(m => ({ defa
 const Contact = dynamic(() => import('@/components/Contact').then(m => ({ default: m.Contact })))
 const Footer = dynamic(() => import('@/components/Footer').then(m => ({ default: m.Footer })))
 const FloatingWhatsApp = dynamic(() => import('@/components/FloatingWhatsApp').then(m => ({ default: m.FloatingWhatsApp })))
+const EasterEgg = dynamic(() => import('@/components/EasterEgg').then(m => ({ default: m.EasterEgg })))
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <Contact />
       <Footer />
       <FloatingWhatsApp />
+      <EasterEgg />
     </main>
   )
 }

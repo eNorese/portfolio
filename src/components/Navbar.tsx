@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { ThemeSelector } from '@/components/ThemeSelector'
 
@@ -17,6 +17,8 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('')
   const { language, setLanguage, t } = useLanguage()
+  const logoClicksRef = useRef(0)
+  const logoTimerRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     // Glass effect trigger on scroll
@@ -48,6 +50,18 @@ export function Navbar() {
       observer.disconnect()
     }
   }, [])
+
+  const handleLogoClick = () => {
+    setMobileOpen(false)
+    logoClicksRef.current++
+    if (logoTimerRef.current) clearTimeout(logoTimerRef.current)
+    if (logoClicksRef.current >= 5) {
+      logoClicksRef.current = 0
+      window.dispatchEvent(new CustomEvent('enorese:easter-egg'))
+      return
+    }
+    logoTimerRef.current = setTimeout(() => { logoClicksRef.current = 0 }, 2000)
+  }
 
   const toggleLanguage = () => {
     const next = language === 'en' ? 'es' : 'en'
@@ -82,7 +96,7 @@ export function Navbar() {
           <a
             href="#"
             className="text-base font-bold tracking-tight text-gray-900 dark:text-white"
-            onClick={() => setMobileOpen(false)}
+            onClick={handleLogoClick}
           >
             eNorese
             <span className="text-accent">.</span>
