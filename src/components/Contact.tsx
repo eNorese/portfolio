@@ -37,7 +37,7 @@ type Status = 'idle' | 'sending' | 'sent' | 'error'
 const FIELD_CLASS =
   'w-full px-4 py-3 rounded-xl text-sm border bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-200'
 const FIELD_VALID =
-  'border-gray-200 dark:border-gray-700 focus:ring-indigo-500/40 focus:border-indigo-400 dark:focus:border-indigo-600'
+  'border-gray-200 dark:border-gray-700 focus:ring-accent/40 focus:border-accent/60'
 const FIELD_INVALID =
   'border-red-400 dark:border-red-600 focus:ring-red-400/30 focus:border-red-400 dark:focus:border-red-500'
 
@@ -49,7 +49,6 @@ export function Contact() {
   const [errors, setErrors] = useState<FormErrors>({})
   const [status, setStatus] = useState<Status>('idle')
 
-  // ── Validation ──────────────────────────────────────────────────────
   function validate(data: FormFields): FormErrors {
     const errs: FormErrors = {}
     if (!data.name.trim()) errs.name = t('contact.form.error_name_required')
@@ -67,7 +66,6 @@ export function Contact() {
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target
     setFields(prev => ({ ...prev, [name]: value }))
-    // Clear error as user types
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({ ...prev, [name]: undefined }))
     }
@@ -82,7 +80,6 @@ export function Contact() {
     }
 
     setStatus('sending')
-    // Simulate async send (replace with real API call)
     setTimeout(() => {
       setStatus('sent')
       setFields({ name: '', email: '', message: '' })
@@ -99,7 +96,7 @@ export function Contact() {
 
         {/* Section header */}
         <div className="mb-14">
-          <p className="text-xs font-mono tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mb-2">
+          <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
             05 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
@@ -117,7 +114,7 @@ export function Contact() {
 
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <div className="mt-0.5 w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/60 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                <div className="mt-0.5 w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
                   <MapPinIcon />
                 </div>
                 <div>
@@ -224,11 +221,11 @@ export function Contact() {
               )}
             </div>
 
-            {/* Submit button — shimmer + neon glow + arrow slide */}
+            {/* Submit button */}
             <button
               type="submit"
               disabled={isSending || isSent}
-              className="group relative self-start inline-flex items-center gap-2 px-7 py-3 rounded-full overflow-hidden bg-indigo-600 dark:bg-indigo-500 text-white text-sm font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.45)] active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-none"
+              className="group relative self-start inline-flex items-center gap-2 px-7 py-3 rounded-full overflow-hidden bg-accent text-white text-sm font-medium transition-all duration-300 hover:shadow-[0_0_20px_var(--accent-glow)] active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-none"
             >
               {/* Shimmer sweep */}
               <span
@@ -236,26 +233,21 @@ export function Contact() {
                 className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent"
               />
 
-              {/* Label */}
               <span className="relative">
                 {isSending ? t('contact.form.sending') : isSent ? t('contact.form.sent') : t('contact.form.send')}
               </span>
 
-              {/* Icon */}
               <span className="relative transition-transform duration-300 group-hover:translate-x-1">
                 {isSending ? (
-                  // Spinner
                   <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4Z" />
                   </svg>
                 ) : isSent ? (
-                  // Checkmark
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                   </svg>
                 ) : (
-                  // Send arrow
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
                   </svg>

@@ -123,3 +123,66 @@ section[id] {
   60%  { box-shadow: 0 0 0 14px rgba(37,211,102,0),   0 4px 25px rgba(37,211,102,0.5);  }
   100% { box-shadow: 0 0 0 0   rgba(37,211,102,0),    0 4px 20px rgba(37,211,102,0.35); }
 }
+
+/* ── Multi-theme CSS variables ──────────────────────────────────────── */
+
+/* --accent: space-separated R G B for rgb(var(--accent) / opacity) usage  */
+/* --accent-glow: pre-built rgba for arbitrary shadow values                */
+
+:root, [data-theme="light"] {
+  --accent: 99 102 241;
+  --accent-glow: rgba(99, 102, 241, 0.45);
+}
+[data-theme="dark"] {
+  --accent: 129 140 248;
+  --accent-glow: rgba(129, 140, 248, 0.45);
+}
+[data-theme="forest"] {
+  --accent: 22 163 74;
+  --accent-glow: rgba(22, 163, 74, 0.45);
+}
+[data-theme="ocean"] {
+  --accent: 6 182 212;
+  --accent-glow: rgba(6, 182, 212, 0.45);
+}
+[data-theme="midnight"] {
+  --accent: 167 139 250;
+  --accent-glow: rgba(167, 139, 250, 0.45);
+}
+
+/* ── Background overrides for non-standard themes ───────────────────── */
+/*
+ * These are intentionally outside @layer so they win over Tailwind's
+ * @layer utilities classes via the CSS unlayered > layered cascade rule.
+ */
+
+/* Forest — soft green-50 palette */
+[data-theme="forest"] body          { background-color: #f0fdf4; }
+[data-theme="forest"] .bg-white     { background-color: #f0fdf4; }
+[data-theme="forest"] .bg-gray-50   { background-color: #dcfce7; }
+[data-theme="forest"] .bg-gray-100  { background-color: #bbf7d0; }
+[data-theme="forest"] .bg-gray-200  { background-color: #86efac; }
+
+/* Forest gradient endpoints */
+[data-theme="forest"] .to-white   { --tw-gradient-to: #f0fdf4 var(--tw-gradient-to-position); }
+[data-theme="forest"] .to-gray-50 { --tw-gradient-to: #dcfce7 var(--tw-gradient-to-position); }
+
+/* Ocean — deep navy palette */
+[data-theme="ocean"] body                  { background-color: #030d1a; }
+[data-theme="ocean"] .dark\:bg-gray-950   { background-color: #030d1a; }
+[data-theme="ocean"] .dark\:bg-gray-900   { background-color: #071728; }
+[data-theme="ocean"] .dark\:bg-gray-800   { background-color: #0c2035; }
+
+/* Ocean gradient endpoints */
+[data-theme="ocean"] .dark\:to-gray-950 { --tw-gradient-to: #030d1a var(--tw-gradient-to-position); }
+[data-theme="ocean"] .dark\:to-gray-900 { --tw-gradient-to: #071728 var(--tw-gradient-to-position); }
+
+/* Midnight — deep purple-black palette */
+[data-theme="midnight"] body                  { background-color: #0d0520; }
+[data-theme="midnight"] .dark\:bg-gray-950   { background-color: #0d0520; }
+[data-theme="midnight"] .dark\:bg-gray-900   { background-color: #160834; }
+[data-theme="midnight"] .dark\:bg-gray-800   { background-color: #1e0a42; }
+
+/* Midnight gradient endpoints */
+[data-theme="midnight"] .dark\:to-gray-950 { --tw-gradient-to: #0d0520 var(--tw-gradient-to-position); }
+[data-theme="midnight"] .dark\:to-gray-900 { --tw-gradient-to: #160834 var(--tw-gradient-to-position); }

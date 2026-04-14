@@ -38,6 +38,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Prevent flash of unstyled content: apply dark class and data-theme before paint */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(['dark','ocean','midnight'].indexOf(t)!==-1)document.documentElement.classList.add('dark');}catch(e){}})()` }} />
         <link rel="dns-prefetch" href="https://wa.me" />
         <link rel="preconnect" href="https://wa.me" />
       </head>

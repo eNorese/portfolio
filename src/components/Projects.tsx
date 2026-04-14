@@ -45,9 +45,9 @@ function ProjectCard({ project, t }: { project: ProjectItem; t: (k: string) => s
 
     card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.03,1.03,1.03)`
     card.style.boxShadow = [
-      '0 25px 55px rgba(99,102,241,0.18)',
+      '0 25px 55px rgb(var(--accent) / 0.18)',
       '0 10px 25px rgba(0,0,0,0.12)',
-      'inset 0 0 0 1px rgba(99,102,241,0.22)',
+      'inset 0 0 0 1px rgb(var(--accent) / 0.22)',
     ].join(',')
 
     if (glare) {
@@ -78,16 +78,16 @@ function ProjectCard({ project, t }: { project: ProjectItem; t: (k: string) => s
         transformStyle: 'preserve-3d',
       }}
     >
-      {/* Glare / light reflection overlay */}
+      {/* Glare overlay */}
       <div
         ref={glareRef}
         className="absolute inset-0 rounded-xl pointer-events-none"
         style={{ transition: 'background 0.12s ease', zIndex: 1 }}
       />
 
-      {/* Card content — sits above glare */}
+      {/* Card content */}
       <div className="relative flex flex-col flex-1" style={{ zIndex: 2 }}>
-        <h3 className="font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
+        <h3 className="font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-accent transition-colors duration-200">
           {project.title}
         </h3>
 
@@ -99,7 +99,7 @@ function ProjectCard({ project, t }: { project: ProjectItem; t: (k: string) => s
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60"
+              className="text-xs px-2.5 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20"
             >
               {tag}
             </span>
@@ -109,14 +109,14 @@ function ProjectCard({ project, t }: { project: ProjectItem; t: (k: string) => s
         <div className="flex items-center gap-4 pt-2 border-t border-gray-200 dark:border-gray-800">
           <a
             href={project.live}
-            className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
+            className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-accent transition-colors duration-200"
           >
             <ExternalLinkIcon />
             {t('projects.view_live')}
           </a>
           <a
             href={project.code}
-            className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
+            className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-accent transition-colors duration-200"
           >
             <GitHubIcon />
             {t('projects.view_code')}
@@ -136,7 +136,7 @@ export function Projects() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="mb-14">
-          <p className="text-xs font-mono tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mb-2">
+          <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
             04 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">

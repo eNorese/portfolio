@@ -44,18 +44,18 @@ function JobCard({ job, index }: { job: Job; index: number }) {
 
   return (
     <div ref={ref} className="relative">
-      {/* Timeline dot — pops in with spring after card starts sliding */}
+      {/* Timeline dot */}
       <span
-        className="absolute -left-[calc(1.5rem+1px)] sm:-left-[calc(2rem+1px)] top-1.5 w-3 h-3 rounded-full bg-indigo-600 dark:bg-indigo-500 border-2 border-white dark:border-gray-950 ring-2 ring-indigo-200 dark:ring-indigo-900"
+        className="absolute -left-[calc(1.5rem+1px)] sm:-left-[calc(2rem+1px)] top-1.5 w-3 h-3 rounded-full bg-accent border-2 border-white dark:border-gray-950 ring-2 ring-accent/30"
         style={{
           transform: visible ? 'scale(1)' : 'scale(0)',
           transition: `transform 0.45s cubic-bezier(0.34,1.56,0.64,1) ${delay + 220}ms`,
         }}
       />
 
-      {/* Card — slides in from the left */}
+      {/* Card */}
       <div
-        className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 hover:border-indigo-200 dark:hover:border-indigo-900 transition-colors duration-200"
+        className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 hover:border-accent/30 transition-colors duration-200"
         style={{
           opacity: visible ? 1 : 0,
           transform: visible ? 'translateX(0)' : 'translateX(-28px)',
@@ -68,7 +68,7 @@ function JobCard({ job, index }: { job: Job; index: number }) {
             <h3 className="font-semibold text-gray-900 dark:text-white text-base leading-snug">
               {job.role}
             </h3>
-            <p className="text-sm text-indigo-600 dark:text-indigo-400 font-medium mt-0.5">
+            <p className="text-sm text-accent font-medium mt-0.5">
               {job.company}
             </p>
           </div>
@@ -97,7 +97,7 @@ function JobCard({ job, index }: { job: Job; index: number }) {
           {job.tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60"
+              className="text-xs px-2.5 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20"
             >
               {tag}
             </span>
@@ -113,10 +113,8 @@ export function Experience() {
   const { locale, t } = useLanguage()
   const jobs = locale.experience.jobs
 
-  // Section header fade-up
   const header = useReveal(0.2)
 
-  // Timeline line — scroll-driven, bidirectional scaleY
   const lineRef  = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
 
@@ -129,8 +127,6 @@ export function Experience() {
       const rect = track.getBoundingClientRect()
       const vh   = window.innerHeight
 
-      // progress = 0 when track top hits 85 % of viewport (entering from bottom)
-      // progress = 1 after scrolling through ~90 % of the section height
       const progress = Math.max(0, Math.min(1,
         (vh * 0.85 - rect.top) / (rect.height * 0.9)
       ))
@@ -150,7 +146,7 @@ export function Experience() {
     }
 
     window.addEventListener('scroll', onScroll, { passive: true })
-    update()   // run once on mount in case section is already in view
+    update()
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -158,7 +154,7 @@ export function Experience() {
     <section id="experience" className="relative py-24 bg-white dark:bg-gray-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Header — fade up */}
+        {/* Header */}
         <div
           ref={header.ref}
           className="mb-14"
@@ -168,7 +164,7 @@ export function Experience() {
             transition: 'opacity 0.6s ease, transform 0.6s ease',
           }}
         >
-          <p className="text-xs font-mono tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mb-2">
+          <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
             02 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
@@ -180,11 +176,12 @@ export function Experience() {
         {/* Timeline track */}
         <div ref={trackRef} className="relative pl-6 sm:pl-8 space-y-10">
 
-          {/* Animated line — scaleY from top */}
+          {/* Static track line */}
           <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-100 dark:bg-gray-800" />
+          {/* Animated fill line */}
           <div
             ref={lineRef}
-            className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500 via-indigo-400 to-violet-500 origin-top"
+            className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent/70 to-accent/40 origin-top"
             style={{ transform: 'scaleY(0)', willChange: 'transform' }}
           />
 

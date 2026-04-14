@@ -10,14 +10,12 @@ const SKILLS_DATA = {
   tools: ['Claude API', 'GPT-4o', 'Azure Doc Intelligence', 'Microsoft Graph API', 'JWT / JWKS', 'Git'],
 } as const
 
-// Extract the leading number and the rest: "70%" → { num: 70, suffix: "%" }
 function parseMetric(metric: string): { num: number; suffix: string } {
   const match = metric.match(/^(\d+)(.*)$/)
   if (!match) return { num: 0, suffix: metric }
   return { num: parseInt(match[1], 10), suffix: match[2] }
 }
 
-// Count-up card: animates the number when it enters the viewport
 function StoryCard({
   metric,
   label,
@@ -32,7 +30,6 @@ function StoryCard({
   const [count, setCount] = useState(0)
   const { num, suffix } = parseMetric(metric)
 
-  // Trigger animation once when the card scrolls into view
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -47,7 +44,6 @@ function StoryCard({
     return () => observer.disconnect()
   }, [])
 
-  // rAF count-up with ease-out cubic
   useEffect(() => {
     if (!inView || num === 0) return
     const duration = 1400
@@ -64,10 +60,9 @@ function StoryCard({
   return (
     <div
       ref={ref}
-      className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300 dark:hover:border-indigo-700 hover:shadow-lg hover:shadow-indigo-500/10 dark:hover:shadow-indigo-500/5"
+      className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg hover:shadow-accent/10"
     >
-      {/* Animated metric */}
-      <div className="text-3xl font-bold tabular-nums text-indigo-600 dark:text-indigo-400 mb-1 transition-transform duration-300 group-hover:scale-110">
+      <div className="text-3xl font-bold tabular-nums text-accent mb-1 transition-transform duration-300 group-hover:scale-110">
         {count}{suffix}
       </div>
       <div className="text-sm font-semibold text-gray-900 dark:text-white mb-2">{label}</div>
@@ -79,7 +74,6 @@ function StoryCard({
 export function Skills() {
   const { locale, t } = useLanguage()
   const stories = locale.skills.stories
-  // Track which badge (by "category:skill" key) is hovered
   const [hoveredBadge, setHoveredBadge] = useState<string | null>(null)
 
   return (
@@ -88,7 +82,7 @@ export function Skills() {
 
         {/* Section header */}
         <div className="mb-14">
-          <p className="text-xs font-mono tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mb-2">
+          <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
             03 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
@@ -102,7 +96,7 @@ export function Skills() {
           {(Object.keys(SKILLS_DATA) as Array<keyof typeof SKILLS_DATA>).map((category) => (
             <div
               key={category}
-              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 transition-all duration-300 hover:border-indigo-200 dark:hover:border-indigo-800 hover:shadow-md hover:shadow-indigo-500/5"
+              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 transition-all duration-300 hover:border-accent/30 hover:shadow-md hover:shadow-accent/5"
             >
               <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">
                 {t(`skills.categories.${category}`)}
@@ -111,7 +105,6 @@ export function Skills() {
                 {SKILLS_DATA[category].map((skill) => {
                   const id = `${category}:${skill}`
                   const isHovered = hoveredBadge === id
-                  // Dim sibling badges when one is hovered in this card
                   const isDimmed = hoveredBadge?.startsWith(`${category}:`) && !isHovered
                   return (
                     <span
@@ -120,7 +113,7 @@ export function Skills() {
                       onMouseLeave={() => setHoveredBadge(null)}
                       className={`text-xs px-2.5 py-1 rounded-md cursor-default select-none transition-all duration-200 ${
                         isHovered
-                          ? 'bg-indigo-600 dark:bg-indigo-500 text-white scale-105 shadow-sm shadow-indigo-500/30 -translate-y-px'
+                          ? 'bg-accent text-white scale-105 shadow-sm shadow-accent/30 -translate-y-px'
                           : isDimmed
                           ? 'bg-gray-100 dark:bg-gray-700/60 text-gray-400 dark:text-gray-500 scale-95 opacity-50'
                           : 'bg-gray-100 dark:bg-gray-700/60 text-gray-700 dark:text-gray-300'

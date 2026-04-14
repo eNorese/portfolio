@@ -5,6 +5,9 @@ import { useTheme } from 'next-themes'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { SocialLinks } from '@/components/SocialLinks'
 
+// Themes that render in dark mode
+const DARK_THEMES = ['dark', 'ocean', 'midnight']
+
 // ── Code rain ──────────────────────────────────────────────────────
 const CODE_FRAGMENTS = [
   'import', 'async function', 'const fn =', 'await', 'return {',
@@ -38,7 +41,6 @@ function createDrops(count: number, w: number, h: number): Drop[] {
 interface Star {
   x: number; y: number; r: number
   baseAlpha: number; twinkleSpeed: number; twinklePhase: number
-  // dark-mode rgb / light-mode rgb
   darkRgb: string; lightRgb: string
 }
 
@@ -63,6 +65,19 @@ function createStars(count: number, w: number, h: number): Star[] {
   })
 }
 
+// ── Canvas colors per theme ──────────────────────────────────────────
+interface CanvasColors { primary: string; secondary: string }
+
+function getCanvasColors(theme: string | undefined): CanvasColors {
+  switch (theme) {
+    case 'ocean':    return { primary: '6,182,212',   secondary: '14,165,233' }
+    case 'midnight': return { primary: '167,139,250', secondary: '196,181,253' }
+    case 'forest':   return { primary: '22,163,74',   secondary: '34,197,94' }
+    case 'light':    return { primary: '79,70,229',   secondary: '124,58,237' }
+    default:         return { primary: '96,165,250',  secondary: '167,139,250' }
+  }
+}
+
 // ── Data pixels ─────────────────────────────────────────────────────
 interface DataPixel {
   id: number; top: string; left: string
@@ -71,23 +86,23 @@ interface DataPixel {
 
 // ── Component ───────────────────────────────────────────────────────
 export function Hero() {
-  const { t }              = useLanguage()
-  const { resolvedTheme }  = useTheme()
+  const { t }             = useLanguage()
+  const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  const sectionRef   = useRef<HTMLElement>(null)
-  const canvasRef    = useRef<HTMLCanvasElement>(null)
+  const sectionRef     = useRef<HTMLElement>(null)
+  const canvasRef      = useRef<HTMLCanvasElement>(null)
   const spotlightRef   = useRef<HTMLDivElement>(null)
-  const spotTargetRef  = useRef({ x: 0, y: 0 })   // where cursor actually is
-  const spotPosRef     = useRef({ x: 0, y: 0 })   // interpolated position
+  const spotTargetRef  = useRef({ x: 0, y: 0 })
+  const spotPosRef     = useRef({ x: 0, y: 0 })
   const spotRafRef     = useRef<number>(0)
   const isInsideRef    = useRef(false)
   const dropsRef       = useRef<Drop[]>([])
   const starsRef       = useRef<Star[]>([])
   const mouseRef       = useRef({ x: 0, y: 0 })
   const rafRef         = useRef<number>(0)
-  // Keep a ref so the rAF draw loop always reads the current theme
   const isDarkRef      = useRef(true)
+  const canvasColorsRef = useRef<CanvasColors>(getCanvasColors('dark'))
 
   const [pixels,         setPixels]         = useState<DataPixel[]>([])
   const [glowName,       setGlowName]       = useState(false)
@@ -97,12 +112,13 @@ export function Hero() {
 
   useEffect(() => { setMounted(true) }, [])
 
-  // Sync isDarkRef whenever resolved theme changes
+  // Sync theme refs on every resolved-theme change
   useEffect(() => {
-    isDarkRef.current = resolvedTheme !== 'light'
+    isDarkRef.current       = DARK_THEMES.includes(resolvedTheme ?? '')
+    canvasColorsRef.current = getCanvasColors(resolvedTheme)
   }, [resolvedTheme])
 
-  // Generate data pixels once (client-only — avoids hydration mismatch)
+  // Generate data pixels once (client-only)
   useEffect(() => {
     setPixels(
       Array.from({ length: 26 }, (_, i) => ({
@@ -116,9 +132,9 @@ export function Hero() {
     )
   }, [])
 
-  // Spotlight lerp loop — runs independently of canvas rAF
+  // Spotlight lerp loop
   useEffect(() => {
-    const EASE = 0.11   // lower = smoother lag; 0.11 ≈ slightly snappier trailing
+    const EASE = 0.11
 
     const tick = () => {
       const pos    = spotPosRef.current
@@ -128,11 +144,9 @@ export function Hero() {
 
       const spot = spotlightRef.current
       if (spot && isInsideRef.current) {
-        const color = isDarkRef.current
-          ? 'rgba(99,102,241,0.12)'
-          : 'rgba(99,102,241,0.14)'
+        const opacity = isDarkRef.current ? '0.12' : '0.14'
         spot.style.background =
-          `radial-gradient(700px circle at ${pos.x}px ${pos.y}px, ${color}, transparent 65%)`
+          `radial-gradient(700px circle at ${pos.x}px ${pos.y}px, rgb(var(--accent) / ${opacity}), transparent 65%)`
       }
 
       spotRafRef.current = requestAnimationFrame(tick)
@@ -163,11 +177,11 @@ export function Hero() {
       const W = canvas.width
       const H = canvas.height
       const { x: mx, y: my } = mouseRef.current
-      const isDark = isDarkRef.current
+      const isDark  = isDarkRef.current
+      const colors  = canvasColorsRef.current
 
       ctx.clearRect(0, 0, W, H)
 
-      // Parallax: shift drawing origin opposite to cursor
       const ox = (mx / (W || 1) - 0.5) * -22
       const oy = (my / (H || 1) - 0.5) * -11
       ctx.save()
@@ -197,8 +211,8 @@ export function Hero() {
         ctx.font = `${d.size}px 'Courier New', monospace`
         const a = isDark ? d.alpha : Math.min(d.alpha * 2.8, 0.32)
         ctx.fillStyle = d.isBlue
-          ? (isDark ? `rgba(96,165,250,${a})`  : `rgba(79,70,229,${a})`)
-          : (isDark ? `rgba(167,139,250,${a})` : `rgba(124,58,237,${a})`)
+          ? `rgba(${colors.primary},${a})`
+          : `rgba(${colors.secondary},${a})`
         ctx.fillText(d.text, d.x, d.y)
 
         d.y += d.vy
@@ -230,7 +244,6 @@ export function Hero() {
     spotTargetRef.current = { x, y }
 
     if (!isInsideRef.current) {
-      // Snap interpolated position to cursor on first entry — avoids slide from (0,0)
       spotPosRef.current = { x, y }
       isInsideRef.current = true
       if (spotlightRef.current) spotlightRef.current.style.opacity = '1'
@@ -243,8 +256,7 @@ export function Hero() {
     if (spotlightRef.current) spotlightRef.current.style.opacity = '0'
   }, [])
 
-  // Derived from resolved theme (safe after mount)
-  const isDark = mounted ? resolvedTheme !== 'light' : true
+  const isDark = mounted ? DARK_THEMES.includes(resolvedTheme ?? '') : true
 
   return (
     <section
@@ -270,9 +282,9 @@ export function Hero() {
 
       {/* ── Ambient blobs ── */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-        <div className="absolute top-1/4 -left-24 w-[500px] h-[500px] bg-indigo-100/60 dark:bg-indigo-900/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-24 w-[400px] h-[400px] bg-violet-100/50 dark:bg-violet-900/20 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[200px] bg-blue-50/60 dark:bg-blue-950/30 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 -left-24 w-[500px] h-[500px] bg-accent/[0.07] rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-24 w-[400px] h-[400px] bg-accent/[0.05] rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[200px] bg-accent/[0.04] rounded-full blur-3xl" />
       </div>
 
       {/* ── Data pixels ── */}
@@ -284,8 +296,8 @@ export function Hero() {
             top: px.top, left: px.left,
             width: '3px', height: '3px',
             background: px.blue
-              ? (isDark ? 'rgba(96,165,250,0.85)'  : 'rgba(79,70,229,0.6)')
-              : (isDark ? 'rgba(167,139,250,0.85)' : 'rgba(124,58,237,0.6)'),
+              ? (isDark ? 'rgba(96,165,250,0.85)'  : 'rgb(var(--accent) / 0.6)')
+              : (isDark ? 'rgba(167,139,250,0.85)' : 'rgb(var(--accent) / 0.5)'),
             boxShadow: px.blue
               ? '0 0 5px rgba(96,165,250,0.7), 0 0 10px rgba(96,165,250,0.35)'
               : '0 0 5px rgba(167,139,250,0.7), 0 0 10px rgba(167,139,250,0.35)',
@@ -301,20 +313,18 @@ export function Hero() {
         style={{ zIndex: 10 }}
       >
         {/* Eyebrow */}
-        <span className="inline-block mb-5 text-xs font-mono tracking-[0.25em] uppercase text-indigo-600 dark:text-indigo-400">
+        <span className="inline-block mb-5 text-xs font-mono tracking-[0.25em] uppercase text-accent">
           {t('hero.greeting')}
         </span>
 
-        {/* Name — neon glow on hover */}
+        {/* Name */}
         <h1
           className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-4 cursor-default select-none"
           onMouseEnter={() => setGlowName(true)}
           onMouseLeave={() => setGlowName(false)}
           style={{
             textShadow: glowName
-              ? isDark
-                ? '0 0 10px rgba(96,165,250,0.95), 0 0 30px rgba(96,165,250,0.6), 0 0 65px rgba(96,165,250,0.3)'
-                : '0 0 12px rgba(79,70,229,0.55), 0 0 35px rgba(79,70,229,0.25)'
+              ? '0 0 10px rgb(var(--accent) / 0.95), 0 0 30px rgb(var(--accent) / 0.6), 0 0 65px rgb(var(--accent) / 0.3)'
               : 'none',
             transition: 'text-shadow 0.35s ease',
           }}
@@ -322,16 +332,14 @@ export function Hero() {
           {t('hero.name')}
         </h1>
 
-        {/* Title — violet neon on hover */}
+        {/* Title */}
         <p
           className="text-lg sm:text-xl lg:text-2xl font-light text-gray-600 dark:text-gray-300 mb-6 cursor-default select-none"
           onMouseEnter={() => setGlowTitle(true)}
           onMouseLeave={() => setGlowTitle(false)}
           style={{
             textShadow: glowTitle
-              ? isDark
-                ? '0 0 8px rgba(167,139,250,0.95), 0 0 25px rgba(167,139,250,0.55), 0 0 55px rgba(167,139,250,0.25)'
-                : '0 0 10px rgba(124,58,237,0.45), 0 0 28px rgba(124,58,237,0.2)'
+              ? '0 0 8px rgb(var(--accent) / 0.95), 0 0 25px rgb(var(--accent) / 0.55), 0 0 55px rgb(var(--accent) / 0.25)'
               : 'none',
             transition: 'text-shadow 0.35s ease',
           }}
@@ -342,7 +350,7 @@ export function Hero() {
         {/* Neon divider */}
         <div
           className="w-12 h-px mb-6"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(99,102,241,0.7), transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, rgb(var(--accent) / 0.7), transparent)' }}
         />
 
         {/* Description */}
@@ -360,11 +368,12 @@ export function Hero() {
             onMouseLeave={() => setHoverPrimary(false)}
             className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-white text-sm font-medium"
             style={{
-              backgroundColor: hoverPrimary ? 'rgba(67,56,202,1)' : 'rgba(99,102,241,1)',
+              backgroundColor: 'rgb(var(--accent))',
+              opacity: hoverPrimary ? 0.9 : 1,
               boxShadow: hoverPrimary
-                ? '0 0 18px rgba(99,102,241,0.75), 0 0 45px rgba(99,102,241,0.35), 0 0 80px rgba(99,102,241,0.15)'
+                ? '0 0 18px rgb(var(--accent) / 0.75), 0 0 45px rgb(var(--accent) / 0.35), 0 0 80px rgb(var(--accent) / 0.15)'
                 : 'none',
-              transition: 'background-color 0.25s ease, box-shadow 0.35s ease',
+              transition: 'opacity 0.25s ease, box-shadow 0.35s ease',
             }}
           >
             {t('hero.cta_work')}
@@ -389,14 +398,14 @@ export function Hero() {
             style={{
               border: `1px solid ${
                 hoverSecondary
-                  ? 'rgba(167,139,250,0.85)'
-                  : isDark ? 'rgba(75,85,99,0.9)' : 'rgba(99,102,241,0.35)'
+                  ? 'rgb(var(--accent) / 0.85)'
+                  : isDark ? 'rgba(75,85,99,0.9)' : 'rgb(var(--accent) / 0.35)'
               }`,
               color: hoverSecondary
-                ? isDark ? 'rgba(196,181,253,1)' : 'rgba(79,70,229,1)'
+                ? 'rgb(var(--accent))'
                 : isDark ? 'rgba(209,213,219,1)' : 'rgba(55,65,81,1)',
               boxShadow: hoverSecondary
-                ? '0 0 14px rgba(139,92,246,0.45), inset 0 0 28px rgba(99,102,241,0.1)'
+                ? '0 0 14px rgb(var(--accent) / 0.45), inset 0 0 28px rgb(var(--accent) / 0.1)'
                 : 'none',
               transition: 'border-color 0.25s ease, color 0.25s ease, box-shadow 0.35s ease',
             }}
@@ -409,7 +418,7 @@ export function Hero() {
         <a
           href="/cv.pdf"
           download
-          className="inline-flex items-center gap-2 text-xs font-mono text-gray-400 dark:text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 mb-7"
+          className="inline-flex items-center gap-2 text-xs font-mono text-gray-400 dark:text-gray-500 hover:text-accent transition-colors duration-200 mb-7"
         >
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
@@ -425,7 +434,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ── Bottom fade into About section (gray-50 / gray-900) ── */}
+      {/* ── Bottom fade into About section ── */}
       <div
         className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900"
         style={{ zIndex: 9 }}
@@ -445,15 +454,15 @@ export function Hero() {
         <div
           className="w-5 h-8 rounded-full flex justify-center items-start pt-1.5"
           style={{
-            border: '1px solid rgba(99,102,241,0.45)',
-            boxShadow: '0 0 8px rgba(99,102,241,0.2)',
+            border: '1px solid rgb(var(--accent) / 0.45)',
+            boxShadow: '0 0 8px rgb(var(--accent) / 0.2)',
             animation: 'breathe 2.8s ease-in-out infinite',
           }}
         >
           <div
             className="w-0.5 h-2 rounded-full"
             style={{
-              background: 'rgba(99,102,241,0.9)',
+              background: 'rgb(var(--accent) / 0.9)',
               animation: 'scroll-bob 1.6s ease-in-out infinite',
             }}
           />

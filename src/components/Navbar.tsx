@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTheme } from 'next-themes'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { ThemeSelector } from '@/components/ThemeSelector'
 
 const NAV_LINKS = [
   { key: 'about', href: '#about' },
@@ -12,45 +12,22 @@ const NAV_LINKS = [
   { key: 'contact', href: '#contact' },
 ] as const
 
-function SunIcon() {
-  return (
-    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-    </svg>
-  )
-}
-
-function MoonIcon() {
-  return (
-    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-    </svg>
-  )
-}
-
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('')
-  const { theme, setTheme } = useTheme()
   const { language, setLanguage, t } = useLanguage()
 
   useEffect(() => {
-    setMounted(true)
-
     // Glass effect trigger on scroll
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll, { passive: true })
 
     // Active section detection via IntersectionObserver
-    // rootMargin: top offset = navbar height, bottom = cut at 50% viewport
-    // so a section is "active" when it occupies the top half of the visible area
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Hero entering view → clear active section
             setActiveSection(entry.target.id === 'home' ? '' : entry.target.id)
           }
         })
@@ -58,7 +35,6 @@ export function Navbar() {
       { rootMargin: '-64px 0px -50% 0px', threshold: 0 }
     )
 
-    // Observe hero so we can clear the active link when back at the top
     const hero = document.getElementById('home')
     if (hero) observer.observe(hero)
 
@@ -73,17 +49,6 @@ export function Navbar() {
     }
   }, [])
 
-  const toggleTheme = () => {
-    const next = theme === 'dark' ? 'light' : 'dark'
-    // View Transitions API: full-page cross-fade (Chrome / Edge / Safari 18+)
-    // Falls back to instant change + CSS transition on unsupported browsers
-    if (!('startViewTransition' in document)) {
-      setTheme(next)
-      return
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ;(document as any).startViewTransition(() => setTheme(next))
-  }
   const toggleLanguage = () => {
     const next = language === 'en' ? 'es' : 'en'
 
@@ -91,7 +56,6 @@ export function Navbar() {
     const svt: ((cb: () => void) => { finished: Promise<void> }) | undefined = (document as any).startViewTransition?.bind(document)
 
     if (!svt) {
-      // Firefox fallback: fade body out, swap language at opacity-0, fade in
       document.body.classList.add('lang-switching')
       setTimeout(() => setLanguage(next), 180)
       setTimeout(() => document.body.classList.remove('lang-switching'), 420)
@@ -121,7 +85,7 @@ export function Navbar() {
             onClick={() => setMobileOpen(false)}
           >
             eNorese
-            <span className="text-indigo-600 dark:text-indigo-400">.</span>
+            <span className="text-accent">.</span>
           </a>
 
           {/* Desktop nav links */}
@@ -134,14 +98,14 @@ export function Navbar() {
                   href={href}
                   className={`relative text-sm transition-colors duration-200 pb-0.5 ${
                     isActive
-                      ? 'text-indigo-600 dark:text-indigo-400'
+                      ? 'text-accent'
                       : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                   }`}
                 >
                   {t(`nav.${key}`)}
                   {/* Animated underline indicator */}
                   <span
-                    className={`absolute bottom-0 left-0 h-px bg-indigo-600 dark:bg-indigo-400 transition-all duration-300 ${
+                    className={`absolute bottom-0 left-0 h-px bg-accent transition-all duration-300 ${
                       isActive ? 'w-full' : 'w-0'
                     }`}
                   />
@@ -161,14 +125,8 @@ export function Navbar() {
               {language === 'en' ? 'ES' : 'EN'}
             </button>
 
-            {/* Theme toggle */}
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="w-8 h-8 flex items-center justify-center rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200"
-            >
-              {mounted ? (theme === 'dark' ? <SunIcon /> : <MoonIcon />) : <span className="w-4 h-4" />}
-            </button>
+            {/* Theme selector */}
+            <ThemeSelector />
 
             {/* Mobile hamburger */}
             <button
@@ -212,13 +170,13 @@ export function Navbar() {
                 href={href}
                 className={`flex items-center gap-2 py-2.5 px-3 rounded-lg text-sm transition-colors duration-200 ${
                   isActive
-                    ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/80 dark:bg-indigo-950/40'
+                    ? 'text-accent bg-accent/[0.07]'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10'
                 }`}
                 onClick={() => setMobileOpen(false)}
               >
                 {isActive && (
-                  <span className="w-1 h-1 rounded-full bg-indigo-600 dark:bg-indigo-400 shrink-0" />
+                  <span className="w-1 h-1 rounded-full bg-accent shrink-0" />
                 )}
                 {t(`nav.${key}`)}
               </a>

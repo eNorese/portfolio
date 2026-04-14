@@ -14,10 +14,7 @@ const config: Config = {
         mono: ['var(--font-mono)', 'monospace'],
       },
       colors: {
-        accent: {
-          DEFAULT: '#6366f1',
-          dark: '#818cf8',
-        },
+        accent: 'rgb(var(--accent) / <alpha-value>)',
       },
     },
   },

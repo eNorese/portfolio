@@ -19,7 +19,7 @@ export function About() {
 
         {/* Section header */}
         <div className="mb-14">
-          <p className="text-xs font-mono tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mb-2">
+          <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
             01 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
@@ -42,7 +42,7 @@ export function About() {
               <a
                 href="/cv.pdf"
                 download
-                className="inline-flex items-center gap-2 text-xs font-mono text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
+                className="inline-flex items-center gap-2 text-xs font-mono text-gray-500 dark:text-gray-400 hover:text-accent transition-colors duration-200"
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
@@ -57,9 +57,9 @@ export function About() {
             {stats.map(({ value, label }) => (
               <div
                 key={label}
-                className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 flex flex-col items-center text-center cursor-default transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-lg hover:shadow-indigo-500/10 dark:hover:shadow-indigo-500/5"
+                className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 flex flex-col items-center text-center cursor-default transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/40 hover:shadow-lg hover:shadow-accent/10"
               >
-                <span className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-1 transition-transform duration-300 group-hover:scale-110">
+                <span className="text-3xl font-bold text-accent mb-1 transition-transform duration-300 group-hover:scale-110">
                   {value}
                 </span>
                 <span className="text-xs text-gray-500 dark:text-gray-400 leading-tight transition-colors duration-300 group-hover:text-gray-700 dark:group-hover:text-gray-300">
