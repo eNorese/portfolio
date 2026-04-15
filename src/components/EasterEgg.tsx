@@ -123,6 +123,80 @@ function formatTop(snap: TopSnapshot): Line[] {
   ]
 }
 
+/* ── Tab completion ─────────────────────────────────────────────────────── */
+const ALL_COMMANDS = [
+  'help', 'whoami', 'pwd', 'date', 'echo', 'print', 'uname',
+  'ls', 'cat', 'sh', 'bash', 'neofetch', 'top', 'history',
+  'git', 'npm', 'sudo', 'ssh', 'clear', 'exit',
+]
+
+const FILE_COMPLETIONS = [...Object.keys(FILES), 'projects/']
+const SH_COMPLETIONS   = Object.keys(FILES).filter(f => f.endsWith('.sh'))
+
+const ARG_COMPLETIONS: Record<string, string[]> = {
+  cat:  FILE_COMPLETIONS,
+  ls:   [...FILE_COMPLETIONS, '-l', '-la', '-a'],
+  sh:   SH_COMPLETIONS,
+  bash: SH_COMPLETIONS,
+  git:  ['log', 'status'],
+  npm:  ['run', 'install'],
+}
+
+function commonPrefix(strs: string[]): string {
+  if (!strs.length) return ''
+  let prefix = strs[0]
+  for (const s of strs.slice(1)) {
+    while (!s.startsWith(prefix)) prefix = prefix.slice(0, -1)
+    if (!prefix) return ''
+  }
+  return prefix
+}
+
+type TabResult =
+  | { kind: 'complete'; value: string }
+  | { kind: 'suggest'; value: string; suggestions: string[] }
+  | { kind: 'none' }
+
+function tabComplete(input: string): TabResult {
+  const endsWithSpace = input.endsWith(' ')
+  const parts         = input.trimEnd().split(/\s+/)
+
+  // Completing the first token (the command itself)
+  if (parts.length === 1 && !endsWithSpace) {
+    const prefix = parts[0]
+    if (!prefix) return { kind: 'none' }
+    const matches = ALL_COMMANDS.filter(c => c.startsWith(prefix))
+    if (!matches.length) return { kind: 'none' }
+    if (matches.length === 1) return { kind: 'complete', value: matches[0] + ' ' }
+    const cp = commonPrefix(matches)
+    if (cp.length > prefix.length) return { kind: 'complete', value: cp }
+    return { kind: 'suggest', value: input, suggestions: matches }
+  }
+
+  // Completing an argument
+  const cmd  = parts[0].toLowerCase()
+  const list = ARG_COMPLETIONS[cmd]
+  if (!list) return { kind: 'none' }
+
+  const argPrefix = endsWithSpace ? '' : (parts[parts.length - 1] ?? '')
+  const matches   = list.filter(f => f.startsWith(argPrefix))
+  if (!matches.length) return { kind: 'none' }
+
+  const baseParts = parts.slice(0, endsWithSpace ? undefined : -1)
+  const base      = baseParts.join(' ')
+
+  if (matches.length === 1) {
+    return { kind: 'complete', value: (base + ' ' + matches[0]).trimStart() }
+  }
+
+  const cp = commonPrefix(matches)
+  if (cp.length > argPrefix.length) {
+    return { kind: 'complete', value: (base + ' ' + cp).trimStart() }
+  }
+
+  return { kind: 'suggest', value: input, suggestions: matches }
+}
+
 /* ── Command processor ──────────────────────────────────────────────────── */
 function run(
   raw: string,
@@ -159,6 +233,7 @@ function run(
         { text: '  exit                close terminal',                                       cls: 'text-gray-300' },
         { text: '' },
         { text: '  ↑ / ↓  navigate command history', cls: 'text-gray-500' },
+        { text: '  Tab     autocomplete command or filename', cls: 'text-gray-500' },
       ]}
 
     case 'whoami':
@@ -393,7 +468,19 @@ export function EasterEgg() {
   const focusInput = useCallback(() => inputRef.current?.focus(), [])
 
   const handleKeyDown = useCallback((e: ReactKbdEvent<HTMLInputElement>) => {
-    if (e.key === 'Tab') { e.preventDefault(); return }
+    if (e.key === 'Tab') {
+      e.preventDefault()
+      const result = tabComplete(input)
+      if (result.kind === 'complete') {
+        setInput(result.value)
+      } else if (result.kind === 'suggest') {
+        setEntries(prev => [...prev, {
+          command: input,
+          output: [{ text: result.suggestions.join('   '), cls: 'text-gray-500' }],
+        }])
+      }
+      return
+    }
 
     if (e.key === 'ArrowUp') {
       e.preventDefault()
