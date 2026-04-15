@@ -65,6 +65,16 @@ function createStars(count: number, w: number, h: number): Star[] {
   })
 }
 
+// ── Shooting stars ──────────────────────────────────────────────────
+interface ShootingStar {
+  x: number; y: number
+  vx: number; vy: number
+  tailLen: number
+  alpha: number
+  decay: number
+  rgb: string
+}
+
 // ── Canvas colors per theme ──────────────────────────────────────────
 interface CanvasColors { primary: string; secondary: string }
 
@@ -97,8 +107,10 @@ export function Hero() {
   const spotPosRef     = useRef({ x: 0, y: 0 })
   const spotRafRef     = useRef<number>(0)
   const isInsideRef    = useRef(false)
-  const dropsRef       = useRef<Drop[]>([])
-  const starsRef       = useRef<Star[]>([])
+  const dropsRef           = useRef<Drop[]>([])
+  const starsRef           = useRef<Star[]>([])
+  const shootingStarsRef   = useRef<ShootingStar[]>([])
+  const nextShootRef       = useRef<number>(3000 + Math.random() * 4000)
   const mouseRef       = useRef({ x: 0, y: 0 })
   const rafRef         = useRef<number>(0)
   const isDarkRef      = useRef(true)
@@ -205,6 +217,62 @@ export function Hero() {
         ctx.fill()
       }
       ctx.shadowBlur = 0
+
+      // ── Shooting stars ─────────────────────────────────────────────
+      const nowMs = now * 1000
+      if (nowMs > nextShootRef.current) {
+        nextShootRef.current = nowMs + 2500 + Math.random() * 5000
+        const angle = Math.PI / 5 + (Math.random() - 0.5) * (Math.PI / 8)
+        const spd   = 5 + Math.random() * 5
+        shootingStarsRef.current.push({
+          x:       Math.random() * W * 0.75,
+          y:       Math.random() * H * 0.4,
+          vx:      Math.cos(angle) * spd,
+          vy:      Math.sin(angle) * spd,
+          tailLen: 90 + Math.random() * 70,
+          alpha:   isDark ? 0.85 + Math.random() * 0.15 : 0.35 + Math.random() * 0.2,
+          decay:   0.010 + Math.random() * 0.008,
+          rgb:     Math.random() > 0.25 ? '255,255,255' : '180,210,255',
+        })
+      }
+
+      const aliveShooters: ShootingStar[] = []
+      for (const ss of shootingStarsRef.current) {
+        const mag = Math.sqrt(ss.vx * ss.vx + ss.vy * ss.vy)
+        const tx  = ss.x - (ss.vx / mag) * ss.tailLen
+        const ty  = ss.y - (ss.vy / mag) * ss.tailLen
+
+        const grad = ctx.createLinearGradient(tx, ty, ss.x, ss.y)
+        grad.addColorStop(0,   `rgba(${ss.rgb},0)`)
+        grad.addColorStop(0.6, `rgba(${ss.rgb},${(ss.alpha * 0.3).toFixed(3)})`)
+        grad.addColorStop(1,   `rgba(${ss.rgb},${ss.alpha.toFixed(3)})`)
+
+        ctx.beginPath()
+        ctx.moveTo(tx, ty)
+        ctx.lineTo(ss.x, ss.y)
+        ctx.strokeStyle = grad
+        ctx.lineWidth   = 1.2
+        ctx.shadowBlur  = 8
+        ctx.shadowColor = `rgba(${ss.rgb},${(ss.alpha * 0.6).toFixed(3)})`
+        ctx.stroke()
+
+        ctx.beginPath()
+        ctx.arc(ss.x, ss.y, 1.5, 0, Math.PI * 2)
+        ctx.fillStyle   = `rgba(${ss.rgb},${ss.alpha.toFixed(3)})`
+        ctx.shadowBlur  = 12
+        ctx.shadowColor = `rgba(${ss.rgb},${(ss.alpha * 0.8).toFixed(3)})`
+        ctx.fill()
+        ctx.shadowBlur = 0
+
+        ss.x    += ss.vx
+        ss.y    += ss.vy
+        ss.alpha -= ss.decay
+
+        if (ss.alpha > 0 && ss.x < W + 200 && ss.y < H + 200) {
+          aliveShooters.push(ss)
+        }
+      }
+      shootingStarsRef.current = aliveShooters
 
       // ── Code rain ──────────────────────────────────────────────────
       for (const d of dropsRef.current) {
@@ -349,7 +417,7 @@ export function Hero() {
 
         {/* Neon divider */}
         <div
-          className="w-12 h-px mb-6"
+          className="w-64 h-px mb-6"
           style={{ background: 'linear-gradient(90deg, transparent, rgb(var(--accent) / 0.7), transparent)' }}
         />
 
