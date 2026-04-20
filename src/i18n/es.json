@@ -38,13 +38,13 @@
     "subtitle": "Mi trayectoria profesional",
     "jobs": [
       {
-        "role": "Programador / Líder Técnico & Arquitecto de Soluciones",
+        "role": "Backend Developer & Cloud Architect",
         "company": "TeamWork Capacitación Ltda.",
         "period": "jul. 2022 – actualidad",
         "duration": "3 años 10 meses",
         "location": "Santiago, Chile · Jornada completa",
-        "description": "Líder técnico y arquitecto de soluciones de facto, responsable de dos proyectos de alto impacto. (1) Migración ERP Softland → Rex+: migración crítica completada con cero pérdida de datos y sin interrupción operacional, que implicó análisis profundo de estructuras legacy, mapeo de esquemas entre sistemas y validación exhaustiva de integridad de datos. (2) Reclutador Digital 24/7: agente IA para reclutamiento masivo sobre Azure Functions v4 (Premium Plan) con pipeline multi-modelo en cascada (Claude, GPT-4o, Gemini) para screening optimizado en costos. Incluye ingesta asíncrona vía Azure Service Bus, esquema de staging en PostgreSQL, Microsoft 365 Graph API, Azure Blob Storage, Azure Document Intelligence para CVs en imagen, OTP por WhatsApp y Google Maps Places API con cálculo de distancia Haversine.",
-        "tags": ["Node.js", "TypeScript", "Azure Functions", "PostgreSQL", "CosmosDB", "Azure Service Bus", "Claude API", "Microsoft Graph API"]
+        "description": "Referente técnico y arquitecto de soluciones, responsable de decisiones de arquitectura, estándares del equipo e integración de servicios cloud. Lidero la migración ERP Softland → Rex+, gestionando análisis de componentes, mapeo de esquemas entre sistemas y validación de integridad de datos. Diseño e implemento arquitecturas serverless sobre Azure Functions v4, integrando servicios como Service Bus, SignalR, Blob Storage, CosmosDB y PostgreSQL.",
+        "tags": ["TypeScript", "Node.js", "Azure Functions", "PostgreSQL", "CosmosDB", "Azure Service Bus", "Azure SignalR", "Blob Storage", "GitHub Actions", "OAuth 2.0 / JWT", "React JS", "Python"]
       },
       {
         "role": "Software Developer",
@@ -106,46 +106,50 @@
     "view_code": "Código Fuente",
     "items": [
       {
-        "title": "Reclutador Digital 24/7",
-        "description": "Agente IA para reclutamiento masivo sobre arquitectura serverless en Azure. Pipeline multi-modelo en cascada (Claude, GPT-4o, Gemini) para screening optimizado en costos, ingesta asíncrona vía Azure Service Bus, OTP por WhatsApp, Azure Document Intelligence para CVs en imagen y cálculo de distancia Haversine. Diseñado para escalar a decenas de miles de postulaciones en períodos de alta demanda.",
-        "tags": ["TypeScript", "Azure Functions", "Claude API", "PostgreSQL", "Azure Service Bus", "Node.js"],
-        "live": "#",
-        "code": "#"
+        "title": "Relational Model",
+        "description": "Herramienta tipo Figma exclusiva para documentación visual de modelos de bases de datos relacionales. Permite diseñar esquemas, definir relaciones y exportar documentación estructurada.",
+        "tags": ["TypeScript", "React", "Node.js"],
+        "code": "#",
+        "codeDisabled": true
       },
       {
-        "title": "Migración ERP: Softland → Rex+",
-        "description": "Migración crítica de ERP empresarial completada con cero pérdida de datos y sin interrupción operacional. Requirió análisis profundo de estructuras legacy, mapeo de esquemas entre sistemas y validación exhaustiva de integridad a lo largo de más de 5 años de datos operacionales.",
-        "tags": ["TypeScript", "Node.js", "SQL Server", "PostgreSQL", "Azure"],
-        "live": "#",
-        "code": "#"
+        "title": "EuforIA",
+        "description": "Interfaz de chat con IA que integra múltiples modelos de lenguaje (Claude, GPT-4o, Gemini) en una sola plataforma. Permite alternar entre modelos y comparar respuestas en tiempo real.",
+        "tags": ["TypeScript", "React", "Claude API", "GPT-4o", "Gemini"],
+        "code": "#",
+        "codeDisabled": true
       },
       {
-        "title": "Librería TypeScript de Contraseñas",
-        "description": "Librería de clase estática para gestión de contraseñas: hashing seguro, verificación, generación aleatoria y evaluación de complejidad. Diseñada como módulo drop-in para servicios backend en Node.js.",
-        "tags": ["TypeScript", "Node.js", "Security"],
-        "live": "#",
-        "code": "#"
+        "title": "Auth System",
+        "description": "Sistema de autenticación y autorización completo con OAuth 2.0, OIDC, gestión de refresh tokens, revocación de sesiones y blacklist sobre Redis. Diseñado como módulo reutilizable para arquitecturas Azure.",
+        "tags": ["TypeScript", "Node.js", "Redis", "JWT", "OAuth 2.0"],
+        "code": "#",
+        "codeDisabled": true
       },
       {
-        "title": "Extractor de Texto PDF e Imagen",
-        "description": "API REST que extrae texto estructurado desde archivos PDF e imagen usando la API de Claude de Anthropic. Construida con Express.js y Multer para manejo de archivos multipart, habilitando flujos de procesamiento documental.",
-        "tags": ["Node.js", "Express.js", "TypeScript", "Claude API", "Multer"],
+        "title": "Azure Path",
+        "description": "Aplicación de estudio interactiva para preparación de certificaciones Microsoft Azure. Organiza contenido por módulos, incluye preguntas de práctica y seguimiento de progreso.",
+        "tags": ["TypeScript", "React", "Node.js", "Azure"],
         "live": "#",
-        "code": "#"
+        "liveDisabled": true,
+        "code": "#",
+        "codeDisabled": true
       },
       {
         "title": "PoC Tiempo Real con Azure SignalR",
         "description": "Prueba de concepto de mensajería en tiempo real escalable usando Azure SignalR Service con Azure Functions. Demuestra patrones de comunicación WebSocket orientada a eventos para aplicaciones distribuidas.",
         "tags": ["TypeScript", "Azure Functions", "Azure SignalR", "Node.js"],
         "live": "#",
-        "code": "#"
+        "liveDisabled": true,
+        "code": "#",
+        "codeDisabled": true
       },
       {
-        "title": "Scraper Mercado Laboral Chileno",
-        "description": "Web scraper en Python que cubre 6 grandes portales de empleo chilenos (Bumeran, LinkedIn, Indeed, entre otros). Agrega y normaliza ofertas laborales para análisis e inteligencia de mercado.",
-        "tags": ["Python", "Web Scraping", "Data Analysis"],
-        "live": "#",
-        "code": "#"
+        "title": "Librerías Backend TypeScript",
+        "description": "Colección de librerías utilitarias para Node.js: ajuste de zona horaria en funciones serverless Azure, validación y formateo de RUT y teléfonos chilenos, y query builder para PostgreSQL con protección contra vulnerabilidades de inyección.",
+        "tags": ["TypeScript", "Node.js", "PostgreSQL", "Serverless", "Security"],
+        "code": "#",
+        "codeDisabled": true
       }
     ]
   },

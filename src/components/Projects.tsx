@@ -19,13 +19,14 @@ function GitHubIcon() {
   )
 }
 
-// ── 3D tilt card ─────────────────────────────────────────────────────
 type ProjectItem = {
   title: string
   description: string
   tags: readonly string[] | string[]
-  live: string
-  code: string
+  live?: string
+  liveDisabled?: boolean
+  code?: string
+  codeDisabled?: boolean
 }
 
 function ProjectCard({ project, t }: { project: ProjectItem; t: (k: string) => string }) {
@@ -107,20 +108,38 @@ function ProjectCard({ project, t }: { project: ProjectItem; t: (k: string) => s
         </div>
 
         <div className="flex items-center gap-4 pt-2 border-t border-gray-200 dark:border-gray-800">
-          <a
-            href={project.live}
-            className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-accent transition-colors duration-200"
-          >
-            <ExternalLinkIcon />
-            {t('projects.view_live')}
-          </a>
-          <a
-            href={project.code}
-            className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-accent transition-colors duration-200"
-          >
-            <GitHubIcon />
-            {t('projects.view_code')}
-          </a>
+          {project.live !== undefined && (
+            project.liveDisabled ? (
+              <span className="flex items-center gap-1.5 text-xs text-gray-400 dark:text-gray-600 opacity-40 cursor-not-allowed select-none">
+                <ExternalLinkIcon />
+                {t('projects.view_live')}
+              </span>
+            ) : (
+              <a
+                href={project.live}
+                className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-accent transition-colors duration-200"
+              >
+                <ExternalLinkIcon />
+                {t('projects.view_live')}
+              </a>
+            )
+          )}
+          {project.code !== undefined && (
+            project.codeDisabled ? (
+              <span className="flex items-center gap-1.5 text-xs text-gray-400 dark:text-gray-600 opacity-40 cursor-not-allowed select-none">
+                <GitHubIcon />
+                {t('projects.view_code')}
+              </span>
+            ) : (
+              <a
+                href={project.code}
+                className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-accent transition-colors duration-200"
+              >
+                <GitHubIcon />
+                {t('projects.view_code')}
+              </a>
+            )
+          )}
         </div>
       </div>
     </div>
@@ -147,7 +166,7 @@ export function Projects() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {locale.projects.items.map((project, i) => (
-            <ProjectCard key={i} project={project} t={t} />
+            <ProjectCard key={i} project={project as ProjectItem} t={t} />
           ))}
         </div>
       </div>
