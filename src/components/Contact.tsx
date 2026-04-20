@@ -91,7 +91,7 @@ export function Contact() {
   const isSent    = status === 'sent'
 
   return (
-    <section id="contact" className="relative py-24 bg-gray-50 dark:bg-gray-900">
+    <section id="contacto" className="relative py-24 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}

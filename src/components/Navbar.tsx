@@ -5,11 +5,11 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { ThemeSelector } from '@/components/ThemeSelector'
 
 const NAV_LINKS = [
-  { key: 'about', href: '#about' },
-  { key: 'experience', href: '#experience' },
-  { key: 'skills', href: '#skills' },
-  { key: 'projects', href: '#projects' },
-  { key: 'contact', href: '#contact' },
+  { key: 'about', id: 'sobre-mi', href: '#sobre-mi' },
+  { key: 'experience', id: 'experiencia', href: '#experiencia' },
+  { key: 'skills', id: 'habilidades', href: '#habilidades' },
+  { key: 'projects', id: 'proyectos', href: '#proyectos' },
+  { key: 'contact', id: 'contacto', href: '#contacto' },
 ] as const
 
 export function Navbar() {
@@ -40,8 +40,8 @@ export function Navbar() {
     const hero = document.getElementById('home')
     if (hero) observer.observe(hero)
 
-    NAV_LINKS.forEach(({ key }) => {
-      const el = document.getElementById(key)
+    NAV_LINKS.forEach(({ id }) => {
+      const el = document.getElementById(id)
       if (el) observer.observe(el)
     })
 
@@ -104,8 +104,8 @@ export function Navbar() {
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-7">
-            {NAV_LINKS.map(({ key, href }) => {
-              const isActive = activeSection === key
+            {NAV_LINKS.map(({ key, id, href }) => {
+              const isActive = activeSection === id
               return (
                 <a
                   key={key}
@@ -176,8 +176,8 @@ export function Navbar() {
         }`}
       >
         <div className="backdrop-blur-xl bg-white/90 dark:bg-gray-950/90 border-t border-gray-200/10 dark:border-white/[0.04] px-4 py-3 space-y-1">
-          {NAV_LINKS.map(({ key, href }) => {
-            const isActive = activeSection === key
+          {NAV_LINKS.map(({ key, id, href }) => {
+            const isActive = activeSection === id
             return (
               <a
                 key={key}

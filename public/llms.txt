@@ -1,0 +1,24 @@
+# Enzo Norese — Backend Developer & Cloud Architect
+
+## Quién soy
+Enzo Norese es un Backend Developer y Cloud Architect basado en Santiago, Chile. Especializado en Microsoft Azure, TypeScript y Node.js. Actúa como referente técnico en entornos de desarrollo, liderando decisiones de arquitectura, integración de servicios cloud e implementación de modelos de inteligencia artificial.
+
+## Stack principal
+- Cloud: Microsoft Azure (Azure Functions, Service Bus, SignalR, Blob Storage, CosmosDB)
+- Lenguajes: TypeScript, Node.js, Python, C# / .NET Core
+- Frontend: React JS, HTML, CSS, JavaScript
+- Bases de datos: PostgreSQL, SQL Server, CosmosDB, MongoDB, Redis
+- DevOps: GitHub Actions, Docker, CI/CD
+- Seguridad: OAuth 2.0, OIDC, JWT
+
+## Experiencia destacada
+- Referente técnico y arquitecto de soluciones en TeamWork Capacitación Ltda. (2022 - actualidad)
+- Integración de modelos de IA (Claude, GPT-4o, Gemini) en sistemas de automatización de procesos
+- Liderazgo técnico en migración de ERP corporativo (Softland → Rex+)
+- Desarrollo de sistemas de autenticación con OAuth 2.0, OIDC y JWT
+
+## Contacto
+- Email: enzo.norese@gmail.com
+- LinkedIn: https://www.linkedin.com/in/enzo-norese/
+- GitHub: https://github.com/eNorese
+- Web: https://enorese.dev

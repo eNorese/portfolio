@@ -77,7 +77,7 @@ export function Skills() {
   const [hoveredBadge, setHoveredBadge] = useState<string | null>(null)
 
   return (
-    <section id="skills" className="relative py-24 bg-gray-50 dark:bg-gray-900">
+    <section id="habilidades" className="relative py-24 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}

@@ -1,0 +1,8 @@
+/* TEAM */
+Developer & Architect: Enzo Norese
+Location: Santiago, Chile
+Contact: enzo.norese@gmail.com
+
+/* SITE */
+Language: Spanish / English
+Technology: React, TypeScript, Vite, Vercel
