@@ -7,10 +7,20 @@ const techStack = [
   {
     name: 'Azure Cloud',
     icon: (
-      <svg viewBox="0 0 96 96" className="w-8 h-8" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M33.004 6.667L4 73.333h22.667L48 26.667 33.004 6.667z" fill="#0089D6" />
-        <path d="M38.667 13.333L22 58.667H4L33.004 6.667 38.667 13.333zM48 26.667L26.667 73.333H92L48 26.667z" fill="#0072C6" />
-        <path d="M26.667 73.333L48 26.667 92 73.333H26.667z" fill="#0089D6" />
+      <svg viewBox="0 0 96 96" className="w-8 h-8" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="azureA" x1="-0.4" x2="1" y1="0.5" y2="0.5" gradientUnits="objectBoundingBox">
+            <stop offset="0" stopColor="#114a8b" />
+            <stop offset="1" stopColor="#0669bc" />
+          </linearGradient>
+          <linearGradient id="azureB" x1="0.1" x2="0.8" y1="0.3" y2="0.9" gradientUnits="objectBoundingBox">
+            <stop offset="0" stopColor="#3ccbf4" />
+            <stop offset="1" stopColor="#2892df" />
+          </linearGradient>
+        </defs>
+        <path d="M33.338 8.394H58.81L31.24 88.241a3.733 3.733 0 01-3.533 2.527H7.489a3.728 3.728 0 01-3.53-4.933L24.95 17.918a3.734 3.734 0 013.533-2.525h4.855z" fill="url(#azureA)" />
+        <path d="M68.31 61.504H29.099a1.72 1.72 0 00-1.171 2.977l25.502 23.762a3.754 3.754 0 002.56.992h22.52z" fill="#0078d4" />
+        <path d="M33.338 8.394a3.71 3.71 0 00-3.541 2.569L3.98 85.799a3.726 3.726 0 003.505 5.043h20.192a4.014 4.014 0 003.073-2.74l4.818-14.225 17.19 16.033a3.817 3.817 0 002.453.847h21.39l-9.386-26.918-27.423.006L58.81 8.394z" fill="url(#azureB)" />
       </svg>
     ),
   },

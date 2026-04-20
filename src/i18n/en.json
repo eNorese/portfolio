@@ -78,24 +78,24 @@
     },
     "stories": [
       {
-        "metric": "100%",
-        "label": "Data Preserved",
-        "description": "Migrated 5+ years of operational data from Softland to Rex+ with 100% data integrity and zero operational downtime."
+        "metric": "3+",
+        "label": "AI Models Integrated",
+        "description": "Integrated and orchestrated language models (Claude, GPT-4o, Gemini) in a process automation system, evaluating accuracy and cost per model."
       },
       {
-        "metric": "3",
-        "label": "LLMs in Pipeline",
-        "description": "Built a cascaded multi-model AI pipeline integrating Claude, GPT-4o, and Gemini to optimize cost and accuracy in mass recruitment screening."
+        "metric": "3+",
+        "label": "Years as Tech Lead",
+        "description": "Acted as de facto technical lead and solutions architect, driving architecture decisions and team standards without a formal title."
       },
       {
-        "metric": "10K+",
-        "label": "Apps per Peak",
-        "description": "Architected the Digital 24/7 Recruiter to process tens of thousands of applications per peak demand period, fully automated on Azure serverless."
+        "metric": "5+",
+        "label": "Azure Services in Production",
+        "description": "Designed and implemented architectures combining Azure Functions, Service Bus, SignalR, Blob Storage, and CosmosDB in real production systems."
       },
       {
-        "metric": "6+",
+        "metric": "4+",
         "label": "Years in Tech",
-        "description": "From electronics technician to backend developer and cloud architect — a technical path spanning hardware diagnostics, C#/.NET, and modern Azure cloud systems."
+        "description": "From electronics technician to cloud architect — a journey spanning hardware diagnostics, C#/.NET, and modern distributed systems on Azure."
       }
     ]
   },
@@ -152,7 +152,7 @@
   "contact": {
     "section_title": "Contact",
     "subtitle": "Let's work together",
-    "description": "I'm currently open to new opportunities. Whether you have a project in mind, a question, or just want to say hi — my inbox is always open.",
+    "description": "Do you have a project, an opportunity, or just want to talk tech? Write to me directly — I respond.",
     "form": {
       "placeholder_name": "John Doe",
       "placeholder_email": "john@example.com",

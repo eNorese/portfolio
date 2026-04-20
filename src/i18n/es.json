@@ -78,24 +78,24 @@
     },
     "stories": [
       {
-        "metric": "100%",
-        "label": "Datos Preservados",
-        "description": "Migré más de 5 años de datos operacionales de Softland a Rex+ con 100% de integridad de datos y cero downtime operacional."
+        "metric": "3+",
+        "label": "Modelos de IA Integrados",
+        "description": "Integré y orquesté modelos de lenguaje (Claude, GPT-4o, Gemini) en un sistema de automatización de procesos, evaluando precisión y costo por modelo."
       },
       {
-        "metric": "3",
-        "label": "LLMs en Pipeline",
-        "description": "Construí un pipeline IA multi-modelo en cascada (Claude, GPT-4o, Gemini) para optimizar costo y precisión en el screening de reclutamiento masivo."
+        "metric": "3+",
+        "label": "Años como Referente Técnico",
+        "description": "Ejercí como referente técnico y arquitecto de soluciones de facto, liderando decisiones de arquitectura y estándares del equipo sin cargo formal."
       },
       {
-        "metric": "10K+",
-        "label": "Apps por Peak",
-        "description": "Arquitecté el Reclutador Digital 24/7 para procesar decenas de miles de postulaciones por período de alta demanda, completamente automatizado sobre serverless en Azure."
+        "metric": "5+",
+        "label": "Servicios Azure en Producción",
+        "description": "Diseñé e implementé arquitecturas que combinan Azure Functions, Service Bus, SignalR, Blob Storage y CosmosDB en sistemas productivos reales."
       },
       {
-        "metric": "6+",
+        "metric": "4+",
         "label": "Años en Tecnología",
-        "description": "De técnico electrónico a desarrollador backend y arquitecto cloud — una trayectoria que abarca diagnóstico de hardware, C#/.NET y sistemas modernos en Azure."
+        "description": "De técnico electrónico a arquitecto cloud — una trayectoria que abarca diagnóstico de hardware, C#/.NET y sistemas distribuidos modernos en Azure."
       }
     ]
   },
@@ -152,10 +152,10 @@
   "contact": {
     "section_title": "Contacto",
     "subtitle": "Trabajemos juntos",
-    "description": "Actualmente estoy abierto a nuevas oportunidades. Ya sea que tengas un proyecto en mente, una pregunta o simplemente quieras saludar — mi bandeja de entrada siempre está abierta.",
+    "description": "¿Tienes un proyecto, una oportunidad o simplemente quieres hablar de tecnología? Escríbeme directamente — respondo.",
     "form": {
-      "placeholder_name": "Juan Pérez",
-      "placeholder_email": "juan@ejemplo.com",
+      "placeholder_name": "John Doe",
+      "placeholder_email": "john@example.com",
       "placeholder_message": "Hola, me gustaría hablar sobre...",
       "send": "Enviar Mensaje",
       "sending": "Enviando...",

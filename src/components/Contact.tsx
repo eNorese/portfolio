@@ -35,11 +35,11 @@ type FormErrors = Partial<FormFields>
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 const FIELD_CLASS =
-  'w-full px-4 py-3 rounded-xl text-sm border bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-200'
+  'w-full px-4 py-3 rounded-xl text-sm border bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-colors duration-200'
 const FIELD_VALID =
-  'border-gray-200 dark:border-gray-700 focus:ring-accent/40 focus:border-accent/60'
+  'border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-accent/40 focus:border-accent/60'
 const FIELD_INVALID =
-  'border-red-400 dark:border-red-600 focus:ring-red-400/30 focus:border-red-400 dark:focus:border-red-500'
+  'border-red-400 dark:border-red-600 focus:ring-2 focus:ring-red-400/30 focus:border-red-400 dark:focus:border-red-500'
 
 // ── Section ─────────────────────────────────────────────────────────────
 export function Contact() {

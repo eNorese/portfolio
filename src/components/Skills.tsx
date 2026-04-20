@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const SKILLS_DATA = {
-  frontend: ['React', 'Next.js', 'TypeScript', 'Vite', 'Tailwind CSS', 'react-i18next'],
-  backend: ['Node.js', 'Express', 'TypeScript', 'Python', 'C# (.NET)', 'PostgreSQL', 'SQL Server', 'CosmosDB'],
-  cloud: ['Microsoft Azure', 'Azure Functions', 'Azure Service Bus', 'Azure SignalR', 'Azure Blob Storage', 'GitHub Actions'],
-  tools: ['Claude API', 'GPT-4o', 'Azure Doc Intelligence', 'Microsoft Graph API', 'JWT / JWKS', 'Git'],
+  frontend: ['React', 'TypeScript', 'JavaScript', 'HTML', 'CSS'],
+  backend: ['Node.js', 'TypeScript', 'Express', 'Python', 'C# (.NET)', 'PostgreSQL', 'SQL Server', 'CosmosDB', 'MongoDB', 'Redis'],
+  cloud: ['Microsoft Azure', 'Azure Functions', 'Azure Service Bus', 'Azure SignalR', 'Azure Blob Storage', 'GitHub Actions', 'Docker'],
+  tools: ['Claude API', 'GPT-4o', 'Gemini', 'JWT / JWKS', 'Git', 'Linux'],
 } as const
 
 function parseMetric(metric: string): { num: number; suffix: string } {
