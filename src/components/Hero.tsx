@@ -348,11 +348,22 @@ export function Hero() {
         style={{ zIndex: 3, opacity: 0, transition: 'opacity 0.5s ease' }}
       />
 
-      {/* ── Ambient blobs ── */}
-      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-        <div className="absolute top-1/4 -left-24 w-[500px] h-[500px] bg-accent/[0.07] rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-24 w-[400px] h-[400px] bg-accent/[0.05] rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[200px] bg-accent/[0.04] rounded-full blur-3xl" />
+      {/* ── Side breathing lights ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
+        <div
+          className="absolute inset-y-0 left-0 w-[38%]"
+          style={{
+            background: 'radial-gradient(ellipse at left center, rgb(var(--accent) / 0.22) 0%, transparent 75%)',
+            animation: 'side-breathe 6s ease-in-out infinite',
+          }}
+        />
+        <div
+          className="absolute inset-y-0 right-0 w-[38%]"
+          style={{
+            background: 'radial-gradient(ellipse at right center, rgb(var(--accent) / 0.18) 0%, transparent 75%)',
+            animation: 'side-breathe 7.5s ease-in-out 2s infinite',
+          }}
+        />
       </div>
 
       {/* ── Data pixels ── */}

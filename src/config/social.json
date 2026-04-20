@@ -1,7 +1,6 @@
 {
   "linkedin":  { "enabled": true,  "url": "https://linkedin.com/in/enorese" },
   "github":    { "enabled": true,  "url": "https://github.com/enorese" },
-  "instagram": { "enabled": true,  "url": "https://instagram.com/enorese" },
-  "tiktok":    { "enabled": true,  "url": "https://tiktok.com/@enorese" },
-  "whatsapp":  { "enabled": true,  "number": "+56900000000" }
+  "x":         { "enabled": true,  "url": "https://x.com/enorese" },
+  "whatsapp":  { "enabled": true,  "number": "+56995897061" }
 }
