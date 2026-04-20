@@ -19,9 +19,9 @@
   "about": {
     "section_title": "Sobre Mí",
     "subtitle": "Un poco sobre quién soy",
-    "bio_1": "Ingeniero en Informática con base en electrónica, especializado en desarrollo backend y arquitectura de soluciones cloud. En TeamWork Capacitación Ltda. (Santiago, Chile), opero como líder técnico y arquitecto de soluciones — diseñando y construyendo sistemas de alto impacto que potencian operaciones reales.",
-    "bio_2": "Lidero dos iniciativas clave: la migración ERP Softland → Rex+ (completada con cero pérdida de datos y cero downtime) y el Reclutador Digital 24/7 — un agente IA para reclutamiento masivo sobre arquitectura serverless en Azure, con pipeline multi-modelo en cascada (Claude, GPT-4o, Gemini) diseñado para procesar decenas de miles de postulaciones en períodos de alta demanda como el Cyber Day.",
-    "bio_3": "Mi filosofía de ingeniería — \"Ingeniería Aumentada\" — posiciona las herramientas de IA como multiplicadores de capacidad técnica, no como sustitutos del criterio ingenieril. Mi trayectoria desde técnico electrónico hasta arquitecto cloud me otorga una visión amplia que abarca desde el diagnóstico de hardware hasta los sistemas distribuidos modernos.",
+    "bio_1": "Ingeniero en Informática con base en electrónica, especializado en desarrollo backend y arquitectura de soluciones cloud. Opero como referente técnico y arquitecto de soluciones — diseñando y construyendo sistemas de alto impacto que potencian operaciones reales de negocio.",
+    "bio_2": "Con experiencia en sistemas de reclutamiento, migración de ERP e integración de modelos de inteligencia artificial, me muevo con soltura desde la definición de arquitectura hasta la implementación y puesta en producción.",
+    "bio_3": "Mi filosofía — \"Ingeniería Aumentada\" — posiciona las herramientas de IA como multiplicadores de capacidad técnica, no como sustitutos del criterio ingenieril. Mi trayectoria desde técnico electrónico hasta arquitecto cloud me otorga una visión amplia que abarca desde el diagnóstico de hardware hasta los sistemas distribuidos modernos.",
     "years_value": "6+",
     "projects_value": "40+",
     "technologies_value": "30+",
