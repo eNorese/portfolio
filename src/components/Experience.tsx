@@ -44,14 +44,27 @@ function JobCard({ job, index }: { job: Job; index: number }) {
 
   return (
     <div ref={ref} className="relative">
-      {/* Timeline dot */}
+      {/* Timeline node — hollow ring that lights up when the line reaches it */}
       <span
-        className="absolute -left-[calc(1.5rem+1px)] sm:-left-[calc(2rem+1px)] top-1.5 w-3 h-3 rounded-full bg-accent border-2 border-white dark:border-gray-950 ring-2 ring-accent/30"
+        className={`absolute -left-[30px] sm:-left-[38px] top-1 flex items-center justify-center
+                    w-[15px] h-[15px] rounded-full border-2 bg-white dark:bg-gray-950
+                    transition-all duration-500
+                    ${visible
+                      ? 'border-accent'
+                      : 'border-gray-300 dark:border-gray-700'}`}
         style={{
-          transform: visible ? 'scale(1)' : 'scale(0)',
-          transition: `transform 0.45s cubic-bezier(0.34,1.56,0.64,1) ${delay + 220}ms`,
+          transitionDelay: `${delay + 180}ms`,
+          boxShadow: visible ? '0 0 10px rgb(var(--accent) / 0.45)' : 'none',
         }}
-      />
+      >
+        <span
+          className="w-[5px] h-[5px] rounded-full bg-accent"
+          style={{
+            transform: visible ? 'scale(1)' : 'scale(0)',
+            transition: `transform 0.45s cubic-bezier(0.34,1.56,0.64,1) ${delay + 280}ms`,
+          }}
+        />
+      </span>
 
       {/* Card */}
       <div
@@ -116,6 +129,7 @@ export function Experience() {
   const header = useReveal(0.2)
 
   const lineRef  = useRef<HTMLDivElement>(null)
+  const headRef  = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -131,7 +145,12 @@ export function Experience() {
         (vh * 0.85 - rect.top) / (rect.height * 0.9)
       ))
 
-      line.style.transform = `scaleY(${progress})`
+      line.style.height = `${progress * 100}%`
+      const head = headRef.current
+      if (head) {
+        head.style.top = `${progress * 100}%`
+        head.style.opacity = progress > 0.02 && progress < 0.99 ? '1' : '0'
+      }
     }
 
     let ticking = false
@@ -176,13 +195,36 @@ export function Experience() {
         {/* Timeline track */}
         <div ref={trackRef} className="relative pl-6 sm:pl-8 space-y-10">
 
-          {/* Static track line */}
-          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-100 dark:bg-gray-800" />
-          {/* Animated fill line */}
+          {/* Static track — hairline that fades out at both ends */}
+          <div
+            className="absolute left-0 top-0 bottom-0 w-[3px] rounded-full
+                       bg-gradient-to-b from-transparent via-gray-200 to-transparent
+                       dark:via-gray-800"
+          />
+          {/* Animated fill — glowing gradient that grows with scroll */}
           <div
             ref={lineRef}
-            className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent/70 to-accent/40 origin-top"
-            style={{ transform: 'scaleY(0)', willChange: 'transform' }}
+            className="absolute left-0 top-0 w-[3px] rounded-full
+                       bg-gradient-to-b from-accent/0 via-accent/70 to-accent"
+            style={{
+              height: '0%',
+              boxShadow: '0 0 12px rgb(var(--accent) / 0.35)',
+              willChange: 'height',
+            }}
+          />
+          {/* Comet head — travels with the scroll progress */}
+          <div
+            ref={headRef}
+            className="absolute w-[9px] h-[9px] rounded-full bg-accent"
+            style={{
+              left: '1.5px',
+              top: '0%',
+              opacity: 0,
+              transform: 'translate(-50%, -50%)',
+              boxShadow: '0 0 8px 2px rgb(var(--accent) / 0.8), 0 0 22px 7px rgb(var(--accent) / 0.3)',
+              transition: 'opacity 0.3s ease',
+              willChange: 'top',
+            }}
           />
 
           {jobs.map((job, index) => (

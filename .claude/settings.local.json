@@ -6,7 +6,10 @@
       "Bash(python3:*)",
       "Bash(npm run:*)",
       "Bash(npx ctx7@latest:*)",
-      "Bash(MSYS_NO_PATHCONV=1 npx ctx7@latest:*)"
+      "Bash(MSYS_NO_PATHCONV=1 npx ctx7@latest:*)",
+      "PowerShell(node scripts/test-rubik-logic.mjs)",
+      "mcp__Claude_Preview__preview_start",
+      "PowerShell(\\(Get-Content \"PLAN_RUBIK_EASTER_EGG.md\" -Raw -Encoding utf8\\) -replace '- \\\\[ \\\\]', '- [x]' | Set-Content \"PLAN_RUBIK_EASTER_EGG.md\" -Encoding utf8 -NoNewline)"
     ]
   }
 }

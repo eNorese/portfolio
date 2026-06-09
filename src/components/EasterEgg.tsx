@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react'
 import type { KeyboardEvent as ReactKbdEvent } from 'react'
+import { portfolioSections } from '@/config/sections'
 
 /* ── Types ──────────────────────────────────────────────────────────────── */
 type Line         = { text: string; cls?: string }
@@ -14,7 +15,7 @@ type TopProcess   = {
 type TopSnapshot  = { time: Date; cpuUser: number; processes: TopProcess[] }
 
 /* ── Static data ─────────────────────────────────────────────────────────── */
-const PROMPT = 'enzo@portfolio:~$'
+const PROMPT = 'enorese@portfolio:~$'
 
 const BOOT: Line[] = [
   { text: 'enorese.sh 1.0.0 — interactive portfolio terminal', cls: 'text-green-400' },
@@ -22,7 +23,7 @@ const BOOT: Line[] = [
 ]
 
 const NEOFETCH: Line[] = [
-  { text: '╔══════════════╗  enzo@portfolio',           cls: 'text-green-400' },
+  { text: '╔══════════════╗  enorese@portfolio',        cls: 'text-green-400' },
   { text: '║              ║  ──────────────',           cls: 'text-green-400' },
   { text: '║   eNorese.   ║  OS:     PortfolioOS 2025', cls: 'text-green-400' },
   { text: '║              ║  Host:   Vercel Edge',      cls: 'text-green-400' },
@@ -73,6 +74,16 @@ const FILES: Record<string, Line[]> = {
   'cv.pdf': [
     { text: '[binary — use the CV download button on the site]', cls: 'text-yellow-400' },
   ],
+  '.rubik': [
+    { text: '╭──────────────────────────────────────╮', cls: 'text-purple-400' },
+    { text: '│  You found a hidden file. Nice. 🕵️   │', cls: 'text-purple-400' },
+    { text: '╰──────────────────────────────────────╯', cls: 'text-purple-400' },
+    { text: '' },
+    { text: 'There is more than one easter egg here.', cls: 'text-gray-300' },
+    { text: 'Try running:',                             cls: 'text-gray-300' },
+    { text: '' },
+    { text: '    rubik',                                cls: 'text-yellow-400' },
+  ],
 }
 
 const BASE_PROCS = [
@@ -104,7 +115,7 @@ function formatTop(snap: TopSnapshot): Line[] {
     ...snap.processes.map(p => ({
       text: [
         String(p.pid).padStart(5),
-        'enzo'.padEnd(9),
+        'enorese'.padEnd(9),
         '20',
         '  0',
         String(p.virt).padStart(7),
@@ -179,7 +190,10 @@ function tabComplete(input: string): TabResult {
   if (!list) return { kind: 'none' }
 
   const argPrefix = endsWithSpace ? '' : (parts[parts.length - 1] ?? '')
-  const matches   = list.filter(f => f.startsWith(argPrefix))
+  // Hidden files (dotfiles) only complete once the user has typed the leading dot
+  const matches   = list.filter(f =>
+    f.startsWith(argPrefix) && (!f.startsWith('.') || argPrefix.startsWith('.'))
+  )
   if (!matches.length) return { kind: 'none' }
 
   const baseParts = parts.slice(0, endsWithSpace ? undefined : -1)
@@ -201,7 +215,7 @@ function tabComplete(input: string): TabResult {
 function run(
   raw: string,
   cmdHistory: string[],
-): { output: Line[]; clear?: boolean; close?: boolean; topMode?: boolean } {
+): { output: Line[]; clear?: boolean; close?: boolean; topMode?: boolean; rubik?: boolean } {
   const trimmed = raw.trim()
   if (!trimmed) return { output: [] }
 
@@ -237,7 +251,7 @@ function run(
       ]}
 
     case 'whoami':
-      return { output: [{ text: 'enzo', cls: 'text-white' }] }
+      return { output: [{ text: 'enorese', cls: 'text-white' }] }
 
     case 'pwd':
       return { output: [{ text: '/home/enorese/portfolio', cls: 'text-white' }] }
@@ -253,23 +267,30 @@ function run(
       return { output: [{ text: 'WebOS 2025 portfolio #1 SMP Next.js 15.3 x86_64 GNU/React', cls: 'text-white' }] }
 
     case 'ls': {
-      const isLong = args.some(a => a.startsWith('-') && a.includes('l'))
-      const target = args.find(a => !a.startsWith('-'))
+      const isLong  = args.some(a => a.startsWith('-') && a.includes('l'))
+      const showAll = args.some(a => a.startsWith('-') && a.includes('a'))
+      const target  = args.find(a => !a.startsWith('-'))
 
       if (target === 'projects' || target === 'projects/') {
         return { output: [{ text: 'erp-migration/   azure-functions/   api-gateway/', cls: 'text-blue-400' }] }
       }
       if (isLong) {
         return { output: [
-          { text: 'total 48',                                                    cls: 'text-gray-500' },
-          { text: 'drwxr-xr-x 2 enzo enzo 4096 Apr 14 2025 .',                 cls: 'text-gray-500' },
-          { text: 'drwxr-xr-x 2 enzo enzo 4096 Apr 14 2025 ..',                cls: 'text-gray-500' },
-          { text: '-rw-r--r-- 1 enzo enzo  420 Apr 14 2025 about.txt',         cls: 'text-gray-300' },
-          { text: '-rwxr-xr-x 1 enzo enzo  348 Apr 14 2025 skills.sh',         cls: 'text-green-400' },
-          { text: '-rw-r--r-- 1 enzo enzo  180 Apr 14 2025 contact.txt',       cls: 'text-gray-300' },
-          { text: '-rw-r--r-- 1 enzo enzo 2048 Apr 14 2025 cv.pdf',            cls: 'text-gray-300' },
-          { text: 'drwxr-xr-x 3 enzo enzo 4096 Apr 14 2025 projects/',         cls: 'text-blue-400' },
+          { text: 'total 48',                                                          cls: 'text-gray-500' },
+          { text: 'drwxr-xr-x 2 enorese enorese 4096 Apr 14 2025 .',                 cls: 'text-gray-500' },
+          { text: 'drwxr-xr-x 2 enorese enorese 4096 Apr 14 2025 ..',                cls: 'text-gray-500' },
+          ...(showAll
+            ? [{ text: '-rw------- 1 enorese enorese   66 Apr 14 2025 .rubik',        cls: 'text-purple-400' }]
+            : []),
+          { text: '-rw-r--r-- 1 enorese enorese  420 Apr 14 2025 about.txt',         cls: 'text-gray-300' },
+          { text: '-rwxr-xr-x 1 enorese enorese  348 Apr 14 2025 skills.sh',         cls: 'text-green-400' },
+          { text: '-rw-r--r-- 1 enorese enorese  180 Apr 14 2025 contact.txt',       cls: 'text-gray-300' },
+          { text: '-rw-r--r-- 1 enorese enorese 2048 Apr 14 2025 cv.pdf',            cls: 'text-gray-300' },
+          { text: 'drwxr-xr-x 3 enorese enorese 4096 Apr 14 2025 projects/',         cls: 'text-blue-400' },
         ]}
+      }
+      if (showAll) {
+        return { output: [{ text: '.   ..   .rubik   about.txt   skills.sh   contact.txt   cv.pdf   projects/', cls: 'text-white' }] }
       }
       return { output: [{ text: 'about.txt   skills.sh   contact.txt   cv.pdf   projects/', cls: 'text-white' }] }
     }
@@ -293,6 +314,20 @@ function run(
 
     case 'neofetch':
       return { output: NEOFETCH }
+
+    // Hidden command — hinted at by `cat .rubik`. Deliberately absent from
+    // help and tab completion.
+    case 'rubik':
+      if (!portfolioSections.rubikCube) {
+        return { output: [{ text: `bash: ${cmd}: command not found`, cls: 'text-red-400' }] }
+      }
+      return {
+        output: [
+          { text: 'Initializing cube engine…', cls: 'text-purple-400' },
+          { text: '🧩 Launching Rubik mode',   cls: 'text-purple-400' },
+        ],
+        rubik: true,
+      }
 
     case 'top':
       return { output: [], topMode: true }
@@ -352,8 +387,8 @@ function run(
         return { output: [{ text: 'nice try. 😄', cls: 'text-yellow-400' }] }
       }
       return { output: [
-        { text: '[sudo] password for enzo:',                                       cls: 'text-white' },
-        { text: 'enzo is not in the sudoers file. This incident will be reported.', cls: 'text-red-400' },
+        { text: '[sudo] password for enorese:',                                          cls: 'text-white' },
+        { text: 'enorese is not in the sudoers file. This incident will be reported.',   cls: 'text-red-400' },
       ]}
 
     case 'ssh':
@@ -507,6 +542,17 @@ export function EasterEgg() {
       if (trimmed) setCmdHistory(h => [...h, trimmed])
       setHistIdx(-1)
 
+      if (result.rubik) {
+        // Show the launch lines briefly, then close the terminal and open the cube
+        setEntries(prev => [...prev, { command: input, output: result.output }])
+        setInput('')
+        setTimeout(() => {
+          window.dispatchEvent(new CustomEvent('enorese:rubik'))
+          setActive(false)
+        }, 600)
+        return
+      }
+
       if (result.topMode) {
         setEntries(prev => [...prev, { command: input, output: [] }])
         setTopMode(true)
@@ -592,15 +638,17 @@ export function EasterEgg() {
                 </div>
               ))}
 
-              {/* Current prompt + blinking cursor */}
+              {/* Current prompt + blinking cursor (cursor hugs the last char) */}
               {!booting && (
                 <div className="flex gap-2 mt-1 items-center">
                   <span className="text-green-400 shrink-0 select-none">{PROMPT}</span>
-                  <span className="text-gray-100 whitespace-pre">{input}</span>
-                  <span
-                    className="inline-block w-[7px] h-[13px] bg-green-400 align-middle"
-                    style={{ animation: 'pulse 1s step-start infinite' }}
-                  />
+                  <span className="text-gray-100 whitespace-pre">
+                    {input}
+                    <span
+                      className="inline-block w-[7px] h-[13px] bg-green-400 align-middle"
+                      style={{ animation: 'pulse 1s step-start infinite' }}
+                    />
+                  </span>
                 </div>
               )}
             </>

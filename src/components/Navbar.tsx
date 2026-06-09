@@ -3,14 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { ThemeSelector } from '@/components/ThemeSelector'
-
-const NAV_LINKS = [
-  { key: 'about', id: 'sobre-mi', href: '#sobre-mi' },
-  { key: 'experience', id: 'experiencia', href: '#experiencia' },
-  { key: 'skills', id: 'habilidades', href: '#habilidades' },
-  { key: 'projects', id: 'proyectos', href: '#proyectos' },
-  { key: 'contact', id: 'contacto', href: '#contacto' },
-] as const
+import { enabledNavSections } from '@/config/sections'
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -40,7 +33,7 @@ export function Navbar() {
     const hero = document.getElementById('home')
     if (hero) observer.observe(hero)
 
-    NAV_LINKS.forEach(({ id }) => {
+    enabledNavSections.forEach(({ id }) => {
       const el = document.getElementById(id)
       if (el) observer.observe(el)
     })
@@ -95,16 +88,16 @@ export function Navbar() {
           {/* Logo */}
           <a
             href="#"
-            className="text-base font-bold tracking-tight text-gray-900 dark:text-white"
+            className="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
             onClick={handleLogoClick}
           >
             eNorese
-            <span className="text-accent">.</span>
+            <span className="text-accent">.dev</span>
           </a>
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-7">
-            {NAV_LINKS.map(({ key, id, href }) => {
+            {enabledNavSections.map(({ key, id, href }) => {
               const isActive = activeSection === id
               return (
                 <a
@@ -176,7 +169,7 @@ export function Navbar() {
         }`}
       >
         <div className="backdrop-blur-xl bg-white/90 dark:bg-gray-950/90 border-t border-gray-200/10 dark:border-white/[0.04] px-4 py-3 space-y-1">
-          {NAV_LINKS.map(({ key, id, href }) => {
+          {enabledNavSections.map(({ key, id, href }) => {
             const isActive = activeSection === id
             return (
               <a

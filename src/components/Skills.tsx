@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { portfolioSections } from '@/config/sections'
 
 const SKILLS_DATA = {
   frontend: ['React', 'TypeScript', 'JavaScript', 'HTML', 'CSS'],
@@ -128,20 +129,24 @@ export function Skills() {
           ))}
         </div>
 
-        {/* Success Stories */}
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 text-center">
-          {t('skills.stories_title')}
-        </h3>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {stories.map((story, index) => (
-            <StoryCard
-              key={index}
-              metric={story.metric}
-              label={story.label}
-              description={story.description}
-            />
-          ))}
-        </div>
+        {portfolioSections.successStories && (
+          <>
+            {/* Success Stories */}
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 text-center">
+              {t('skills.stories_title')}
+            </h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {stories.map((story, index) => (
+                <StoryCard
+                  key={index}
+                  metric={story.metric}
+                  label={story.label}
+                  description={story.description}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       {/* fade → Projects (white / gray-950) */}
