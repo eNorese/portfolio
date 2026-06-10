@@ -71,7 +71,7 @@ export function Contact() {
     }
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const errs = validate(fields)
     if (Object.keys(errs).length > 0) {
@@ -80,15 +80,25 @@ export function Contact() {
     }
 
     setStatus('sending')
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(fields),
+      })
+      if (!res.ok) throw new Error('Request failed')
+
       setStatus('sent')
       setFields({ name: '', email: '', message: '' })
       setTimeout(() => setStatus('idle'), 4000)
-    }, 1500)
+    } catch {
+      setStatus('error')
+    }
   }
 
   const isSending = status === 'sending'
   const isSent    = status === 'sent'
+  const isError   = status === 'error'
 
   return (
     <section id="contacto" className="relative py-24 bg-gray-50 dark:bg-gray-900">
@@ -153,6 +163,16 @@ export function Contact() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
                 {t('contact.form.success_message')}
+              </div>
+            )}
+
+            {/* Error banner */}
+            {isError && (
+              <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/60 text-red-700 dark:text-red-400 text-sm">
+                <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m0 3.75h.008v-.008H12V16.5Zm0-13.5a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z" />
+                </svg>
+                {t('contact.form.error_message')}
               </div>
             )}
 

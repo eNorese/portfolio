@@ -170,7 +170,8 @@
       "error_email_invalid": "Ingresa un email válido",
       "error_message_required": "El mensaje es obligatorio",
       "error_message_min": "El mensaje debe tener al menos 10 caracteres",
-      "success_message": "¡Gracias! Te responderé a la brevedad."
+      "success_message": "¡Gracias! Te responderé a la brevedad.",
+      "error_message": "No se pudo enviar el mensaje. Inténtalo de nuevo o escríbeme por email."
     },
     "info": {
       "email_label": "Email",

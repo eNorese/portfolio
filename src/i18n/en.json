@@ -170,7 +170,8 @@
       "error_email_invalid": "Enter a valid email address",
       "error_message_required": "Message is required",
       "error_message_min": "Message must be at least 10 characters",
-      "success_message": "Thanks! I'll get back to you soon."
+      "success_message": "Thanks! I'll get back to you soon.",
+      "error_message": "Couldn't send your message. Please try again or reach me by email."
     },
     "info": {
       "email_label": "Email",
