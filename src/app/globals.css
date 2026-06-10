@@ -140,8 +140,8 @@ section[id] {
   --accent-glow: rgba(99, 102, 241, 0.45);
 }
 [data-theme="dark"] {
-  --accent: 129 140 248;
-  --accent-glow: rgba(129, 140, 248, 0.45);
+  --accent: 96 152 250;
+  --accent-glow: rgba(96, 152, 250, 0.45);
 }
 [data-theme="forest"] {
   --accent: 22 163 74;
