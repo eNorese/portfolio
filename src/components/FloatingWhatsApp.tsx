@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import socialConfig from '@/config/social.json'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 function WhatsAppIcon() {
   return (
@@ -12,19 +13,22 @@ function WhatsAppIcon() {
 }
 
 export function FloatingWhatsApp() {
+  const { t } = useLanguage()
   const [visible, setVisible] = useState(false)
   const [hovered, setHovered] = useState(false)
+
+  // Slide in after a short delay so it doesn't distract on first load
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), 1800)
+    return () => clearTimeout(timer)
+  }, [])
 
   const cfg = socialConfig.whatsapp
   if (!cfg.enabled) return null
 
-  const url = `https://wa.me/${cfg.number.replace(/\D/g, '')}`
-
-  // Slide in after a short delay so it doesn't distract on first load
-  useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 1800)
-    return () => clearTimeout(t)
-  }, [])
+  // Pre-filled message, localized to the visitor's active language
+  const number = cfg.number.replace(/\D/g, '')
+  const url = `https://wa.me/${number}?text=${encodeURIComponent(t('whatsapp.message'))}`
 
   return (
     <a

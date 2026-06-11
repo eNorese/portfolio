@@ -10,7 +10,7 @@
     "greeting": "Hola, soy",
     "name": "Enzo Norese",
     "title": "Desarrollador Backend & Arquitecto Cloud",
-    "description": "Diseño e implemento arquitecturas backend sobre Microsoft Azure, integrando servicios cloud e inteligencia artificial para resolver problemas reales de negocio. Referente técnico con experiencia en sistemas de reclutamiento, migración de ERP e integración de modelos de IA.",
+    "description": "Diseño e implemento arquitecturas backend sobre infraestructura cloud, integrando servicios escalables e inteligencia artificial para resolver problemas reales de negocio. Referente técnico con experiencia en sistemas de reclutamiento, migración de ERP e integración de modelos de IA.",
     "cta_work": "Ver Mi Trabajo",
     "cta_contact": "Contactarme",
     "scroll": "Desliza para explorar",
@@ -19,9 +19,9 @@
   "about": {
     "section_title": "Sobre Mí",
     "subtitle": "Un poco sobre quién soy",
-    "bio_1": "Ingeniero en Informática con base en electrónica, especializado en desarrollo backend y arquitectura de soluciones cloud. Opero como referente técnico y arquitecto de soluciones — diseñando y construyendo sistemas de alto impacto que potencian operaciones reales de negocio.",
+    "bio_1": "Ingeniero en Informática con base en electrónica, especializado en desarrollo backend y arquitectura de soluciones cloud. Me desempeño como referente técnico y arquitecto de soluciones — diseñando y construyendo sistemas de alto impacto que potencian operaciones reales de negocio.",
     "bio_2": "Con experiencia en sistemas de reclutamiento, migración de ERP e integración de modelos de inteligencia artificial, me muevo con soltura desde la definición de arquitectura hasta la implementación y puesta en producción.",
-    "bio_3": "Mi filosofía — \"Ingeniería Aumentada\" — posiciona las herramientas de IA como multiplicadores de capacidad técnica, no como sustitutos del criterio ingenieril. Mi trayectoria desde técnico electrónico hasta arquitecto cloud me otorga una visión amplia que abarca desde el diagnóstico de hardware hasta los sistemas distribuidos modernos.",
+    "bio_3": "Mi filosofía — \"Ingeniería Aumentada\" — posiciona las herramientas de IA como multiplicadores de capacidad técnica, no como sustitutos del criterio ingenieril. Mi trayectoria desde técnico electrónico hasta arquitecto cloud me otorga una visión amplia que abarca desde los fundamentos de bajo nivel hasta los sistemas distribuidos modernos.",
     "years_value": "6+",
     "projects_value": "40+",
     "technologies_value": "30+",
@@ -183,5 +183,8 @@
   },
   "footer": {
     "rights": "Todos los derechos reservados."
+  },
+  "whatsapp": {
+    "message": "¡Hola Enzo! 👋 Vi tu portfolio en enorese.dev y me gustaría conversar contigo."
   }
 }

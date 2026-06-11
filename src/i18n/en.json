@@ -10,7 +10,7 @@
     "greeting": "Hi, I'm",
     "name": "Enzo Norese",
     "title": "Backend Developer & Cloud Architect",
-    "description": "I design and implement backend architectures on Microsoft Azure, integrating cloud services and artificial intelligence to solve real business problems. Technical lead with experience in recruitment systems, ERP migration, and AI model integration.",
+    "description": "I design and implement backend architectures on cloud infrastructure, integrating scalable services and artificial intelligence to solve real business problems. Go-to engineer with experience in recruitment systems, ERP migration, and AI model integration.",
     "cta_work": "View My Work",
     "cta_contact": "Get In Touch",
     "scroll": "Scroll to explore",
@@ -21,7 +21,7 @@
     "subtitle": "A little bit about who I am",
     "bio_1": "Computer Engineer with a background in electronics, specialized in backend development and cloud solutions architecture. At TeamWork Capacitación Ltda. in Santiago, I operate as technical lead and solutions architect — designing and building high-impact systems that power real operations.",
     "bio_2": "I lead two key initiatives: the Softland → Rex+ ERP migration (completed with zero data loss and zero downtime) and the Digital 24/7 Recruiter — an AI-powered mass recruitment agent on Azure serverless, with a cascaded multi-model pipeline (Claude, GPT-4o, Gemini) designed to process tens of thousands of applications during peak demand periods like Cyber Day.",
-    "bio_3": "My engineering philosophy — \"Augmented Engineering\" — positions AI tools as technical capability multipliers, not replacements for sound engineering judgment. My path from electronics technician to cloud architect gives me a broad perspective that spans from hardware diagnostics to modern distributed systems.",
+    "bio_3": "My engineering philosophy — \"Augmented Engineering\" — positions AI tools as technical capability multipliers, not replacements for sound engineering judgment. My path from electronics technician to cloud architect gives me a broad perspective that spans from low-level fundamentals to modern distributed systems.",
     "years_value": "6+",
     "projects_value": "40+",
     "technologies_value": "30+",
@@ -183,5 +183,8 @@
   },
   "footer": {
     "rights": "All rights reserved."
+  },
+  "whatsapp": {
+    "message": "Hi Enzo! 👋 I saw your portfolio at enorese.dev and I'd love to chat."
   }
 }
