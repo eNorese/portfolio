@@ -71,22 +71,21 @@ Con el punto 3 resuelto, el sitio queda redondo en los críticos.
 ### 3.1 `metadataBase` ausente — ✅ RESUELTO
 - Añadido `metadataBase: new URL('https://enorese.dev')` en `generateMetadata` de [layout.tsx](src/app/[lang]/layout.tsx) (necesario además para que los `hreflang` relativos resuelvan a absolutos).
 
-### 3.2 Enriquecer el JSON-LD
-El `Person` actual es bueno; para maximizar AIO conviene:
-- Añadir `image` (la futura OG/foto), `description`, `nationality` (`{"@type":"Country","name":"Chile"}`), `knowsLanguage: ["es","en"]`.
-- Añadir `alumniOf` (formación: Ingeniería en Informática).
-- Considerar un grafo con **`WebSite`** + **`ProfilePage`** además de `Person` (`@graph`), para que los motores entiendan que la página *es* el perfil de la persona.
-- Las URLs de `sameAs` deberían incluir también la cuenta de **X** (`https://x.com/enorese`), hoy solo están LinkedIn y GitHub.
+### 3.2 Enriquecer el JSON-LD — ✅ RESUELTO
+Migrado a un grafo `@graph` en [layout.tsx](src/app/[lang]/layout.tsx) (`buildJsonLd`), locale-aware:
+- **`Person`** con `description` localizada, `nationality` (Chile), `knowsLanguage: ["es","en"]`, `hasCredential` (degree: Ingeniería en Informática) y `sameAs` ampliado con **X** (LinkedIn + GitHub + X).
+- **`WebSite`** y **`ProfilePage`** enlazados por `@id` (la página *es* el perfil de la persona), con `inLanguage` por locale (`es-CL` / `en-US`).
+- *Pendiente menor:* `image` del `Person`/grafo — se añadirá junto con la imagen OG (§2.3).
 
 ### 3.3 `sitemap.xml` mínimo — ✅ RESUELTO
 - Migrado a [app/sitemap.ts](src/app/sitemap.ts) dinámico: `lastmod` automático y las dos URLs (`/es`, `/en`) con anotaciones `xhtml:link` de `hreflang`. Se eliminó el `public/sitemap.xml` estático.
 - *Pendiente menor:* el JSON-LD aún podría enriquecerse parcialmente (`knowsLanguage` ya se añadió; ver 3.2 para el resto).
 
-### 3.4 `viewport` / `themeColor` (Next 15)
-- Next.js 15 recomienda exportar `viewport` por separado (`export const viewport: Viewport = { themeColor: ... }`). Hoy no existe. Añadir mejora el theming móvil (barra de direcciones) y silencia advertencias.
+### 3.4 `viewport` / `themeColor` (Next 15) — ✅ RESUELTO
+- Añadido `export const viewport: Viewport` en [layout.tsx](src/app/[lang]/layout.tsx) con `themeColor` por esquema (light `#ffffff` / dark `#030712` = gray-950) y `colorScheme: 'light dark'`.
 
-### 3.5 Heading semántico verificable
-- Confirmar que existe **un solo `<h1>`** (el nombre/título del Hero) y que el resto de secciones usan `<h2>`. Vital para SEO. Revisar que `section_title` de cada sección renderice como `<h2>` real, no como `<div>` estilizado.
+### 3.5 Heading semántico verificable — ✅ VERIFICADO (ya correcto)
+- La jerarquía ya era correcta, sin cambios necesarios: **un único `<h1>`** (nombre en [Hero.tsx](src/components/Hero.tsx)), todas las secciones (About/Experience/Skills/Projects/Contact) en `<h2>` real, y sub-ítems (cargos, proyectos, categorías) en `<h3>`. Footer sin heading.
 
 ---
 
@@ -147,12 +146,12 @@ El sitio ya parte bien (JSON-LD + llms.txt + contenido denso). Para llevarlo a "
 7. ✅ ~~Migrar `sitemap.xml` → `app/sitemap.ts` con ambas URLs + `hreflang`.~~ *Hecho.*
 
 ### 🟢 Sprint 3 — Pulido y AIO avanzado
-8. Enriquecer JSON-LD (`@graph` con `WebSite`+`ProfilePage`, `image`, `knowsLanguage`, `sameAs` con X).
-9. Añadir `viewport`/`themeColor`.
+8. ✅ ~~Enriquecer JSON-LD (`@graph` con `WebSite`+`ProfilePage`, `knowsLanguage`, `sameAs` con X).~~ *Hecho (falta solo `image`, atado a §2.3).*
+9. ✅ ~~Añadir `viewport`/`themeColor`.~~ *Hecho.*
 10. Ampliar `llms.txt` (bilingüe / `llms-full.txt`) y robots con crawlers de IA explícitos.
 11. Añadir bloque FAQ + `FAQPage` JSON-LD.
 12. Corregir `humans.txt` (Vite → Next.js) y localizar placeholders del formulario.
-13. Verificar jerarquía `<h1>`/`<h2>` única y semántica.
+13. ✅ ~~Verificar jerarquía `<h1>`/`<h2>` única y semántica.~~ *Verificado (ya correcta).*
 
 ---
 
@@ -167,8 +166,8 @@ SEO Técnico
 [ ] favicon / icon / apple-icon / manifest
 [x] hreflang para ES y EN
 [x] sitemap dinámico con ambas URLs
-[ ] un solo <h1>, secciones en <h2>
-[ ] viewport/themeColor export
+[x] un solo <h1>, secciones en <h2>
+[x] viewport/themeColor export
 
 i18n / Contenido
 [x] inglés presente en HTML inicial (URLs /es y /en indexables)
@@ -177,7 +176,7 @@ i18n / Contenido
 [ ] placeholders de formulario localizados
 
 AIO
-[ ] JSON-LD enriquecido (@graph, knowsLanguage, sameAs completo)
+[x] JSON-LD enriquecido (@graph, knowsLanguage, sameAs completo)
 [ ] llms.txt bilingüe / llms-full.txt
 [ ] crawlers de IA explícitos en robots.txt
 [ ] bloque FAQ + FAQPage schema

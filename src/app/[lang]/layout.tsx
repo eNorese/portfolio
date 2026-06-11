@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import '../globals.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -35,6 +35,84 @@ const DESCRIPTIONS: Record<Language, string> = {
 const KEYWORDS: Record<Language, string[]> = {
   es: ['backend developer', 'arquitecto cloud', 'Microsoft Azure', 'TypeScript', 'Node.js', 'Azure Functions', 'serverless', 'inteligencia artificial', 'Santiago Chile', 'desarrollador backend'],
   en: ['backend developer', 'cloud architect', 'Microsoft Azure', 'TypeScript', 'Node.js', 'Azure Functions', 'serverless', 'artificial intelligence', 'Santiago Chile', 'software engineer'],
+}
+
+// Color de la barra del navegador según el esquema (tema por defecto: dark → gray-950).
+export const viewport: Viewport = {
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#030712' },
+  ],
+}
+
+const KNOWS_ABOUT = [
+  'Microsoft Azure',
+  'TypeScript',
+  'Node.js',
+  'Azure Functions',
+  'Serverless Architecture',
+  'Artificial Intelligence',
+  'Backend Development',
+  'Cloud Architecture',
+  'PostgreSQL',
+  'CosmosDB',
+]
+
+/** Grafo Schema.org (Person + WebSite + ProfilePage) para SEO/AIO. */
+function buildJsonLd(lang: Language) {
+  const base = 'https://enorese.dev'
+  const pageUrl = `${base}/${lang}`
+  const m = messages[lang]
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Person',
+        '@id': `${base}/#person`,
+        name: 'Enzo Norese',
+        url: base,
+        email: 'enzo.norese@gmail.com',
+        jobTitle: 'Backend Developer & Cloud Architect',
+        description: DESCRIPTIONS[lang],
+        worksFor: { '@type': 'Organization', name: 'TeamWork Capacitación Ltda.' },
+        address: { '@type': 'PostalAddress', addressLocality: 'Santiago', addressCountry: 'CL' },
+        nationality: { '@type': 'Country', name: 'Chile' },
+        knowsLanguage: ['es', 'en'],
+        hasCredential: {
+          '@type': 'EducationalOccupationalCredential',
+          credentialCategory: 'degree',
+          name: 'Ingeniería en Informática',
+        },
+        sameAs: [
+          'https://www.linkedin.com/in/enzo-norese/',
+          'https://github.com/eNorese',
+          'https://x.com/enorese',
+        ],
+        knowsAbout: KNOWS_ABOUT,
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${base}/#website`,
+        url: base,
+        name: 'Enzo Norese — Portfolio',
+        inLanguage: ['es', 'en'],
+        author: { '@id': `${base}/#person` },
+        publisher: { '@id': `${base}/#person` },
+      },
+      {
+        '@type': 'ProfilePage',
+        '@id': `${pageUrl}/#profilepage`,
+        url: pageUrl,
+        name: `${m.hero.name} — ${m.hero.title}`,
+        inLanguage: lang === 'es' ? 'es-CL' : 'en-US',
+        isPartOf: { '@id': `${base}/#website` },
+        about: { '@id': `${base}/#person` },
+        mainEntity: { '@id': `${base}/#person` },
+      },
+    ],
+  }
 }
 
 export async function generateMetadata({
@@ -87,6 +165,7 @@ export default async function RootLayout({
   params: Promise<{ lang: string }>
 }) {
   const lang = normalize((await params).lang)
+  const jsonLd = buildJsonLd(lang)
 
   return (
     <html lang={lang} suppressHydrationWarning>
@@ -97,42 +176,7 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://wa.me" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Enzo Norese",
-              "url": `https://enorese.dev/${lang}`,
-              "email": "enzo.norese@gmail.com",
-              "jobTitle": "Backend Developer & Cloud Architect",
-              "worksFor": {
-                "@type": "Organization",
-                "name": "TeamWork Capacitación Ltda."
-              },
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Santiago",
-                "addressCountry": "CL"
-              },
-              "sameAs": [
-                "https://www.linkedin.com/in/enzo-norese/",
-                "https://github.com/eNorese"
-              ],
-              "knowsLanguage": ["es", "en"],
-              "knowsAbout": [
-                "Microsoft Azure",
-                "TypeScript",
-                "Node.js",
-                "Azure Functions",
-                "Serverless Architecture",
-                "Artificial Intelligence",
-                "Backend Development",
-                "Cloud Architecture",
-                "PostgreSQL",
-                "CosmosDB"
-              ]
-            })
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className={`${inter.variable} font-sans`}>
