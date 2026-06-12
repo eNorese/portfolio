@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import { Inter } from 'next/font/google'
 import '../globals.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -170,6 +171,17 @@ export default async function RootLayout({
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
+        {/* Google Analytics (GA4) — gtag.js */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-W3L3ZGQJ0Z"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-W3L3ZGQJ0Z');`}
+        </Script>
         {/* Prevent flash of unstyled content: apply dark class and data-theme before paint */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(['dark','ocean','midnight'].indexOf(t)!==-1)document.documentElement.classList.add('dark');}catch(e){}})()` }} />
         <link rel="dns-prefetch" href="https://wa.me" />
