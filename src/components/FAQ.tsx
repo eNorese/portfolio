@@ -30,7 +30,7 @@ export function FAQ() {
         {/* Section header */}
         <div className="mb-14">
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            05 —
+            06 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {t('faq.section_title')}

@@ -1,6 +1,7 @@
 {
   "nav": {
     "about": "Sobre mí",
+    "services": "Servicios",
     "experience": "Experiencia",
     "skills": "Habilidades",
     "projects": "Proyectos",
@@ -14,6 +15,7 @@
     "slogan": "Ingeniería Aumentada — Software, IA y arquitectura para escalar negocios",
     "description": "Diseño e implemento arquitecturas backend sobre infraestructura cloud, integrando servicios escalables e inteligencia artificial para resolver problemas reales de negocio. Referente técnico con experiencia en sistemas de reclutamiento, migración de ERP e integración de modelos de IA.",
     "cta_work": "Ver Mi Trabajo",
+    "cta_services": "Automatiza tu negocio",
     "cta_contact": "Contactarme",
     "scroll": "Desliza para explorar",
     "cv_download": "Descargar CV"
@@ -34,6 +36,40 @@
       "technologies": "Tecnologías",
       "coffees": "Cafés Consumidos"
     }
+  },
+  "services": {
+    "section_title": "Servicios",
+    "subtitle": "Automatización y software a medida para tu negocio",
+    "intro": "Convierto procesos manuales y sistemas dispersos en soluciones automáticas que ahorran tiempo, reducen errores y escalan con tu negocio. Esto es lo que puedo construir para ti:",
+    "items": [
+      {
+        "title": "Automatización de procesos con IA",
+        "description": "Elimino tareas repetitivas conectando tus sistemas con inteligencia artificial. Menos horas manuales, menos errores y decisiones más rápidas — para que tu equipo se enfoque en lo que de verdad importa."
+      },
+      {
+        "title": "Agentes y asistentes con IA",
+        "description": "Diseño asistentes que atienden, clasifican y responden 24/7. Como el reclutador digital que construí: procesa decenas de miles de solicitudes sin intervención humana."
+      },
+      {
+        "title": "Arquitectura backend & cloud",
+        "description": "Construyo sistemas serverless sobre Azure que escalan solos con tu demanda y solo cobran cuando se usan. Robustos, seguros y listos para crecer contigo."
+      },
+      {
+        "title": "Integración de sistemas y APIs",
+        "description": "Conecto tu ERP, CRM, pasarelas de pago y servicios externos en un flujo único y confiable. Tus datos dejan de vivir en islas y empiezan a trabajar juntos."
+      },
+      {
+        "title": "Migración a la nube sin downtime",
+        "description": "Llevo tus sistemas a la nube sin perder datos ni detener la operación — como la migración de ERP que ejecuté con cero pérdida de datos y cero tiempo de inactividad."
+      },
+      {
+        "title": "Consultoría y revisión de arquitectura",
+        "description": "¿Tu sistema se cae, no escala o cuesta demasiado? Audito tu arquitectura y te entrego un plan de mejora claro, priorizado y accionable."
+      }
+    ],
+    "cta_title": "¿Tienes un proceso que podrías automatizar?",
+    "cta_description": "Cuéntame qué tarea te quita tiempo o qué sistema te está frenando. Analizo tu caso y te propongo una solución concreta — sin compromiso.",
+    "cta_button": "Hablemos de tu proyecto"
   },
   "experience": {
     "section_title": "Experiencia",

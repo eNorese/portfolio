@@ -447,7 +447,7 @@ export function Hero() {
 
           {/* Primary — neon bloom */}
           <a
-            href="#projects"
+            href="#servicios"
             onMouseEnter={() => setHoverPrimary(true)}
             onMouseLeave={() => setHoverPrimary(false)}
             className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-white text-sm font-medium"
@@ -460,7 +460,7 @@ export function Hero() {
               transition: 'opacity 0.25s ease, box-shadow 0.35s ease',
             }}
           >
-            {t('hero.cta_work')}
+            {t('hero.cta_services')}
             <svg
               width="16" height="16" fill="none" viewBox="0 0 24 24"
               stroke="currentColor" strokeWidth={2}
@@ -475,7 +475,7 @@ export function Hero() {
 
           {/* Secondary — border + inner glow */}
           <a
-            href="#contact"
+            href="#contacto"
             onMouseEnter={() => setHoverSecondary(true)}
             onMouseLeave={() => setHoverSecondary(false)}
             className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium"

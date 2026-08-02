@@ -1,6 +1,7 @@
 {
   "nav": {
     "about": "About",
+    "services": "Services",
     "experience": "Experience",
     "skills": "Skills",
     "projects": "Projects",
@@ -14,6 +15,7 @@
     "slogan": "Augmented Engineering — Software, AI and architecture to scale businesses",
     "description": "I design and implement backend architectures on cloud infrastructure, integrating scalable services and artificial intelligence to solve real business problems. Go-to engineer with experience in recruitment systems, ERP migration, and AI model integration.",
     "cta_work": "View My Work",
+    "cta_services": "Automate your business",
     "cta_contact": "Get In Touch",
     "scroll": "Scroll to explore",
     "cv_download": "Download CV"
@@ -34,6 +36,40 @@
       "technologies": "Technologies",
       "coffees": "Coffees Consumed"
     }
+  },
+  "services": {
+    "section_title": "Services",
+    "subtitle": "Automation and custom software for your business",
+    "intro": "I turn manual processes and scattered systems into automated solutions that save time, cut errors, and scale with your business. Here's what I can build for you:",
+    "items": [
+      {
+        "title": "AI process automation",
+        "description": "I eliminate repetitive tasks by connecting your systems with artificial intelligence. Fewer manual hours, fewer errors, and faster decisions — so your team focuses on what truly matters."
+      },
+      {
+        "title": "AI agents & assistants",
+        "description": "I design assistants that handle, triage, and respond 24/7. Like the digital recruiter I built: it processes tens of thousands of applications with no human in the loop."
+      },
+      {
+        "title": "Backend & cloud architecture",
+        "description": "I build serverless systems on Azure that scale automatically with demand and only charge when used. Robust, secure, and ready to grow with you."
+      },
+      {
+        "title": "Systems & API integration",
+        "description": "I connect your ERP, CRM, payment gateways, and external services into a single reliable flow. Your data stops living in silos and starts working together."
+      },
+      {
+        "title": "Zero-downtime cloud migration",
+        "description": "I move your systems to the cloud without losing data or stopping operations — like the ERP migration I ran with zero data loss and zero downtime."
+      },
+      {
+        "title": "Consulting & architecture review",
+        "description": "Is your system crashing, failing to scale, or costing too much? I audit your architecture and hand you a clear, prioritized, actionable improvement plan."
+      }
+    ],
+    "cta_title": "Got a process you could automate?",
+    "cta_description": "Tell me which task eats your time or which system is holding you back. I'll analyze your case and propose a concrete solution — no strings attached.",
+    "cta_button": "Let's talk about your project"
   },
   "experience": {
     "section_title": "Experience",

@@ -156,7 +156,7 @@ export function Projects() {
 
         <div className="mb-14">
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            04 —
+            05 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {t('projects.section_title')}

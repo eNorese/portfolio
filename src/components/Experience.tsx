@@ -184,7 +184,7 @@ export function Experience() {
           }}
         >
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            02 —
+            03 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {t('experience.section_title')}

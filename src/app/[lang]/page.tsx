@@ -4,6 +4,7 @@ import { Hero } from '@/components/Hero'
 import { portfolioSections } from '@/config/sections'
 
 const About = dynamic(() => import('@/components/About').then(m => ({ default: m.About })))
+const Services = dynamic(() => import('@/components/Services').then(m => ({ default: m.Services })))
 const Experience = dynamic(() => import('@/components/Experience').then(m => ({ default: m.Experience })))
 const Skills = dynamic(() => import('@/components/Skills').then(m => ({ default: m.Skills })))
 const Projects = dynamic(() => import('@/components/Projects').then(m => ({ default: m.Projects })))
@@ -20,6 +21,7 @@ export default function Home() {
       {portfolioSections.navbar && <Navbar />}
       {portfolioSections.hero && <Hero />}
       {portfolioSections.about && <About />}
+      {portfolioSections.services && <Services />}
       {portfolioSections.experience && <Experience />}
       {portfolioSections.skills && <Skills />}
       {portfolioSections.projects && <Projects />}

@@ -2,6 +2,7 @@ export const portfolioSections = {
   navbar: true,
   hero: true,
   about: true,
+  services: true,
   experience: true,
   skills: true,
   successStories: false,
@@ -16,6 +17,7 @@ export const portfolioSections = {
 
 export const navSections = [
   { key: 'about', id: 'sobre-mi', href: '#sobre-mi' },
+  { key: 'services', id: 'servicios', href: '#servicios' },
   { key: 'experience', id: 'experiencia', href: '#experiencia' },
   { key: 'skills', id: 'habilidades', href: '#habilidades' },
   { key: 'projects', id: 'proyectos', href: '#proyectos' },
