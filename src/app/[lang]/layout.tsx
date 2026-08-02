@@ -102,6 +102,10 @@ function buildJsonLd(lang: Language) {
           'https://x.com/enorese',
         ],
         knowsAbout: KNOWS_ABOUT,
+        makesOffer: m.services.items.map((s) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: s.title, description: s.description },
+        })),
       },
       {
         '@type': 'WebSite',
