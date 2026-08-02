@@ -130,8 +130,9 @@ export function Hero() {
     canvasColorsRef.current = getCanvasColors(resolvedTheme)
   }, [resolvedTheme])
 
-  // Generate data pixels once (client-only)
+  // Generate data pixels once (client-only) — se omiten si el usuario pide menos movimiento
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     setPixels(
       Array.from({ length: 26 }, (_, i) => ({
         id: i,
@@ -144,8 +145,9 @@ export function Hero() {
     )
   }, [])
 
-  // Spotlight lerp loop
+  // Spotlight lerp loop — desactivado bajo prefers-reduced-motion
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const EASE = 0.11
 
     const tick = () => {
@@ -293,12 +295,42 @@ export function Hero() {
       }
 
       ctx.restore()
-      rafRef.current = requestAnimationFrame(draw)
+      if (running) rafRef.current = requestAnimationFrame(draw)
     }
 
-    rafRef.current = requestAnimationFrame(draw)
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let running = false
+    const start = () => {
+      if (running || reduced) return
+      running = true
+      rafRef.current = requestAnimationFrame(draw)
+    }
+    const stop = () => {
+      running = false
+      cancelAnimationFrame(rafRef.current)
+    }
+
+    if (reduced) {
+      draw() // un solo frame estático (running=false → no se reprograma)
+    } else {
+      start()
+    }
+
+    // Pausa el loop cuando la pestaña está oculta (ahorro de CPU/batería)
+    const onVisibility = () => { if (document.hidden) stop(); else start() }
+    document.addEventListener('visibilitychange', onVisibility)
+
+    // Pausa el loop cuando el Hero sale del viewport
+    const io = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) start(); else stop() },
+      { threshold: 0 }
+    )
+    io.observe(canvas)
+
     return () => {
       window.removeEventListener('resize', resize)
+      document.removeEventListener('visibilitychange', onVisibility)
+      io.disconnect()
       cancelAnimationFrame(rafRef.current)
     }
   }, [])
