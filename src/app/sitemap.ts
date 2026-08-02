@@ -5,10 +5,10 @@ const LANGS = {
   en: 'https://enorese.dev/en',
 }
 
-// hreflang: incluye x-default → /en (audiencia internacional por defecto).
+// hreflang: incluye x-default → /es (foco hispanohablante: LatAm/España por defecto).
 const ALTERNATES = {
   ...LANGS,
-  'x-default': LANGS.en,
+  'x-default': LANGS.es,
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {

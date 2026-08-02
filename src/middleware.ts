@@ -4,18 +4,18 @@ const LOCALES = ['es', 'en'] as const
 
 type Locale = (typeof LOCALES)[number]
 
-// Audiencia internacional: si el visitante NO prefiere español, se le sirve
-// inglés (norteamérica/europa). Solo los hispanohablantes ven español.
-const FALLBACK_LOCALE: Locale = 'en'
+// Foco hispanohablante (LatAm + España): el español es el idioma por defecto.
+// Solo se sirve inglés a quien lo prefiere explícitamente en su navegador.
+const FALLBACK_LOCALE: Locale = 'es'
 
 /**
  * Detecta el idioma a partir del header `Accept-Language`.
  * Parsea las preferencias con su factor de calidad (`q`) y elige el primer
  * idioma soportado (es/en) según prioridad real del navegador. Si el visitante
- * no prefiere ninguno de los dos, cae a inglés (audiencia internacional).
+ * no prefiere ninguno de los dos, cae a español (audiencia objetivo: LatAm/España).
  *
  * Ej.: "fr-FR,fr;q=0.9,en;q=0.8,es;q=0.5" → en (prefiere inglés sobre español).
- * Ej.: "de-DE,de"                          → en (no prefiere español → inglés).
+ * Ej.: "de-DE,de"                          → es (no prefiere inglés → español por defecto).
  */
 function detectLocale(acceptLanguage: string | null): Locale {
   if (!acceptLanguage) return FALLBACK_LOCALE

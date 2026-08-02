@@ -30,12 +30,12 @@ function normalize(lang: string): Language {
 }
 
 const DESCRIPTIONS: Record<Language, string> = {
-  es: 'Backend developer y arquitecto cloud especializado en Microsoft Azure, TypeScript y Node.js. Referente técnico con experiencia en arquitecturas serverless, integración de IA y migración de sistemas empresariales. Basado en Santiago, Chile.',
+  es: 'Desarrollador backend e ingeniero de software especializado en arquitecturas cloud sobre Microsoft Azure, TypeScript y Node.js. Referente técnico con experiencia en arquitecturas serverless, integración de IA y migración de sistemas empresariales. Basado en Santiago, Chile, con foco en Latinoamérica y España.',
   en: 'Backend developer and cloud architect specialized in Microsoft Azure, TypeScript and Node.js. Technical lead experienced in serverless architectures, AI integration, and enterprise system migrations. Based in Santiago, Chile.',
 }
 
 const KEYWORDS: Record<Language, string[]> = {
-  es: ['backend developer', 'arquitecto cloud', 'Microsoft Azure', 'TypeScript', 'Node.js', 'Azure Functions', 'serverless', 'inteligencia artificial', 'Santiago Chile', 'desarrollador backend'],
+  es: ['desarrollador backend', 'ingeniero de software', 'arquitecto cloud', 'arquitecto de soluciones', 'programador backend', 'Microsoft Azure', 'TypeScript', 'Node.js', 'Azure Functions', 'serverless', 'inteligencia artificial', 'desarrollador Chile', 'desarrollador Latinoamérica', 'backend remoto'],
   en: ['backend developer', 'cloud architect', 'Microsoft Azure', 'TypeScript', 'Node.js', 'Azure Functions', 'serverless', 'artificial intelligence', 'Santiago Chile', 'software engineer'],
 }
 
@@ -82,6 +82,14 @@ function buildJsonLd(lang: Language) {
         worksFor: { '@type': 'Organization', name: 'TeamWork Capacitación Ltda.' },
         address: { '@type': 'PostalAddress', addressLocality: 'Santiago', addressCountry: 'CL' },
         nationality: { '@type': 'Country', name: 'Chile' },
+        areaServed: [
+          { '@type': 'Country', name: 'Chile' },
+          { '@type': 'Country', name: 'Perú' },
+          { '@type': 'Country', name: 'Argentina' },
+          { '@type': 'Country', name: 'México' },
+          { '@type': 'Country', name: 'España' },
+          { '@type': 'Place', name: 'Latinoamérica' },
+        ],
         knowsLanguage: ['es', 'en'],
         hasCredential: {
           '@type': 'EducationalOccupationalCredential',
@@ -160,7 +168,7 @@ export async function generateMetadata({
       languages: {
         es: 'https://enorese.dev/es',
         en: 'https://enorese.dev/en',
-        'x-default': 'https://enorese.dev/en',
+        'x-default': 'https://enorese.dev/es',
       },
     },
     openGraph: {
@@ -169,7 +177,7 @@ export async function generateMetadata({
       type: 'website',
       url,
       locale: lang === 'es' ? 'es_CL' : 'en_US',
-      alternateLocale: lang === 'es' ? 'en_US' : 'es_CL',
+      alternateLocale: lang === 'es' ? ['es_ES', 'es_MX', 'es_AR', 'es_PE', 'en_US'] : ['es_CL', 'es_ES', 'es_MX'],
       images: [{ url: '/og-image.png', width: 1731, height: 909, alt: title }],
     },
     twitter: {
