@@ -45,6 +45,7 @@ portfolio/
 │   │   ├── Navbar.tsx       # Fixed header, IntersectionObserver, easter egg trigger (5 clicks)
 │   │   ├── Hero.tsx         # Canvas (code rain, stars), spotlight, side lights, CTAs
 │   │   ├── About.tsx        # Bio + stats cards (6+ años, 40+ proyectos...)
+│   │   ├── Services.tsx     # Servicios a clientes (automatización/IA/cloud) + banda CTA
 │   │   ├── Experience.tsx   # Timeline vertical de empleos
 │   │   ├── Skills.tsx       # Grid de tecnologías + success stories
 │   │   ├── Projects.tsx     # Cards de proyectos con links live/code
@@ -96,7 +97,7 @@ portfolio/
 
 ### IDs de navegación (para anclas)
 ```
-sobre-mi | experiencia | habilidades | proyectos | contacto
+sobre-mi | servicios | experiencia | habilidades | proyectos | faq | contacto
 ```
 Los IDs están definidos en `src/config/sections.ts` dentro del array `navigationSections`.
 
