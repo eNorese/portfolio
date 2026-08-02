@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 // ── Icons ──────────────────────────────────────────────────────────────
@@ -48,6 +48,8 @@ export function Contact() {
   const [fields, setFields] = useState<FormFields>({ name: '', email: '', message: '' })
   const [errors, setErrors] = useState<FormErrors>({})
   const [status, setStatus] = useState<Status>('idle')
+  // Honeypot anti-bot: campo oculto que un humano nunca llena.
+  const honeypotRef = useRef<HTMLInputElement>(null)
 
   function validate(data: FormFields): FormErrors {
     const errs: FormErrors = {}
@@ -84,7 +86,7 @@ export function Contact() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(fields),
+        body: JSON.stringify({ ...fields, website: honeypotRef.current?.value ?? '' }),
       })
       if (!res.ok) throw new Error('Request failed')
 
@@ -156,6 +158,17 @@ export function Contact() {
           {/* Form column */}
           <form onSubmit={handleSubmit} noValidate className="lg:col-span-3 flex flex-col gap-4">
 
+            {/* Honeypot anti-bot — oculto para humanos, invisible a lectores de pantalla */}
+            <input
+              ref={honeypotRef}
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none"
+            />
+
             {/* Success banner */}
             {isSent && (
               <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-400 text-sm">
@@ -185,6 +198,7 @@ export function Contact() {
                   value={fields.name}
                   onChange={handleChange}
                   placeholder={t('contact.form.placeholder_name')}
+                  maxLength={100}
                   disabled={isSending || isSent}
                   className={`${FIELD_CLASS} ${errors.name ? FIELD_INVALID : FIELD_VALID}`}
                 />
@@ -206,6 +220,7 @@ export function Contact() {
                   value={fields.email}
                   onChange={handleChange}
                   placeholder={t('contact.form.placeholder_email')}
+                  maxLength={254}
                   disabled={isSending || isSent}
                   className={`${FIELD_CLASS} ${errors.email ? FIELD_INVALID : FIELD_VALID}`}
                 />
@@ -228,6 +243,7 @@ export function Contact() {
                 value={fields.message}
                 onChange={handleChange}
                 placeholder={t('contact.form.placeholder_message')}
+                maxLength={5000}
                 disabled={isSending || isSent}
                 className={`${FIELD_CLASS} resize-none ${errors.message ? FIELD_INVALID : FIELD_VALID}`}
               />
