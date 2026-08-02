@@ -6,6 +6,7 @@ export const portfolioSections = {
   skills: true,
   successStories: false,
   projects: true,
+  faq: true,
   contact: true,
   footer: true,
   floatingWhatsApp: true,
@@ -18,6 +19,7 @@ export const navSections = [
   { key: 'experience', id: 'experiencia', href: '#experiencia' },
   { key: 'skills', id: 'habilidades', href: '#habilidades' },
   { key: 'projects', id: 'proyectos', href: '#proyectos' },
+  { key: 'faq', id: 'faq', href: '#faq' },
   { key: 'contact', id: 'contacto', href: '#contacto' },
 ] as const
 

@@ -108,7 +108,8 @@ Candidatos detectados que conviene pulir más adelante (cada uno será su propia
 - **`about.bio_2` ES ⟂ EN desbalanceado** — el EN menciona "zero data loss / zero downtime", el "Digital 24/7 Recruiter" y "Cyber Day"; el ES es genérico. *(Ya señalado en [OPTIMIZATION.md §4.1](OPTIMIZATION.md).)* Igualar la riqueza.
 - **Tagline "Ingeniería Aumentada" / "Augmented Engineering"** (`about.bio_3`) — frase de marca fuerte; evaluar darle aún más protagonismo.
 - **`hero.greeting` / `hero.title`** — revisar consistencia del título ("Desarrollador Backend & Arquitecto Cloud" vs. el EN "Backend Developer & Cloud Architect").
-- **Placeholders del formulario** (`contact.form.placeholder_*`) — en ES siguen en inglés ("John Doe", "john@example.com"). Localizar.
+- ✅ **Slogan** (`hero.slogan`) — añadido como tagline mono/accent bajo el título del Hero. ES: "Ingeniería Aumentada — Software, IA y arquitectura para escalar negocios" · EN: "Augmented Engineering — Software, AI and architecture to scale businesses".
+- ✅ **Placeholders del formulario** — localizados: ES "Nombre"/"Correo electrónico", EN "Name"/"Email".
 - **`contact.description`** — tono del CTA; ¿más directo?
 - **`skills.subtitle` / `projects.subtitle`** — micro-copys de subtítulos, verificar que no suenen genéricos.
 

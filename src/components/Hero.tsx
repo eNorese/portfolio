@@ -426,6 +426,11 @@ export function Hero() {
           {t('hero.title')}
         </p>
 
+        {/* Slogan / tagline */}
+        <p className="max-w-xl text-xs sm:text-sm font-mono tracking-wide text-accent/90 mb-6">
+          {t('hero.slogan')}
+        </p>
+
         {/* Neon divider */}
         <div
           className="w-64 h-px mb-6"

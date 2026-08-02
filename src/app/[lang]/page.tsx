@@ -7,6 +7,7 @@ const About = dynamic(() => import('@/components/About').then(m => ({ default: m
 const Experience = dynamic(() => import('@/components/Experience').then(m => ({ default: m.Experience })))
 const Skills = dynamic(() => import('@/components/Skills').then(m => ({ default: m.Skills })))
 const Projects = dynamic(() => import('@/components/Projects').then(m => ({ default: m.Projects })))
+const FAQ = dynamic(() => import('@/components/FAQ').then(m => ({ default: m.FAQ })))
 const Contact = dynamic(() => import('@/components/Contact').then(m => ({ default: m.Contact })))
 const Footer = dynamic(() => import('@/components/Footer').then(m => ({ default: m.Footer })))
 const FloatingWhatsApp = dynamic(() => import('@/components/FloatingWhatsApp').then(m => ({ default: m.FloatingWhatsApp })))
@@ -22,6 +23,7 @@ export default function Home() {
       {portfolioSections.experience && <Experience />}
       {portfolioSections.skills && <Skills />}
       {portfolioSections.projects && <Projects />}
+      {portfolioSections.faq && <FAQ />}
       {portfolioSections.contact && <Contact />}
       {portfolioSections.footer && <Footer />}
       {portfolioSections.floatingWhatsApp && <FloatingWhatsApp />}

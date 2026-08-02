@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import '../globals.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { GAPageView } from '@/components/GAPageView'
 import { LanguageProvider, type Language } from '@/contexts/LanguageContext'
 import en from '@/i18n/en.json'
 import es from '@/i18n/es.json'
@@ -74,6 +75,7 @@ function buildJsonLd(lang: Language) {
         '@id': `${base}/#person`,
         name: 'Enzo Norese',
         url: base,
+        image: `${base}/og-image.png`,
         email: 'enzo.norese@gmail.com',
         jobTitle: 'Backend Developer & Cloud Architect',
         description: DESCRIPTIONS[lang],
@@ -112,6 +114,17 @@ function buildJsonLd(lang: Language) {
         about: { '@id': `${base}/#person` },
         mainEntity: { '@id': `${base}/#person` },
       },
+      {
+        '@type': 'FAQPage',
+        '@id': `${pageUrl}/#faq`,
+        inLanguage: lang === 'es' ? 'es-CL' : 'en-US',
+        isPartOf: { '@id': `${base}/#website` },
+        mainEntity: m.faq.items.map((item) => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: { '@type': 'Answer', text: item.answer },
+        })),
+      },
     ],
   }
 }
@@ -134,12 +147,20 @@ export async function generateMetadata({
     keywords: KEYWORDS[lang],
     authors: [{ name: 'Enzo Norese' }],
     robots: { index: true, follow: true },
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+      ],
+      apple: [{ url: '/icon-180.png', sizes: '180x180' }],
+      shortcut: '/favicon.ico',
+    },
     alternates: {
       canonical: url,
       languages: {
         es: 'https://enorese.dev/es',
         en: 'https://enorese.dev/en',
-        'x-default': 'https://enorese.dev/es',
+        'x-default': 'https://enorese.dev/en',
       },
     },
     openGraph: {
@@ -149,11 +170,14 @@ export async function generateMetadata({
       url,
       locale: lang === 'es' ? 'es_CL' : 'en_US',
       alternateLocale: lang === 'es' ? 'en_US' : 'es_CL',
+      images: [{ url: '/og-image.png', width: 1731, height: 909, alt: title }],
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title,
       description,
+      creator: '@enorese',
+      images: ['/og-image.png'],
     },
   }
 }
@@ -168,20 +192,29 @@ export default async function RootLayout({
   const lang = normalize((await params).lang)
   const jsonLd = buildJsonLd(lang)
 
+  // Google Analytics: solo en producción y si la ID está configurada
+  // (variable pública NEXT_PUBLIC_GA_ID — definirla en el entorno de Vercel).
+  const gaId = process.env.NEXT_PUBLIC_GA_ID
+  const gaEnabled = process.env.NODE_ENV === 'production' && Boolean(gaId)
+
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
-        {/* Google Analytics (GA4) — gtag.js */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-W3L3ZGQJ0Z"
-          strategy="afterInteractive"
-        />
-        <Script id="ga-gtag-init" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
+        {/* Google Analytics (GA4) — solo en producción y con NEXT_PUBLIC_GA_ID definida */}
+        {gaEnabled && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-gtag-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-W3L3ZGQJ0Z');`}
-        </Script>
+gtag('config', '${gaId}');`}
+            </Script>
+          </>
+        )}
         {/* Prevent flash of unstyled content: apply dark class and data-theme before paint */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(['dark','ocean','midnight'].indexOf(t)!==-1)document.documentElement.classList.add('dark');}catch(e){}})()` }} />
         <link rel="dns-prefetch" href="https://wa.me" />
@@ -198,6 +231,7 @@ gtag('config', 'G-W3L3ZGQJ0Z');`}
           </LanguageProvider>
         </ThemeProvider>
         <SpeedInsights />
+        {gaEnabled && gaId && <GAPageView gaId={gaId} />}
       </body>
     </html>
   )

@@ -158,8 +158,8 @@ Seguridad — Formulario
 [ ] Enforce Content-Type: application/json
 
 Seguridad — Global
-[ ] HSTS / X-Frame-Options / X-Content-Type-Options
-[ ] Referrer-Policy / Permissions-Policy
+[x] HSTS / X-Frame-Options / X-Content-Type-Options
+[x] Referrer-Policy / Permissions-Policy
 [ ] CSP (Report-Only → enforce)
 [ ] npm audit + Dependabot
 

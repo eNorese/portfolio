@@ -101,13 +101,13 @@ export function Contact() {
   const isError   = status === 'error'
 
   return (
-    <section id="contacto" className="relative py-24 bg-gray-50 dark:bg-gray-900">
+    <section id="contacto" className="relative py-24 bg-white dark:bg-gray-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
         <div className="mb-14">
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            05 —
+            06 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {t('contact.section_title')}

@@ -11,13 +11,13 @@
 
 El sitio tiene una **base sólida** (metadata rica, JSON-LD `Person`, `llms.txt`, sitemap, robots, SpeedInsights). Está por encima del portfolio promedio.
 
-De los **3 problemas críticos** originales, **2 ya están resueltos**:
+Los **3 problemas críticos** originales están **todos resueltos** ✅:
 
 1. ✅ **`<html lang>` ahora refleja el idioma real** (`/es` → `lang="es"`, `/en` → `lang="en"`), server-side. *Resuelto.*
 2. ✅ **Internacionalización con routing por locale (Opción A).** Existen dos URLs reales e indexables (`/es` y `/en`), cada una en un solo idioma, con `hreflang` (es/en/x-default) y `canonical` por locale. El inglés ya es visible para Google y crawlers de IA. *Resuelto.*
-3. 🔴 **No hay imagen Open Graph ni favicon/iconos.** Al compartir el sitio en LinkedIn/X/WhatsApp no aparece preview visual, y no hay identidad en la pestaña del navegador ni en resultados. *Pendiente.*
+3. ✅ **Imagen Open Graph + favicons/iconos.** `og:image` (1731×909), `twitter:card = summary_large_image` + `creator`, `favicon.ico`, `apple-touch-icon`, `icon-512` y `manifest` integrados. *Resuelto.*
 
-Con el punto 3 resuelto, el sitio queda redondo en los críticos.
+Los críticos quedaron cerrados; lo restante es pulido (AIO avanzado, textos, performance/seguridad).
 
 ---
 
@@ -55,14 +55,13 @@ Con el punto 3 resuelto, el sitio queda redondo en los críticos.
   - El toggle de idioma del Navbar ahora **navega** entre `/es` ⇄ `/en` (conservando el hash de sección), en vez de cambiar estado de cliente.
   - *Nota:* esto reemplazó el `SeoContentMirror` (Opción B) que se había aplicado antes; ya no es necesario y fue eliminado.
 
-### 2.3 Sin imagen Open Graph ni iconos
-- **Problema:** No existe `og:image`, el `twitter.card` es `summary` (sin imagen grande), y no hay `favicon.ico`, `icon`, `apple-touch-icon` ni `manifest` (confirmado: `src/app/` y `public/` no los contienen).
-- **Impacto:** Compartir el sitio en LinkedIn/X/WhatsApp/Slack genera una preview **sin imagen** → mucho menos clickeable. Sin favicon, cero identidad visual en pestañas y resultados.
-- **Acción:**
-  - Añadir **`app/opengraph-image.tsx`** (Next.js lo genera dinámico, 1200×630) o un PNG estático en `public/`. Referenciarlo en `openGraph.images`.
-  - Cambiar `twitter.card` a `summary_large_image` y añadir `twitter.creator: '@enorese'` (la cuenta X existe en social.json).
-  - Añadir **`app/icon.png`** / `app/favicon.ico` + `app/apple-icon.png`. La marca "eNorese." (punto indigo) da una identidad obvia para el icono.
-  - Añadir **`app/manifest.ts`** (PWA básico: name, theme_color con el accent indigo, icons).
+### 2.3 Imagen Open Graph e iconos — ✅ RESUELTO
+- **Solución aplicada:**
+  - **OG image** estática `public/og-image.png` (1731×909, ratio 1.91:1) referenciada en `openGraph.images` con `width/height` reales.
+  - **Twitter** → `card: 'summary_large_image'` + `creator: '@enorese'` + `images`.
+  - **Iconos** en `public/`: `favicon.ico`, `icon-180.png` (apple-touch), `icon-512.png`, declarados en `metadata.icons` ([layout.tsx](src/app/[lang]/layout.tsx)).
+  - **`app/manifest.ts`** (PWA: name, `theme_color`/`background_color` `#030712`, iconos 180/512).
+  - **`image`** añadido al `Person` del JSON-LD (`https://enorese.dev/og-image.png`) → cierra el pendiente de §3.2.
 
 ---
 
@@ -75,7 +74,7 @@ Con el punto 3 resuelto, el sitio queda redondo en los críticos.
 Migrado a un grafo `@graph` en [layout.tsx](src/app/[lang]/layout.tsx) (`buildJsonLd`), locale-aware:
 - **`Person`** con `description` localizada, `nationality` (Chile), `knowsLanguage: ["es","en"]`, `hasCredential` (degree: Ingeniería en Informática) y `sameAs` ampliado con **X** (LinkedIn + GitHub + X).
 - **`WebSite`** y **`ProfilePage`** enlazados por `@id` (la página *es* el perfil de la persona), con `inLanguage` por locale (`es-CL` / `en-US`).
-- *Pendiente menor:* `image` del `Person`/grafo — se añadirá junto con la imagen OG (§2.3).
+- ✅ `image` del `Person` añadido (`https://enorese.dev/og-image.png`) junto con la imagen OG (§2.3).
 
 ### 3.3 `sitemap.xml` mínimo — ✅ RESUELTO
 - Migrado a [app/sitemap.ts](src/app/sitemap.ts) dinámico: `lastmod` automático y las dos URLs (`/es`, `/en`) con anotaciones `xhtml:link` de `hreflang`. Se eliminó el `public/sitemap.xml` estático.
@@ -137,9 +136,9 @@ El sitio ya parte bien (JSON-LD + llms.txt + contenido denso). Para llevarlo a "
 ### 🔴 Sprint 1 — Críticos (máximo impacto)
 1. ✅ ~~Corregir `<html lang>` para reflejar el idioma real.~~ *Hecho (routing por locale).*
 2. ✅ ~~Añadir `metadataBase`.~~ *Hecho.*
-3. Crear `app/opengraph-image.tsx` + cambiar `twitter.card` a `summary_large_image` + `twitter.creator`.
-4. Añadir `app/icon`, `apple-icon`, `favicon` y `app/manifest.ts`.
-5. **Igualar `about.bio_2` en español** a la riqueza del inglés (§4.1).
+3. ✅ ~~OG image + `twitter.card = summary_large_image` + `twitter.creator`.~~ *Hecho.*
+4. ✅ ~~`favicon`, `icon`, `apple-icon` y `app/manifest.ts`.~~ *Hecho.*
+5. **Igualar `about.bio_2` en español** a la riqueza del inglés (§4.1). ← *único pendiente del Sprint 1*
 
 ### 🟡 Sprint 2 — Internacionalización real
 6. ✅ ~~Estrategia i18n (Opción A, `app/[lang]`) con `hreflang`.~~ *Hecho.*
@@ -148,9 +147,9 @@ El sitio ya parte bien (JSON-LD + llms.txt + contenido denso). Para llevarlo a "
 ### 🟢 Sprint 3 — Pulido y AIO avanzado
 8. ✅ ~~Enriquecer JSON-LD (`@graph` con `WebSite`+`ProfilePage`, `knowsLanguage`, `sameAs` con X).~~ *Hecho (falta solo `image`, atado a §2.3).*
 9. ✅ ~~Añadir `viewport`/`themeColor`.~~ *Hecho.*
-10. Ampliar `llms.txt` (bilingüe / `llms-full.txt`) y robots con crawlers de IA explícitos.
-11. Añadir bloque FAQ + `FAQPage` JSON-LD.
-12. Corregir `humans.txt` (Vite → Next.js) y localizar placeholders del formulario.
+10. ✅ ~~Ampliar `llms.txt` (bilingüe / `llms-full.txt`) y robots con crawlers de IA explícitos.~~ *Hecho.*
+11. ✅ ~~Añadir bloque FAQ + `FAQPage` JSON-LD.~~ *Hecho (sección FAQ bilingüe + schema).*
+12. ✅ ~~Corregir `humans.txt` (Vite → Next.js)~~ *Hecho* · localizar placeholders del formulario *(pendiente)*.
 13. ✅ ~~Verificar jerarquía `<h1>`/`<h2>` única y semántica.~~ *Verificado (ya correcta).*
 
 ---
@@ -161,9 +160,9 @@ El sitio ya parte bien (JSON-LD + llms.txt + contenido denso). Para llevarlo a "
 SEO Técnico
 [x] <html lang> coincide con idioma renderizado
 [x] metadataBase definido
-[ ] og:image (1200×630) presente
-[ ] twitter:card = summary_large_image + creator
-[ ] favicon / icon / apple-icon / manifest
+[x] og:image (1731×909) presente
+[x] twitter:card = summary_large_image + creator
+[x] favicon / icon / apple-icon / manifest
 [x] hreflang para ES y EN
 [x] sitemap dinámico con ambas URLs
 [x] un solo <h1>, secciones en <h2>
@@ -172,14 +171,14 @@ SEO Técnico
 i18n / Contenido
 [x] inglés presente en HTML inicial (URLs /es y /en indexables)
 [ ] about.bio_2 ES igualado a EN
-[ ] humans.txt actualizado (Next.js)
+[x] humans.txt actualizado (Next.js)
 [ ] placeholders de formulario localizados
 
 AIO
 [x] JSON-LD enriquecido (@graph, knowsLanguage, sameAs completo)
-[ ] llms.txt bilingüe / llms-full.txt
-[ ] crawlers de IA explícitos en robots.txt
-[ ] bloque FAQ + FAQPage schema
+[x] llms.txt bilingüe / llms-full.txt
+[x] crawlers de IA explícitos en robots.txt
+[x] bloque FAQ + FAQPage schema
 ```
 
 ---

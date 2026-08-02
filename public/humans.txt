@@ -5,4 +5,4 @@ Contact: enzo.norese@gmail.com
 
 /* SITE */
 Language: Spanish / English
-Technology: React, TypeScript, Vite, Vercel
+Technology: Next.js, React, TypeScript, Tailwind CSS, Three.js, Vercel

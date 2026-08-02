@@ -4,12 +4,14 @@
     "experience": "Experience",
     "skills": "Skills",
     "projects": "Projects",
+    "faq": "FAQ",
     "contact": "Contact"
   },
   "hero": {
     "greeting": "Hi, I'm",
     "name": "Enzo Norese",
     "title": "Backend Developer & Cloud Architect",
+    "slogan": "Augmented Engineering — Software, AI and architecture to scale businesses",
     "description": "I design and implement backend architectures on cloud infrastructure, integrating scalable services and artificial intelligence to solve real business problems. Go-to engineer with experience in recruitment systems, ERP migration, and AI model integration.",
     "cta_work": "View My Work",
     "cta_contact": "Get In Touch",
@@ -158,8 +160,8 @@
     "subtitle": "Let's work together",
     "description": "Do you have a project, an opportunity, or just want to talk tech? Write to me directly — I respond.",
     "form": {
-      "placeholder_name": "John Doe",
-      "placeholder_email": "john@example.com",
+      "placeholder_name": "Name",
+      "placeholder_email": "Email",
       "placeholder_message": "Hi, I'd love to talk about...",
       "send": "Send Message",
       "sending": "Sending...",
@@ -180,6 +182,36 @@
       "availability_label": "Availability",
       "availability_value": "Open to opportunities"
     }
+  },
+  "faq": {
+    "section_title": "Frequently Asked Questions",
+    "subtitle": "What people usually ask me",
+    "items": [
+      {
+        "question": "What do you specialize in?",
+        "answer": "I specialize in backend development and cloud solutions architecture, with a focus on serverless architectures and AI integration to solve real business problems."
+      },
+      {
+        "question": "Which technologies do you work with?",
+        "answer": "Mainly Microsoft Azure (Functions, Service Bus, SignalR, CosmosDB), TypeScript, Node.js, Python and C#/.NET, along with PostgreSQL and the orchestration of AI models such as Claude, GPT-4o and Gemini."
+      },
+      {
+        "question": "Do you have experience integrating AI into real systems?",
+        "answer": "Yes. I designed and built a 24/7 mass-recruitment agent on Azure serverless, with a cascaded multi-model pipeline able to process tens of thousands of applications during peak demand periods like Cyber Day."
+      },
+      {
+        "question": "Are you available for remote or freelance work?",
+        "answer": "Yes. I'm based in Santiago, Chile, and open to remote work and international projects, in both Spanish and English."
+      },
+      {
+        "question": "What is Augmented Engineering?",
+        "answer": "It's my working philosophy: I use AI as a multiplier of technical capability, not as a replacement for engineering judgment. AI speeds up the work, but the decisions remain the engineer's responsibility."
+      },
+      {
+        "question": "How can we work together?",
+        "answer": "Reach out through the contact form, WhatsApp, or email (enzo.norese@gmail.com). I reply personally and we can talk about your project or opportunity."
+      }
+    ]
   },
   "footer": {
     "rights": "All rights reserved."
