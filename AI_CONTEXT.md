@@ -11,7 +11,7 @@
 
 ## Dirección visual — septiembre de 2026
 
-Diseño editorial de fondo carbón, acento lima, tipografía Inter y acento serif en el titular. Los temas claro, bosque, océano y medianoche usan el mismo sistema de variables semánticas:
+Diseño editorial de fondo carbón, acento lima, tipografía Inter y el nombre Enzo Norese como protagonista de la portada. Los temas claro, bosque, océano y medianoche usan el mismo sistema de variables semánticas:
 `--page`, `--surface`, `--card`, `--ink`, `--muted`, `--line`, `--button`, `--button-text`, `--error` y `--accent`.
 `--accent` conserva el formato R G B para las utilidades de Tailwind.
 
@@ -19,8 +19,8 @@ Estilos en `src/app/globals.css`, organizados por componente y breakpoints. El l
 
 ## Recorrido y componentes
 
-1. **Hero**: propuesta de valor, CTA a proyectos, contacto, redes y stack. Diagrama de arquitectura SVG; sin bucle de canvas.
-2. **Projects**: seis proyectos existentes, filtros por categoría, vistas conceptuales en CSS/SVG y detalles nativos desplegables.
+1. **Hero**: nombre y trayectoria personal, CTA a proyectos, contacto, redes y stack. HeroSky dibuja estrellas, lluvia de código y meteoros; las órbitas SVG también se animan.
+2. **Projects**: caso destacado de reclutamiento y selección de TeamWork, seguido de los seis proyectos existentes con filtros. FeaturedProject incluye contexto, cuatro fases e impacto cualitativo, a partir del relato proporcionado por Enzo; su diagrama es conceptual. No confundir este caso con el agente de reclutamiento con IA ni inventar métricas.
 3. **About**: presentación, filosofía y estadísticas originales.
 4. **Experience**: historial profesional con fechas, descripciones y tecnologías.
 5. **Services**: servicios existentes en una retícula compacta.
@@ -33,13 +33,16 @@ Navbar fijo con enlaces principales, idioma y selector nativo de tema. Menú mó
 
 ## Convenciones
 
-- Todo texto editorial nuevo se agrega a ambos JSON, bajo `design`.
+- Todo texto editorial nuevo se agrega a ambos JSON, bajo `design`; el caso TeamWork está bajo `teamwork`.
 - Conservar anclas: `home`, `proyectos`, `sobre-mi`, `experiencia`, `servicios`, `habilidades`, `faq`, `contacto`.
 - `src/config/sections.ts` controla las secciones y la navegación. WhatsApp flotante está desactivado; sigue disponible en Contact.
 - Las vistas de proyectos son **ilustraciones conceptuales**, no capturas de aplicaciones reales.
 - Los enlaces de demo/código originales apuntaban a `#` y estaban deshabilitados. La UI muestra información del proyecto y contacto; no ofrece destinos ficticios.
 - Se retiró el enlace a `/cv.pdf` porque ese archivo no existe en `public`.
-- Reducir movimiento respeta `prefers-reduced-motion`; el contenido no depende de animaciones de entrada al viewport.
+- MotionProvider centraliza movimiento, respeta cambios en `prefers-reduced-motion` y recuerda la pausa manual en localStorage (`portfolio-motion`).
+- HeroSky limita dibujo a 30 fps y DPR a 1.75, reduce partículas en móvil y pausa el bucle al ocultar la pestaña o salir del hero. Limpia listeners y observers.
+- MotionEffects añade entradas al scroll solo después de hidratar y solo fuera del viewport, stagger, progreso de lectura e iluminación/inclinación al mover el cursor. Admite filtros y desplegables sin ocultar el contenido SSR. El hover no se aplica a eventos táctiles.
+- Con el movimiento pausado, todo el contenido queda visible y sin animaciones. Los efectos no agregan dependencias.
 - Los easter eggs y la lógica del cubo siguen en sus componentes originales; cinco clics en el logo disparan el evento existente.
 - El formulario impide envíos duplicados durante una solicitud, tiene timeout de 15 segundos y conserva el texto ante errores. El envío real requiere las variables Resend.
 

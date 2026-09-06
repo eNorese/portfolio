@@ -310,9 +310,9 @@
     "message": "¡Hola Enzo! 👋 Vi tu portfolio en enorese.dev y me gustaría conversar contigo."
   },
   "design": {
-    "hero_line_1": "Ingeniería sólida.",
-    "hero_line_2": "Ideas sin límites.",
-    "hero_description": "Transformo problemas complejos en software que funciona. Backend, arquitectura cloud e inteligencia artificial, con atención a cada detalle.",
+    "hero_line_1": "Enzo",
+    "hero_line_2": "Norese.",
+    "hero_description": "Empecé entendiendo circuitos. Hoy construyo backends, conecto sistemas y llevo ideas a la nube. Me gusta entrar donde hay un problema difícil y dejar algo que funcione mejor.",
     "lets_talk": "Hablemos",
     "built_with_intent": "Código con intención. Impacto real.",
     "art_caption": "De la idea a la arquitectura",
@@ -323,7 +323,7 @@
     "open_menu": "Abrir menú",
     "close_menu": "Cerrar menú",
     "projects_title": "Del código al mundo real.",
-    "projects_description": "Una selección de proyectos donde la arquitectura se convierte en producto.",
+    "projects_description": "Sistemas reales, decisiones técnicas y proyectos donde sigo explorando.",
     "filter_projects": "Filtrar proyectos",
     "filters": {
       "all": "Todos",
@@ -375,6 +375,91 @@
     "back_top": "Volver arriba",
     "footer_note": "Hecho con intención. Construido con Next.js.",
     "backend_role": "Desarrollador Backend",
-    "cloud_role": "Arquitecto Cloud"
+    "cloud_role": "Arquitecto Cloud",
+    "hero_signature": "Ingeniero en informática / Constructor por naturaleza",
+    "pause_motion": "Pausar animaciones",
+    "resume_motion": "Activar animaciones",
+    "reduced_motion": "Movimiento reducido por preferencia del sistema",
+    "more_projects": "También he construido"
+  },
+  "teamwork": {
+    "eyebrow": "Proyecto destacado · experiencia real",
+    "category": "Software empresarial / Reclutamiento y selección",
+    "title": "Un sistema que crece con las personas.",
+    "intro": "De un proceso basado en Excel a una aplicación de reclutamiento más rápida y mantenible. Mi reto: evolucionar un prototipo que ya estaba en producción, desde los datos hasta la experiencia de los reclutadores.",
+    "role_label": "MI APORTE",
+    "role": "Desarrollo backend, administración de base de datos y apoyo full stack al frontend.",
+    "read_case": "Conoce la historia",
+    "system_label": "ARQUITECTURA EN EVOLUCIÓN",
+    "flow_label": "Flujo conceptual del sistema de reclutamiento",
+    "flow_input": "Reclutamiento y selección",
+    "flow_services": [
+      "Datos",
+      "Archivos cloud",
+      "Colas e integraciones"
+    ],
+    "monitoring": "Pruebas, CI/CD y monitoreo",
+    "diagram_note": "Diagrama conceptual de los componentes trabajados.",
+    "outcomes": [
+      {
+        "title": "Menos espera",
+        "description": "Consultas optimizadas y tareas pesadas en segundo plano."
+      },
+      {
+        "title": "Más capacidad",
+        "description": "Gestión de un mayor volumen de personas en alta demanda."
+      },
+      {
+        "title": "Más visibilidad",
+        "description": "Monitoreo para detectar problemas y mejorar de forma proactiva."
+      }
+    ],
+    "story_title": "El problema, las decisiones y el impacto",
+    "read_time": "4 min de lectura",
+    "context_title": "El punto de partida",
+    "context": "El proceso de reclutamiento y selección se gestionaba en archivos Excel, con pérdida de información e ineficiencias. Me incorporé cuando ya existía un prototipo funcional en producción. Debía corregir sus deficiencias y mejorarlo sin romper los flujos existentes. Azure Functions con TypeScript era nuevo para mí: tuve que aprender el ecosistema mientras analizaba la aplicación de punta a punta.",
+    "phase_label": "Fase",
+    "phases": [
+      {
+        "title": "Dar coherencia a los datos.",
+        "description": "La base del trabajo fue convertir un modelo inconsistente en uno robusto, planificando los cambios para preservar la compatibilidad con las aplicaciones que lo consumían.",
+        "points": [
+          "Estandaricé los nombres de tablas y columnas y normalicé el modelo para reducir redundancias.",
+          "Ajusté tipos de datos, relaciones y claves únicas para proteger la integridad y evitar duplicados.",
+          "Analicé consultas costosas e incorporé índices para mejorar sus tiempos de respuesta.",
+          "Definí usuarios, roles y permisos por ambiente y aplicación, y documenté el modelo y sus estándares."
+        ]
+      },
+      {
+        "title": "Un backend que se pueda mantener.",
+        "description": "Refactoricé una base de código con convenciones mezcladas y lógica duplicada, haciendo explícitas las responsabilidades de cada capa.",
+        "points": [
+          "Unifiqué nombres y convenciones en inglés, parametrizando la lógica repetida y eliminando código sin uso.",
+          "Implementé el patrón repositorio con inyección de dependencias para centralizar y abstraer el acceso a datos.",
+          "Agregué pruebas automatizadas con Jest a los pipelines de CI/CD y logging para monitorear el backend."
+        ]
+      },
+      {
+        "title": "Desacoplar para crecer.",
+        "description": "La arquitectura evolucionó para que los procesos más pesados no bloquearan la experiencia de los reclutadores.",
+        "points": [
+          "Migré el almacenamiento de archivos desde un servidor on-premise a Azure Blob Storage.",
+          "Implementé colas para procesamiento y generación de archivos, correos y sincronizaciones.",
+          "Desacoplé tareas del sistema legacy y del ERP interno para ejecutarlas en segundo plano."
+        ]
+      },
+      {
+        "title": "Escuchar a quienes usan el sistema.",
+        "description": "Con una base más estable, entrevistamos a los usuarios para identificar mejoras que les facilitaran el trabajo diario.",
+        "points": [
+          "Implementamos sincronizaciones con el sistema legacy y generación de pruebas e informes psicolaborales.",
+          "Automatizamos la consolidación mensual de datos estratégicos para apoyar las decisiones de las gerencias.",
+          "Las nuevas funcionalidades respondieron a las necesidades detectadas en los reclutadores."
+        ]
+      }
+    ],
+    "impact_label": "Impacto",
+    "impact_title": "Una operación más ágil. Un sistema más observable.",
+    "impact": "El trabajo facilitó el reclutamiento, la selección y la contratación, con menores tiempos de respuesta y capacidad para gestionar un mayor volumen de personas en periodos exigentes. El monitoreo permitió al área de informática detectar oportunidades de mejora, conocer las funcionalidades más utilizadas y actuar de manera proactiva. El resultado fue una aplicación más manejable y mantenible."
   }
 }

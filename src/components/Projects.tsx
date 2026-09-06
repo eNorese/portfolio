@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Arrow, SectionHeading } from '@/components/PortfolioUI'
 import social from '@/config/social.json'
+import { FeaturedProject } from '@/components/FeaturedProject'
 
 const categories = ['all', 'fullstack', 'backend', 'cloud'] as const
 const projectCategories = [
@@ -144,6 +145,11 @@ export function Projects() {
             )
           }
         />
+        <FeaturedProject />
+        <h3 className="other-projects-title">
+          {t('design.more_projects')}
+          <span aria-hidden="true">↙</span>
+        </h3>
         <div
           className="project-filter"
           role="group"

@@ -310,9 +310,9 @@
     "message": "Hi Enzo! 👋 I saw your portfolio at enorese.dev and I'd love to chat."
   },
   "design": {
-    "hero_line_1": "Solid engineering.",
-    "hero_line_2": "Limitless ideas.",
-    "hero_description": "I turn complex problems into software that works. Backend, cloud architecture, and artificial intelligence, with care in every detail.",
+    "hero_line_1": "Enzo",
+    "hero_line_2": "Norese.",
+    "hero_description": "I started by understanding circuits. Today I build backends, connect systems, and bring ideas to the cloud. I like stepping into a difficult problem and leaving something that works better.",
     "lets_talk": "Let's talk",
     "built_with_intent": "Intentional code. Real impact.",
     "art_caption": "From idea to architecture",
@@ -323,7 +323,7 @@
     "open_menu": "Open menu",
     "close_menu": "Close menu",
     "projects_title": "From code to the real world.",
-    "projects_description": "Selected projects where thoughtful architecture becomes a working product.",
+    "projects_description": "Real systems, technical decisions, and projects where I keep exploring.",
     "filter_projects": "Filter projects",
     "filters": {
       "all": "All projects",
@@ -375,6 +375,91 @@
     "back_top": "Back to top",
     "footer_note": "Made with intention. Built with Next.js.",
     "backend_role": "Backend Developer",
-    "cloud_role": "Cloud Architect"
+    "cloud_role": "Cloud Architect",
+    "hero_signature": "Computer engineer / A builder at heart",
+    "pause_motion": "Pause animations",
+    "resume_motion": "Enable animations",
+    "reduced_motion": "Motion reduced by system preference",
+    "more_projects": "More things I have built"
+  },
+  "teamwork": {
+    "eyebrow": "Featured project · real-world work",
+    "category": "Enterprise software / Recruitment and selection",
+    "title": "A system that grows with its people.",
+    "intro": "From an Excel-based process to a faster, more maintainable recruitment application. My challenge: evolve a prototype already running in production, from the data layer to the recruiters' experience.",
+    "role_label": "MY CONTRIBUTION",
+    "role": "Backend development, database administration, and full-stack support for the frontend.",
+    "read_case": "Read the story",
+    "system_label": "ARCHITECTURE IN EVOLUTION",
+    "flow_label": "Conceptual recruitment system flow",
+    "flow_input": "Recruitment and selection",
+    "flow_services": [
+      "Data",
+      "Cloud files",
+      "Queues & integrations"
+    ],
+    "monitoring": "Testing, CI/CD & monitoring",
+    "diagram_note": "Conceptual diagram of the components I worked on.",
+    "outcomes": [
+      {
+        "title": "Less waiting",
+        "description": "Optimized queries and heavy tasks moved into the background."
+      },
+      {
+        "title": "More capacity",
+        "description": "Handling more people during periods of high demand."
+      },
+      {
+        "title": "More visibility",
+        "description": "Monitoring to identify issues and improve proactively."
+      }
+    ],
+    "story_title": "The problem, the decisions, and the impact",
+    "read_time": "4 min read",
+    "context_title": "The starting point",
+    "context": "Recruitment and selection were managed through Excel files, causing information loss and inefficiencies. I joined when a functional prototype was already in production. I needed to address its shortcomings without breaking existing workflows. Azure Functions with TypeScript was new to me: I had to learn the ecosystem while analyzing the application end to end.",
+    "phase_label": "Phase",
+    "phases": [
+      {
+        "title": "Make the data coherent.",
+        "description": "The foundation was turning an inconsistent data model into a robust one, planning changes to preserve compatibility with the applications that consumed it.",
+        "points": [
+          "Standardized table and column names and normalized the model to reduce redundancy.",
+          "Corrected data types, relationships, and unique keys to protect integrity and avoid duplicates.",
+          "Analyzed expensive queries and added indexes to improve response times.",
+          "Defined users, roles, and permissions per environment and application, and documented the model and standards."
+        ]
+      },
+      {
+        "title": "Build a maintainable backend.",
+        "description": "I refactored a codebase with mixed conventions and duplicated logic, making the responsibilities of each layer explicit.",
+        "points": [
+          "Unified naming conventions in English, parameterized repeated logic, and removed unused code.",
+          "Implemented the repository pattern with dependency injection to centralize and abstract data access.",
+          "Added automated Jest tests to CI/CD pipelines and logging to monitor the backend."
+        ]
+      },
+      {
+        "title": "Decouple to grow.",
+        "description": "The architecture evolved so heavier processes would no longer block the recruiters' experience.",
+        "points": [
+          "Moved file storage from an on-premise server to Azure Blob Storage.",
+          "Implemented queues for file processing and generation, emails, and synchronization.",
+          "Decoupled legacy-system and internal-ERP tasks to run in the background."
+        ]
+      },
+      {
+        "title": "Listen to the people using it.",
+        "description": "With a more stable foundation, we interviewed users to identify improvements to their daily work.",
+        "points": [
+          "Implemented legacy-system synchronization and generation of occupational psychological tests and reports.",
+          "Automated monthly consolidation of strategic data to support management decisions.",
+          "New features addressed needs identified by recruiters."
+        ]
+      }
+    ],
+    "impact_label": "Impact",
+    "impact_title": "A smoother operation. A more observable system.",
+    "impact": "The work streamlined recruitment, selection, and hiring, with shorter response times and the capacity to manage more people during demanding periods. Monitoring helped the IT team identify improvement opportunities, understand the most-used features, and act proactively. The result was a more manageable and maintainable application."
   }
 }

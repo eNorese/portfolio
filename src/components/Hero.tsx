@@ -3,10 +3,15 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { SocialLinks } from '@/components/SocialLinks'
 import { Arrow } from '@/components/PortfolioUI'
 import { portfolioSections } from '@/config/sections'
+import { HeroSky } from '@/components/HeroSky'
+import { useMotion } from '@/components/MotionProvider'
 export function Hero() {
   const { t } = useLanguage()
+  const { active, reduced, toggle } = useMotion()
   return (
     <section id="home" className="hero-section">
+      <HeroSky />
+      <div className="hero-atmosphere" aria-hidden="true" />
       <div className="shell">
         <div className="hero-meta">
           <span>
@@ -17,7 +22,9 @@ export function Hero() {
         </div>
         <div className="hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">{t('hero.greeting')} Enzo Norese —</p>
+            <p className="eyebrow hero-signature">
+              {t('design.hero_signature')}
+            </p>
             <h1>
               {t('design.hero_line_1')}
               <br />
@@ -60,7 +67,7 @@ export function Hero() {
                 </radialGradient>
               </defs>
               <circle cx="230" cy="205" r="190" fill="url(#orbit-glow)" />
-              <g stroke="currentColor">
+              <g stroke="currentColor" className="orbital-paths">
                 <ellipse
                   cx="230"
                   cy="205"
@@ -160,6 +167,29 @@ export function Hero() {
               <b className="stack-symbol">✳</b> Applied AI
             </span>
           </div>
+          <button
+            className="motion-toggle"
+            onClick={toggle}
+            disabled={reduced}
+            aria-pressed={active}
+            aria-label={t(
+              reduced
+                ? 'design.reduced_motion'
+                : active
+                  ? 'design.pause_motion'
+                  : 'design.resume_motion',
+            )}
+            title={t(
+              reduced
+                ? 'design.reduced_motion'
+                : active
+                  ? 'design.pause_motion'
+                  : 'design.resume_motion',
+            )}
+          >
+            <span aria-hidden="true">{active ? 'Ⅱ' : '▷'}</span>
+            <span className="mono">{active ? 'ON' : 'OFF'}</span>
+          </button>
           <a
             className="explore-link"
             href={portfolioSections.projects ? '#proyectos' : '#sobre-mi'}
