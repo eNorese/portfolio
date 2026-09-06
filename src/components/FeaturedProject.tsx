@@ -1,13 +1,14 @@
 'use client'
 import { useRef } from 'react'
 import { CyberJourney } from '@/components/CyberJourney'
+import { SACJourney } from '@/components/SACJourney'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Arrow } from '@/components/PortfolioUI'
 
 export function FeaturedProject({
   project = 'teamwork',
 }: {
-  project?: 'teamwork' | 'cyber'
+  project?: 'teamwork' | 'cyber' | 'sac'
 }) {
   const { locale, t } = useLanguage()
   const content = locale[project]
@@ -51,7 +52,13 @@ export function FeaturedProject({
             <Arrow diagonal />
           </a>
         </div>
-        {project === 'cyber' ? <CyberJourney /> : <TeamworkArchitecture />}
+        {project === 'sac' ? (
+          <SACJourney />
+        ) : project === 'cyber' ? (
+          <CyberJourney />
+        ) : (
+          <TeamworkArchitecture />
+        )}
       </div>
       <div className="featured-outcomes">
         {content.outcomes.map((item, index) => (
@@ -64,10 +71,12 @@ export function FeaturedProject({
           </div>
         ))}
       </div>
-      <a className="case-related" href={`#${content.related_id}`}>
-        {content.related_label}
-        <Arrow diagonal />
-      </a>
+      {content.related_id && (
+        <a className="case-related" href={`#${content.related_id}`}>
+          {content.related_label}
+          <Arrow diagonal />
+        </a>
+      )}
       <details ref={storyRef} className="case-study" id={`${project}-story`}>
         <summary>
           {content.story_title}

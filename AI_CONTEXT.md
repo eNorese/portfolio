@@ -20,7 +20,7 @@ Estilos en `src/app/globals.css`, organizados por componente y breakpoints. El l
 ## Recorrido y componentes
 
 1. **Hero**: nombre y trayectoria personal, CTA a proyectos, contacto, redes y stack. HeroSky dibuja estrellas, lluvia de código y meteoros; las órbitas SVG también se animan.
-2. **Projects**: dos casos destacados de TeamWork — evolución del ATS (cuatro fases) y sitio Cyber + formularios (cinco frentes de trabajo) — seguidos de los seis proyectos existentes con filtros. FeaturedProject comparte la presentación y mantiene IDs independientes; CyberJourney ilustra canales, postulación reutilizable y conexión al ATS. Los casos están relacionados por enlaces en ambos sentidos y parten de los relatos de Enzo. Los diagramas son conceptuales. No confundir estos casos con el agente de reclutamiento con IA ni inventar métricas.
+2. **Projects**: tres casos destacados con navegación directa: ATS (cuatro fases), Cyber + formularios (cinco frentes) y SAC + encuestas (cuatro frentes), seguidos de los seis proyectos existentes con filtros. FeaturedProject comparte la presentación y mantiene IDs independientes. CyberJourney ilustra canales, postulación reutilizable y conexión al ATS; SACJourney representa la atención por bot, derivación condicional a un agente, SLA, encuestas y sincronización. ATS y Cyber pertenecen a TeamWork y están relacionados por enlaces en ambos sentidos. Los casos parten de los relatos de Enzo; los diagramas son conceptuales. No confundirlos con el agente de reclutamiento con IA ni inventar métricas.
 3. **About**: presentación, filosofía y estadísticas originales.
 4. **Experience**: historial profesional con fechas, descripciones y tecnologías.
 5. **Services**: servicios existentes en una retícula compacta.
@@ -33,7 +33,7 @@ Navbar fijo con enlaces principales, idioma y selector nativo de tema. Menú mó
 
 ## Convenciones
 
-- Todo texto editorial nuevo se agrega a ambos JSON, bajo `design`; los casos de TeamWork están bajo `teamwork` (ATS) y `cyber` (captación).
+- Todo texto editorial nuevo se agrega a ambos JSON, bajo `design`; los casos están bajo `teamwork` (ATS), `cyber` (captación) y `sac` (atención y encuestas).
 - Conservar anclas: `home`, `proyectos`, `sobre-mi`, `experiencia`, `servicios`, `habilidades`, `faq`, `contacto`.
 - `src/config/sections.ts` controla las secciones y la navegación. WhatsApp flotante está desactivado; sigue disponible en Contact.
 - Las vistas de proyectos son **ilustraciones conceptuales**, no capturas de aplicaciones reales.
@@ -72,3 +72,11 @@ Revisión del rediseño:
 - Validación documental mediante librerías OCR, Azure Document Intelligence para ID y modelos de visión de OpenAI, como alternativas de fallback. No se ha especificado un orden fijo ni umbrales de confianza.
 - Formularios configurables, recuperación de datos para nuevas ofertas, identificación del origen y QR para ferias laborales.
 - Sistema en evolución. No se han proporcionado métricas, detalles del algoritmo de rate limiting ni resultados SEO medidos.
+
+## Hechos confirmados del caso SAC
+
+- Enzo participó en la planificación de arquitectura y desarrollo; no atribuirle autoría exclusiva.
+- Bot por WhatsApp, derivación a tickets con número de caso y agente, medición de tiempos para evaluar SLA.
+- Encuestas de satisfacción de atención y experiencia laboral: reclutamiento, contratación y offboarding.
+- Mismo stack del primer caso. Sincronización diaria de grandes volúmenes desde fuentes corporativas, con timers, lotes, actualizaciones incrementales, colas, reintentos y colas poison.
+- No se han especificado fuentes concretas, proveedor de colas, política de reintentos, métricas de volumen ni resultados cuantificados de SLA. Tampoco se confirmó IA en el bot.

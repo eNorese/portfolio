@@ -380,7 +380,11 @@
     "pause_motion": "Pause animations",
     "resume_motion": "Enable animations",
     "reduced_motion": "Motion reduced by system preference",
-    "more_projects": "More things I have built"
+    "more_projects": "More things I have built",
+    "featured_navigation": "Featured case studies",
+    "case_ats": "ATS · Recruitment",
+    "case_cyber": "Cyber · Applications",
+    "case_sac": "Support · Surveys"
   },
   "teamwork": {
     "eyebrow": "Featured project · real-world work",
@@ -584,5 +588,108 @@
     },
     "related_id": "teamwork",
     "related_label": "Explore the ATS these applications connect to"
+  },
+  "sac": {
+    "eyebrow": "Featured case · employee experience",
+    "project_label": "SAC / 03",
+    "status": "",
+    "category": "WhatsApp support + employee experience surveys",
+    "title": "Resolve questions. Listen to experiences.",
+    "intro": "I contributed to architecture planning and development of a system that connects WhatsApp support, a help desk, and surveys. The bot tries to resolve the question; when it cannot, it hands the issue to an agent with a case number and resolution-time tracking.",
+    "role_label": "MY PARTICIPATION",
+    "role": "Architecture planning and development, with significant complexity in the daily synchronization of large data volumes from multiple corporate sources.",
+    "tags": [
+      "TypeScript",
+      "Azure Functions",
+      "SQL",
+      "Blob Storage",
+      "Message queues",
+      "Poison queues"
+    ],
+    "read_case": "Explore the support system",
+    "outcomes": [
+      {
+        "title": "Continuity of support",
+        "description": "Handoff from the bot to an agent when a question needs human intervention."
+      },
+      {
+        "title": "Visible resolution times",
+        "description": "Case-level measurement to assess compliance with the relevant SLAs."
+      },
+      {
+        "title": "A way to hear employee experiences",
+        "description": "Surveys to identify improvement opportunities throughout the employment journey."
+      }
+    ],
+    "story_title": "Support, surveys, and the challenge of keeping data synchronized",
+    "read_time": "3 min read",
+    "context_title": "Supporting a question also means understanding an experience.",
+    "context": "The system brings together two employee needs: resolving questions and problems through a familiar channel, and sharing feedback about their experience with the company. WhatsApp support integrates with a help desk and surveys covering both case resolution and the journey from recruitment to offboarding.",
+    "phase_label": "Workstream",
+    "phases": [
+      {
+        "title": "A bot as the first point of contact.",
+        "description": "The conversation starts on WhatsApp, where a bot attempts to resolve the user's issue.",
+        "points": [
+          "Initial support for employee questions through WhatsApp.",
+          "When the bot cannot answer, the question is handed to the internal ticketing system.",
+          "Support can continue with an agent instead of ending with the bot's response."
+        ]
+      },
+      {
+        "title": "Assigned cases and measured times.",
+        "description": "The help desk tracks questions that require a person's intervention.",
+        "points": [
+          "Assignment of a case number and an agent who can address the question.",
+          "Measurement of the time needed to resolve the problem.",
+          "Tracking compliance with the service-level agreements (SLAs) applicable to each case."
+        ]
+      },
+      {
+        "title": "Surveys beyond a ticket.",
+        "description": "The survey system captures both the support experience and employee feedback throughout their relationship with the company.",
+        "points": [
+          "Satisfaction measurement associated with case resolution.",
+          "Experience surveys covering recruitment, hiring, and offboarding.",
+          "Information to identify improvement opportunities in employee-facing processes."
+        ]
+      },
+      {
+        "title": "Synchronize without slowing operations.",
+        "description": "The main technical challenge was synchronizing large data volumes daily from multiple corporate sources without affecting system performance. The system used the same stack as the ATS: TypeScript, Azure Functions, SQL, and Blob Storage.",
+        "points": [
+          "Timers to schedule daily synchronization, with batch processing and incremental updates.",
+          "Message queues and retries to manage data processing.",
+          "Poison queues to separate messages whose processing repeatedly fails.",
+          "Strict coordination between corporate sources and the data required by support and surveys."
+        ]
+      }
+    ],
+    "impact_label": "Impact",
+    "impact_title": "Better support and a fuller view of the employment journey.",
+    "impact": "The system enabled the company to understand employee opinions and experiences throughout their employment journey and identify process improvements. It also made asking questions and resolving problems a more pleasant experience for the people the company hires.",
+    "related_id": "",
+    "related_label": "",
+    "visual": {
+      "label": "SUPPORT + EXPERIENCE",
+      "entry": "Question via WhatsApp",
+      "bot": "Support bot",
+      "bot_note": "Attempts to resolve the question",
+      "resolved": "Resolved by the bot",
+      "escalation": "Needs an agent",
+      "ticket": "Assigned case",
+      "ticket_note": "Case number · agent",
+      "sla": "Resolution time / SLA",
+      "survey": "Satisfaction surveys",
+      "survey_note": "Support and employee experience",
+      "stages": [
+        "Recruitment",
+        "Hiring",
+        "Offboarding"
+      ],
+      "data": "Corporate sources",
+      "sync": "Timers · batches · queues · retries",
+      "caption": "Conceptual diagram: an agent receives the case when the bot cannot answer."
+    }
   }
 }

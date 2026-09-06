@@ -380,7 +380,11 @@
     "pause_motion": "Pausar animaciones",
     "resume_motion": "Activar animaciones",
     "reduced_motion": "Movimiento reducido por preferencia del sistema",
-    "more_projects": "También he construido"
+    "more_projects": "También he construido",
+    "featured_navigation": "Casos destacados",
+    "case_ats": "ATS · Reclutamiento",
+    "case_cyber": "Cyber · Postulaciones",
+    "case_sac": "SAC · Encuestas"
   },
   "teamwork": {
     "eyebrow": "Proyecto destacado · experiencia real",
@@ -584,5 +588,108 @@
     },
     "related_id": "teamwork",
     "related_label": "Conoce el ATS al que se conectan estas postulaciones"
+  },
+  "sac": {
+    "eyebrow": "Caso destacado · experiencia del colaborador",
+    "project_label": "SAC / 03",
+    "status": "",
+    "category": "SAC por WhatsApp + encuestas de experiencia",
+    "title": "Resolver consultas. Escuchar experiencias.",
+    "intro": "Participé en la planificación de arquitectura y el desarrollo de un sistema que conecta atención por WhatsApp, una mesa de ayuda y encuestas. El bot intenta resolver la consulta; cuando no puede, la deriva a un agente con un número de caso y seguimiento de sus tiempos de resolución.",
+    "role_label": "MI PARTICIPACIÓN",
+    "role": "Planificación de arquitectura y desarrollo, con especial complejidad en la sincronización diaria de grandes volúmenes de datos desde distintas fuentes corporativas.",
+    "tags": [
+      "TypeScript",
+      "Azure Functions",
+      "SQL",
+      "Blob Storage",
+      "Colas de mensajes",
+      "Colas poison"
+    ],
+    "read_case": "Conoce el sistema SAC",
+    "outcomes": [
+      {
+        "title": "Continuidad en la atención",
+        "description": "Derivación del bot a un agente cuando la consulta necesita intervención humana."
+      },
+      {
+        "title": "Tiempos de resolución visibles",
+        "description": "Medición por caso para evaluar el cumplimiento de los SLA correspondientes."
+      },
+      {
+        "title": "Experiencia que se puede escuchar",
+        "description": "Encuestas para detectar oportunidades de mejora durante la vida laboral."
+      }
+    ],
+    "story_title": "Atención, encuestas y el reto de mantener los datos sincronizados",
+    "read_time": "3 min de lectura",
+    "context_title": "Atender una consulta también es entender una experiencia.",
+    "context": "El sistema combina dos necesidades de los colaboradores: resolver consultas y problemas por un canal cercano, y expresar su opinión sobre la experiencia con la empresa. La atención mediante WhatsApp se integra con una mesa de ayuda y con encuestas que abarcan tanto la resolución de casos como el recorrido desde el reclutamiento hasta el offboarding.",
+    "phase_label": "Frente",
+    "phases": [
+      {
+        "title": "Un bot como primer punto de atención.",
+        "description": "La conversación comienza en WhatsApp, donde un bot intenta resolver el problema del usuario.",
+        "points": [
+          "Atención inicial desde WhatsApp para las consultas de los colaboradores.",
+          "Cuando el bot no tiene una respuesta, la consulta se deriva al sistema interno de tickets.",
+          "La atención puede continuar con un agente, en lugar de terminar en la respuesta del bot."
+        ]
+      },
+      {
+        "title": "Casos asignados y tiempos medidos.",
+        "description": "La mesa de ayuda permite dar seguimiento a las consultas que requieren la intervención de una persona.",
+        "points": [
+          "Asignación de un número de caso y de un agente que pueda atender la consulta.",
+          "Medición del tiempo de resolución del problema.",
+          "Seguimiento del cumplimiento de los acuerdos de nivel de servicio (SLA) correspondientes a cada caso."
+        ]
+      },
+      {
+        "title": "Encuestas más allá de un ticket.",
+        "description": "El sistema de encuestas recoge tanto la experiencia de atención como la opinión de los colaboradores durante su relación laboral con la empresa.",
+        "points": [
+          "Medición de satisfacción asociada a la resolución de casos.",
+          "Encuestas de experiencia que abarcan reclutamiento, contratación y offboarding.",
+          "Información para detectar puntos de mejora en los procesos que viven los colaboradores."
+        ]
+      },
+      {
+        "title": "Sincronizar sin frenar la operación.",
+        "description": "La mayor complejidad técnica estaba en sincronizar diariamente grandes volúmenes de datos desde distintas fuentes corporativas, sin afectar el rendimiento del sistema. Se utilizó el mismo stack del ATS: TypeScript, Azure Functions, SQL y Blob Storage.",
+        "points": [
+          "Temporizadores para programar la sincronización diaria, con procesamiento por lotes y actualizaciones incrementales.",
+          "Colas de mensajes y reintentos para gestionar el procesamiento de los datos.",
+          "Colas poison para separar los mensajes cuyo procesamiento falla de forma reiterada.",
+          "Coordinación estricta entre las fuentes corporativas y los datos que necesitan la atención y las encuestas."
+        ]
+      }
+    ],
+    "impact_label": "Impacto",
+    "impact_title": "Mejor atención y una visión más completa de la vida laboral.",
+    "impact": "El sistema permitió a la empresa conocer la opinión y experiencia de sus colaboradores a lo largo de su vida laboral e identificar puntos de mejora en el proceso. A la vez, hizo más agradable la experiencia de consulta y resolución de problemas para las personas contratadas.",
+    "related_id": "",
+    "related_label": "",
+    "visual": {
+      "label": "ATENCIÓN + EXPERIENCIA",
+      "entry": "Consulta por WhatsApp",
+      "bot": "Bot de atención",
+      "bot_note": "Intenta resolver la consulta",
+      "resolved": "Resuelto por el bot",
+      "escalation": "Necesita un agente",
+      "ticket": "Caso asignado",
+      "ticket_note": "N.º de caso · agente",
+      "sla": "Tiempo de resolución / SLA",
+      "survey": "Encuestas de satisfacción",
+      "survey_note": "Atención y experiencia laboral",
+      "stages": [
+        "Reclutamiento",
+        "Contratación",
+        "Offboarding"
+      ],
+      "data": "Fuentes corporativas",
+      "sync": "Timers · lotes · colas · reintentos",
+      "caption": "Diagrama conceptual: la derivación a un agente ocurre cuando el bot no puede responder."
+    }
   }
 }

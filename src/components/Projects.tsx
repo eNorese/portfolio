@@ -145,8 +145,29 @@ export function Projects() {
             )
           }
         />
+        <nav
+          className="featured-navigation"
+          aria-label={t('design.featured_navigation')}
+        >
+          <a href="#teamwork">
+            <span>01</span>
+            {t('design.case_ats')}
+            <Arrow diagonal />
+          </a>
+          <a href="#cyber">
+            <span>02</span>
+            {t('design.case_cyber')}
+            <Arrow diagonal />
+          </a>
+          <a href="#sac">
+            <span>03</span>
+            {t('design.case_sac')}
+            <Arrow diagonal />
+          </a>
+        </nav>
         <FeaturedProject />
         <FeaturedProject project="cyber" />
+        <FeaturedProject project="sac" />
         <h3 className="other-projects-title">
           {t('design.more_projects')}
           <span aria-hidden="true">↙</span>
