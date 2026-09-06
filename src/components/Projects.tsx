@@ -146,6 +146,7 @@ export function Projects() {
           }
         />
         <FeaturedProject />
+        <FeaturedProject project="cyber" />
         <h3 className="other-projects-title">
           {t('design.more_projects')}
           <span aria-hidden="true">↙</span>

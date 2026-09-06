@@ -460,6 +460,129 @@
     ],
     "impact_label": "Impact",
     "impact_title": "A smoother operation. A more observable system.",
-    "impact": "The work streamlined recruitment, selection, and hiring, with shorter response times and the capacity to manage more people during demanding periods. Monitoring helped the IT team identify improvement opportunities, understand the most-used features, and act proactively. The result was a more manageable and maintainable application."
+    "impact": "The work streamlined recruitment, selection, and hiring, with shorter response times and the capacity to manage more people during demanding periods. Monitoring helped the IT team identify improvement opportunities, understand the most-used features, and act proactively. The result was a more manageable and maintainable application.",
+    "project_label": "TEAMWORK / 01",
+    "status": "",
+    "tags": [
+      "TypeScript",
+      "Azure Functions",
+      "SQL",
+      "Blob Storage",
+      "Jest",
+      "CI/CD"
+    ],
+    "related_id": "cyber",
+    "related_label": "Explore the Cyber acquisition system connected to this ATS"
+  },
+  "cyber": {
+    "eyebrow": "Featured case · candidate acquisition",
+    "project_label": "TEAMWORK / 02",
+    "status": "Continuously evolving",
+    "category": "Campaign website + ATS-connected application forms",
+    "title": "Apply once. Open more opportunities.",
+    "intro": "I built an adaptable Cyber campaign website and an application system connected to the same ATS I evolved at TeamWork. Recruiters configure each opening, and people can apply again without starting over.",
+    "role_label": "MY CONTRIBUTION",
+    "role": "Development of the website and application system: ATS integration, server-side rate limiting, and document validation using OCR, Azure Document Intelligence, and OpenAI vision models.",
+    "tags": [
+      "TypeScript",
+      "Azure Functions",
+      "Rate limiting",
+      "OCR",
+      "Azure Document Intelligence",
+      "OpenAI Vision"
+    ],
+    "read_case": "Explore this case",
+    "outcomes": [
+      {
+        "title": "Less friction",
+        "description": "Reuse of existing data when applying to different openings."
+      },
+      {
+        "title": "More traceability",
+        "description": "Application source and tracking by channel and campaign."
+      },
+      {
+        "title": "Job fairs without manual transcription",
+        "description": "People apply on their phones by scanning the opening's QR code."
+      }
+    ],
+    "story_title": "From scattered forms to a connected journey",
+    "read_time": "5 min read",
+    "context_title": "When attracting candidates also meant losing information.",
+    "context": "Campaigns were published in Canva, while applications relied on external Google and Microsoft forms. Search visibility was insufficient, and key data and documents lacked validation. Bulk submissions also triggered provider restrictions, interrupting applications during campaigns. The challenge was to support continuity throughout that journey and connect acquisition to the ATS.",
+    "phase_label": "Workstream",
+    "phases": [
+      {
+        "title": "A website for more than one campaign.",
+        "description": "I developed a website the company can adapt to different hiring periods, instead of rebuilding an isolated presence for every event.",
+        "points": [
+          "A reusable foundation for Cyber Day, Cyber Monday, Black Friday, and other campaigns.",
+          "An entry point to job opportunities and application forms.",
+          "An alternative to the previous Canva site, focused on improving presentation and digital presence."
+        ]
+      },
+      {
+        "title": "Forms that adapt to each opening.",
+        "description": "Recruitment staff can create forms for their needs, connected directly to the applicant tracking system (ATS).",
+        "points": [
+          "Configuration of fields, required information, descriptions, and job openings.",
+          "Document uploads and validation of relevant data, such as identification and date of birth.",
+          "Checks that submitted information —including name, gender, or date of birth— matches the uploaded identity document."
+        ]
+      },
+      {
+        "title": "Protect submissions. Cross-check documents.",
+        "description": "I addressed two distinct problems: controlling form abuse and checking that declared details matched the identity document.",
+        "points": [
+          "Implemented server-side rate limiting to limit abusive submissions.",
+          "Used OCR libraries, Azure Document Intelligence for identity documents, and OpenAI vision models with a fallback strategy.",
+          "Validation compares submitted details with the uploaded document, without depending on a single processing option."
+        ]
+      },
+      {
+        "title": "Apply again without starting again.",
+        "description": "I designed a journey that retrieves previously entered information when someone is interested in another opening.",
+        "points": [
+          "Applicants review their existing data instead of filling out the entire form again.",
+          "They only add or update information specific to the new application, such as role or shift.",
+          "Applications are linked to the ATS, making them easier to track throughout the process."
+        ]
+      },
+      {
+        "title": "Understand where each application comes from.",
+        "description": "Diversifying and categorizing forms makes it possible to distinguish acquisition channels, both online and in person.",
+        "points": [
+          "Identification of applications from social platforms such as Instagram, Facebook, and TikTok.",
+          "Distinction between job portals such as Computrabajo, Trabajando, and Pandapé, and traffic from the Cyber website.",
+          "QR codes for job fairs: people scan and apply on their phones without depending on manual registration at the booth."
+        ]
+      }
+    ],
+    "impact_label": "Impact and evolution",
+    "impact_title": "A simpler application journey. More context for recruiters.",
+    "impact": "The system made candidate acquisition easier, reduced repeated data entry, and helped retain application traceability throughout each hiring period. It also strengthened applicants' trust and simplified operations at job fairs. The solution continues to grow with recruitment needs.",
+    "visual": {
+      "label": "THE APPLICATION JOURNEY",
+      "sources": [
+        "Social media",
+        "Job portals",
+        "Job fairs · QR"
+      ],
+      "campaign": "Cyber / Black Friday",
+      "title": "Your next opportunity.",
+      "returning": "Your details, once.",
+      "reuse": "Review them and apply for another role.",
+      "fields": [
+        "Personal details",
+        "Identity document",
+        "Role and shift"
+      ],
+      "validated": "Rate limiting · document validation",
+      "destination": "TeamWork ATS",
+      "trace": "Channel · campaign · application",
+      "caption": "Conceptual journey diagram; not a screenshot of the system."
+    },
+    "related_id": "teamwork",
+    "related_label": "Explore the ATS these applications connect to"
   }
 }

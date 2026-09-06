@@ -460,6 +460,129 @@
     ],
     "impact_label": "Impacto",
     "impact_title": "Una operación más ágil. Un sistema más observable.",
-    "impact": "El trabajo facilitó el reclutamiento, la selección y la contratación, con menores tiempos de respuesta y capacidad para gestionar un mayor volumen de personas en periodos exigentes. El monitoreo permitió al área de informática detectar oportunidades de mejora, conocer las funcionalidades más utilizadas y actuar de manera proactiva. El resultado fue una aplicación más manejable y mantenible."
+    "impact": "El trabajo facilitó el reclutamiento, la selección y la contratación, con menores tiempos de respuesta y capacidad para gestionar un mayor volumen de personas en periodos exigentes. El monitoreo permitió al área de informática detectar oportunidades de mejora, conocer las funcionalidades más utilizadas y actuar de manera proactiva. El resultado fue una aplicación más manejable y mantenible.",
+    "project_label": "TEAMWORK / 01",
+    "status": "",
+    "tags": [
+      "TypeScript",
+      "Azure Functions",
+      "SQL",
+      "Blob Storage",
+      "Jest",
+      "CI/CD"
+    ],
+    "related_id": "cyber",
+    "related_label": "Ver la captación Cyber conectada a este ATS"
+  },
+  "cyber": {
+    "eyebrow": "Caso destacado · captación de postulantes",
+    "project_label": "TEAMWORK / 02",
+    "status": "En evolución",
+    "category": "Sitio de campañas + formularios conectados al ATS",
+    "title": "Postular una vez. Abrir más oportunidades.",
+    "intro": "Construí un sitio adaptable a campañas Cyber y un sistema de formularios conectado al mismo ATS que evolucioné en TeamWork. Los reclutadores configuran cada convocatoria y las personas pueden volver a postular sin empezar de cero.",
+    "role_label": "MI APORTE",
+    "role": "Desarrollo del sitio y del sistema de postulaciones: integración con el ATS, rate limiting en el servidor y validación documental con OCR, Azure Document Intelligence y modelos de visión de OpenAI.",
+    "tags": [
+      "TypeScript",
+      "Azure Functions",
+      "Rate limiting",
+      "OCR",
+      "Azure Document Intelligence",
+      "OpenAI Vision"
+    ],
+    "read_case": "Explora este caso",
+    "outcomes": [
+      {
+        "title": "Menos fricción",
+        "description": "Reutilización de datos para postular a distintas ofertas."
+      },
+      {
+        "title": "Más trazabilidad",
+        "description": "Origen y seguimiento de postulaciones por canal y campaña."
+      },
+      {
+        "title": "Ferias sin transcripción manual",
+        "description": "Postulación desde el celular al escanear el QR de la convocatoria."
+      }
+    ],
+    "story_title": "De formularios dispersos a un flujo conectado",
+    "read_time": "5 min de lectura",
+    "context_title": "Cuando captar personas también era perder información.",
+    "context": "Las campañas se publicaban en Canva y la captación dependía de formularios externos de Google y Microsoft. La presencia en buscadores era insuficiente y faltaban validaciones para datos y documentos clave. Además, los envíos masivos provocaban bloqueos de los proveedores que interrumpían la recepción de postulaciones durante las campañas. El reto era dar continuidad a ese recorrido y conectar la captación con el ATS.",
+    "phase_label": "Frente",
+    "phases": [
+      {
+        "title": "Un sitio para más de una campaña.",
+        "description": "Desarrollé un sitio propio que la empresa puede adaptar a distintos periodos de contratación, en lugar de reconstruir una presencia aislada para cada evento.",
+        "points": [
+          "Una base reutilizable para Cyber Day, Cyber Monday, Black Friday y otras campañas.",
+          "Un punto de entrada a las ofertas y formularios de postulación.",
+          "Una alternativa al sitio anterior en Canva, con foco en mejorar la presentación y la presencia digital."
+        ]
+      },
+      {
+        "title": "Formularios que se adaptan a cada convocatoria.",
+        "description": "El personal de reclutamiento puede generar formularios según sus necesidades, vinculados directamente al sistema de seguimiento de candidatos (ATS).",
+        "points": [
+          "Configuración de campos, datos obligatorios, descripciones y ofertas laborales.",
+          "Carga de documentos y validación de datos relevantes, como identificación y fecha de nacimiento.",
+          "Comprobación de coincidencias entre la información ingresada —nombre, género o fecha de nacimiento— y el documento de identidad cargado."
+        ]
+      },
+      {
+        "title": "Proteger el ingreso. Contrastar los documentos.",
+        "description": "Abordé dos problemas distintos: controlar el abuso del formulario y comprobar que los datos declarados coincidieran con el documento de identidad.",
+        "points": [
+          "Implementé rate limiting en el servidor para limitar los envíos abusivos.",
+          "Utilicé librerías OCR, Azure Document Intelligence para documentos de identidad y modelos de visión de OpenAI con una estrategia de fallback.",
+          "La validación contrasta los datos ingresados con los presentes en el documento cargado, sin depender de una sola alternativa de procesamiento."
+        ]
+      },
+      {
+        "title": "Volver a postular sin volver a empezar.",
+        "description": "Diseñé un recorrido que recupera la información previamente ingresada cuando una persona se interesa por otra oferta.",
+        "points": [
+          "La persona revisa sus datos existentes en lugar de completar nuevamente todo el formulario.",
+          "Solo agrega o ajusta la información específica de la nueva postulación, como cargo o turno.",
+          "Las postulaciones quedan vinculadas al ATS, facilitando su seguimiento a lo largo del proceso."
+        ]
+      },
+      {
+        "title": "Saber de dónde llega cada postulación.",
+        "description": "La diversificación y categorización de formularios permite distinguir canales de captación, tanto digitales como presenciales.",
+        "points": [
+          "Identificación de postulaciones provenientes de redes como Instagram, Facebook y TikTok.",
+          "Distinción de portales de empleo como Computrabajo, Trabajando y Pandapé, y de accesos desde el sitio Cyber.",
+          "Generación de códigos QR para convocatorias en ferias laborales: las personas escanean y postulan desde su celular sin depender de una inscripción manual en el stand."
+        ]
+      }
+    ],
+    "impact_label": "Impacto y evolución",
+    "impact_title": "Un recorrido más simple para postular. Más contexto para reclutar.",
+    "impact": "El sistema facilitó la captación, redujo la repetición de datos y ayudó a conservar la trazabilidad de las postulaciones durante cada periodo. También reforzó la confianza de las personas y simplificó la operación en ferias laborales. La solución sigue creciendo a partir de las necesidades de reclutamiento.",
+    "visual": {
+      "label": "RECORRIDO DE UNA POSTULACIÓN",
+      "sources": [
+        "Redes sociales",
+        "Portales de empleo",
+        "Ferias · QR"
+      ],
+      "campaign": "Cyber / Black Friday",
+      "title": "Tu próxima oportunidad.",
+      "returning": "Tus datos, una vez.",
+      "reuse": "Revísalos y postula a otra oferta.",
+      "fields": [
+        "Datos personales",
+        "Documento de identidad",
+        "Cargo y turno"
+      ],
+      "validated": "Rate limiting · validación documental",
+      "destination": "ATS de TeamWork",
+      "trace": "Canal · campaña · postulación",
+      "caption": "Esquema conceptual del recorrido; no es una captura del sistema."
+    },
+    "related_id": "teamwork",
+    "related_label": "Conoce el ATS al que se conectan estas postulaciones"
   }
 }
