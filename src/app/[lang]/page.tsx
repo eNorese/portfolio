@@ -17,20 +17,22 @@ const RubikCube = dynamic(() => import('@/components/RubikCube').then(m => ({ de
 
 export default function Home() {
   return (
-    <main>
+    <>
       {portfolioSections.navbar && <Navbar />}
+      <main id="main-content" tabIndex={-1}>
       {portfolioSections.hero && <Hero />}
-      {portfolioSections.about && <About />}
-      {portfolioSections.services && <Services />}
-      {portfolioSections.experience && <Experience />}
-      {portfolioSections.skills && <Skills />}
       {portfolioSections.projects && <Projects />}
+      {portfolioSections.about && <About />}
+      {portfolioSections.experience && <Experience />}
+      {portfolioSections.services && <Services />}
+      {portfolioSections.skills && <Skills />}
       {portfolioSections.faq && <FAQ />}
       {portfolioSections.contact && <Contact />}
+      </main>
       {portfolioSections.footer && <Footer />}
       {portfolioSections.floatingWhatsApp && <FloatingWhatsApp />}
       {portfolioSections.easterEgg && <EasterEgg />}
       {portfolioSections.rubikCube && <RubikCube />}
-    </main>
+    </>
   )
 }

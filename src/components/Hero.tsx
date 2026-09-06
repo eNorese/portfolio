@@ -1,587 +1,172 @@
 'use client'
-
-import { useEffect, useRef, useState, useCallback } from 'react'
-import { useTheme } from 'next-themes'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { SocialLinks } from '@/components/SocialLinks'
-
-// Themes that render in dark mode
-const DARK_THEMES = ['dark', 'ocean', 'midnight']
-
-// ── Code rain ──────────────────────────────────────────────────────
-const CODE_FRAGMENTS = [
-  'import', 'async function', 'const fn =', 'await', 'return {',
-  'cloud_fn()', 'deploy()', '.then(cb)', 'Promise<T>', 'interface',
-  'export default', 'try { }', '{ id, name }', '=> {}', '.catch(e)',
-  'process.env', 'docker run', 'kubectl get', 'git push', 'CI/CD',
-  '200 OK', 'SELECT *', 'LEFT JOIN', 'Redis.set(', 'EventBus',
-  'SignalR', '0xFF3A', 'null', '...rest', 'useEffect(', 'Azure',
-  'type T =', 'as const', 'node:fs', 'npm run dev', 'Promise.all(',
-  'new Map()', 'Object.keys', 'if (err)', 'class Service', '@Injectable',
-]
-
-interface Drop {
-  x: number; y: number; vy: number
-  text: string; alpha: number; isBlue: boolean; size: number
-}
-
-function createDrops(count: number, w: number, h: number): Drop[] {
-  return Array.from({ length: count }, () => ({
-    x: Math.random() * w,
-    y: Math.random() * h * 1.5 - h * 0.5,
-    vy: 0.2 + Math.random() * 0.5,
-    text: CODE_FRAGMENTS[Math.floor(Math.random() * CODE_FRAGMENTS.length)],
-    alpha: 0.05 + Math.random() * 0.13,
-    isBlue: Math.random() > 0.35,
-    size: 10 + Math.floor(Math.random() * 4),
-  }))
-}
-
-// ── Stars ───────────────────────────────────────────────────────────
-interface Star {
-  x: number; y: number; r: number
-  baseAlpha: number; twinkleSpeed: number; twinklePhase: number
-  darkRgb: string; lightRgb: string
-}
-
-const DARK_STAR_COLORS  = ['255,255,255', '200,220,255', '220,210,255']
-const LIGHT_STAR_COLORS = ['79,70,229',   '99,102,241',  '124,58,237']
-
-function createStars(count: number, w: number, h: number): Star[] {
-  return Array.from({ length: count }, () => {
-    const roll = Math.random()
-    const r = roll < 0.6 ? 0.4 + Math.random() * 0.4
-            : roll < 0.9 ? 0.7 + Math.random() * 0.6
-            :               1.1 + Math.random() * 0.7
-    const idx = Math.floor(Math.random() * DARK_STAR_COLORS.length)
-    return {
-      x: Math.random() * w, y: Math.random() * h, r,
-      baseAlpha: 0.1 + Math.random() * 0.45,
-      twinkleSpeed: 0.25 + Math.random() * 0.65,
-      twinklePhase: Math.random() * Math.PI * 2,
-      darkRgb:  DARK_STAR_COLORS[idx],
-      lightRgb: LIGHT_STAR_COLORS[idx],
-    }
-  })
-}
-
-// ── Shooting stars ──────────────────────────────────────────────────
-interface ShootingStar {
-  x: number; y: number
-  vx: number; vy: number
-  tailLen: number
-  alpha: number
-  decay: number
-  rgb: string
-}
-
-// ── Canvas colors per theme ──────────────────────────────────────────
-interface CanvasColors { primary: string; secondary: string }
-
-function getCanvasColors(theme: string | undefined): CanvasColors {
-  switch (theme) {
-    case 'ocean':    return { primary: '6,182,212',   secondary: '14,165,233' }
-    case 'midnight': return { primary: '167,139,250', secondary: '196,181,253' }
-    case 'forest':   return { primary: '22,163,74',   secondary: '34,197,94' }
-    case 'light':    return { primary: '79,70,229',   secondary: '124,58,237' }
-    default:         return { primary: '96,165,250',  secondary: '167,139,250' }
-  }
-}
-
-// ── Data pixels ─────────────────────────────────────────────────────
-interface DataPixel {
-  id: number; top: string; left: string
-  delay: number; duration: number; blue: boolean
-}
-
-// ── Component ───────────────────────────────────────────────────────
+import { Arrow } from '@/components/PortfolioUI'
+import { portfolioSections } from '@/config/sections'
 export function Hero() {
-  const { t }             = useLanguage()
-  const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  const sectionRef     = useRef<HTMLElement>(null)
-  const canvasRef      = useRef<HTMLCanvasElement>(null)
-  const spotlightRef   = useRef<HTMLDivElement>(null)
-  const spotTargetRef  = useRef({ x: 0, y: 0 })
-  const spotPosRef     = useRef({ x: 0, y: 0 })
-  const spotRafRef     = useRef<number>(0)
-  const isInsideRef    = useRef(false)
-  const dropsRef           = useRef<Drop[]>([])
-  const starsRef           = useRef<Star[]>([])
-  const shootingStarsRef   = useRef<ShootingStar[]>([])
-  const nextShootRef       = useRef<number>(3000 + Math.random() * 4000)
-  const mouseRef       = useRef({ x: 0, y: 0 })
-  const rafRef         = useRef<number>(0)
-  const isDarkRef      = useRef(true)
-  const canvasColorsRef = useRef<CanvasColors>(getCanvasColors('dark'))
-
-  const [pixels,         setPixels]         = useState<DataPixel[]>([])
-  const [glowName,       setGlowName]       = useState(false)
-  const [glowTitle,      setGlowTitle]      = useState(false)
-  const [hoverPrimary,   setHoverPrimary]   = useState(false)
-  const [hoverSecondary, setHoverSecondary] = useState(false)
-
-  useEffect(() => { setMounted(true) }, [])
-
-  // Sync theme refs on every resolved-theme change
-  useEffect(() => {
-    isDarkRef.current       = DARK_THEMES.includes(resolvedTheme ?? '')
-    canvasColorsRef.current = getCanvasColors(resolvedTheme)
-  }, [resolvedTheme])
-
-  // Generate data pixels once (client-only) — se omiten si el usuario pide menos movimiento
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    setPixels(
-      Array.from({ length: 26 }, (_, i) => ({
-        id: i,
-        top:  `${4  + Math.random() * 92}%`,
-        left: `${2  + Math.random() * 96}%`,
-        delay:    Math.random() * 4,
-        duration: 1.8 + Math.random() * 2.4,
-        blue: Math.random() > 0.4,
-      }))
-    )
-  }, [])
-
-  // Spotlight lerp loop — desactivado bajo prefers-reduced-motion
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const EASE = 0.11
-
-    const tick = () => {
-      const pos    = spotPosRef.current
-      const target = spotTargetRef.current
-      pos.x += (target.x - pos.x) * EASE
-      pos.y += (target.y - pos.y) * EASE
-
-      const spot = spotlightRef.current
-      if (spot && isInsideRef.current) {
-        const opacity = isDarkRef.current ? '0.12' : '0.14'
-        spot.style.background =
-          `radial-gradient(700px circle at ${pos.x}px ${pos.y}px, rgb(var(--accent) / ${opacity}), transparent 65%)`
-      }
-
-      spotRafRef.current = requestAnimationFrame(tick)
-    }
-
-    spotRafRef.current = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(spotRafRef.current)
-  }, [])
-
-  // Canvas animation loop
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    const resize = () => {
-      canvas.width  = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-      const isMobile = canvas.width < 768
-      dropsRef.current = createDrops(isMobile ? 25 : 58, canvas.width, canvas.height)
-      starsRef.current = createStars(isMobile ? 50 : 110, canvas.width, canvas.height)
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    const draw = () => {
-      const W = canvas.width
-      const H = canvas.height
-      const { x: mx, y: my } = mouseRef.current
-      const isDark  = isDarkRef.current
-      const colors  = canvasColorsRef.current
-
-      ctx.clearRect(0, 0, W, H)
-
-      const ox = (mx / (W || 1) - 0.5) * -22
-      const oy = (my / (H || 1) - 0.5) * -11
-      ctx.save()
-      ctx.translate(ox, oy)
-
-      // ── Stars ──────────────────────────────────────────────────────
-      const now = performance.now() / 1000
-      for (const s of starsRef.current) {
-        const alpha = (isDark ? s.baseAlpha : s.baseAlpha * 1.8)
-          * (0.45 + 0.55 * Math.sin(now * s.twinkleSpeed + s.twinklePhase))
-        const rgb = isDark ? s.darkRgb : s.lightRgb
-        ctx.beginPath()
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${rgb},${alpha.toFixed(3)})`
-        if (s.r > 1.1 && alpha > 0.3) {
-          ctx.shadowBlur  = 4
-          ctx.shadowColor = `rgba(${rgb},${(alpha * 0.5).toFixed(3)})`
-        } else {
-          ctx.shadowBlur = 0
-        }
-        ctx.fill()
-      }
-      ctx.shadowBlur = 0
-
-      // ── Shooting stars ─────────────────────────────────────────────
-      const nowMs = now * 1000
-      if (nowMs > nextShootRef.current) {
-        nextShootRef.current = nowMs + 2500 + Math.random() * 5000
-        const angle = Math.PI / 5 + (Math.random() - 0.5) * (Math.PI / 8)
-        const spd   = 5 + Math.random() * 5
-        shootingStarsRef.current.push({
-          x:       Math.random() * W * 0.75,
-          y:       Math.random() * H * 0.4,
-          vx:      Math.cos(angle) * spd,
-          vy:      Math.sin(angle) * spd,
-          tailLen: 90 + Math.random() * 70,
-          alpha:   isDark ? 0.85 + Math.random() * 0.15 : 0.35 + Math.random() * 0.2,
-          decay:   0.010 + Math.random() * 0.008,
-          rgb:     Math.random() > 0.25 ? '255,255,255' : '180,210,255',
-        })
-      }
-
-      const aliveShooters: ShootingStar[] = []
-      for (const ss of shootingStarsRef.current) {
-        const mag = Math.sqrt(ss.vx * ss.vx + ss.vy * ss.vy)
-        const tx  = ss.x - (ss.vx / mag) * ss.tailLen
-        const ty  = ss.y - (ss.vy / mag) * ss.tailLen
-
-        const grad = ctx.createLinearGradient(tx, ty, ss.x, ss.y)
-        grad.addColorStop(0,   `rgba(${ss.rgb},0)`)
-        grad.addColorStop(0.6, `rgba(${ss.rgb},${(ss.alpha * 0.3).toFixed(3)})`)
-        grad.addColorStop(1,   `rgba(${ss.rgb},${ss.alpha.toFixed(3)})`)
-
-        ctx.beginPath()
-        ctx.moveTo(tx, ty)
-        ctx.lineTo(ss.x, ss.y)
-        ctx.strokeStyle = grad
-        ctx.lineWidth   = 1.2
-        ctx.shadowBlur  = 8
-        ctx.shadowColor = `rgba(${ss.rgb},${(ss.alpha * 0.6).toFixed(3)})`
-        ctx.stroke()
-
-        ctx.beginPath()
-        ctx.arc(ss.x, ss.y, 1.5, 0, Math.PI * 2)
-        ctx.fillStyle   = `rgba(${ss.rgb},${ss.alpha.toFixed(3)})`
-        ctx.shadowBlur  = 12
-        ctx.shadowColor = `rgba(${ss.rgb},${(ss.alpha * 0.8).toFixed(3)})`
-        ctx.fill()
-        ctx.shadowBlur = 0
-
-        ss.x    += ss.vx
-        ss.y    += ss.vy
-        ss.alpha -= ss.decay
-
-        if (ss.alpha > 0 && ss.x < W + 200 && ss.y < H + 200) {
-          aliveShooters.push(ss)
-        }
-      }
-      shootingStarsRef.current = aliveShooters
-
-      // ── Code rain ──────────────────────────────────────────────────
-      for (const d of dropsRef.current) {
-        ctx.font = `${d.size}px 'Courier New', monospace`
-        const a = isDark ? d.alpha : Math.min(d.alpha * 2.8, 0.32)
-        ctx.fillStyle = d.isBlue
-          ? `rgba(${colors.primary},${a})`
-          : `rgba(${colors.secondary},${a})`
-        ctx.fillText(d.text, d.x, d.y)
-
-        d.y += d.vy
-        if (d.y > H + 30) {
-          d.y    = -20
-          d.x    = Math.random() * W
-          d.text = CODE_FRAGMENTS[Math.floor(Math.random() * CODE_FRAGMENTS.length)]
-          d.alpha = 0.05 + Math.random() * 0.13
-        }
-      }
-
-      ctx.restore()
-      if (running) rafRef.current = requestAnimationFrame(draw)
-    }
-
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let running = false
-    const start = () => {
-      if (running || reduced) return
-      running = true
-      rafRef.current = requestAnimationFrame(draw)
-    }
-    const stop = () => {
-      running = false
-      cancelAnimationFrame(rafRef.current)
-    }
-
-    if (reduced) {
-      draw() // un solo frame estático (running=false → no se reprograma)
-    } else {
-      start()
-    }
-
-    // Pausa el loop cuando la pestaña está oculta (ahorro de CPU/batería)
-    const onVisibility = () => { if (document.hidden) stop(); else start() }
-    document.addEventListener('visibilitychange', onVisibility)
-
-    // Pausa el loop cuando el Hero sale del viewport
-    const io = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) start(); else stop() },
-      { threshold: 0 }
-    )
-    io.observe(canvas)
-
-    return () => {
-      window.removeEventListener('resize', resize)
-      document.removeEventListener('visibilitychange', onVisibility)
-      io.disconnect()
-      cancelAnimationFrame(rafRef.current)
-    }
-  }, [])
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    const rect = sectionRef.current?.getBoundingClientRect()
-    if (!rect) return
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    mouseRef.current = { x, y }
-    spotTargetRef.current = { x, y }
-
-    if (!isInsideRef.current) {
-      spotPosRef.current = { x, y }
-      isInsideRef.current = true
-      if (spotlightRef.current) spotlightRef.current.style.opacity = '1'
-    }
-  }, [])
-
-  const handleMouseLeave = useCallback(() => {
-    mouseRef.current = { x: 0, y: 0 }
-    isInsideRef.current = false
-    if (spotlightRef.current) spotlightRef.current.style.opacity = '0'
-  }, [])
-
-  const isDark = mounted ? DARK_THEMES.includes(resolvedTheme ?? '') : true
-
+  const { t } = useLanguage()
   return (
-    <section
-      ref={sectionRef}
-      id="home"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-gray-950"
-    >
-      {/* ── Code rain canvas ── */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ zIndex: 0 }}
-      />
-
-      {/* ── Cursor spotlight ── */}
-      <div
-        ref={spotlightRef}
-        className="absolute inset-0 pointer-events-none"
-        style={{ zIndex: 3, opacity: 0, transition: 'opacity 0.5s ease' }}
-      />
-
-      {/* ── Side breathing lights ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
-        <div
-          className="absolute inset-y-0 left-0 w-[38%]"
-          style={{
-            background: 'radial-gradient(ellipse at left center, rgb(var(--accent) / 0.22) 0%, transparent 75%)',
-            animation: 'side-breathe 6s ease-in-out infinite',
-          }}
-        />
-        <div
-          className="absolute inset-y-0 right-0 w-[38%]"
-          style={{
-            background: 'radial-gradient(ellipse at right center, rgb(var(--accent) / 0.18) 0%, transparent 75%)',
-            animation: 'side-breathe 7.5s ease-in-out 2s infinite',
-          }}
-        />
-      </div>
-
-      {/* ── Data pixels ── */}
-      {pixels.map((px) => (
-        <span
-          key={px.id}
-          className="absolute rounded-full pointer-events-none"
-          style={{
-            top: px.top, left: px.left,
-            width: '3px', height: '3px',
-            background: px.blue
-              ? (isDark ? 'rgba(96,165,250,0.85)'  : 'rgb(var(--accent) / 0.6)')
-              : (isDark ? 'rgba(167,139,250,0.85)' : 'rgb(var(--accent) / 0.5)'),
-            boxShadow: px.blue
-              ? '0 0 5px rgba(96,165,250,0.7), 0 0 10px rgba(96,165,250,0.35)'
-              : '0 0 5px rgba(167,139,250,0.7), 0 0 10px rgba(167,139,250,0.35)',
-            animation: `pixel-blink ${px.duration}s ease-in-out ${px.delay}s infinite`,
-            zIndex: 2,
-          }}
-        />
-      ))}
-
-      {/* ── Main content ── */}
-      <div
-        className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32 flex flex-col items-center text-center"
-        style={{ zIndex: 10 }}
-      >
-        {/* Eyebrow */}
-        <span className="inline-block mb-5 text-xs font-mono tracking-[0.25em] uppercase text-accent">
-          {t('hero.greeting')}
-        </span>
-
-        {/* Name */}
-        <h1
-          className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-4 cursor-default select-none"
-          onMouseEnter={() => setGlowName(true)}
-          onMouseLeave={() => setGlowName(false)}
-          style={{
-            textShadow: glowName
-              ? '0 0 10px rgb(var(--accent) / 0.95), 0 0 30px rgb(var(--accent) / 0.6), 0 0 65px rgb(var(--accent) / 0.3)'
-              : 'none',
-            transition: 'text-shadow 0.35s ease',
-          }}
-        >
-          {t('hero.name')}
-        </h1>
-
-        {/* Title */}
-        <p
-          className="text-lg sm:text-xl lg:text-2xl font-light text-gray-600 dark:text-gray-300 mb-6 cursor-default select-none"
-          onMouseEnter={() => setGlowTitle(true)}
-          onMouseLeave={() => setGlowTitle(false)}
-          style={{
-            textShadow: glowTitle
-              ? '0 0 8px rgb(var(--accent) / 0.95), 0 0 25px rgb(var(--accent) / 0.55), 0 0 55px rgb(var(--accent) / 0.25)'
-              : 'none',
-            transition: 'text-shadow 0.35s ease',
-          }}
-        >
-          {t('hero.title')}
-        </p>
-
-        {/* Slogan / tagline */}
-        <p className="max-w-xl text-xs sm:text-sm font-mono tracking-wide text-accent/90 mb-6">
-          {t('hero.slogan')}
-        </p>
-
-        {/* Neon divider */}
-        <div
-          className="w-64 h-px mb-6"
-          style={{ background: 'linear-gradient(90deg, transparent, rgb(var(--accent) / 0.7), transparent)' }}
-        />
-
-        {/* Description */}
-        <p className="max-w-xl text-base sm:text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-10">
-          {t('hero.description')}
-        </p>
-
-        {/* CTA buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-5">
-
-          {/* Primary — neon bloom */}
-          <a
-            href="#servicios"
-            onMouseEnter={() => setHoverPrimary(true)}
-            onMouseLeave={() => setHoverPrimary(false)}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-white text-sm font-medium"
-            style={{
-              backgroundColor: 'rgb(var(--accent))',
-              opacity: hoverPrimary ? 0.9 : 1,
-              boxShadow: hoverPrimary
-                ? '0 0 18px rgb(var(--accent) / 0.75), 0 0 45px rgb(var(--accent) / 0.35), 0 0 80px rgb(var(--accent) / 0.15)'
-                : 'none',
-              transition: 'opacity 0.25s ease, box-shadow 0.35s ease',
-            }}
-          >
-            {t('hero.cta_services')}
-            <svg
-              width="16" height="16" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" strokeWidth={2}
-              style={{
-                transform: hoverPrimary ? 'translateX(4px)' : 'translateX(0)',
-                transition: 'transform 0.25s ease',
-              }}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+    <section id="home" className="hero-section">
+      <div className="shell">
+        <div className="hero-meta">
+          <span>
+            <span className="status-dot" />
+            {t('contact.info.availability_value')}
+          </span>
+          <span>{t('contact.info.location_value')} ↗</span>
+        </div>
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <p className="eyebrow">{t('hero.greeting')} Enzo Norese —</p>
+            <h1>
+              {t('design.hero_line_1')}
+              <br />
+              <em>{t('design.hero_line_2')}</em>
+            </h1>
+            <p className="hero-role">
+              {t('design.backend_role')} <span>/</span> {t('design.cloud_role')}
+            </p>
+            <p className="hero-description">{t('design.hero_description')}</p>
+            <div className="hero-actions">
+              {portfolioSections.projects && (
+                <a href="#proyectos" className="button-primary">
+                  {t('hero.cta_work')}
+                  <Arrow />
+                </a>
+              )}
+              {portfolioSections.contact && (
+                <a href="#contacto" className="button-text">
+                  {t('design.lets_talk')}
+                  <Arrow diagonal />
+                </a>
+              )}
+            </div>
+            <div className="hero-social">
+              <SocialLinks size={18} baseClass="muted" />
+              <span className="social-rule" />
+              <span className="mono">{t('design.built_with_intent')}</span>
+            </div>
+          </div>
+          <div className="architecture-art" aria-hidden="true">
+            <div className="art-topline">
+              <span>EN / SYSTEM ARCHITECTURE</span>
+              <span>v.01</span>
+            </div>
+            <svg className="orbit-svg" viewBox="0 0 460 410" fill="none">
+              <defs>
+                <radialGradient id="orbit-glow">
+                  <stop stopColor="currentColor" stopOpacity=".12" />
+                  <stop offset="1" stopColor="currentColor" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+              <circle cx="230" cy="205" r="190" fill="url(#orbit-glow)" />
+              <g stroke="currentColor">
+                <ellipse
+                  cx="230"
+                  cy="205"
+                  rx="181"
+                  ry="70"
+                  transform="rotate(-35 230 205)"
+                  opacity=".35"
+                />
+                <ellipse
+                  cx="230"
+                  cy="205"
+                  rx="181"
+                  ry="70"
+                  transform="rotate(35 230 205)"
+                  opacity=".35"
+                />
+                <ellipse
+                  cx="230"
+                  cy="205"
+                  rx="181"
+                  ry="70"
+                  transform="rotate(90 230 205)"
+                  opacity=".2"
+                />
+                <circle
+                  cx="230"
+                  cy="205"
+                  r="154"
+                  strokeDasharray="2 8"
+                  opacity=".22"
+                />
+              </g>
+              <g className="orbit-points" fill="currentColor">
+                <circle cx="88" cy="115" r="4" />
+                <circle cx="374" cy="112" r="4" />
+                <circle cx="230" cy="359" r="4" />
+              </g>
+              <g
+                transform="translate(177 151)"
+                stroke="currentColor"
+                strokeWidth="1.2"
+              >
+                <path
+                  d="M53 0 106 30v60l-53 30L0 90V30Z"
+                  fill="var(--surface)"
+                />
+                <path
+                  d="m0 30 53 30 53-30M53 60v60M27 15l53 30v60M80 15 27 45v60M0 60l53 30 53-30"
+                  opacity=".55"
+                />
+                <path
+                  d="m0 30 53 30 53-30-53-30Z"
+                  fill="currentColor"
+                  fillOpacity=".15"
+                />
+              </g>
             </svg>
-          </a>
-
-          {/* Secondary — border + inner glow */}
+            <span className="orbit-label orbit-label-top">CLOUD</span>
+            <span className="orbit-label orbit-label-left">BACKEND</span>
+            <span className="orbit-label orbit-label-right">AI</span>
+            <div className="code-caption">
+              <span className="muted">const</span> approach = {'{'}
+              <br />
+              <span className="code-indent">
+                architecture: <span>&apos;intentional&apos;</span>,
+              </span>
+              <br />
+              <span className="code-indent">
+                impact: <span>&apos;real&apos;</span>
+              </span>
+              <br />
+              {'}'};
+            </div>
+            <div className="art-bottomline">
+              <span className="status-dot" />
+              {t('design.art_caption')}
+              <span>01 / 03</span>
+            </div>
+          </div>
+        </div>
+        <div className="hero-bottom">
+          <p className="eyebrow">{t('design.core_stack')}</p>
+          <div className="stack-line">
+            <span>
+              <b className="stack-symbol">△</b> Microsoft Azure
+            </span>
+            <span>
+              <b className="ts-symbol">TS</b> TypeScript
+            </span>
+            <span>
+              <b className="stack-symbol">⬡</b> Node.js
+            </span>
+            <span>
+              <b className="stack-symbol">◎</b> PostgreSQL
+            </span>
+            <span>
+              <b className="stack-symbol">✳</b> Applied AI
+            </span>
+          </div>
           <a
-            href="#contacto"
-            onMouseEnter={() => setHoverSecondary(true)}
-            onMouseLeave={() => setHoverSecondary(false)}
-            className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium"
-            style={{
-              border: `1px solid ${
-                hoverSecondary
-                  ? 'rgb(var(--accent) / 0.85)'
-                  : isDark ? 'rgba(75,85,99,0.9)' : 'rgb(var(--accent) / 0.35)'
-              }`,
-              color: hoverSecondary
-                ? 'rgb(var(--accent))'
-                : isDark ? 'rgba(209,213,219,1)' : 'rgba(55,65,81,1)',
-              boxShadow: hoverSecondary
-                ? '0 0 14px rgb(var(--accent) / 0.45), inset 0 0 28px rgb(var(--accent) / 0.1)'
-                : 'none',
-              transition: 'border-color 0.25s ease, color 0.25s ease, box-shadow 0.35s ease',
-            }}
+            className="explore-link"
+            href={portfolioSections.projects ? '#proyectos' : '#sobre-mi'}
+            aria-label={t('hero.scroll')}
           >
-            {t('hero.cta_contact')}
+            ↓
           </a>
-        </div>
-
-        {/* CV download */}
-        <a
-          href="/cv.pdf"
-          download
-          className="inline-flex items-center gap-2 text-xs font-mono text-gray-400 dark:text-gray-500 hover:text-accent transition-colors duration-200 mb-7"
-        >
-          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-          </svg>
-          {t('hero.cv_download')}
-        </a>
-
-        {/* Social links */}
-        <div className="flex items-center gap-4">
-          <div className="h-px w-10 bg-gray-300/70 dark:bg-gray-700/60" />
-          <SocialLinks size={20} baseClass="text-gray-400 dark:text-gray-500" />
-          <div className="h-px w-10 bg-gray-300/70 dark:bg-gray-700/60" />
-        </div>
-      </div>
-
-      {/* ── Bottom fade into About section ── */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900"
-        style={{ zIndex: 9 }}
-      />
-
-      {/* ── Scroll indicator ── */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        style={{ zIndex: 10 }}
-      >
-        <span
-          className="text-xs text-gray-400 dark:text-gray-500 font-mono"
-          style={{ animation: 'breathe 2.8s ease-in-out infinite' }}
-        >
-          {t('hero.scroll')}
-        </span>
-        <div
-          className="w-5 h-8 rounded-full flex justify-center items-start pt-1.5"
-          style={{
-            border: '1px solid rgb(var(--accent) / 0.45)',
-            boxShadow: '0 0 8px rgb(var(--accent) / 0.2)',
-            animation: 'breathe 2.8s ease-in-out infinite',
-          }}
-        >
-          <div
-            className="w-0.5 h-2 rounded-full"
-            style={{
-              background: 'rgb(var(--accent) / 0.9)',
-              animation: 'scroll-bob 1.6s ease-in-out infinite',
-            }}
-          />
         </div>
       </div>
     </section>

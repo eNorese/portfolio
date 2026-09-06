@@ -14,7 +14,7 @@
     "title": "Desarrollador Backend & Arquitecto Cloud",
     "slogan": "Ingeniería Aumentada — Software, IA y arquitectura para escalar negocios",
     "description": "Diseño e implemento arquitecturas backend sobre infraestructura cloud, integrando servicios escalables e inteligencia artificial para resolver problemas reales de negocio. Referente técnico con experiencia en sistemas de reclutamiento, migración de ERP e integración de modelos de IA.",
-    "cta_work": "Ver Mi Trabajo",
+    "cta_work": "Ver proyectos",
     "cta_services": "Automatiza tu negocio",
     "cta_contact": "Contactarme",
     "scroll": "Desliza para explorar",
@@ -82,7 +82,20 @@
         "duration": "3 años 10 meses",
         "location": "Santiago, Chile · Jornada completa",
         "description": "Referente técnico y arquitecto de soluciones, responsable de decisiones de arquitectura, estándares del equipo e integración de servicios cloud. Lidero la migración ERP Softland → Rex+, gestionando análisis de componentes, mapeo de esquemas entre sistemas y validación de integridad de datos. Diseño e implemento arquitecturas serverless sobre Azure Functions v4, integrando servicios como Service Bus, SignalR, Blob Storage, CosmosDB y PostgreSQL.",
-        "tags": ["TypeScript", "Node.js", "Azure Functions", "PostgreSQL", "CosmosDB", "Azure Service Bus", "Azure SignalR", "Blob Storage", "GitHub Actions", "OAuth 2.0 / JWT", "React JS", "Python"]
+        "tags": [
+          "TypeScript",
+          "Node.js",
+          "Azure Functions",
+          "PostgreSQL",
+          "CosmosDB",
+          "Azure Service Bus",
+          "Azure SignalR",
+          "Blob Storage",
+          "GitHub Actions",
+          "OAuth 2.0 / JWT",
+          "React JS",
+          "Python"
+        ]
       },
       {
         "role": "Software Developer",
@@ -91,7 +104,12 @@
         "duration": "10 meses",
         "location": "Chile · Jornada parcial",
         "description": "Encargado de mantener, resolver incidencias y desarrollar nuevas funcionalidades de APIs de integración programadas con C# (.NET Core 3.1) y JavaScript (Node.js). Mantención de flujos de integración y despliegue continuo (CI/CD).",
-        "tags": ["C# / .NET Core", "Node.js", "JavaScript", "CI/CD"]
+        "tags": [
+          "C# / .NET Core",
+          "Node.js",
+          "JavaScript",
+          "CI/CD"
+        ]
       },
       {
         "role": "Técnico Electrónico",
@@ -100,7 +118,11 @@
         "duration": "6 años",
         "location": "Gran Santiago · Jornada completa",
         "description": "Encargado de reparar y hacer mantención a una variedad de equipos electrónicos, especializado en cámaras digitales e impresoras.",
-        "tags": ["Electrónica", "Reparación de Hardware", "Diagnóstico"]
+        "tags": [
+          "Electrónica",
+          "Reparación de Hardware",
+          "Diagnóstico"
+        ]
       }
     ]
   },
@@ -146,28 +168,49 @@
       {
         "title": "Relational Model",
         "description": "Herramienta tipo Figma exclusiva para documentación visual de modelos de bases de datos relacionales. Permite diseñar esquemas, definir relaciones y exportar documentación estructurada.",
-        "tags": ["TypeScript", "React", "Node.js"],
+        "tags": [
+          "TypeScript",
+          "React",
+          "Node.js"
+        ],
         "code": "#",
         "codeDisabled": true
       },
       {
         "title": "EuforIA",
         "description": "Interfaz de chat con IA que integra múltiples modelos de lenguaje (Claude, GPT-4o, Gemini) en una sola plataforma. Permite alternar entre modelos y comparar respuestas en tiempo real.",
-        "tags": ["TypeScript", "React", "Claude API", "GPT-4o", "Gemini"],
+        "tags": [
+          "TypeScript",
+          "React",
+          "Claude API",
+          "GPT-4o",
+          "Gemini"
+        ],
         "code": "#",
         "codeDisabled": true
       },
       {
         "title": "Auth System",
         "description": "Sistema de autenticación y autorización completo con OAuth 2.0, OIDC, gestión de refresh tokens, revocación de sesiones y blacklist sobre Redis. Diseñado como módulo reutilizable para arquitecturas Azure.",
-        "tags": ["TypeScript", "Node.js", "Redis", "JWT", "OAuth 2.0"],
+        "tags": [
+          "TypeScript",
+          "Node.js",
+          "Redis",
+          "JWT",
+          "OAuth 2.0"
+        ],
         "code": "#",
         "codeDisabled": true
       },
       {
         "title": "Azure Path",
         "description": "Aplicación de estudio interactiva para preparación de certificaciones Microsoft Azure. Organiza contenido por módulos, incluye preguntas de práctica y seguimiento de progreso.",
-        "tags": ["TypeScript", "React", "Node.js", "Azure"],
+        "tags": [
+          "TypeScript",
+          "React",
+          "Node.js",
+          "Azure"
+        ],
         "live": "#",
         "liveDisabled": true,
         "code": "#",
@@ -176,7 +219,12 @@
       {
         "title": "PoC Tiempo Real con Azure SignalR",
         "description": "Prueba de concepto de mensajería en tiempo real escalable usando Azure SignalR Service con Azure Functions. Demuestra patrones de comunicación WebSocket orientada a eventos para aplicaciones distribuidas.",
-        "tags": ["TypeScript", "Azure Functions", "Azure SignalR", "Node.js"],
+        "tags": [
+          "TypeScript",
+          "Azure Functions",
+          "Azure SignalR",
+          "Node.js"
+        ],
         "live": "#",
         "liveDisabled": true,
         "code": "#",
@@ -185,7 +233,13 @@
       {
         "title": "Librerías Backend TypeScript",
         "description": "Colección de librerías utilitarias para Node.js: ajuste de zona horaria en funciones serverless Azure, validación y formateo de RUT y teléfonos chilenos, y query builder para PostgreSQL con protección contra vulnerabilidades de inyección.",
-        "tags": ["TypeScript", "Node.js", "PostgreSQL", "Serverless", "Security"],
+        "tags": [
+          "TypeScript",
+          "Node.js",
+          "PostgreSQL",
+          "Serverless",
+          "Security"
+        ],
         "code": "#",
         "codeDisabled": true
       }
@@ -254,5 +308,73 @@
   },
   "whatsapp": {
     "message": "¡Hola Enzo! 👋 Vi tu portfolio en enorese.dev y me gustaría conversar contigo."
+  },
+  "design": {
+    "hero_line_1": "Ingeniería sólida.",
+    "hero_line_2": "Ideas sin límites.",
+    "hero_description": "Transformo problemas complejos en software que funciona. Backend, arquitectura cloud e inteligencia artificial, con atención a cada detalle.",
+    "lets_talk": "Hablemos",
+    "built_with_intent": "Código con intención. Impacto real.",
+    "art_caption": "De la idea a la arquitectura",
+    "core_stack": "Mi stack principal",
+    "skip": "Saltar al contenido",
+    "navigation": "Navegación principal",
+    "switch_language": "Switch to English",
+    "open_menu": "Abrir menú",
+    "close_menu": "Cerrar menú",
+    "projects_title": "Del código al mundo real.",
+    "projects_description": "Una selección de proyectos donde la arquitectura se convierte en producto.",
+    "filter_projects": "Filtrar proyectos",
+    "filters": {
+      "all": "Todos",
+      "fullstack": "Full stack",
+      "backend": "Backend",
+      "cloud": "Cloud"
+    },
+    "results": "proyectos mostrados",
+    "concept_visual": "Vista conceptual",
+    "explore_project": "Explorar proyecto",
+    "discuss_project": "Conversemos sobre este proyecto",
+    "project_notes": {
+      "0": "Enfoque: representar esquemas y relaciones de forma visual, con exportación de documentación estructurada. TypeScript conecta el modelado de datos con una interfaz construida en React.",
+      "1": "Enfoque: reunir Claude, GPT-4o y Gemini en una experiencia de conversación común, permitiendo alternar modelos y comparar sus respuestas.",
+      "2": "Enfoque: separar autenticación y autorización en un módulo reutilizable. OAuth 2.0 y OIDC gestionan la identidad; Redis permite revocar sesiones y tokens.",
+      "3": "Enfoque: convertir la preparación de certificaciones Azure en un recorrido de estudio, con módulos, práctica y seguimiento de progreso.",
+      "4": "Enfoque: explorar comunicación orientada a eventos mediante Azure SignalR y Functions. Una prueba de concepto para aplicaciones distribuidas en tiempo real.",
+      "5": "Enfoque: resolver necesidades recurrentes del backend con utilidades reutilizables: zonas horarias, validaciones locales y consultas PostgreSQL protegidas contra inyección."
+    },
+    "about_title": "Criterio de ingeniero. Curiosidad de creador.",
+    "philosophy": "La tecnología tiene sentido cuando resuelve algo que importa.",
+    "augmented_engineering": "Ingeniería aumentada",
+    "about_intro": "Soy Enzo. Me gusta entender cómo funcionan las cosas. Y construirlas mejor.",
+    "about_journey": "De la electrónica a los sistemas distribuidos: combino fundamentos técnicos con IA como multiplicador de capacidad. La herramienta acelera; el criterio de ingeniería guía.",
+    "linkedin": "Más sobre mi trayectoria",
+    "remote": "Conectado con el mundo",
+    "experience_title": "Experiencia que se construye.",
+    "current": "Actual",
+    "services_title": "Tu próximo reto, bien resuelto.",
+    "skills_title": "Las herramientas detrás del trabajo.",
+    "skills_description": "Un stack elegido para construir sistemas mantenibles, conectados y listos para crecer.",
+    "faq_title": "Antes de empezar.",
+    "contact_title": "¿Construimos algo que importe?",
+    "whatsapp": "También por WhatsApp",
+    "contact_note": "Cuéntame tu idea, el reto de tu equipo o esa oportunidad que tienes en mente.",
+    "message_label": "¿Qué tienes en mente?",
+    "placeholder_name": "Tu nombre",
+    "placeholder_email": "tu@correo.com",
+    "email_instead": "Escríbeme por email",
+    "required_fields": "* Campos obligatorios",
+    "select_theme": "Seleccionar tema",
+    "themes": {
+      "dark": "Oscuro",
+      "light": "Claro",
+      "forest": "Bosque",
+      "ocean": "Océano",
+      "midnight": "Medianoche"
+    },
+    "back_top": "Volver arriba",
+    "footer_note": "Hecho con intención. Construido con Next.js.",
+    "backend_role": "Desarrollador Backend",
+    "cloud_role": "Arquitecto Cloud"
   }
 }

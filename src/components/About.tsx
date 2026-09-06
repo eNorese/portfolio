@@ -1,145 +1,63 @@
 'use client'
-
 import { useLanguage } from '@/contexts/LanguageContext'
-import { SocialLinks } from '@/components/SocialLinks'
-
-const techStack = [
-  {
-    name: 'Azure Cloud',
-    icon: (
-      <svg viewBox="0 0 96 96" className="w-8 h-8" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="azureA" x1="-0.4" x2="1" y1="0.5" y2="0.5" gradientUnits="objectBoundingBox">
-            <stop offset="0" stopColor="#114a8b" />
-            <stop offset="1" stopColor="#0669bc" />
-          </linearGradient>
-          <linearGradient id="azureB" x1="0.1" x2="0.8" y1="0.3" y2="0.9" gradientUnits="objectBoundingBox">
-            <stop offset="0" stopColor="#3ccbf4" />
-            <stop offset="1" stopColor="#2892df" />
-          </linearGradient>
-        </defs>
-        <path d="M33.338 8.394H58.81L31.24 88.241a3.733 3.733 0 01-3.533 2.527H7.489a3.728 3.728 0 01-3.53-4.933L24.95 17.918a3.734 3.734 0 013.533-2.525h4.855z" fill="url(#azureA)" />
-        <path d="M68.31 61.504H29.099a1.72 1.72 0 00-1.171 2.977l25.502 23.762a3.754 3.754 0 002.56.992h22.52z" fill="#0078d4" />
-        <path d="M33.338 8.394a3.71 3.71 0 00-3.541 2.569L3.98 85.799a3.726 3.726 0 003.505 5.043h20.192a4.014 4.014 0 003.073-2.74l4.818-14.225 17.19 16.033a3.817 3.817 0 002.453.847h21.39l-9.386-26.918-27.423.006L58.81 8.394z" fill="url(#azureB)" />
-      </svg>
-    ),
-  },
-  {
-    name: 'TypeScript',
-    icon: (
-      <svg viewBox="0 0 32 32" className="w-8 h-8" xmlns="http://www.w3.org/2000/svg">
-        <rect width="32" height="32" rx="4" fill="#3178C6" />
-        <path d="M18.245 22.82v2.573c.418.214.913.376 1.483.487.57.11 1.172.166 1.806.166.617 0 1.2-.066 1.748-.197a4.05 4.05 0 0 0 1.408-.633 2.98 2.98 0 0 0 .941-1.107c.228-.454.342-.997.342-1.63 0-.463-.068-.87-.204-1.223a2.85 2.85 0 0 0-.594-.944 4.268 4.268 0 0 0-.95-.728 10.55 10.55 0 0 0-1.265-.596c-.344-.134-.648-.263-.913-.387a3.574 3.574 0 0 1-.672-.383 1.59 1.59 0 0 1-.418-.457.976.976 0 0 1-.14-.52c0-.18.042-.34.126-.48a1.1 1.1 0 0 1 .355-.361 1.77 1.77 0 0 1 .55-.224 2.9 2.9 0 0 1 .706-.079c.187 0 .382.014.585.042.203.028.405.074.607.137.202.063.398.145.587.246.19.1.363.22.52.36V16.64a6.2 6.2 0 0 0-1.142-.306 8.1 8.1 0 0 0-1.387-.107c-.609 0-1.185.07-1.727.208a4.048 4.048 0 0 0-1.388.647 3.047 3.047 0 0 0-.917 1.092c-.22.44-.33.955-.33 1.544 0 .765.22 1.414.662 1.948.44.534 1.104.979 1.99 1.335.363.14.696.277 1 .41.302.133.562.273.78.42.218.146.388.307.51.482.123.175.184.376.184.604 0 .17-.037.328-.11.472a.997.997 0 0 1-.33.365 1.65 1.65 0 0 1-.55.231 3.13 3.13 0 0 1-.77.085c-.504 0-1.003-.094-1.497-.28a5.01 5.01 0 0 1-1.356-.794zm-4.666-5.635h3.297V15H8v2.185h3.285V28h2.294V17.185z" fill="white" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Serverless',
-    icon: (
-      <svg viewBox="0 0 24 24" className="w-8 h-8" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" fill="none" />
-        <path d="M2 17l10 5 10-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" />
-        <path d="M2 12l10 5 10-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" />
-      </svg>
-    ),
-  },
-  {
-    name: 'IA Aplicada',
-    icon: (
-      <svg viewBox="0 0 24 24" className="w-8 h-8 text-accent" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Neural network: 3 layers of nodes connected by edges */}
-        {/* Edges — drawn first so nodes sit on top */}
-        <line x1="4" y1="7"  x2="10" y2="5"  stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="4" y1="7"  x2="10" y2="12" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="4" y1="7"  x2="10" y2="19" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="4" y1="17" x2="10" y2="5"  stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="4" y1="17" x2="10" y2="12" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="4" y1="17" x2="10" y2="19" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="10" y1="5"  x2="14" y2="9"  stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="10" y1="5"  x2="14" y2="15" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="10" y1="12" x2="14" y2="9"  stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="10" y1="12" x2="14" y2="15" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="10" y1="19" x2="14" y2="9"  stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="10" y1="19" x2="14" y2="15" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="14" y1="9"  x2="20" y2="12" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="14" y1="15" x2="20" y2="12" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        {/* Nodes */}
-        <circle cx="4"  cy="7"  r="1.8" fill="currentColor" />
-        <circle cx="4"  cy="17" r="1.8" fill="currentColor" />
-        <circle cx="10" cy="5"  r="1.8" fill="currentColor" />
-        <circle cx="10" cy="12" r="1.8" fill="currentColor" />
-        <circle cx="10" cy="19" r="1.8" fill="currentColor" />
-        <circle cx="14" cy="9"  r="1.8" fill="currentColor" />
-        <circle cx="14" cy="15" r="1.8" fill="currentColor" />
-        <circle cx="20" cy="12" r="1.8" fill="currentColor" />
-      </svg>
-    ),
-  },
-]
-
+import { SectionHeading, Arrow } from '@/components/PortfolioUI'
+import social from '@/config/social.json'
 export function About() {
   const { t } = useLanguage()
-
   return (
-    <section id="sobre-mi" className="relative py-24 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Section header */}
-        <div className="mb-14">
-          <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            01 —
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-            {t('about.section_title')}
-          </h2>
-          <p className="mt-2 text-gray-500 dark:text-gray-400 text-sm">{t('about.subtitle')}</p>
-        </div>
-
-        <div className="grid lg:grid-cols-5 gap-12 items-start">
-          {/* Bio — wider column */}
-          <div className="lg:col-span-3 space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed text-base">
-            <p>{t('about.bio_1')}</p>
-            <p>{t('about.bio_2')}</p>
-            <p>{t('about.bio_3')}</p>
-
-            {/* Social + CV */}
-            <div className="flex flex-wrap items-center gap-5 pt-4">
-              <SocialLinks size={20} baseClass="text-gray-400 dark:text-gray-500" />
-              <div className="w-px h-5 bg-gray-300 dark:bg-gray-700 hidden sm:block" />
-              <a
-                href="/cv.pdf"
-                download
-                className="inline-flex items-center gap-2 text-xs font-mono text-gray-500 dark:text-gray-400 hover:text-accent transition-colors duration-200"
-              >
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                </svg>
-                {t('hero.cv_download')}
-              </a>
+    <section id="sobre-mi" className="portfolio-section section-tinted">
+      <div className="shell">
+        <SectionHeading
+          number="02"
+          label={t('nav.about')}
+          title={t('design.about_title')}
+        />
+        <div className="about-grid">
+          <div className="about-note">
+            <span className="note-symbol" aria-hidden="true">
+              ✳
+            </span>
+            <p>{t('design.philosophy')}</p>
+            <span className="mono">— Enzo Norese</span>
+            <div className="note-bottom">
+              {t('design.augmented_engineering')}
+              <Arrow diagonal />
             </div>
           </div>
-
-          {/* Tech stack badges — narrower column */}
-          <div className="lg:col-span-2 grid grid-cols-2 gap-4">
-            {techStack.map(({ name, icon }) => (
-              <div
-                key={name}
-                className="group border border-gray-200/60 dark:border-gray-700/60 rounded-xl p-5 flex flex-col items-center gap-3 text-center cursor-default backdrop-blur-sm bg-white/30 dark:bg-gray-800/30 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:bg-white/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-accent/10"
+          <div className="about-copy">
+            <p className="lead-copy">{t('design.about_intro')}</p>
+            <p>{t('about.bio_1')}</p>
+            <p>{t('design.about_journey')}</p>
+            {social.linkedin.enabled && (
+              <a
+                href={social.linkedin.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-text"
               >
-                <span className="transition-transform duration-300 group-hover:scale-110">
-                  {icon}
-                </span>
-                <span className="text-xs font-mono font-medium tracking-wide text-gray-600 dark:text-gray-300 group-hover:text-accent transition-colors duration-300">
-                  {name}
-                </span>
-              </div>
-            ))}
+                {t('design.linkedin')}
+                <Arrow diagonal />
+              </a>
+            )}
+          </div>
+        </div>
+        <div className="stats-strip">
+          {['years', 'projects', 'technologies'].map((key) => (
+            <div key={key}>
+              <strong>{t(`about.${key}_value`)}</strong>
+              <span>{t(`about.stats.${key}`)}</span>
+            </div>
+          ))}
+          <div className="stats-location">
+            <span className="status-dot" />
+            <span>
+              Santiago, Chile
+              <br />
+              {t('design.remote')}
+            </span>
           </div>
         </div>
       </div>
-
-      {/* fade → Experience (white / gray-950) */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-white dark:to-gray-950" />
     </section>
   )
 }

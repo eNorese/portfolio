@@ -1,181 +1,63 @@
-# AI_CONTEXT.md — Portfolio de Enzo Norese
+# Portfolio de Enzo Norese
 
-> Archivo de contexto para asistentes de IA. Describe la arquitectura, convenciones y estado actual del proyecto para acelerar el onboarding en futuras sesiones.
+## Arquitectura
 
----
+- Next.js 15 App Router, React 19, TypeScript y Tailwind CSS 3.
+- Rutas estáticas `/es` y `/en`; `src/middleware.ts` detecta el idioma para rutas sin prefijo.
+- Contenido traducido en `src/i18n/es.json` y `en.json`, consumido con `useLanguage()`.
+- `src/app/[lang]/layout.tsx` conserva metadata localizada, JSON-LD, fuentes, analytics opcional y providers.
+- Formulario: `POST /api/contact` con Resend; configuración en `.env.example`.
+- Redes y WhatsApp configurados en `src/config/social.json`.
 
-## Identidad del proyecto
+## Dirección visual — septiembre de 2026
 
-- **Propietario:** Enzo Norese — Ingeniero en Informática, Backend Developer & Cloud Architect en TeamWork Chile
-- **Dominio:** https://enorese.dev
-- **Email de contacto:** enzo.norese@gmail.com
-- **Marca visual:** "eNorese." (punto en color accent — indigo)
-- **Repositorio:** `main` branch
+Diseño editorial de fondo carbón, acento lima, tipografía Inter y acento serif en el titular. Los temas claro, bosque, océano y medianoche usan el mismo sistema de variables semánticas:
+`--page`, `--surface`, `--card`, `--ink`, `--muted`, `--line`, `--button`, `--button-text`, `--error` y `--accent`.
+`--accent` conserva el formato R G B para las utilidades de Tailwind.
 
----
+Estilos en `src/app/globals.css`, organizados por componente y breakpoints. El layout usa `.shell` y `.portfolio-section`; `PortfolioUI.tsx` contiene `SectionHeading` y el icono `Arrow`.
 
-## Stack tecnológico
+## Recorrido y componentes
 
-| Capa | Tecnología |
-|------|-----------|
-| Framework | Next.js 15 (App Router) |
-| UI | React 19, TypeScript 5 |
-| Estilos | Tailwind CSS 3 (dark mode via `class`) |
-| 3D | Three.js 0.170 + React Three Fiber 9.6 + Drei 10.7 |
-| Temas | next-themes 0.4.3 |
-| i18n | JSON estático + Context propio |
-| Linting | ESLint 8 + next config |
-| Deploy | Vercel (implícito por config) |
+1. **Hero**: propuesta de valor, CTA a proyectos, contacto, redes y stack. Diagrama de arquitectura SVG; sin bucle de canvas.
+2. **Projects**: seis proyectos existentes, filtros por categoría, vistas conceptuales en CSS/SVG y detalles nativos desplegables.
+3. **About**: presentación, filosofía y estadísticas originales.
+4. **Experience**: historial profesional con fechas, descripciones y tecnologías.
+5. **Services**: servicios existentes en una retícula compacta.
+6. **Skills**: tecnologías agrupadas por especialidad.
+7. **FAQ**: desplegables nativos `details/summary`, disponibles desde el HTML inicial.
+8. **Contact**: email y WhatsApp directos; formulario con etiquetas persistentes, validación asociada a campos, foco al primer error y estados anunciados.
+9. **Footer**: redes y enlace para volver al inicio.
 
----
+Navbar fijo con enlaces principales, idioma y selector nativo de tema. Menú móvil con Escape, devolución de foco al botón y cierre al navegar o pasar a escritorio. El enlace para saltar al contenido apunta al único `main`.
 
-## Estructura de directorios
+## Convenciones
 
-```
-portfolio/
-├── public/                  # robots.txt, sitemap.xml, humans.txt, llms.txt
-├── scripts/
-│   └── test-rubik-logic.mjs # Tests unitarios para la lógica del cubo
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx       # Root layout: metadata, fuentes, providers, script anti-flash
-│   │   ├── page.tsx         # Single-page: imports dinámicos + feature flags
-│   │   └── globals.css      # Animaciones, temas CSS vars, scrollbar, View Transitions
-│   ├── components/
-│   │   ├── Navbar.tsx       # Fixed header, IntersectionObserver, easter egg trigger (5 clicks)
-│   │   ├── Hero.tsx         # Canvas (code rain, stars), spotlight, side lights, CTAs
-│   │   ├── About.tsx        # Bio + stats cards (6+ años, 40+ proyectos...)
-│   │   ├── Services.tsx     # Servicios a clientes (automatización/IA/cloud) + banda CTA
-│   │   ├── Experience.tsx   # Timeline vertical de empleos
-│   │   ├── Skills.tsx       # Grid de tecnologías + success stories
-│   │   ├── Projects.tsx     # Cards de proyectos con links live/code
-│   │   ├── Contact.tsx      # Panel info + formulario
-│   │   ├── Footer.tsx       # Footer simple
-│   │   ├── SocialLinks.tsx  # Iconos LinkedIn/GitHub/X desde social.json
-│   │   ├── ThemeProvider.tsx # Wrapper next-themes + DarkClassManager
-│   │   ├── ThemeSelector.tsx # Dropdown 5 temas con swatches
-│   │   ├── FloatingWhatsApp.tsx
-│   │   ├── EasterEgg.tsx
-│   │   ├── RubikCube.tsx    # Modal easter egg con controles y timer
-│   │   └── rubik/
-│   │       ├── logic.ts     # Máquina de estados del cubo (sin rendering)
-│   │       └── RubikScene.tsx # Canvas Three.js del cubo
-│   ├── config/
-│   │   ├── sections.ts      # Feature flags de secciones
-│   │   └── social.json      # URLs y habilitación de redes sociales
-│   ├── contexts/
-│   │   └── LanguageContext.tsx # ES/EN toggle, función t() dot-notation
-│   └── i18n/
-│       ├── en.json          # Textos en inglés (todo el contenido visible)
-│       └── es.json          # Textos en español
+- Todo texto editorial nuevo se agrega a ambos JSON, bajo `design`.
+- Conservar anclas: `home`, `proyectos`, `sobre-mi`, `experiencia`, `servicios`, `habilidades`, `faq`, `contacto`.
+- `src/config/sections.ts` controla las secciones y la navegación. WhatsApp flotante está desactivado; sigue disponible en Contact.
+- Las vistas de proyectos son **ilustraciones conceptuales**, no capturas de aplicaciones reales.
+- Los enlaces de demo/código originales apuntaban a `#` y estaban deshabilitados. La UI muestra información del proyecto y contacto; no ofrece destinos ficticios.
+- Se retiró el enlace a `/cv.pdf` porque ese archivo no existe en `public`.
+- Reducir movimiento respeta `prefers-reduced-motion`; el contenido no depende de animaciones de entrada al viewport.
+- Los easter eggs y la lógica del cubo siguen en sus componentes originales; cinco clics en el logo disparan el evento existente.
+- El formulario impide envíos duplicados durante una solicitud, tiene timeout de 15 segundos y conserva el texto ante errores. El envío real requiere las variables Resend.
+
+## Validación
+
+```sh
+npm run dev
+npm run build
+npm run lint
+npx tsc --noEmit
+node scripts/test-rubik-logic.mjs
 ```
 
----
+ESLint está configurado en `.eslintrc.json` y usa la CLI directamente, sin el comando deprecado `next lint`.
 
-## Convenciones clave
-
-### Textos e i18n
-- **Todo texto visible** va en `src/i18n/en.json` y `src/i18n/es.json`.
-- Los componentes consumen texto vía `const { t } = useLanguage()` con claves dot-notation: `t("hero.title")`.
-- Excepción: los nombres de tecnologías en `Skills.tsx` están hardcodeados en el componente (son agnósticos al idioma).
-
-### Temas
-- Sistema de 5 temas: `light`, `dark`, `forest`, `ocean`, `midnight`.
-- Cada tema define la variable CSS `--accent` en formato `R G B` (sin `rgb()`) para poder usar opacidades con Tailwind: `bg-[rgb(var(--accent)/0.1)]`.
-- El color accent se usa como `indigo` en light/dark, `green` en forest, `cyan` en ocean, `purple` en midnight.
-- El script anti-flash en `layout.tsx` lee `localStorage.theme` y aplica la clase `dark` antes del primer paint.
-
-### Feature flags
-- `src/config/sections.ts` exporta un objeto `portfolioSections` con booleanos.
-- `page.tsx` renderiza condicionalmente cada sección según estos flags.
-- Para agregar/quitar secciones: modificar solo `sections.ts`.
-
-### Rendimiento
-- Navbar y Hero se importan directamente (ruta crítica).
-- El resto de secciones usan `dynamic()` de Next.js con `{ ssr: false }` o `{ loading: ... }`.
-- Three.js se carga lazy dentro de `RubikCube.tsx`.
-
-### IDs de navegación (para anclas)
-```
-sobre-mi | servicios | experiencia | habilidades | proyectos | faq | contacto
-```
-Los IDs están definidos en `src/config/sections.ts` dentro del array `navigationSections`.
-
----
-
-## Sistema de temas (CSS variables)
-
-```css
-/* Cada tema en globals.css */
-[data-theme="light"]  { --accent: 99 102 241; }   /* indigo-500 */
-[data-theme="dark"]   { --accent: 129 140 248; }   /* indigo-400 */
-[data-theme="forest"] { --accent: 22 163 74; }     /* green-600 */
-[data-theme="ocean"]  { --accent: 6 182 212; }     /* cyan-500 */
-[data-theme="midnight"]{ --accent: 167 139 250; }  /* violet-400 */
-```
-
-Los temas `forest`, `ocean` y `midnight` también tienen background overrides fuera de `@layer` para mayor especificidad.
-
----
-
-## Easter egg: Cubo Rubik 3D
-
-- Se activa con **5 clicks en el logo** del Navbar.
-- Implementado como modal en `RubikCube.tsx` + `RubikScene.tsx` + `rubik/logic.ts`.
-- `logic.ts` es **puro** (sin dependencias de React/Three.js): Vec3 positions, ColorKey stickers, MoveSpec rotation matrices.
-- Controles de teclado: `U/D/L/R/F/B` (movimiento), `Shift` (inverso), `Esc` (cerrar).
-- Funcionalidades: Scramble, Reset, contador de movimientos, cronómetro, banner de resuelto.
-
----
-
-## Redes sociales (`src/config/social.json`)
-
-```json
-{
-  "linkedin": { "enabled": true, "url": "https://linkedin.com/in/enorese" },
-  "github":   { "enabled": true, "url": "https://github.com/enorese" },
-  "x":        { "enabled": true, "url": "https://x.com/enorese" },
-  "whatsapp": { "enabled": true, "number": "+56995897061" }
-}
-```
-
-Para agregar/deshabilitar una red: solo modificar este JSON.
-
----
-
-## Metadata y SEO
-
-- Definida en `src/app/layout.tsx`.
-- Open Graph: `locale: es_CL`, `url: https://enorese.dev`.
-- Schema.org JSON-LD tipo `Person` con `knowsAbout`: Azure, TypeScript, Node.js, etc.
-- `public/sitemap.xml` y `public/robots.txt` para crawlers.
-- `public/llms.txt` siguiendo la especificación de instrucciones para LLMs.
-
----
-
-## Comandos útiles
-
-```bash
-npm run dev          # Servidor de desarrollo (Next.js)
-npm run build        # Build de producción
-npm run lint         # ESLint
-node scripts/test-rubik-logic.mjs  # Tests del cubo Rubik
-```
-
----
-
-## Notas de contenido
-
-- El contenido de **Experiencia** proviene de LinkedIn real (TeamWork Chile, Prodigio Chile, Solari).
-- Las estadísticas en **About** son reales: 6+ años, 40+ proyectos, 30+ tecnologías.
-- El **CV** se descarga desde el Hero — el archivo debe estar en `public/` (pendiente confirmar nombre).
-- La filosofía personal citada en el About es **"Augmented Engineering" / "Ingeniería Aumentada"**.
-
----
-
-## Contexto de desarrollo
-
-- Enzo trabaja en certificaciones **AZ-900 / AZ-204** de Microsoft Azure.
-- Lidera la migración ERP **Softland → Rex+** en TeamWork Chile.
-- Intereses adicionales: drones FPV, DJing, ciberseguridad.
-- El portfolio reemplazó un proyecto anterior en **Vite + React** — la reescritura en Next.js fue una decisión deliberada.
+Revisión del rediseño:
+- Compilación de producción y comprobación TypeScript.
+- ESLint con cero advertencias.
+- 50 comprobaciones existentes de la lógica del cubo.
+- Navegador: español/inglés, 320/390/768/1024/1440 px, filtros, desplegables, navegación, temas y validación del formulario.
+- No se envían correos reales durante las pruebas de UI.

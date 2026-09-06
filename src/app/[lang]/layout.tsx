@@ -39,12 +39,12 @@ const KEYWORDS: Record<Language, string[]> = {
   en: ['backend developer', 'cloud architect', 'Microsoft Azure', 'TypeScript', 'Node.js', 'Azure Functions', 'serverless', 'artificial intelligence', 'Santiago Chile', 'software engineer'],
 }
 
-// Color de la barra del navegador según el esquema (tema por defecto: dark → gray-950).
+// Color de la barra del navegador alineado con la paleta del portafolio.
 export const viewport: Viewport = {
   colorScheme: 'light dark',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#030712' },
+    { media: '(prefers-color-scheme: light)', color: '#f7f8f4' },
+    { media: '(prefers-color-scheme: dark)', color: '#10120f' },
   ],
 }
 

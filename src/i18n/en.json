@@ -14,7 +14,7 @@
     "title": "Backend Developer & Cloud Architect",
     "slogan": "Augmented Engineering — Software, AI and architecture to scale businesses",
     "description": "I design and implement backend architectures on cloud infrastructure, integrating scalable services and artificial intelligence to solve real business problems. Go-to engineer with experience in recruitment systems, ERP migration, and AI model integration.",
-    "cta_work": "View My Work",
+    "cta_work": "View projects",
     "cta_services": "Automate your business",
     "cta_contact": "Get In Touch",
     "scroll": "Scroll to explore",
@@ -82,7 +82,20 @@
         "duration": "3 yrs 10 mos",
         "location": "Santiago, Chile · Full-time",
         "description": "Technical lead and solutions architect, responsible for architecture decisions, team standards, and cloud service integration. Leading the ERP Softland → Rex+ migration, managing component analysis, cross-system schema mapping, and data integrity validation. Designing and implementing serverless architectures on Azure Functions v4, integrating services such as Service Bus, SignalR, Blob Storage, CosmosDB, and PostgreSQL.",
-        "tags": ["TypeScript", "Node.js", "Azure Functions", "PostgreSQL", "CosmosDB", "Azure Service Bus", "Azure SignalR", "Blob Storage", "GitHub Actions", "OAuth 2.0 / JWT", "React JS", "Python"]
+        "tags": [
+          "TypeScript",
+          "Node.js",
+          "Azure Functions",
+          "PostgreSQL",
+          "CosmosDB",
+          "Azure Service Bus",
+          "Azure SignalR",
+          "Blob Storage",
+          "GitHub Actions",
+          "OAuth 2.0 / JWT",
+          "React JS",
+          "Python"
+        ]
       },
       {
         "role": "Software Developer",
@@ -91,7 +104,12 @@
         "duration": "10 mos",
         "location": "Chile · Part-time",
         "description": "Maintained, debugged, and developed new features for integration APIs built with C# (.NET Core 3.1) and JavaScript (Node.js). Also responsible for maintaining continuous integration and deployment workflows.",
-        "tags": ["C# / .NET Core", "Node.js", "JavaScript", "CI/CD"]
+        "tags": [
+          "C# / .NET Core",
+          "Node.js",
+          "JavaScript",
+          "CI/CD"
+        ]
       },
       {
         "role": "Electronics Technician",
@@ -100,7 +118,11 @@
         "duration": "6 yrs",
         "location": "Greater Santiago · Full-time",
         "description": "Responsible for repairing and maintaining a wide variety of electronic equipment, with specialization in digital cameras and printers.",
-        "tags": ["Electronics", "Hardware Repair", "Diagnostics"]
+        "tags": [
+          "Electronics",
+          "Hardware Repair",
+          "Diagnostics"
+        ]
       }
     ]
   },
@@ -146,28 +168,49 @@
       {
         "title": "Relational Model",
         "description": "Figma-like tool exclusively for visual documentation of relational database models. Allows designing schemas, defining relationships, and exporting structured documentation.",
-        "tags": ["TypeScript", "React", "Node.js"],
+        "tags": [
+          "TypeScript",
+          "React",
+          "Node.js"
+        ],
         "code": "#",
         "codeDisabled": true
       },
       {
         "title": "EuforIA",
         "description": "AI chat interface that integrates multiple language models (Claude, GPT-4o, Gemini) in a single platform. Allows switching between models and comparing responses in real time.",
-        "tags": ["TypeScript", "React", "Claude API", "GPT-4o", "Gemini"],
+        "tags": [
+          "TypeScript",
+          "React",
+          "Claude API",
+          "GPT-4o",
+          "Gemini"
+        ],
         "code": "#",
         "codeDisabled": true
       },
       {
         "title": "Auth System",
         "description": "Complete authentication and authorization system with OAuth 2.0, OIDC, refresh token management, session revocation, and Redis-based blacklist. Designed as a reusable module for Azure architectures.",
-        "tags": ["TypeScript", "Node.js", "Redis", "JWT", "OAuth 2.0"],
+        "tags": [
+          "TypeScript",
+          "Node.js",
+          "Redis",
+          "JWT",
+          "OAuth 2.0"
+        ],
         "code": "#",
         "codeDisabled": true
       },
       {
         "title": "Azure Path",
         "description": "Interactive study app for Microsoft Azure certification preparation. Organizes content by modules, includes practice questions, and tracks progress.",
-        "tags": ["TypeScript", "React", "Node.js", "Azure"],
+        "tags": [
+          "TypeScript",
+          "React",
+          "Node.js",
+          "Azure"
+        ],
         "live": "#",
         "liveDisabled": true,
         "code": "#",
@@ -176,7 +219,12 @@
       {
         "title": "Azure SignalR Real-time PoC",
         "description": "Proof of concept for scalable real-time messaging using Azure SignalR Service with Azure Functions. Demonstrates event-driven WebSocket communication patterns for distributed applications.",
-        "tags": ["TypeScript", "Azure Functions", "Azure SignalR", "Node.js"],
+        "tags": [
+          "TypeScript",
+          "Azure Functions",
+          "Azure SignalR",
+          "Node.js"
+        ],
         "live": "#",
         "liveDisabled": true,
         "code": "#",
@@ -185,7 +233,13 @@
       {
         "title": "TypeScript Backend Libraries",
         "description": "Collection of utility libraries for Node.js: timezone adjustment in Azure serverless functions, Chilean RUT and phone validation/formatting, and a PostgreSQL query builder with injection vulnerability protection.",
-        "tags": ["TypeScript", "Node.js", "PostgreSQL", "Serverless", "Security"],
+        "tags": [
+          "TypeScript",
+          "Node.js",
+          "PostgreSQL",
+          "Serverless",
+          "Security"
+        ],
         "code": "#",
         "codeDisabled": true
       }
@@ -254,5 +308,73 @@
   },
   "whatsapp": {
     "message": "Hi Enzo! 👋 I saw your portfolio at enorese.dev and I'd love to chat."
+  },
+  "design": {
+    "hero_line_1": "Solid engineering.",
+    "hero_line_2": "Limitless ideas.",
+    "hero_description": "I turn complex problems into software that works. Backend, cloud architecture, and artificial intelligence, with care in every detail.",
+    "lets_talk": "Let's talk",
+    "built_with_intent": "Intentional code. Real impact.",
+    "art_caption": "From idea to architecture",
+    "core_stack": "My core stack",
+    "skip": "Skip to content",
+    "navigation": "Main navigation",
+    "switch_language": "Cambiar a español",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu",
+    "projects_title": "From code to the real world.",
+    "projects_description": "Selected projects where thoughtful architecture becomes a working product.",
+    "filter_projects": "Filter projects",
+    "filters": {
+      "all": "All projects",
+      "fullstack": "Full stack",
+      "backend": "Backend",
+      "cloud": "Cloud"
+    },
+    "results": "projects shown",
+    "concept_visual": "Concept preview",
+    "explore_project": "Explore project",
+    "discuss_project": "Let's discuss this project",
+    "project_notes": {
+      "0": "Focus: visually represent schemas and relationships, with structured documentation exports. TypeScript connects data modeling to an interface built with React.",
+      "1": "Focus: bring Claude, GPT-4o, and Gemini into a shared conversation experience, making it possible to switch models and compare responses.",
+      "2": "Focus: separate authentication and authorization into a reusable module. OAuth 2.0 and OIDC handle identity; Redis supports session and token revocation.",
+      "3": "Focus: turn Azure certification preparation into a learning journey with organized modules, practice questions, and progress tracking.",
+      "4": "Focus: explore event-driven communication through Azure SignalR and Functions. A proof of concept for distributed, real-time applications.",
+      "5": "Focus: solve recurring backend needs through reusable utilities for time zones, local validation, and PostgreSQL queries protected against injection."
+    },
+    "about_title": "An engineer's judgment. A maker's curiosity.",
+    "philosophy": "Technology makes sense when it solves something that matters.",
+    "augmented_engineering": "Augmented engineering",
+    "about_intro": "I'm Enzo. I like understanding how things work. And making them work better.",
+    "about_journey": "From electronics to distributed systems: I combine technical fundamentals with AI as a capability multiplier. Tools accelerate the work; engineering judgment guides it.",
+    "linkedin": "More about my journey",
+    "remote": "Connected to the world",
+    "experience_title": "Experience, built over time.",
+    "current": "Current",
+    "services_title": "Your next challenge, thoughtfully solved.",
+    "skills_title": "The tools behind the work.",
+    "skills_description": "A stack chosen to build maintainable, connected systems with room to grow.",
+    "faq_title": "Before we begin.",
+    "contact_title": "Let's build something that matters.",
+    "whatsapp": "Also on WhatsApp",
+    "contact_note": "Tell me about your idea, your team's challenge, or the opportunity you have in mind.",
+    "message_label": "What do you have in mind?",
+    "placeholder_name": "Your name",
+    "placeholder_email": "you@email.com",
+    "email_instead": "Send me an email",
+    "required_fields": "* Required fields",
+    "select_theme": "Select theme",
+    "themes": {
+      "dark": "Dark",
+      "light": "Light",
+      "forest": "Forest",
+      "ocean": "Ocean",
+      "midnight": "Midnight"
+    },
+    "back_top": "Back to top",
+    "footer_note": "Made with intention. Built with Next.js.",
+    "backend_role": "Backend Developer",
+    "cloud_role": "Cloud Architect"
   }
 }

@@ -47,7 +47,10 @@ interface SocialLinksProps {
   baseClass?: string
 }
 
-export function SocialLinks({ size = 20, baseClass = 'text-gray-400' }: SocialLinksProps) {
+export function SocialLinks({
+  size = 20,
+  baseClass = 'text-gray-400',
+}: SocialLinksProps) {
   const [hovered, setHovered] = useState<Platform | null>(null)
 
   const enabled = PLATFORMS.filter((p) => socialConfig[p].enabled)
@@ -56,7 +59,7 @@ export function SocialLinks({ size = 20, baseClass = 'text-gray-400' }: SocialLi
   return (
     <div className="flex items-center gap-4">
       {enabled.map((platform) => {
-        const { label, color, glow, icon } = BRAND[platform]
+        const { label, icon } = BRAND[platform]
         const isHovered = hovered === platform
         const cfg = socialConfig[platform] as { enabled: boolean; url: string }
 
@@ -67,20 +70,9 @@ export function SocialLinks({ size = 20, baseClass = 'text-gray-400' }: SocialLi
             target="_blank"
             rel="noopener noreferrer"
             aria-label={label}
-            onMouseEnter={() => setHovered(platform)}
-            onMouseLeave={() => setHovered(null)}
-            className={`${baseClass} transition-none`}
-            style={{
-              width: size,
-              height: size,
-              display: 'block',
-              color: isHovered ? color : undefined,
-              filter: isHovered ? `drop-shadow(0 0 7px ${glow})` : 'none',
-              transform: isHovered ? 'translateY(-4px) scale(1.18)' : 'translateY(0) scale(1)',
-              transition: 'color 0.2s ease, filter 0.25s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1)',
-            }}
+            className={`${baseClass} social-link`}
           >
-            {icon}
+            <span style={{ width: size, height: size }}>{icon}</span>
           </a>
         )
       })}

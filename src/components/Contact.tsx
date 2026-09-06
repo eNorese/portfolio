@@ -1,301 +1,207 @@
 'use client'
-
 import { useRef, useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
-
-// ── Icons ──────────────────────────────────────────────────────────────
-function MailIcon() {
-  return (
-    <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-    </svg>
-  )
-}
-
-function MapPinIcon() {
-  return (
-    <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-    </svg>
-  )
-}
-
-function StatusIcon() {
-  return (
-    <span className="w-4 h-4 shrink-0 flex items-center justify-center">
-      <span className="w-2 h-2 rounded-full bg-emerald-500" />
-    </span>
-  )
-}
-
-// ── Types ──────────────────────────────────────────────────────────────
-type FormFields = { name: string; email: string; message: string }
-type FormErrors = Partial<FormFields>
+import { SectionHeading, Arrow } from '@/components/PortfolioUI'
+import social from '@/config/social.json'
+type Fields = { name: string; email: string; message: string }
 type Status = 'idle' | 'sending' | 'sent' | 'error'
-
-const FIELD_CLASS =
-  'w-full px-4 py-3 rounded-xl text-sm border bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-colors duration-200'
-const FIELD_VALID =
-  'border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-accent/40 focus:border-accent/60'
-const FIELD_INVALID =
-  'border-red-400 dark:border-red-600 focus:ring-2 focus:ring-red-400/30 focus:border-red-400 dark:focus:border-red-500'
-
-// ── Section ─────────────────────────────────────────────────────────────
 export function Contact() {
   const { t } = useLanguage()
-
-  const [fields, setFields] = useState<FormFields>({ name: '', email: '', message: '' })
-  const [errors, setErrors] = useState<FormErrors>({})
+  const [fields, setFields] = useState<Fields>({
+    name: '',
+    email: '',
+    message: '',
+  })
+  const [errors, setErrors] = useState<Partial<Fields>>({})
   const [status, setStatus] = useState<Status>('idle')
-  // Honeypot anti-bot: campo oculto que un humano nunca llena.
-  const honeypotRef = useRef<HTMLInputElement>(null)
-
-  function validate(data: FormFields): FormErrors {
-    const errs: FormErrors = {}
-    if (!data.name.trim()) errs.name = t('contact.form.error_name_required')
-    else if (data.name.trim().length < 2) errs.name = t('contact.form.error_name_min')
-
-    if (!data.email.trim()) errs.email = t('contact.form.error_email_required')
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errs.email = t('contact.form.error_email_invalid')
-
-    if (!data.message.trim()) errs.message = t('contact.form.error_message_required')
-    else if (data.message.trim().length < 10) errs.message = t('contact.form.error_message_min')
-
-    return errs
+  const honeypot = useRef<HTMLInputElement>(null)
+  const formRef = useRef<HTMLFormElement>(null)
+  const sending = useRef(false)
+  function change(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    const key = event.target.name as keyof Fields
+    setFields((previous) => ({ ...previous, [key]: event.target.value }))
+    setErrors((previous) => ({ ...previous, [key]: undefined }))
+    if (status !== 'idle') setStatus('idle')
   }
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    const { name, value } = e.target
-    setFields(prev => ({ ...prev, [name]: value }))
-    if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }))
-    }
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    const errs = validate(fields)
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs)
+  async function submit(event: React.FormEvent) {
+    event.preventDefault()
+    if (sending.current) return
+    const next: Partial<Fields> = {}
+    if (!fields.name.trim()) next.name = t('contact.form.error_name_required')
+    else if (fields.name.trim().length < 2)
+      next.name = t('contact.form.error_name_min')
+    if (!fields.email.trim())
+      next.email = t('contact.form.error_email_required')
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email))
+      next.email = t('contact.form.error_email_invalid')
+    if (!fields.message.trim())
+      next.message = t('contact.form.error_message_required')
+    else if (fields.message.trim().length < 10)
+      next.message = t('contact.form.error_message_min')
+    setErrors(next)
+    if (Object.keys(next).length) {
+      formRef.current
+        ?.querySelector<HTMLElement>(`[name="${Object.keys(next)[0]}"]`)
+        ?.focus()
       return
     }
-
+    sending.current = true
     setStatus('sending')
     try {
-      const res = await fetch('/api/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...fields, website: honeypotRef.current?.value ?? '' }),
+        body: JSON.stringify({
+          ...fields,
+          website: honeypot.current?.value ?? '',
+        }),
+        signal: AbortSignal.timeout(15000),
       })
-      if (!res.ok) throw new Error('Request failed')
-
+      if (!response.ok) throw new Error('Contact request failed')
       setStatus('sent')
       setFields({ name: '', email: '', message: '' })
-      setTimeout(() => setStatus('idle'), 4000)
     } catch {
       setStatus('error')
+    } finally {
+      sending.current = false
     }
   }
-
-  const isSending = status === 'sending'
-  const isSent    = status === 'sent'
-  const isError   = status === 'error'
-
   return (
-    <section id="contacto" className="relative py-24 bg-white dark:bg-gray-950">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Section header */}
-        <div className="mb-14">
-          <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            07 —
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-            {t('contact.section_title')}
-          </h2>
-          <p className="mt-2 text-gray-500 dark:text-gray-400 text-sm">{t('contact.subtitle')}</p>
-        </div>
-
-        <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
-          {/* Info column */}
-          <div className="lg:col-span-2 flex flex-col gap-6">
-            <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
-              {t('contact.description')}
+    <section id="contacto" className="portfolio-section contact-section">
+      <div className="shell">
+        <SectionHeading
+          number="07"
+          label={t('nav.contact')}
+          title={t('design.contact_title')}
+        />
+        <div className="contact-grid">
+          <div className="contact-copy">
+            <p className="lead-copy">{t('contact.description')}</p>
+            <a className="contact-email" href="mailto:enzo.norese@gmail.com">
+              enzo.norese@gmail.com
+              <Arrow diagonal />
+            </a>
+            <p className="contact-status">
+              <span className="status-dot" />
+              {t('contact.info.availability_value')}
             </p>
-
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="mt-0.5 w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
-                  <MapPinIcon />
-                </div>
-                <div>
-                  <p className="text-xs text-gray-400 dark:text-gray-500 mb-0.5">
-                    {t('contact.info.location_label')}
-                  </p>
-                  <p className="text-sm text-gray-700 dark:text-gray-300">
-                    {t('contact.info.location_value')}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="mt-0.5 w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
-                  <StatusIcon />
-                </div>
-                <div>
-                  <p className="text-xs text-gray-400 dark:text-gray-500 mb-0.5">
-                    {t('contact.info.availability_label')}
-                  </p>
-                  <p className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">
-                    {t('contact.info.availability_value')}
-                  </p>
-                </div>
-              </div>
-            </div>
+            {social.whatsapp.enabled && (
+              <a
+                href={`https://wa.me/${social.whatsapp.number.replace(/\D/g, '')}?text=${encodeURIComponent(t('whatsapp.message'))}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-text"
+              >
+                {t('design.whatsapp')}
+                <Arrow diagonal />
+              </a>
+            )}
+            <p className="contact-footnote">{t('design.contact_note')}</p>
           </div>
-
-          {/* Form column */}
-          <form onSubmit={handleSubmit} noValidate className="lg:col-span-3 flex flex-col gap-4">
-
-            {/* Honeypot anti-bot — oculto para humanos, invisible a lectores de pantalla */}
+          <form
+            ref={formRef}
+            onSubmit={submit}
+            noValidate
+            className="contact-form"
+            aria-busy={status === 'sending'}
+          >
             <input
-              ref={honeypotRef}
-              type="text"
+              ref={honeypot}
               name="website"
+              type="text"
               tabIndex={-1}
               autoComplete="off"
               aria-hidden="true"
-              className="absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none"
+              className="honeypot"
             />
-
-            {/* Success banner */}
-            {isSent && (
-              <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-400 text-sm">
-                <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                </svg>
-                {t('contact.form.success_message')}
-              </div>
-            )}
-
-            {/* Error banner */}
-            {isError && (
-              <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/60 text-red-700 dark:text-red-400 text-sm">
-                <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m0 3.75h.008v-.008H12V16.5Zm0-13.5a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z" />
-                </svg>
-                {t('contact.form.error_message')}
-              </div>
-            )}
-
-            <div className="grid sm:grid-cols-2 gap-4">
-              {/* Name */}
-              <div className="flex flex-col gap-1">
-                <input
-                  type="text"
-                  name="name"
-                  value={fields.name}
-                  onChange={handleChange}
-                  placeholder={t('contact.form.placeholder_name')}
-                  maxLength={100}
-                  disabled={isSending || isSent}
-                  className={`${FIELD_CLASS} ${errors.name ? FIELD_INVALID : FIELD_VALID}`}
-                />
-                {errors.name && (
-                  <p className="text-xs text-red-500 dark:text-red-400 flex items-center gap-1 ml-1">
-                    <svg className="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
-                    </svg>
-                    {errors.name}
-                  </p>
-                )}
-              </div>
-
-              {/* Email */}
-              <div className="flex flex-col gap-1">
-                <input
-                  type="email"
-                  name="email"
-                  value={fields.email}
-                  onChange={handleChange}
-                  placeholder={t('contact.form.placeholder_email')}
-                  maxLength={254}
-                  disabled={isSending || isSent}
-                  className={`${FIELD_CLASS} ${errors.email ? FIELD_INVALID : FIELD_VALID}`}
-                />
-                {errors.email && (
-                  <p className="text-xs text-red-500 dark:text-red-400 flex items-center gap-1 ml-1">
-                    <svg className="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
-                    </svg>
-                    {errors.email}
-                  </p>
-                )}
-              </div>
+            <div className="form-row">
+              {(['name', 'email'] as const).map((key) => (
+                <div className="field" key={key}>
+                  <label htmlFor={`contact-${key}`}>
+                    {t(`contact.form.placeholder_${key}`)}
+                    <span aria-hidden="true"> *</span>
+                  </label>
+                  <input
+                    id={`contact-${key}`}
+                    name={key}
+                    type={key === 'email' ? 'email' : 'text'}
+                    autoComplete={key}
+                    required
+                    value={fields[key]}
+                    onChange={change}
+                    disabled={status === 'sending'}
+                    maxLength={key === 'name' ? 100 : 254}
+                    placeholder={t(`design.placeholder_${key}`)}
+                    aria-invalid={Boolean(errors[key])}
+                    aria-describedby={errors[key] ? `error-${key}` : undefined}
+                  />
+                  {errors[key] && (
+                    <p id={`error-${key}`} className="field-error">
+                      {errors[key]}
+                    </p>
+                  )}
+                </div>
+              ))}
             </div>
-
-            {/* Message */}
-            <div className="flex flex-col gap-1">
+            <div className="field">
+              <label htmlFor="contact-message">
+                {t('design.message_label')}
+                <span aria-hidden="true"> *</span>
+              </label>
               <textarea
-                rows={6}
+                id="contact-message"
                 name="message"
+                required
+                rows={5}
                 value={fields.message}
-                onChange={handleChange}
-                placeholder={t('contact.form.placeholder_message')}
+                onChange={change}
+                disabled={status === 'sending'}
                 maxLength={5000}
-                disabled={isSending || isSent}
-                className={`${FIELD_CLASS} resize-none ${errors.message ? FIELD_INVALID : FIELD_VALID}`}
+                placeholder={t('contact.form.placeholder_message')}
+                aria-invalid={Boolean(errors.message)}
+                aria-describedby={errors.message ? 'error-message' : undefined}
               />
               {errors.message && (
-                <p className="text-xs text-red-500 dark:text-red-400 flex items-center gap-1 ml-1">
-                  <svg className="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
-                  </svg>
+                <p id="error-message" className="field-error">
                   {errors.message}
                 </p>
               )}
             </div>
-
-            {/* Submit button */}
-            <button
-              type="submit"
-              disabled={isSending || isSent}
-              className="group relative self-start inline-flex items-center gap-2 px-7 py-3 rounded-full overflow-hidden bg-accent text-white text-sm font-medium transition-all duration-300 hover:shadow-[0_0_20px_var(--accent-glow)] active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-none"
-            >
-              {/* Shimmer sweep */}
-              <span
-                aria-hidden
-                className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent"
-              />
-
-              <span className="relative">
-                {isSending ? t('contact.form.sending') : isSent ? t('contact.form.sent') : t('contact.form.send')}
-              </span>
-
-              <span className="relative transition-transform duration-300 group-hover:translate-x-1">
-                {isSending ? (
-                  <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4Z" />
-                  </svg>
-                ) : isSent ? (
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                  </svg>
-                ) : (
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-                  </svg>
+            <div aria-live="polite" aria-atomic="true">
+              {status === 'sent' && (
+                <p className="form-success">
+                  {t('contact.form.success_message')}
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="field-error" role="alert">
+                  {t('contact.form.error_message')}{' '}
+                  <a href="mailto:enzo.norese@gmail.com">
+                    {t('design.email_instead')}
+                  </a>
+                </p>
+              )}
+            </div>
+            <div className="form-bottom">
+              <span className="muted">{t('design.required_fields')}</span>
+              <button
+                type="submit"
+                className="button-primary"
+                disabled={status === 'sending'}
+              >
+                {t(
+                  status === 'sending'
+                    ? 'contact.form.sending'
+                    : 'contact.form.send',
                 )}
-              </span>
-            </button>
+                <Arrow diagonal />
+              </button>
+            </div>
           </form>
         </div>
       </div>
-
-      {/* fade → Footer (white / gray-950) */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-white dark:to-gray-950" />
     </section>
   )
 }

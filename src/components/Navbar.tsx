@@ -1,196 +1,141 @@
 'use client'
-
 import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { ThemeSelector } from '@/components/ThemeSelector'
-import { enabledNavSections } from '@/config/sections'
-
+import { enabledNavSections, portfolioSections } from '@/config/sections'
+import { Arrow } from '@/components/PortfolioUI'
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState<string>('')
+  const [activeSection, setActiveSection] = useState('home')
   const { language, setLanguage, t } = useLanguage()
-  const logoClicksRef = useRef(0)
-  const logoTimerRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
-
+  const menuButton = useRef<HTMLButtonElement>(null)
+  const logoClicks = useRef(0)
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const links = enabledNavSections.filter(({ key }) =>
+    ['projects', 'about', 'experience', 'services'].includes(key),
+  )
   useEffect(() => {
-    // Glass effect trigger on scroll
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-
-    // Active section detection via IntersectionObserver
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id === 'home' ? '' : entry.target.id)
-          }
+          if (entry.isIntersecting) setActiveSection(entry.target.id)
         })
       },
-      { rootMargin: '-64px 0px -50% 0px', threshold: 0 }
+      { rootMargin: '-15% 0px -65% 0px' },
     )
-
-    const hero = document.getElementById('home')
-    if (hero) observer.observe(hero)
-
-    enabledNavSections.forEach(({ id }) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
-
+    document
+      .querySelectorAll('section[id]')
+      .forEach((el) => observer.observe(el))
     return () => {
-      window.removeEventListener('scroll', handleScroll)
       observer.disconnect()
+      if (timer.current) clearTimeout(timer.current)
     }
   }, [])
-
-  const handleLogoClick = () => {
+  useEffect(() => {
+    if (!mobileOpen) return
+    const close = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMobileOpen(false)
+        menuButton.current?.focus()
+      }
+    }
+    const resize = () => {
+      if (window.innerWidth >= 1024) setMobileOpen(false)
+    }
+    window.addEventListener('keydown', close)
+    window.addEventListener('resize', resize)
+    return () => {
+      window.removeEventListener('keydown', close)
+      window.removeEventListener('resize', resize)
+    }
+  }, [mobileOpen])
+  function handleLogoClick() {
     setMobileOpen(false)
-    logoClicksRef.current++
-    if (logoTimerRef.current) clearTimeout(logoTimerRef.current)
-    if (logoClicksRef.current >= 5) {
-      logoClicksRef.current = 0
+    logoClicks.current++
+    if (timer.current) clearTimeout(timer.current)
+    if (logoClicks.current >= 5) {
+      logoClicks.current = 0
       window.dispatchEvent(new CustomEvent('enorese:easter-egg'))
-      return
     }
-    logoTimerRef.current = setTimeout(() => { logoClicksRef.current = 0 }, 2000)
+    timer.current = setTimeout(() => {
+      logoClicks.current = 0
+    }, 2000)
   }
-
-  const toggleLanguage = () => {
-    const next = language === 'en' ? 'es' : 'en'
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const svt: ((cb: () => void) => { finished: Promise<void> }) | undefined = (document as any).startViewTransition?.bind(document)
-
-    if (!svt) {
-      document.body.classList.add('lang-switching')
-      setTimeout(() => setLanguage(next), 180)
-      setTimeout(() => document.body.classList.remove('lang-switching'), 420)
-      return
-    }
-
-    document.documentElement.classList.add('lang-switching')
-    svt(() => setLanguage(next))
-      .finished.finally(() => document.documentElement.classList.remove('lang-switching'))
-  }
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
-        scrolled
-          ? 'backdrop-blur-xl backdrop-saturate-150 bg-white/60 dark:bg-gray-950/65 border-gray-200/10 dark:border-white/[0.04] shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.35)]'
-          : 'bg-transparent border-transparent'
-      }`}
-    >
-      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-
-          {/* Logo */}
-          <a
-            href="#"
-            className="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
-            onClick={handleLogoClick}
+    <header className="site-header">
+      <a href="#main-content" className="skip-link">
+        {t('design.skip')}
+      </a>
+      <nav className="shell nav-inner" aria-label={t('design.navigation')}>
+        <a href="#home" className="wordmark" onClick={handleLogoClick}>
+          <span className="brand-mark" aria-hidden="true">
+            en<span>↗</span>
+          </span>
+          enorese<span className="accent">.dev</span>
+        </a>
+        <div className="desktop-links">
+          {links.map(({ key, id, href }) => (
+            <a
+              key={key}
+              href={href}
+              aria-current={activeSection === id ? 'location' : undefined}
+            >
+              {t(`nav.${key}`)}
+            </a>
+          ))}
+        </div>
+        <div className="nav-controls">
+          <button
+            className="language-toggle"
+            onClick={() => {
+              setMobileOpen(false)
+              setLanguage(language === 'es' ? 'en' : 'es')
+            }}
+            aria-label={t('design.switch_language')}
           >
-            eNorese
-            <span className="text-accent">.dev</span>
-          </a>
-
-          {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-7">
-            {enabledNavSections.map(({ key, id, href }) => {
-              const isActive = activeSection === id
-              return (
-                <a
-                  key={key}
-                  href={href}
-                  className={`relative text-sm transition-colors duration-200 pb-0.5 ${
-                    isActive
-                      ? 'text-accent'
-                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                  }`}
-                >
-                  {t(`nav.${key}`)}
-                  {/* Animated underline indicator */}
-                  <span
-                    className={`absolute bottom-0 left-0 h-px bg-accent transition-all duration-300 ${
-                      isActive ? 'w-full' : 'w-0'
-                    }`}
-                  />
-                </a>
-              )
-            })}
-          </div>
-
-          {/* Controls */}
-          <div className="flex items-center gap-2">
-            {/* Language toggle */}
-            <button
-              onClick={toggleLanguage}
-              aria-label="Toggle language"
-              className="h-8 px-2.5 rounded-md text-xs font-semibold tracking-wide text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200"
-            >
-              {language === 'en' ? 'ES' : 'EN'}
-            </button>
-
-            {/* Theme selector */}
-            <ThemeSelector />
-
-            {/* Mobile hamburger */}
-            <button
-              onClick={() => setMobileOpen((v) => !v)}
-              aria-label="Toggle menu"
-              aria-expanded={mobileOpen}
-              className="md:hidden w-8 h-8 flex flex-col items-center justify-center gap-1.5 rounded-md text-gray-500 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200"
-            >
-              <span
-                className={`block w-5 h-px bg-current transition-all duration-300 origin-center ${
-                  mobileOpen ? 'rotate-45 translate-y-[3.5px]' : ''
-                }`}
-              />
-              <span
-                className={`block w-5 h-px bg-current transition-all duration-300 ${
-                  mobileOpen ? 'opacity-0 scale-x-0' : ''
-                }`}
-              />
-              <span
-                className={`block w-5 h-px bg-current transition-all duration-300 origin-center ${
-                  mobileOpen ? '-rotate-45 -translate-y-[3.5px]' : ''
-                }`}
-              />
-            </button>
-          </div>
+            {language.toUpperCase()}
+            <span aria-hidden="true">⌄</span>
+          </button>
+          <ThemeSelector />
+          {portfolioSections.contact && (
+            <a href="#contacto" className="nav-contact">
+              {t('design.lets_talk')}
+              <Arrow diagonal />
+            </a>
+          )}
+          <button
+            ref={menuButton}
+            className="menu-toggle"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={t(
+              mobileOpen ? 'design.close_menu' : 'design.open_menu',
+            )}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
+          >
+            <span aria-hidden="true">{mobileOpen ? '✕' : '☰'}</span>
+          </button>
         </div>
       </nav>
-
-      {/* Mobile menu */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="backdrop-blur-xl bg-white/90 dark:bg-gray-950/90 border-t border-gray-200/10 dark:border-white/[0.04] px-4 py-3 space-y-1">
-          {enabledNavSections.map(({ key, id, href }) => {
-            const isActive = activeSection === id
-            return (
-              <a
-                key={key}
-                href={href}
-                className={`flex items-center gap-2 py-2.5 px-3 rounded-lg text-sm transition-colors duration-200 ${
-                  isActive
-                    ? 'text-accent bg-accent/[0.07]'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10'
-                }`}
-                onClick={() => setMobileOpen(false)}
-              >
-                {isActive && (
-                  <span className="w-1 h-1 rounded-full bg-accent shrink-0" />
-                )}
-                {t(`nav.${key}`)}
-              </a>
-            )
-          })}
-        </div>
-      </div>
+      {mobileOpen && (
+        <nav
+          id="mobile-navigation"
+          className="mobile-navigation"
+          aria-label={t('design.navigation')}
+        >
+          {enabledNavSections.map(({ key, href, id }) => (
+            <a
+              key={key}
+              href={href}
+              aria-current={activeSection === id ? 'location' : undefined}
+              onClick={() => setMobileOpen(false)}
+            >
+              {t(`nav.${key}`)}
+              <Arrow diagonal />
+            </a>
+          ))}
+        </nav>
+      )}
     </header>
   )
 }
