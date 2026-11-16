@@ -140,8 +140,182 @@
   "projects": {
     "section_title": "Proyectos",
     "subtitle": "Una selección de cosas que he construido",
+    "corporate_title": "Historias de proyectos corporativos",
+    "corporate_subtitle": "Sistemas reales, decisiones técnicas y el impacto detrás de cada solución.",
     "view_live": "Demo en Vivo",
     "view_code": "Código Fuente",
+    "corporate_items": [
+      {
+        "category": "Software empresarial / Reclutamiento y selección",
+        "title": "Un sistema que crece con las personas.",
+        "description": "De un proceso basado en Excel a una aplicación de reclutamiento más rápida y mantenible. Mi reto fue evolucionar un prototipo que ya estaba en producción, desde los datos hasta la experiencia de los reclutadores.",
+        "roleLabel": "Mi aporte",
+        "role": "Desarrollo backend, administración de base de datos y apoyo full stack al frontend.",
+        "tags": ["TypeScript", "Azure Functions", "SQL", "Blob Storage", "Jest", "CI/CD"],
+        "storyTitle": "El problema, las decisiones y el impacto",
+        "contextTitle": "El punto de partida",
+        "context": "El proceso de reclutamiento y selección se gestionaba en archivos Excel, con pérdida de información e ineficiencias. Me incorporé cuando ya existía un prototipo funcional en producción. Debía corregir sus deficiencias y mejorarlo sin romper los flujos existentes, mientras aprendía el ecosistema de Azure Functions con TypeScript y analizaba la aplicación de punta a punta.",
+        "phaseLabel": "Fase",
+        "phases": [
+          {
+            "title": "Dar coherencia a los datos.",
+            "description": "La base del trabajo fue convertir un modelo inconsistente en uno robusto, preservando la compatibilidad con las aplicaciones que lo consumían.",
+            "points": [
+              "Estandaricé nombres de tablas y columnas y normalicé el modelo para reducir redundancias.",
+              "Ajusté tipos de datos, relaciones y claves únicas para proteger la integridad y evitar duplicados.",
+              "Analicé consultas costosas e incorporé índices para mejorar sus tiempos de respuesta.",
+              "Definí usuarios, roles y permisos por ambiente y aplicación, y documenté el modelo y sus estándares."
+            ]
+          },
+          {
+            "title": "Un backend que se pueda mantener.",
+            "description": "Refactoricé una base de código con convenciones mezcladas y lógica duplicada, haciendo explícitas las responsabilidades de cada capa.",
+            "points": [
+              "Unifiqué nombres y convenciones en inglés, parametrizando lógica repetida y eliminando código sin uso.",
+              "Implementé el patrón repositorio con inyección de dependencias para centralizar y abstraer el acceso a datos.",
+              "Agregué pruebas automatizadas con Jest a los pipelines de CI/CD y logging para monitorear el backend."
+            ]
+          },
+          {
+            "title": "Desacoplar para crecer.",
+            "description": "La arquitectura evolucionó para que los procesos más pesados no bloquearan la experiencia de los reclutadores.",
+            "points": [
+              "Migré el almacenamiento de archivos desde un servidor on-premise a Azure Blob Storage.",
+              "Implementé colas para procesamiento y generación de archivos, correos y sincronizaciones.",
+              "Desacoplé tareas del sistema legacy y del ERP interno para ejecutarlas en segundo plano."
+            ]
+          },
+          {
+            "title": "Escuchar a quienes usan el sistema.",
+            "description": "Con una base más estable, entrevistamos a los usuarios para identificar mejoras que facilitaran su trabajo diario.",
+            "points": [
+              "Implementamos sincronizaciones con el sistema legacy y generación de pruebas e informes psicolaborales.",
+              "Automatizamos la consolidación mensual de datos estratégicos para apoyar decisiones de las gerencias.",
+              "Las nuevas funcionalidades respondieron a las necesidades detectadas en los reclutadores."
+            ]
+          }
+        ],
+        "impactLabel": "Impacto",
+        "impactTitle": "Una operación más ágil. Un sistema más observable.",
+        "impact": "El trabajo facilitó el reclutamiento, la selección y la contratación, con menores tiempos de respuesta y capacidad para gestionar un mayor volumen de personas en periodos exigentes. El monitoreo permitió detectar oportunidades de mejora y actuar de manera proactiva."
+      },
+      {
+        "category": "Sitio de campañas + formularios conectados al ATS",
+        "title": "Postular una vez. Abrir más oportunidades.",
+        "description": "Construí un sitio adaptable a campañas Cyber y un sistema de formularios conectado al ATS de TeamWork. Los reclutadores configuran cada convocatoria y las personas pueden volver a postular sin empezar de cero.",
+        "roleLabel": "Mi aporte",
+        "role": "Desarrollo del sitio y del sistema de postulaciones: integración con el ATS, rate limiting en el servidor y validación documental con OCR, Azure Document Intelligence y modelos de visión de OpenAI.",
+        "tags": ["TypeScript", "Azure Functions", "Rate limiting", "OCR", "Azure Document Intelligence", "OpenAI Vision"],
+        "storyTitle": "De formularios dispersos a un flujo conectado",
+        "contextTitle": "Cuando captar personas también era perder información.",
+        "context": "Las campañas se publicaban en Canva y la captación dependía de formularios externos de Google y Microsoft. La presencia en buscadores era insuficiente, faltaban validaciones para datos y documentos clave, y los envíos masivos provocaban bloqueos que interrumpían la recepción de postulaciones. El reto era dar continuidad a ese recorrido y conectarlo con el ATS.",
+        "phaseLabel": "Frente",
+        "phases": [
+          {
+            "title": "Un sitio para más de una campaña.",
+            "description": "Desarrollé un sitio propio que la empresa puede adaptar a distintos periodos de contratación.",
+            "points": [
+              "Una base reutilizable para Cyber Day, Cyber Monday, Black Friday y otras campañas.",
+              "Un punto de entrada a las ofertas y formularios de postulación.",
+              "Una alternativa al sitio anterior en Canva, con foco en presentación y presencia digital."
+            ]
+          },
+          {
+            "title": "Formularios que se adaptan a cada convocatoria.",
+            "description": "El equipo de reclutamiento puede generar formularios según sus necesidades, vinculados directamente al ATS.",
+            "points": [
+              "Configuración de campos, datos obligatorios, descripciones y ofertas laborales.",
+              "Carga de documentos y validación de identificación y fecha de nacimiento.",
+              "Comprobación de coincidencias entre los datos ingresados y el documento de identidad cargado."
+            ]
+          },
+          {
+            "title": "Proteger el ingreso. Contrastar los documentos.",
+            "description": "Abordé el abuso del formulario y la comprobación de los datos declarados frente al documento de identidad.",
+            "points": [
+              "Implementé rate limiting en el servidor para limitar envíos abusivos.",
+              "Utilicé OCR, Azure Document Intelligence y modelos de visión de OpenAI con una estrategia de fallback.",
+              "La validación contrasta la información sin depender de una sola alternativa de procesamiento."
+            ]
+          },
+          {
+            "title": "Volver a postular sin volver a empezar.",
+            "description": "Diseñé un recorrido que recupera la información previa cuando una persona se interesa por otra oferta.",
+            "points": [
+              "La persona revisa sus datos existentes en lugar de completar nuevamente todo el formulario.",
+              "Solo agrega o ajusta la información específica de la nueva postulación.",
+              "Las postulaciones quedan vinculadas al ATS para facilitar su seguimiento."
+            ]
+          },
+          {
+            "title": "Saber de dónde llega cada postulación.",
+            "description": "La categorización de formularios permite distinguir canales de captación digitales y presenciales.",
+            "points": [
+              "Identificación de postulaciones provenientes de Instagram, Facebook y TikTok.",
+              "Distinción de portales de empleo y accesos desde el sitio Cyber.",
+              "Códigos QR para que las personas postulen desde su celular en ferias laborales."
+            ]
+          }
+        ],
+        "impactLabel": "Impacto y evolución",
+        "impactTitle": "Un recorrido más simple para postular. Más contexto para reclutar.",
+        "impact": "El sistema facilitó la captación, redujo la repetición de datos y conservó la trazabilidad por canal y campaña. También simplificó la operación en ferias laborales y sigue creciendo a partir de las necesidades de reclutamiento."
+      },
+      {
+        "category": "SAC por WhatsApp + encuestas de experiencia",
+        "title": "Resolver consultas. Escuchar experiencias.",
+        "description": "Participé en la planificación de arquitectura y el desarrollo de un sistema que conecta atención por WhatsApp, una mesa de ayuda y encuestas. El bot intenta resolver la consulta y, cuando no puede, la deriva a un agente con un número de caso y seguimiento de sus tiempos.",
+        "roleLabel": "Mi participación",
+        "role": "Planificación de arquitectura y desarrollo, con especial complejidad en la sincronización diaria de grandes volúmenes de datos desde distintas fuentes corporativas.",
+        "tags": ["TypeScript", "Azure Functions", "SQL", "Blob Storage", "Colas de mensajes", "Colas poison"],
+        "storyTitle": "Atención, encuestas y el reto de mantener los datos sincronizados",
+        "contextTitle": "Atender una consulta también es entender una experiencia.",
+        "context": "El sistema combina dos necesidades de los colaboradores: resolver consultas y problemas por un canal cercano, y expresar su opinión sobre la experiencia con la empresa. WhatsApp se integra con una mesa de ayuda y con encuestas que abarcan tanto la resolución de casos como el recorrido desde el reclutamiento hasta el offboarding.",
+        "phaseLabel": "Frente",
+        "phases": [
+          {
+            "title": "Un bot como primer punto de atención.",
+            "description": "La conversación comienza en WhatsApp, donde un bot intenta resolver el problema del usuario.",
+            "points": [
+              "Atención inicial desde WhatsApp para las consultas de los colaboradores.",
+              "Cuando el bot no tiene una respuesta, la consulta se deriva al sistema interno de tickets.",
+              "La atención puede continuar con un agente en lugar de terminar en la respuesta del bot."
+            ]
+          },
+          {
+            "title": "Casos asignados y tiempos medidos.",
+            "description": "La mesa de ayuda permite seguir las consultas que requieren intervención humana.",
+            "points": [
+              "Asignación de un número de caso y de un agente que pueda atender la consulta.",
+              "Medición del tiempo de resolución del problema.",
+              "Seguimiento del cumplimiento de los acuerdos de nivel de servicio de cada caso."
+            ]
+          },
+          {
+            "title": "Encuestas más allá de un ticket.",
+            "description": "El sistema recoge la experiencia de atención y la opinión de los colaboradores durante su relación laboral.",
+            "points": [
+              "Medición de satisfacción asociada a la resolución de casos.",
+              "Encuestas que abarcan reclutamiento, contratación y offboarding.",
+              "Información para detectar puntos de mejora en los procesos de los colaboradores."
+            ]
+          },
+          {
+            "title": "Sincronizar sin frenar la operación.",
+            "description": "La mayor complejidad fue sincronizar diariamente grandes volúmenes desde distintas fuentes sin afectar el rendimiento.",
+            "points": [
+              "Temporizadores, procesamiento por lotes y actualizaciones incrementales.",
+              "Colas de mensajes y reintentos para gestionar el procesamiento de los datos.",
+              "Colas poison para separar mensajes cuyo procesamiento falla reiteradamente.",
+              "Coordinación estricta entre las fuentes corporativas y los datos requeridos por atención y encuestas."
+            ]
+          }
+        ],
+        "impactLabel": "Impacto",
+        "impactTitle": "Mejor atención y una visión más completa de la vida laboral.",
+        "impact": "El sistema permitió conocer la opinión y experiencia de los colaboradores a lo largo de su vida laboral e identificar puntos de mejora. A la vez, hizo más agradable la experiencia de consulta y resolución de problemas para las personas contratadas."
+      }
+    ],
     "items": [
       {
         "title": "Relational Model",

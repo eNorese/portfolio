@@ -29,6 +29,24 @@ type ProjectItem = {
   codeDisabled?: boolean
 }
 
+type CorporateProjectItem = ProjectItem & {
+  category: string
+  roleLabel: string
+  role: string
+  storyTitle: string
+  contextTitle: string
+  context: string
+  phaseLabel: string
+  phases: {
+    title: string
+    description: string
+    points: string[]
+  }[]
+  impactLabel: string
+  impactTitle: string
+  impact: string
+}
+
 function ProjectCard({ project, t }: { project: ProjectItem; t: (k: string) => string }) {
   const cardRef  = useRef<HTMLDivElement>(null)
   const glareRef = useRef<HTMLDivElement>(null)
@@ -146,6 +164,79 @@ function ProjectCard({ project, t }: { project: ProjectItem; t: (k: string) => s
   )
 }
 
+function CorporateProjectCard({ project }: { project: CorporateProjectItem }) {
+  return (
+    <article className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 sm:p-8">
+      <p className="text-xs font-mono tracking-widest uppercase text-accent mb-3">
+        {project.category}
+      </p>
+      <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white">
+        {project.title}
+      </h3>
+      <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+        {project.description}
+      </p>
+
+      <div className="mt-5 border-l-2 border-accent/40 pl-4">
+        <p className="text-xs font-mono tracking-widest uppercase text-accent">
+          {project.roleLabel}
+        </p>
+        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          {project.role}
+        </p>
+      </div>
+
+      <div className="flex flex-wrap gap-1.5 mt-5">
+        {project.tags.map((tag) => (
+          <span
+            key={tag}
+            className="text-xs px-2.5 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <details className="group/story mt-6 border-t border-gray-200 dark:border-gray-800 pt-5">
+        <summary className="flex items-center justify-between gap-4 cursor-pointer text-sm font-medium text-gray-900 dark:text-white hover:text-accent transition-colors">
+          {project.storyTitle}
+          <span className="text-accent transition-transform group-open/story:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <div className="mt-6 space-y-8">
+          <div>
+            <h4 className="font-semibold text-gray-900 dark:text-white">{project.contextTitle}</h4>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{project.context}</p>
+          </div>
+
+          {project.phases.map((phase, index) => (
+            <section key={phase.title}>
+              <p className="text-xs font-mono tracking-widest uppercase text-accent">
+                {project.phaseLabel} {String(index + 1).padStart(2, '0')}
+              </p>
+              <h4 className="mt-2 font-semibold text-gray-900 dark:text-white">{phase.title}</h4>
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{phase.description}</p>
+              <ul className="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                {phase.points.map((point) => (
+                  <li key={point} className="flex gap-2">
+                    <span className="text-accent" aria-hidden="true">—</span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+
+          <div className="rounded-lg bg-accent/5 border border-accent/20 p-5">
+            <p className="text-xs font-mono tracking-widest uppercase text-accent">{project.impactLabel}</p>
+            <h4 className="mt-2 font-semibold text-gray-900 dark:text-white">{project.impactTitle}</h4>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{project.impact}</p>
+          </div>
+        </div>
+      </details>
+    </article>
+  )
+}
+
 // ── Section ──────────────────────────────────────────────────────────
 export function Projects() {
   const { locale, t } = useLanguage()
@@ -162,6 +253,22 @@ export function Projects() {
             {t('projects.section_title')}
           </h2>
           <p className="mt-2 text-gray-500 dark:text-gray-400 text-sm">{t('projects.subtitle')}</p>
+        </div>
+
+        <div className="mb-16">
+          <div className="mb-7">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              {t('projects.corporate_title')}
+            </h3>
+            <p className="mt-2 text-gray-500 dark:text-gray-400 text-sm">
+              {t('projects.corporate_subtitle')}
+            </p>
+          </div>
+          <div className="space-y-5">
+            {locale.projects.corporate_items.map((project) => (
+              <CorporateProjectCard key={project.title} project={project as CorporateProjectItem} />
+            ))}
+          </div>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

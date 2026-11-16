@@ -140,8 +140,182 @@
   "projects": {
     "section_title": "Projects",
     "subtitle": "A selection of things I've built",
+    "corporate_title": "Corporate project stories",
+    "corporate_subtitle": "Real systems, engineering decisions, and the impact behind each solution.",
     "view_live": "Live Demo",
     "view_code": "Source Code",
+    "corporate_items": [
+      {
+        "category": "Enterprise software / Recruitment and selection",
+        "title": "A system that grows with its people.",
+        "description": "From an Excel-based process to a faster, more maintainable recruitment application. My challenge was to evolve a prototype already in production, from its data model to the recruiters' experience.",
+        "roleLabel": "My contribution",
+        "role": "Backend development, database administration, and full-stack support for the frontend.",
+        "tags": ["TypeScript", "Azure Functions", "SQL", "Blob Storage", "Jest", "CI/CD"],
+        "storyTitle": "The problem, the decisions, and the impact",
+        "contextTitle": "The starting point",
+        "context": "Recruitment and selection were managed through Excel files, causing information loss and inefficiencies. I joined when a functional prototype was already in production. I had to correct its shortcomings and improve it without breaking existing flows, while learning the Azure Functions and TypeScript ecosystem and analyzing the application end to end.",
+        "phaseLabel": "Phase",
+        "phases": [
+          {
+            "title": "Bring coherence to the data.",
+            "description": "The foundation was turning an inconsistent model into a robust one while preserving compatibility with the applications that consumed it.",
+            "points": [
+              "I standardized table and column names and normalized the model to reduce redundancy.",
+              "I adjusted data types, relationships, and unique keys to protect integrity and prevent duplicates.",
+              "I analyzed expensive queries and added indexes to improve response times.",
+              "I defined users, roles, and permissions by environment and application, and documented the model and its standards."
+            ]
+          },
+          {
+            "title": "A backend that can be maintained.",
+            "description": "I refactored a codebase with mixed conventions and duplicated logic, making each layer's responsibilities explicit.",
+            "points": [
+              "I unified naming and conventions in English, parameterized repeated logic, and removed unused code.",
+              "I implemented the repository pattern with dependency injection to centralize and abstract data access.",
+              "I added automated Jest tests to CI/CD pipelines and logging to monitor the backend."
+            ]
+          },
+          {
+            "title": "Decouple to grow.",
+            "description": "The architecture evolved so heavier processes would not block the recruiters' experience.",
+            "points": [
+              "I migrated file storage from an on-premise server to Azure Blob Storage.",
+              "I implemented queues for processing and generating files, emails, and synchronizations.",
+              "I decoupled tasks from the legacy system and internal ERP so they could run in the background."
+            ]
+          },
+          {
+            "title": "Listen to the people using the system.",
+            "description": "With a more stable foundation, we interviewed users to identify improvements that would make their daily work easier.",
+            "points": [
+              "We implemented legacy-system synchronizations and generated assessments and psychological reports.",
+              "We automated the monthly consolidation of strategic data to support management decisions.",
+              "New features responded directly to the needs identified among recruiters."
+            ]
+          }
+        ],
+        "impactLabel": "Impact",
+        "impactTitle": "A more agile operation. A more observable system.",
+        "impact": "The work made recruitment, selection, and hiring easier, with shorter response times and the capacity to manage more people during demanding periods. Monitoring helped identify improvement opportunities and act proactively."
+      },
+      {
+        "category": "Campaign website + forms connected to the ATS",
+        "title": "Apply once. Open more opportunities.",
+        "description": "I built a website adaptable to Cyber campaigns and a form system connected to TeamWork's ATS. Recruiters configure each campaign, and candidates can apply again without starting over.",
+        "roleLabel": "My contribution",
+        "role": "Development of the site and application system: ATS integration, server-side rate limiting, and document validation using OCR, Azure Document Intelligence, and OpenAI vision models.",
+        "tags": ["TypeScript", "Azure Functions", "Rate limiting", "OCR", "Azure Document Intelligence", "OpenAI Vision"],
+        "storyTitle": "From scattered forms to a connected flow",
+        "contextTitle": "When attracting candidates also meant losing information.",
+        "context": "Campaigns were published in Canva, while candidate acquisition relied on external Google and Microsoft forms. Search visibility was poor, key data and documents lacked validation, and mass submissions triggered provider blocks that interrupted applications. The challenge was to create continuity and connect acquisition directly to the ATS.",
+        "phaseLabel": "Area",
+        "phases": [
+          {
+            "title": "One website for more than one campaign.",
+            "description": "I developed a site the company can adapt to different hiring periods instead of rebuilding an isolated presence for each event.",
+            "points": [
+              "A reusable foundation for Cyber Day, Cyber Monday, Black Friday, and other campaigns.",
+              "A single entry point for job openings and application forms.",
+              "An alternative to the previous Canva site, focused on presentation and digital visibility."
+            ]
+          },
+          {
+            "title": "Forms that adapt to each campaign.",
+            "description": "Recruiters can generate forms for their needs and link them directly to the applicant tracking system.",
+            "points": [
+              "Configuration of fields, required data, descriptions, and job openings.",
+              "Document uploads and validation of identification and date of birth.",
+              "Matching submitted information against the uploaded identity document."
+            ]
+          },
+          {
+            "title": "Protect submissions. Validate documents.",
+            "description": "I addressed both form abuse and verification of declared data against identity documents.",
+            "points": [
+              "I implemented server-side rate limiting to control abusive submissions.",
+              "I used OCR, Azure Document Intelligence, and OpenAI vision models with a fallback strategy.",
+              "Validation compares the supplied information without relying on a single processing option."
+            ]
+          },
+          {
+            "title": "Apply again without starting over.",
+            "description": "I designed a journey that retrieves previously submitted information when someone is interested in another position.",
+            "points": [
+              "Candidates review existing data instead of completing the entire form again.",
+              "They only add or adjust information specific to the new application.",
+              "Applications remain linked to the ATS for easier tracking."
+            ]
+          },
+          {
+            "title": "Know where every application comes from.",
+            "description": "Form categorization distinguishes both digital and in-person acquisition channels.",
+            "points": [
+              "Identification of applications from Instagram, Facebook, and TikTok.",
+              "Distinction between job portals and traffic from the Cyber site.",
+              "QR codes that let candidates apply from their phones at job fairs."
+            ]
+          }
+        ],
+        "impactLabel": "Impact and evolution",
+        "impactTitle": "A simpler application journey. More context for recruiters.",
+        "impact": "The system made candidate acquisition easier, reduced repeated data entry, and preserved traceability by channel and campaign. It also simplified job-fair operations and continues to evolve with recruitment needs."
+      },
+      {
+        "category": "WhatsApp support + employee experience surveys",
+        "title": "Resolve questions. Listen to experiences.",
+        "description": "I contributed to architecture planning and development of a system connecting WhatsApp support, a help desk, and surveys. The bot tries to solve each question and, when it cannot, hands it to an agent with a case number and resolution-time tracking.",
+        "roleLabel": "My participation",
+        "role": "Architecture planning and development, with significant complexity in the daily synchronization of large data volumes from multiple corporate sources.",
+        "tags": ["TypeScript", "Azure Functions", "SQL", "Blob Storage", "Message queues", "Poison queues"],
+        "storyTitle": "Support, surveys, and the challenge of keeping data synchronized",
+        "contextTitle": "Answering a question also means understanding an experience.",
+        "context": "The system combines two employee needs: resolving questions and problems through a familiar channel, and sharing feedback about their experience with the company. WhatsApp support integrates with a help desk and surveys covering both case resolution and the journey from recruitment to offboarding.",
+        "phaseLabel": "Area",
+        "phases": [
+          {
+            "title": "A bot as the first point of support.",
+            "description": "The conversation starts in WhatsApp, where a bot attempts to solve the employee's problem.",
+            "points": [
+              "Initial support through WhatsApp for employee questions.",
+              "When the bot has no answer, the question is sent to the internal ticketing system.",
+              "Support can continue with an agent instead of ending with the bot's response."
+            ]
+          },
+          {
+            "title": "Assigned cases and measured times.",
+            "description": "The help desk tracks questions that require human intervention.",
+            "points": [
+              "Assignment of a case number and an agent who can address the question.",
+              "Measurement of problem resolution time.",
+              "Tracking compliance with the service-level agreements applicable to each case."
+            ]
+          },
+          {
+            "title": "Surveys beyond a ticket.",
+            "description": "The system captures both the support experience and employee feedback throughout their relationship with the company.",
+            "points": [
+              "Satisfaction measurement associated with case resolution.",
+              "Experience surveys covering recruitment, hiring, and offboarding.",
+              "Information to identify improvement opportunities in employee processes."
+            ]
+          },
+          {
+            "title": "Synchronize without slowing operations.",
+            "description": "The main challenge was synchronizing large data volumes daily from multiple sources without affecting performance.",
+            "points": [
+              "Timers, batch processing, and incremental updates.",
+              "Message queues and retries to manage data processing.",
+              "Poison queues to isolate messages that repeatedly fail processing.",
+              "Strict coordination between corporate sources and the data required by support and surveys."
+            ]
+          }
+        ],
+        "impactLabel": "Impact",
+        "impactTitle": "Better support and a more complete view of working life.",
+        "impact": "The system helped the company understand employee opinions and experiences throughout their working life and identify improvement opportunities. At the same time, it made questions and problem resolution more pleasant for hired employees."
+      }
+    ],
     "items": [
       {
         "title": "Relational Model",
