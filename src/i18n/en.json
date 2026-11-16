@@ -152,6 +152,11 @@
         "roleLabel": "My contribution",
         "role": "Backend development, database administration, and full-stack support for the frontend.",
         "tags": ["TypeScript", "Azure Functions", "SQL", "Blob Storage", "Jest", "CI/CD"],
+        "outcomes": [
+          { "title": "Less waiting", "description": "Optimized queries and heavy tasks moved to the background." },
+          { "title": "More capacity", "description": "A higher volume of people managed during peak demand." },
+          { "title": "More visibility", "description": "Monitoring to detect problems and improve proactively." }
+        ],
         "storyTitle": "The problem, the decisions, and the impact",
         "contextTitle": "The starting point",
         "context": "Recruitment and selection were managed through Excel files, causing information loss and inefficiencies. I joined when a functional prototype was already in production. I had to correct its shortcomings and improve it without breaking existing flows, while learning the Azure Functions and TypeScript ecosystem and analyzing the application end to end.",
@@ -197,7 +202,7 @@
         ],
         "impactLabel": "Impact",
         "impactTitle": "A more agile operation. A more observable system.",
-        "impact": "The work made recruitment, selection, and hiring easier, with shorter response times and the capacity to manage more people during demanding periods. Monitoring helped identify improvement opportunities and act proactively."
+        "impact": "The work made recruitment, selection, and hiring easier, with shorter response times and the capacity to manage more people during demanding periods. Monitoring allowed the IT team to detect improvement opportunities, understand the most-used features, and act proactively. The result was a more manageable and maintainable application."
       },
       {
         "category": "Campaign website + forms connected to the ATS",
@@ -206,6 +211,11 @@
         "roleLabel": "My contribution",
         "role": "Development of the site and application system: ATS integration, server-side rate limiting, and document validation using OCR, Azure Document Intelligence, and OpenAI vision models.",
         "tags": ["TypeScript", "Azure Functions", "Rate limiting", "OCR", "Azure Document Intelligence", "OpenAI Vision"],
+        "outcomes": [
+          { "title": "Less friction", "description": "Data reuse when applying to different openings." },
+          { "title": "More traceability", "description": "Application source and tracking by channel and campaign." },
+          { "title": "Job fairs without manual transcription", "description": "Mobile applications through each campaign's QR code." }
+        ],
         "storyTitle": "From scattered forms to a connected flow",
         "contextTitle": "When attracting candidates also meant losing information.",
         "context": "Campaigns were published in Canva, while candidate acquisition relied on external Google and Microsoft forms. Search visibility was poor, key data and documents lacked validation, and mass submissions triggered provider blocks that interrupted applications. The challenge was to create continuity and connect acquisition directly to the ATS.",
@@ -259,7 +269,7 @@
         ],
         "impactLabel": "Impact and evolution",
         "impactTitle": "A simpler application journey. More context for recruiters.",
-        "impact": "The system made candidate acquisition easier, reduced repeated data entry, and preserved traceability by channel and campaign. It also simplified job-fair operations and continues to evolve with recruitment needs."
+        "impact": "The system made candidate acquisition easier, reduced repeated data entry, and helped preserve application traceability throughout each campaign. It also strengthened candidate confidence and simplified job-fair operations. The solution continues to grow from recruitment needs."
       },
       {
         "category": "WhatsApp support + employee experience surveys",
@@ -268,6 +278,11 @@
         "roleLabel": "My participation",
         "role": "Architecture planning and development, with significant complexity in the daily synchronization of large data volumes from multiple corporate sources.",
         "tags": ["TypeScript", "Azure Functions", "SQL", "Blob Storage", "Message queues", "Poison queues"],
+        "outcomes": [
+          { "title": "Continuity in support", "description": "The bot hands the question to an agent when human intervention is required." },
+          { "title": "Visible resolution times", "description": "Case-level measurement to assess compliance with the applicable SLAs." },
+          { "title": "An experience that can be heard", "description": "Surveys identify improvement opportunities throughout working life." }
+        ],
         "storyTitle": "Support, surveys, and the challenge of keeping data synchronized",
         "contextTitle": "Answering a question also means understanding an experience.",
         "context": "The system combines two employee needs: resolving questions and problems through a familiar channel, and sharing feedback about their experience with the company. WhatsApp support integrates with a help desk and surveys covering both case resolution and the journey from recruitment to offboarding.",

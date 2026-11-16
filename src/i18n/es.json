@@ -152,6 +152,11 @@
         "roleLabel": "Mi aporte",
         "role": "Desarrollo backend, administración de base de datos y apoyo full stack al frontend.",
         "tags": ["TypeScript", "Azure Functions", "SQL", "Blob Storage", "Jest", "CI/CD"],
+        "outcomes": [
+          { "title": "Menos espera", "description": "Consultas optimizadas y tareas pesadas en segundo plano." },
+          { "title": "Más capacidad", "description": "Gestión de un mayor volumen de personas en alta demanda." },
+          { "title": "Más visibilidad", "description": "Monitoreo para detectar problemas y mejorar de forma proactiva." }
+        ],
         "storyTitle": "El problema, las decisiones y el impacto",
         "contextTitle": "El punto de partida",
         "context": "El proceso de reclutamiento y selección se gestionaba en archivos Excel, con pérdida de información e ineficiencias. Me incorporé cuando ya existía un prototipo funcional en producción. Debía corregir sus deficiencias y mejorarlo sin romper los flujos existentes, mientras aprendía el ecosistema de Azure Functions con TypeScript y analizaba la aplicación de punta a punta.",
@@ -197,7 +202,7 @@
         ],
         "impactLabel": "Impacto",
         "impactTitle": "Una operación más ágil. Un sistema más observable.",
-        "impact": "El trabajo facilitó el reclutamiento, la selección y la contratación, con menores tiempos de respuesta y capacidad para gestionar un mayor volumen de personas en periodos exigentes. El monitoreo permitió detectar oportunidades de mejora y actuar de manera proactiva."
+        "impact": "El trabajo facilitó el reclutamiento, la selección y la contratación, con menores tiempos de respuesta y capacidad para gestionar un mayor volumen de personas en periodos exigentes. El monitoreo permitió al área de informática detectar oportunidades de mejora, conocer las funcionalidades más utilizadas y actuar de manera proactiva. El resultado fue una aplicación más manejable y mantenible."
       },
       {
         "category": "Sitio de campañas + formularios conectados al ATS",
@@ -206,6 +211,11 @@
         "roleLabel": "Mi aporte",
         "role": "Desarrollo del sitio y del sistema de postulaciones: integración con el ATS, rate limiting en el servidor y validación documental con OCR, Azure Document Intelligence y modelos de visión de OpenAI.",
         "tags": ["TypeScript", "Azure Functions", "Rate limiting", "OCR", "Azure Document Intelligence", "OpenAI Vision"],
+        "outcomes": [
+          { "title": "Menos fricción", "description": "Reutilización de datos para postular a distintas ofertas." },
+          { "title": "Más trazabilidad", "description": "Origen y seguimiento de postulaciones por canal y campaña." },
+          { "title": "Ferias sin transcripción manual", "description": "Postulación desde el celular al escanear el QR de la convocatoria." }
+        ],
         "storyTitle": "De formularios dispersos a un flujo conectado",
         "contextTitle": "Cuando captar personas también era perder información.",
         "context": "Las campañas se publicaban en Canva y la captación dependía de formularios externos de Google y Microsoft. La presencia en buscadores era insuficiente, faltaban validaciones para datos y documentos clave, y los envíos masivos provocaban bloqueos que interrumpían la recepción de postulaciones. El reto era dar continuidad a ese recorrido y conectarlo con el ATS.",
@@ -259,7 +269,7 @@
         ],
         "impactLabel": "Impacto y evolución",
         "impactTitle": "Un recorrido más simple para postular. Más contexto para reclutar.",
-        "impact": "El sistema facilitó la captación, redujo la repetición de datos y conservó la trazabilidad por canal y campaña. También simplificó la operación en ferias laborales y sigue creciendo a partir de las necesidades de reclutamiento."
+        "impact": "El sistema facilitó la captación, redujo la repetición de datos y ayudó a conservar la trazabilidad de las postulaciones durante cada periodo. También reforzó la confianza de las personas y simplificó la operación en ferias laborales. La solución sigue creciendo a partir de las necesidades de reclutamiento."
       },
       {
         "category": "SAC por WhatsApp + encuestas de experiencia",
@@ -268,6 +278,11 @@
         "roleLabel": "Mi participación",
         "role": "Planificación de arquitectura y desarrollo, con especial complejidad en la sincronización diaria de grandes volúmenes de datos desde distintas fuentes corporativas.",
         "tags": ["TypeScript", "Azure Functions", "SQL", "Blob Storage", "Colas de mensajes", "Colas poison"],
+        "outcomes": [
+          { "title": "Continuidad en la atención", "description": "Derivación del bot a un agente cuando la consulta necesita intervención humana." },
+          { "title": "Tiempos de resolución visibles", "description": "Medición por caso para evaluar el cumplimiento de los SLA correspondientes." },
+          { "title": "Experiencia que se puede escuchar", "description": "Encuestas para detectar oportunidades de mejora durante la vida laboral." }
+        ],
         "storyTitle": "Atención, encuestas y el reto de mantener los datos sincronizados",
         "contextTitle": "Atender una consulta también es entender una experiencia.",
         "context": "El sistema combina dos necesidades de los colaboradores: resolver consultas y problemas por un canal cercano, y expresar su opinión sobre la experiencia con la empresa. WhatsApp se integra con una mesa de ayuda y con encuestas que abarcan tanto la resolución de casos como el recorrido desde el reclutamiento hasta el offboarding.",

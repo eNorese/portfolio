@@ -33,6 +33,10 @@ type CorporateProjectItem = ProjectItem & {
   category: string
   roleLabel: string
   role: string
+  outcomes: {
+    title: string
+    description: string
+  }[]
   storyTitle: string
   contextTitle: string
   context: string
@@ -194,6 +198,15 @@ function CorporateProjectCard({ project }: { project: CorporateProjectItem }) {
           >
             {tag}
           </span>
+        ))}
+      </div>
+
+      <div className="grid sm:grid-cols-3 gap-3 mt-6">
+        {project.outcomes.map((outcome) => (
+          <div key={outcome.title} className="rounded-lg border border-gray-200 dark:border-gray-800 p-4">
+            <p className="text-sm font-medium text-gray-900 dark:text-white">{outcome.title}</p>
+            <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{outcome.description}</p>
+          </div>
         ))}
       </div>
 
