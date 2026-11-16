@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useMotion } from '@/components/MotionProvider'
 
 const revealSelector =
-  '.section-heading, .project-card, .experience-row, .service-card, .skill-row, .about-note, .about-copy, .stats-strip > div, .contact-grid, .faq-list details, .featured-project, .case-phase, .case-impact'
+  '.section-heading, .featured-navigation a, .project-card, .experience-row, .service-card, .skill-row, .about-note, .about-copy, .stats-strip > div, .contact-grid, .faq-list details, .featured-project, .case-phase, .case-impact'
 const hoverSelector =
   '.project-card, .service-card, .about-note, .featured-visual'
 export function MotionEffects() {
@@ -96,6 +96,7 @@ export function MotionEffects() {
       pointerFrame = requestAnimationFrame(() => {
         if (target !== current) return
         const rect = target.getBoundingClientRect()
+        if (!rect.width || !rect.height) return
         const px = (x - rect.left) / rect.width,
           py = (y - rect.top) / rect.height
         target.style.setProperty('--pointer-x', `${px * 100}%`)
@@ -114,7 +115,15 @@ export function MotionEffects() {
     if (main) layoutObserver.observe(main)
     document.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll, { passive: true })
-    document.addEventListener('pointermove', onPointer, { passive: true })
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)')
+    const syncPointerTracking = () => {
+      resetHover()
+      if (finePointer.matches)
+        document.addEventListener('pointermove', onPointer, { passive: true })
+      else document.removeEventListener('pointermove', onPointer)
+    }
+    syncPointerTracking()
+    finePointer.addEventListener('change', syncPointerTracking)
     document.addEventListener('pointerleave', resetHover)
     document.addEventListener('visibilitychange', onVisibility)
     return () => {
@@ -130,6 +139,7 @@ export function MotionEffects() {
       })
       document.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
+      finePointer.removeEventListener('change', syncPointerTracking)
       document.removeEventListener('pointermove', onPointer)
       document.removeEventListener('pointerleave', resetHover)
       document.removeEventListener('visibilitychange', onVisibility)
