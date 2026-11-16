@@ -149,8 +149,8 @@ export function Skills() {
         )}
       </div>
 
-      {/* fade → Projects (white / gray-950) */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-white dark:to-gray-950" />
+      {/* Keeps the transition seamless into About. */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900" />
     </section>
   )
 }

@@ -20,11 +20,11 @@ export default function Home() {
     <main>
       {portfolioSections.navbar && <Navbar />}
       {portfolioSections.hero && <Hero />}
-      {portfolioSections.about && <About />}
+      {portfolioSections.projects && <Projects />}
       {portfolioSections.services && <Services />}
       {portfolioSections.experience && <Experience />}
       {portfolioSections.skills && <Skills />}
-      {portfolioSections.projects && <Projects />}
+      {portfolioSections.about && <About />}
       {portfolioSections.faq && <FAQ />}
       {portfolioSections.contact && <Contact />}
       {portfolioSections.footer && <Footer />}

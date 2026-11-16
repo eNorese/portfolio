@@ -479,7 +479,7 @@ export function Hero() {
 
           {/* Primary — neon bloom */}
           <a
-            href="#servicios"
+            href="#proyectos"
             onMouseEnter={() => setHoverPrimary(true)}
             onMouseLeave={() => setHoverPrimary(false)}
             className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-white text-sm font-medium"
@@ -492,7 +492,7 @@ export function Hero() {
               transition: 'opacity 0.25s ease, box-shadow 0.35s ease',
             }}
           >
-            {t('hero.cta_services')}
+            {t('hero.cta_work')}
             <svg
               width="16" height="16" fill="none" viewBox="0 0 24 24"
               stroke="currentColor" strokeWidth={2}
@@ -552,7 +552,7 @@ export function Hero() {
 
       {/* ── Bottom fade into About section ── */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900"
+        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none bg-gradient-to-b from-transparent to-white dark:to-gray-950"
         style={{ zIndex: 9 }}
       />
 

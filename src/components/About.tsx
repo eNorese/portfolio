@@ -87,7 +87,7 @@ export function About() {
         {/* Section header */}
         <div className="mb-14">
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            01 —
+            05 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {t('about.section_title')}
@@ -138,8 +138,8 @@ export function About() {
         </div>
       </div>
 
-      {/* fade → Experience (white / gray-950) */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-white dark:to-gray-950" />
+      {/* Keeps the transition seamless into FAQ. */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900" />
     </section>
   )
 }
