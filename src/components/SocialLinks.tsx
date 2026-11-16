@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import socialConfig from '@/config/social.json'
 
 // ── Brand metadata ───────────────────────────────────────────────────
@@ -45,22 +44,21 @@ interface SocialLinksProps {
   size?: number
   /** Base color class for unhoverd icons (default: text-gray-400) */
   baseClass?: string
+  variant?: 'icon' | 'footer'
 }
 
 export function SocialLinks({
   size = 20,
   baseClass = 'text-gray-400',
+  variant = 'icon',
 }: SocialLinksProps) {
-  const [hovered, setHovered] = useState<Platform | null>(null)
-
   const enabled = PLATFORMS.filter((p) => socialConfig[p].enabled)
   if (enabled.length === 0) return null
 
   return (
-    <div className="flex items-center gap-4">
+    <div className={variant === 'footer' ? 'footer-social-links' : 'flex items-center gap-4'}>
       {enabled.map((platform) => {
         const { label, icon } = BRAND[platform]
-        const isHovered = hovered === platform
         const cfg = socialConfig[platform] as { enabled: boolean; url: string }
 
         return (
@@ -70,9 +68,10 @@ export function SocialLinks({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={label}
-            className={`${baseClass} social-link`}
+            className={variant === 'footer' ? 'footer-social-link' : `${baseClass} social-link`}
           >
-            <span style={{ width: size, height: size }}>{icon}</span>
+            <span className="social-icon" style={{ width: size, height: size }}>{icon}</span>
+            {variant === 'footer' && <><strong>{label}</strong><span className="social-arrow" aria-hidden="true">↗</span></>}
           </a>
         )
       })}

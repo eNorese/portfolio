@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
-import { Inter } from 'next/font/google'
+import { Inter, Space_Grotesk } from 'next/font/google'
 import '../globals.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ThemeProvider } from '@/components/ThemeProvider'
@@ -12,6 +12,11 @@ import es from '@/i18n/es.json'
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap',
+})
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-display',
   display: 'swap',
 })
 
@@ -180,6 +185,7 @@ export async function generateMetadata({
       description,
       type: 'website',
       url,
+      siteName: 'Enzo Norese — Portfolio',
       locale: lang === 'es' ? 'es_CL' : 'en_US',
       alternateLocale: lang === 'es' ? ['es_ES', 'es_MX', 'es_AR', 'es_PE', 'en_US'] : ['es_CL', 'es_ES', 'es_MX'],
       images: [{ url: '/og-image.png', width: 1731, height: 909, alt: title }],
@@ -189,6 +195,7 @@ export async function generateMetadata({
       title,
       description,
       creator: '@enorese',
+      site: '@enorese',
       images: ['/og-image.png'],
     },
   }
@@ -229,14 +236,24 @@ gtag('config', '${gaId}');`}
         )}
         {/* Prevent flash of unstyled content: apply dark class and data-theme before paint */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(['dark','ocean','midnight'].indexOf(t)!==-1)document.documentElement.classList.add('dark');}catch(e){}})()` }} />
-        <link rel="dns-prefetch" href="https://wa.me" />
-        <link rel="preconnect" href="https://wa.me" />
+        <link
+          rel="alternate"
+          type="text/plain"
+          href="/llms.txt"
+          title={lang === 'es' ? 'Contexto del sitio para asistentes de IA' : 'Site context for AI assistants'}
+        />
+        <link
+          rel="alternate"
+          type="text/plain"
+          href="/llms-full.txt"
+          title={lang === 'es' ? 'Contexto completo del sitio para asistentes de IA' : 'Full site context for AI assistants'}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} font-sans`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans`}>
         <ThemeProvider>
           <LanguageProvider lang={lang}>
             {children}
