@@ -3,75 +3,41 @@
 import { useLanguage } from '@/contexts/LanguageContext'
 import { SocialLinks } from '@/components/SocialLinks'
 
-const techStack = [
+const capabilityCards = [
   {
-    name: 'Azure Cloud',
+    key: 'cloud_architecture',
     icon: (
-      <svg viewBox="0 0 96 96" className="w-8 h-8" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="azureA" x1="-0.4" x2="1" y1="0.5" y2="0.5" gradientUnits="objectBoundingBox">
-            <stop offset="0" stopColor="#114a8b" />
-            <stop offset="1" stopColor="#0669bc" />
-          </linearGradient>
-          <linearGradient id="azureB" x1="0.1" x2="0.8" y1="0.3" y2="0.9" gradientUnits="objectBoundingBox">
-            <stop offset="0" stopColor="#3ccbf4" />
-            <stop offset="1" stopColor="#2892df" />
-          </linearGradient>
-        </defs>
-        <path d="M33.338 8.394H58.81L31.24 88.241a3.733 3.733 0 01-3.533 2.527H7.489a3.728 3.728 0 01-3.53-4.933L24.95 17.918a3.734 3.734 0 013.533-2.525h4.855z" fill="url(#azureA)" />
-        <path d="M68.31 61.504H29.099a1.72 1.72 0 00-1.171 2.977l25.502 23.762a3.754 3.754 0 002.56.992h22.52z" fill="#0078d4" />
-        <path d="M33.338 8.394a3.71 3.71 0 00-3.541 2.569L3.98 85.799a3.726 3.726 0 003.505 5.043h20.192a4.014 4.014 0 003.073-2.74l4.818-14.225 17.19 16.033a3.817 3.817 0 002.453.847h21.39l-9.386-26.918-27.423.006L58.81 8.394z" fill="url(#azureB)" />
+      <svg viewBox="0 0 24 24" className="w-8 h-8 text-accent" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M7.5 18.5h9.25a4.25 4.25 0 0 0 .58-8.46A5.75 5.75 0 0 0 6.5 8.25a5.13 5.13 0 0 0 1 10.25Z" />
+        <path d="M9 13.25h6M10.5 16h3M12 13.25V16" />
       </svg>
     ),
   },
   {
-    name: 'TypeScript',
+    key: 'backend_systems',
     icon: (
-      <svg viewBox="0 0 32 32" className="w-8 h-8" xmlns="http://www.w3.org/2000/svg">
-        <rect width="32" height="32" rx="4" fill="#3178C6" />
-        <path d="M18.245 22.82v2.573c.418.214.913.376 1.483.487.57.11 1.172.166 1.806.166.617 0 1.2-.066 1.748-.197a4.05 4.05 0 0 0 1.408-.633 2.98 2.98 0 0 0 .941-1.107c.228-.454.342-.997.342-1.63 0-.463-.068-.87-.204-1.223a2.85 2.85 0 0 0-.594-.944 4.268 4.268 0 0 0-.95-.728 10.55 10.55 0 0 0-1.265-.596c-.344-.134-.648-.263-.913-.387a3.574 3.574 0 0 1-.672-.383 1.59 1.59 0 0 1-.418-.457.976.976 0 0 1-.14-.52c0-.18.042-.34.126-.48a1.1 1.1 0 0 1 .355-.361 1.77 1.77 0 0 1 .55-.224 2.9 2.9 0 0 1 .706-.079c.187 0 .382.014.585.042.203.028.405.074.607.137.202.063.398.145.587.246.19.1.363.22.52.36V16.64a6.2 6.2 0 0 0-1.142-.306 8.1 8.1 0 0 0-1.387-.107c-.609 0-1.185.07-1.727.208a4.048 4.048 0 0 0-1.388.647 3.047 3.047 0 0 0-.917 1.092c-.22.44-.33.955-.33 1.544 0 .765.22 1.414.662 1.948.44.534 1.104.979 1.99 1.335.363.14.696.277 1 .41.302.133.562.273.78.42.218.146.388.307.51.482.123.175.184.376.184.604 0 .17-.037.328-.11.472a.997.997 0 0 1-.33.365 1.65 1.65 0 0 1-.55.231 3.13 3.13 0 0 1-.77.085c-.504 0-1.003-.094-1.497-.28a5.01 5.01 0 0 1-1.356-.794zm-4.666-5.635h3.297V15H8v2.185h3.285V28h2.294V17.185z" fill="white" />
+      <svg viewBox="0 0 24 24" className="w-8 h-8 text-accent" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="4" y="4" width="16" height="6" rx="1.5" />
+        <rect x="4" y="14" width="16" height="6" rx="1.5" />
+        <path d="M8 7h.01M8 17h.01M12 7h5M12 17h5" />
       </svg>
     ),
   },
   {
-    name: 'Serverless',
+    key: 'applied_ai',
     icon: (
-      <svg viewBox="0 0 24 24" className="w-8 h-8" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" fill="none" />
-        <path d="M2 17l10 5 10-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" />
-        <path d="M2 12l10 5 10-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" />
+      <svg viewBox="0 0 24 24" className="w-8 h-8 text-accent" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 3.5c.7 3.65 2.85 5.8 6.5 6.5-3.65.7-5.8 2.85-6.5 6.5-.7-3.65-2.85-5.8-6.5-6.5 3.65-.7 5.8-2.85 6.5-6.5Z" />
+        <path d="M18.5 15.5c.27 1.4 1.1 2.23 2.5 2.5-1.4.27-2.23 1.1-2.5 2.5-.27-1.4-1.1-2.23-2.5-2.5 1.4-.27 2.23-1.1 2.5-2.5ZM5 3v3M3.5 4.5h3" />
       </svg>
     ),
   },
   {
-    name: 'IA Aplicada',
+    key: 'technical_leadership',
     icon: (
-      <svg viewBox="0 0 24 24" className="w-8 h-8 text-accent" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Neural network: 3 layers of nodes connected by edges */}
-        {/* Edges — drawn first so nodes sit on top */}
-        <line x1="4" y1="7"  x2="10" y2="5"  stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="4" y1="7"  x2="10" y2="12" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="4" y1="7"  x2="10" y2="19" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="4" y1="17" x2="10" y2="5"  stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="4" y1="17" x2="10" y2="12" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="4" y1="17" x2="10" y2="19" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="10" y1="5"  x2="14" y2="9"  stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="10" y1="5"  x2="14" y2="15" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="10" y1="12" x2="14" y2="9"  stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="10" y1="12" x2="14" y2="15" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="10" y1="19" x2="14" y2="9"  stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="10" y1="19" x2="14" y2="15" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="14" y1="9"  x2="20" y2="12" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        <line x1="14" y1="15" x2="20" y2="12" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-        {/* Nodes */}
-        <circle cx="4"  cy="7"  r="1.8" fill="currentColor" />
-        <circle cx="4"  cy="17" r="1.8" fill="currentColor" />
-        <circle cx="10" cy="5"  r="1.8" fill="currentColor" />
-        <circle cx="10" cy="12" r="1.8" fill="currentColor" />
-        <circle cx="10" cy="19" r="1.8" fill="currentColor" />
-        <circle cx="14" cy="9"  r="1.8" fill="currentColor" />
-        <circle cx="14" cy="15" r="1.8" fill="currentColor" />
-        <circle cx="20" cy="12" r="1.8" fill="currentColor" />
+      <svg viewBox="0 0 24 24" className="w-8 h-8 text-accent" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="7" r="3" />
+        <path d="M6.5 20c.45-3.1 2.35-5 5.5-5s5.05 1.9 5.5 5M5.5 10.5a2.5 2.5 0 1 0-2.25 4.95M18.5 10.5a2.5 2.5 0 1 1 2.25 4.95" />
       </svg>
     ),
   },
@@ -81,13 +47,13 @@ export function About() {
   const { t } = useLanguage()
 
   return (
-    <section id="sobre-mi" className="relative py-24 bg-gray-50 dark:bg-gray-900">
+    <section id="sobre-mi" className="section-atmosphere relative py-24 bg-white dark:bg-gray-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
-        <div className="mb-14">
+        <div className="mb-14" data-reveal>
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            05 —
+            01 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {t('about.section_title')}
@@ -97,7 +63,7 @@ export function About() {
 
         <div className="grid lg:grid-cols-5 gap-12 items-start">
           {/* Bio — wider column */}
-          <div className="lg:col-span-3 space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed text-base">
+          <div className="lg:col-span-3 space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed text-base" data-reveal data-reveal-direction="left">
             <p>{t('about.bio_1')}</p>
             <p>{t('about.bio_2')}</p>
             <p>{t('about.bio_3')}</p>
@@ -119,27 +85,63 @@ export function About() {
             </div>
           </div>
 
-          {/* Tech stack badges — narrower column */}
-          <div className="lg:col-span-2 grid grid-cols-2 gap-4">
-            {techStack.map(({ name, icon }) => (
+          {/* Durable capability pillars — broader than specific tools. */}
+          <div className="lg:col-span-2 grid grid-cols-2 gap-4" data-reveal data-reveal-direction="right" data-reveal-delay="1">
+            {capabilityCards.map(({ key, icon }, index) => (
               <div
-                key={name}
-                className="group border border-gray-200/60 dark:border-gray-700/60 rounded-xl p-5 flex flex-col items-center gap-3 text-center cursor-default backdrop-blur-sm bg-white/30 dark:bg-gray-800/30 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:bg-white/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-accent/10"
+                key={key}
+                className="motion-card group border border-gray-200/60 dark:border-gray-700/60 rounded-xl p-5 flex flex-col items-center gap-3 text-center cursor-default backdrop-blur-sm bg-white/30 dark:bg-gray-800/30 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:bg-white/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-accent/10"
+                style={{ animationDelay: `${index * 120}ms` }}
               >
                 <span className="transition-transform duration-300 group-hover:scale-110">
                   {icon}
                 </span>
                 <span className="text-xs font-mono font-medium tracking-wide text-gray-600 dark:text-gray-300 group-hover:text-accent transition-colors duration-300">
-                  {name}
+                  {t(`about.capabilities.${key}`)}
                 </span>
               </div>
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Keeps the transition seamless into FAQ. */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900" />
+        <div className="mt-16 pt-10 border-t border-gray-200/70 dark:border-gray-800/70 grid lg:grid-cols-[0.85fr_1.35fr] gap-8 lg:gap-12 items-start" data-reveal>
+          <div>
+            <p className="text-xs font-mono tracking-widest uppercase text-accent mb-3">
+              {t('about.beyond_code.eyebrow')}
+            </p>
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
+              {t('about.beyond_code.title')}
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+              {t('about.beyond_code.description')}
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="motion-card group rounded-xl border border-gray-200/70 dark:border-gray-700/70 bg-white/40 dark:bg-gray-800/35 p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40">
+              <svg viewBox="0 0 24 24" className="w-7 h-7 text-accent mb-4 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M9 10 5.5 6.5M15 10l3.5-3.5M9 14l-3.5 3.5M15 14l3.5 3.5" />
+                <circle cx="4" cy="5" r="2" /><circle cx="20" cy="5" r="2" /><circle cx="4" cy="19" r="2" /><circle cx="20" cy="19" r="2" />
+                <rect x="8" y="9" width="8" height="6" rx="2" /><path d="M11 12h2" />
+              </svg>
+              <h4 className="font-semibold text-gray-900 dark:text-white">{t('about.beyond_code.fpv_title')}</h4>
+              <p className="mt-2 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                {t('about.beyond_code.fpv_description')}
+              </p>
+            </div>
+
+            <div className="motion-card group rounded-xl border border-gray-200/70 dark:border-gray-700/70 bg-white/40 dark:bg-gray-800/35 p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40">
+              <svg viewBox="0 0 24 24" className="w-7 h-7 text-accent mb-4 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M4 7v10M8 4v16M12 8v8M16 5v14M20 9v6" />
+              </svg>
+              <h4 className="font-semibold text-gray-900 dark:text-white">{t('about.beyond_code.music_title')}</h4>
+              <p className="mt-2 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                {t('about.beyond_code.music_description')}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }

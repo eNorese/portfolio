@@ -26,6 +26,21 @@
     "bio_1": "Ingeniero en Informática con base en electrónica, especializado en desarrollo backend y arquitectura de soluciones cloud. Me desempeño como referente técnico y arquitecto de soluciones — diseñando y construyendo sistemas de alto impacto que potencian operaciones reales de negocio.",
     "bio_2": "Lidero dos iniciativas clave: la migración de ERP Softland → Rex+ (completada con cero pérdida de datos y cero tiempo de inactividad) y el Reclutador Digital 24/7 — un agente de reclutamiento masivo impulsado por IA sobre Azure serverless, con un pipeline multi-modelo en cascada (Claude, GPT-4o, Gemini) diseñado para procesar decenas de miles de postulaciones en periodos de alta demanda como el Cyber Day.",
     "bio_3": "Mi filosofía — \"Ingeniería Aumentada\" — posiciona las herramientas de IA como multiplicadores de capacidad técnica, no como sustitutos del criterio ingenieril. Mi trayectoria desde técnico electrónico hasta arquitecto cloud me otorga una visión amplia que abarca desde los fundamentos de bajo nivel hasta los sistemas distribuidos modernos.",
+    "capabilities": {
+      "cloud_architecture": "Arquitectura cloud",
+      "backend_systems": "Sistemas backend",
+      "applied_ai": "IA aplicada",
+      "technical_leadership": "Liderazgo técnico"
+    },
+    "beyond_code": {
+      "eyebrow": "Fuera del código",
+      "title": "Curiosidad que también se mueve y suena.",
+      "description": "Además de la ingeniería, exploro disciplinas que combinan técnica, precisión y creatividad. Son intereses personales en pleno aprendizaje, no habilidades que pretenda presentar como dominadas.",
+      "fpv_title": "Drones FPV",
+      "fpv_description": "Estoy aprendiendo pilotaje y control de drones, con la meta de avanzar hacia vuelos freestyle y racing.",
+      "music_title": "DJ y producción musical",
+      "music_description": "Practico mezcla con controladora, creación de mashups y mis primeros pasos en producción musical."
+    },
     "years_value": "6+",
     "projects_value": "40+",
     "technologies_value": "30+",

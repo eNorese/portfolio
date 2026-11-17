@@ -26,6 +26,21 @@
     "bio_1": "Computer Engineer with a background in electronics, specialized in backend development and cloud solutions architecture. At TeamWork Capacitación Ltda. in Santiago, I operate as technical lead and solutions architect — designing and building high-impact systems that power real operations.",
     "bio_2": "I lead two key initiatives: the Softland → Rex+ ERP migration (completed with zero data loss and zero downtime) and the Digital 24/7 Recruiter — an AI-powered mass recruitment agent on Azure serverless, with a cascaded multi-model pipeline (Claude, GPT-4o, Gemini) designed to process tens of thousands of applications during peak demand periods like Cyber Day.",
     "bio_3": "My engineering philosophy — \"Augmented Engineering\" — positions AI tools as technical capability multipliers, not replacements for sound engineering judgment. My path from electronics technician to cloud architect gives me a broad perspective that spans from low-level fundamentals to modern distributed systems.",
+    "capabilities": {
+      "cloud_architecture": "Cloud architecture",
+      "backend_systems": "Backend systems",
+      "applied_ai": "Applied AI",
+      "technical_leadership": "Technical leadership"
+    },
+    "beyond_code": {
+      "eyebrow": "Beyond code",
+      "title": "Curiosity that moves and makes sound.",
+      "description": "Beyond engineering, I explore disciplines that combine technique, precision, and creativity. These are personal interests I am actively learning, not skills I claim to have mastered.",
+      "fpv_title": "FPV drones",
+      "fpv_description": "I am learning drone piloting and control, with the goal of progressing toward freestyle and racing flights.",
+      "music_title": "DJing and music production",
+      "music_description": "I practice mixing with a controller, creating mashups, and taking my first steps in music production."
+    },
     "years_value": "6+",
     "projects_value": "40+",
     "technologies_value": "30+",
