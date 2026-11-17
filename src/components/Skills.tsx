@@ -78,13 +78,13 @@ export function Skills() {
   const [hoveredBadge, setHoveredBadge] = useState<string | null>(null)
 
   return (
-    <section id="habilidades" className="relative py-24 bg-gray-50 dark:bg-gray-900">
+    <section id="habilidades" className="section-atmosphere relative py-24 bg-white dark:bg-gray-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
-        <div className="mb-14">
+        <div className="mb-14" data-reveal>
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            04 —
+            05 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {t('skills.section_title')}
@@ -94,10 +94,12 @@ export function Skills() {
 
         {/* Skill category cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          {(Object.keys(SKILLS_DATA) as Array<keyof typeof SKILLS_DATA>).map((category) => (
+          {(Object.keys(SKILLS_DATA) as Array<keyof typeof SKILLS_DATA>).map((category, index) => (
             <div
               key={category}
-              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 transition-all duration-300 hover:border-accent/30 hover:shadow-md hover:shadow-accent/5"
+              className="motion-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-md hover:shadow-accent/5"
+              data-reveal
+              data-reveal-delay={String(index + 1)}
             >
               <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">
                 {t(`skills.categories.${category}`)}
@@ -149,8 +151,6 @@ export function Skills() {
         )}
       </div>
 
-      {/* Keeps the transition seamless into About. */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900" />
     </section>
   )
 }

@@ -94,7 +94,7 @@ function ProjectCard({ project, t }: { project: ProjectItem; t: (k: string) => s
       ref={cardRef}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      className="group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 cursor-default"
+      className="motion-card group relative flex h-full flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 cursor-default"
       style={{
         transition: 'transform 0.5s ease, box-shadow 0.4s ease',
         willChange: 'transform',
@@ -184,7 +184,10 @@ function CorporateProjectCard({
   return (
     <article
       id={`corporate-case-${index + 1}`}
-      className="scroll-mt-24 overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-accent/[0.06] dark:border-gray-800 dark:bg-gray-900"
+      className="motion-card scroll-mt-24 overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-accent/[0.06] dark:border-gray-800 dark:bg-gray-900"
+      data-reveal
+      data-reveal-direction={index % 2 === 0 ? 'left' : 'right'}
+      data-reveal-delay={String(Math.min(index, 3))}
     >
       <div className="flex items-center justify-between gap-4 border-b border-gray-200 px-6 py-4 dark:border-gray-800 sm:px-8">
         <div className="flex items-center gap-3">
@@ -324,12 +327,12 @@ export function Projects() {
   const { locale, t } = useLanguage()
 
   return (
-    <section id="proyectos" className="relative py-24 bg-white dark:bg-gray-950">
+    <section id="proyectos" className="section-atmosphere section-atmosphere-reverse relative py-24 bg-white dark:bg-gray-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="mb-14">
+        <div className="mb-14" data-reveal>
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            01 —
+            02 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {t('projects.section_title')}
@@ -338,7 +341,7 @@ export function Projects() {
         </div>
 
         <div className="mb-20">
-          <div className="mb-7">
+          <div className="mb-7" data-reveal>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="mb-2 text-xs font-mono uppercase tracking-widest text-accent">
@@ -357,12 +360,12 @@ export function Projects() {
             </p>
           </div>
 
-          <nav aria-label={t('projects.corporate_index_label')} className="mb-8 grid gap-3 md:grid-cols-3">
+          <nav aria-label={t('projects.corporate_index_label')} className="mb-8 grid gap-3 md:grid-cols-3" data-reveal data-reveal-delay="1">
             {locale.projects.corporate_items.map((project, index) => (
               <a
                 key={project.title}
                 href={`#corporate-case-${index + 1}`}
-                className="group flex min-h-28 flex-col justify-between rounded-xl border border-gray-200 bg-gray-50 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg hover:shadow-accent/[0.06] dark:border-gray-800 dark:bg-gray-900"
+                className="motion-card group flex min-h-28 flex-col justify-between rounded-xl border border-gray-200 bg-gray-50 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg hover:shadow-accent/[0.06] dark:border-gray-800 dark:bg-gray-900"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs text-accent">0{index + 1}</span>
@@ -391,7 +394,7 @@ export function Projects() {
           </div>
         </div>
 
-        <div className="mb-7">
+        <div className="mb-7" data-reveal>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
             {t('projects.other_title')}
           </h3>
@@ -402,13 +405,13 @@ export function Projects() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {locale.projects.items.map((project, i) => (
-            <ProjectCard key={i} project={project as ProjectItem} t={t} />
+            <div key={i} data-reveal data-reveal-delay={String((i % 3) + 1)}>
+              <ProjectCard project={project as ProjectItem} t={t} />
+            </div>
           ))}
         </div>
       </div>
 
-      {/* Keeps the transition seamless into Services. */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-white dark:to-gray-950" />
     </section>
   )
 }

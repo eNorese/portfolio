@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Navbar } from '@/components/Navbar'
 import { Hero } from '@/components/Hero'
+import { MotionOrchestrator } from '@/components/MotionOrchestrator'
 import { portfolioSections } from '@/config/sections'
 
 const About = dynamic(() => import('@/components/About').then(m => ({ default: m.About })))
@@ -17,14 +18,15 @@ const RubikCube = dynamic(() => import('@/components/RubikCube').then(m => ({ de
 
 export default function Home() {
   return (
-    <main>
+    <main className="site-canvas">
+      <MotionOrchestrator />
       {portfolioSections.navbar && <Navbar />}
       {portfolioSections.hero && <Hero />}
+      {portfolioSections.about && <About />}
       {portfolioSections.projects && <Projects />}
       {portfolioSections.services && <Services />}
       {portfolioSections.experience && <Experience />}
       {portfolioSections.skills && <Skills />}
-      {portfolioSections.about && <About />}
       {portfolioSections.faq && <FAQ />}
       {portfolioSections.contact && <Contact />}
       {portfolioSections.footer && <Footer />}

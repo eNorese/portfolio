@@ -170,7 +170,7 @@ export function Experience() {
   }, [])
 
   return (
-    <section id="experiencia" className="relative py-24 bg-white dark:bg-gray-950">
+    <section id="experiencia" className="section-atmosphere section-atmosphere-reverse relative py-24 bg-white dark:bg-gray-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
@@ -184,7 +184,7 @@ export function Experience() {
           }}
         >
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            03 —
+            04 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {t('experience.section_title')}
@@ -233,8 +233,6 @@ export function Experience() {
         </div>
       </div>
 
-      {/* fade → Skills (gray-50 / gray-900) */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900" />
     </section>
   )
 }

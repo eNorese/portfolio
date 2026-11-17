@@ -24,11 +24,11 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="relative py-24 bg-gray-50 dark:bg-gray-900">
+    <section id="faq" className="section-atmosphere section-atmosphere-reverse relative py-24 bg-white dark:bg-gray-950">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
-        <div className="mb-14">
+        <div className="mb-14" data-reveal>
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
             06 —
           </p>
@@ -45,7 +45,9 @@ export function FAQ() {
             return (
               <div
                 key={i}
-                className="border border-gray-200 dark:border-gray-800 rounded-xl bg-white dark:bg-gray-950 overflow-hidden transition-colors duration-200 hover:border-accent/30"
+                className="motion-card border border-gray-200 dark:border-gray-800 rounded-xl bg-white dark:bg-gray-950 overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/[0.05]"
+                data-reveal
+                data-reveal-delay={String((i % 4) + 1)}
               >
                 <button
                   type="button"
@@ -77,8 +79,6 @@ export function FAQ() {
         </div>
       </div>
 
-      {/* fade → Contact (white / gray-950) */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-white dark:to-gray-950" />
     </section>
   )
 }

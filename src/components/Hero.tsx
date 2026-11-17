@@ -364,7 +364,7 @@ export function Hero() {
       id="home"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-gray-950"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent"
     >
       {/* ── Code rain canvas ── */}
       <canvas
@@ -549,12 +549,6 @@ export function Hero() {
           <div className="h-px w-10 bg-gray-300/70 dark:bg-gray-700/60" />
         </div>
       </div>
-
-      {/* ── Bottom fade into About section ── */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none bg-gradient-to-b from-transparent to-white dark:to-gray-950"
-        style={{ zIndex: 9 }}
-      />
 
       {/* ── Scroll indicator ── */}
       <div

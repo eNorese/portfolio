@@ -103,11 +103,11 @@ export function Contact() {
   const isError   = status === 'error'
 
   return (
-    <section id="contacto" className="relative py-24 bg-white dark:bg-gray-950">
+    <section id="contacto" className="section-atmosphere relative py-24 bg-white dark:bg-gray-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
-        <div className="mb-14">
+        <div className="mb-14" data-reveal>
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
             07 —
           </p>
@@ -119,7 +119,7 @@ export function Contact() {
 
         <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
           {/* Info column */}
-          <div className="lg:col-span-2 flex flex-col gap-6">
+          <div className="lg:col-span-2 flex flex-col gap-6" data-reveal data-reveal-direction="left">
             <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
               {t('contact.description')}
             </p>
@@ -156,7 +156,7 @@ export function Contact() {
           </div>
 
           {/* Form column */}
-          <form onSubmit={handleSubmit} noValidate className="lg:col-span-3 flex flex-col gap-4">
+          <form onSubmit={handleSubmit} noValidate className="contact-form lg:col-span-3 flex flex-col gap-4" data-reveal data-reveal-direction="right" data-reveal-delay="1">
 
             {/* Honeypot anti-bot — oculto para humanos, invisible a lectores de pantalla */}
             <input
@@ -294,8 +294,6 @@ export function Contact() {
         </div>
       </div>
 
-      {/* fade → Footer (white / gray-950) */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-transparent to-white dark:to-gray-950" />
     </section>
   )
 }

@@ -146,6 +146,153 @@ section[id] {
   100% { box-shadow: 0 0 0 0   rgba(37,211,102,0),    0 4px 20px rgba(37,211,102,0.35); }
 }
 
+/* ── Portfolio motion system ────────────────────────────────────────── */
+
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 70;
+  height: 2px;
+  pointer-events: none;
+  background: rgb(var(--accent) / 0.08);
+}
+
+.scroll-progress > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, rgb(var(--accent) / 0.35), rgb(var(--accent)), rgb(var(--accent) / 0.65));
+  box-shadow: 0 0 12px rgb(var(--accent) / 0.45);
+  will-change: transform;
+}
+
+/* Content is only hidden after the client orchestrator is ready. */
+.motion-ready [data-reveal] {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translate3d(0, 26px, 0);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, filter, transform;
+}
+
+.motion-ready [data-reveal][data-reveal-direction="left"] {
+  transform: translate3d(-28px, 0, 0);
+}
+
+.motion-ready [data-reveal][data-reveal-direction="right"] {
+  transform: translate3d(28px, 0, 0);
+}
+
+.motion-ready [data-reveal][data-reveal-direction="scale"] {
+  transform: scale(0.965);
+}
+
+.motion-ready [data-reveal].is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+[data-reveal-delay="1"] { transition-delay: 80ms !important; }
+[data-reveal-delay="2"] { transition-delay: 160ms !important; }
+[data-reveal-delay="3"] { transition-delay: 240ms !important; }
+[data-reveal-delay="4"] { transition-delay: 320ms !important; }
+
+/* One continuous technical canvas prevents the grid from restarting at every section. */
+.site-canvas {
+  background-image:
+    linear-gradient(rgb(var(--accent) / 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--accent) / 0.022) 1px, transparent 1px);
+  background-size: 72px 72px;
+  background-position: center top;
+}
+
+/* Section-local glows float over the continuous canvas and fade at both edges. */
+.section-atmosphere {
+  isolation: isolate;
+  background-color: transparent !important;
+}
+
+.section-atmosphere::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgb(var(--accent) / 0.085), transparent 26rem),
+    radial-gradient(circle at 88% 72%, rgb(var(--accent) / 0.055), transparent 24rem);
+  background-position: 0 0, 0 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+}
+
+.section-atmosphere > * {
+  position: relative;
+  z-index: 1;
+}
+
+.section-atmosphere-reverse::before {
+  background-image:
+    radial-gradient(circle at 84% 16%, rgb(var(--accent) / 0.075), transparent 25rem),
+    radial-gradient(circle at 15% 78%, rgb(var(--accent) / 0.05), transparent 22rem);
+}
+
+@keyframes ambient-drift {
+  0%, 100% { background-position: 0 0, 0 0; }
+  50% { background-position: 18px -12px, -16px 14px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .section-atmosphere::before {
+    animation: ambient-drift 24s ease-in-out infinite;
+  }
+}
+
+/* One soft light sweep on hover gives flat cards some material response. */
+.motion-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  overflow: clip;
+}
+
+.motion-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(115deg, transparent 28%, rgb(var(--accent) / 0.08) 48%, transparent 68%);
+  transform: translateX(-45%);
+  transition: opacity 0.35s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .motion-card:hover::after {
+    opacity: 1;
+    transform: translateX(45%);
+  }
+}
+
+.contact-form input,
+.contact-form textarea {
+  transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 3px rgb(var(--accent) / 0.1), 0 12px 28px rgb(var(--accent) / 0.07);
+}
+
 /* ── Multi-theme CSS variables ──────────────────────────────────────── */
 
 /* --accent: space-separated R G B for rgb(var(--accent) / opacity) usage  */

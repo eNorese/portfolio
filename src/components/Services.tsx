@@ -74,7 +74,7 @@ function ServiceCard({ item, icon, index }: { item: ServiceItem; icon: React.Rea
   return (
     <div
       ref={ref}
-      className="group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg hover:shadow-accent/10"
+      className="motion-card group relative flex flex-col bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg hover:shadow-accent/10"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(22px)',
@@ -101,13 +101,13 @@ export function Services() {
   const cta = useReveal(0.2)
 
   return (
-    <section id="servicios" className="relative py-24 bg-white dark:bg-gray-950">
+    <section id="servicios" className="section-atmosphere relative py-24 bg-white dark:bg-gray-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
-        <div className="mb-8">
+        <div className="mb-8" data-reveal>
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            02 —
+            03 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {t('services.section_title')}
@@ -116,7 +116,7 @@ export function Services() {
         </div>
 
         {/* Intro */}
-        <p className="max-w-2xl text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-12">
+        <p className="max-w-2xl text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-12" data-reveal data-reveal-delay="1">
           {t('services.intro')}
         </p>
 
