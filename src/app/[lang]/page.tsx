@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import { Navbar } from '@/components/Navbar'
 import { Hero } from '@/components/Hero'
 import { MotionOrchestrator } from '@/components/MotionOrchestrator'
+import { DeferredExperiences } from '@/components/DeferredExperiences'
 import { portfolioSections } from '@/config/sections'
 
 const About = dynamic(() => import('@/components/About').then(m => ({ default: m.About })))
@@ -13,8 +14,6 @@ const FAQ = dynamic(() => import('@/components/FAQ').then(m => ({ default: m.FAQ
 const Contact = dynamic(() => import('@/components/Contact').then(m => ({ default: m.Contact })))
 const Footer = dynamic(() => import('@/components/Footer').then(m => ({ default: m.Footer })))
 const FloatingWhatsApp = dynamic(() => import('@/components/FloatingWhatsApp').then(m => ({ default: m.FloatingWhatsApp })))
-const EasterEgg = dynamic(() => import('@/components/EasterEgg').then(m => ({ default: m.EasterEgg })))
-const RubikCube = dynamic(() => import('@/components/RubikCube').then(m => ({ default: m.RubikCube })))
 
 export default function Home() {
   return (
@@ -31,8 +30,7 @@ export default function Home() {
       {portfolioSections.contact && <Contact />}
       {portfolioSections.footer && <Footer />}
       {portfolioSections.floatingWhatsApp && <FloatingWhatsApp />}
-      {portfolioSections.easterEgg && <EasterEgg />}
-      {portfolioSections.rubikCube && <RubikCube />}
+      {(portfolioSections.easterEgg || portfolioSections.rubikCube) && <DeferredExperiences />}
     </main>
   )
 }

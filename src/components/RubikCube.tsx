@@ -8,8 +8,8 @@ import type { RubikSceneHandle } from '@/components/rubik/RubikScene'
 /* three.js (~150 kB gz) loads only when the easter egg actually opens */
 const RubikScene = lazy(() => import('@/components/rubik/RubikScene'))
 
-export function RubikCube() {
-  const [active, setActive]             = useState(false)
+export function RubikCube({ initiallyOpen = false }: { initiallyOpen?: boolean } = {}) {
+  const [active, setActive]             = useState(initiallyOpen)
   const [scrambling, setScrambling]     = useState(false)
   const [challenge, setChallenge]       = useState(false)
   const [moveCount, setMoveCount]       = useState(0)

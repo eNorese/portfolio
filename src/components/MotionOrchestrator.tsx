@@ -52,7 +52,9 @@ export function MotionOrchestrator() {
     }
 
     window.addEventListener('scroll', onScroll, { passive: true })
-    updateProgress()
+    // The bar already starts at scaleX(0). Avoid forcing a full layout read
+    // during hydration; restored pages still receive an initial async update.
+    if (window.scrollY > 0) onScroll()
 
     return () => {
       observer?.disconnect()

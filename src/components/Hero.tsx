@@ -133,21 +133,28 @@ export function Hero() {
   // Generate data pixels once (client-only) — se omiten si el usuario pide menos movimiento
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    setPixels(
-      Array.from({ length: 26 }, (_, i) => ({
-        id: i,
-        top:  `${4  + Math.random() * 92}%`,
-        left: `${2  + Math.random() * 96}%`,
-        delay:    Math.random() * 4,
-        duration: 1.8 + Math.random() * 2.4,
-        blue: Math.random() > 0.4,
-      }))
-    )
+    const timer = window.setTimeout(() => {
+      const count = window.innerWidth < 768 ? 12 : 26
+      setPixels(
+        Array.from({ length: count }, (_, i) => ({
+          id: i,
+          top:  `${4  + Math.random() * 92}%`,
+          left: `${2  + Math.random() * 96}%`,
+          delay:    Math.random() * 4,
+          duration: 1.8 + Math.random() * 2.4,
+          blue: Math.random() > 0.4,
+        }))
+      )
+    }, 1_200)
+    return () => window.clearTimeout(timer)
   }, [])
 
   // Spotlight lerp loop — desactivado bajo prefers-reduced-motion
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      !window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    ) return
     const EASE = 0.11
 
     const tick = () => {
@@ -177,17 +184,29 @@ export function Hero() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
+    let isMobile = false
+    let lastMobileFrame = 0
     const resize = () => {
-      canvas.width  = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-      const isMobile = canvas.width < 768
-      dropsRef.current = createDrops(isMobile ? 25 : 58, canvas.width, canvas.height)
-      starsRef.current = createStars(isMobile ? 50 : 110, canvas.width, canvas.height)
+      // Read layout once, then perform writes. Reading height after assigning
+      // canvas.width invalidates layout and creates a forced synchronous reflow.
+      const width = canvas.offsetWidth
+      const height = canvas.offsetHeight
+      canvas.width = width
+      canvas.height = height
+      isMobile = width < 768
+      dropsRef.current = createDrops(isMobile ? 25 : 58, width, height)
+      starsRef.current = createStars(isMobile ? 50 : 110, width, height)
     }
     resize()
     window.addEventListener('resize', resize)
 
-    const draw = () => {
+    const draw = (frameTime = performance.now()) => {
+      if (running && isMobile && frameTime - lastMobileFrame < 32) {
+        rafRef.current = requestAnimationFrame(draw)
+        return
+      }
+      lastMobileFrame = frameTime
+
       const W = canvas.width
       const H = canvas.height
       const { x: mx, y: my } = mouseRef.current
@@ -300,8 +319,10 @@ export function Hero() {
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let running = false
+    let animationUnlocked = false
+    let inViewport = true
     const start = () => {
-      if (running || reduced) return
+      if (running || reduced || !animationUnlocked || !inViewport || document.hidden) return
       running = true
       rafRef.current = requestAnimationFrame(draw)
     }
@@ -313,8 +334,13 @@ export function Hero() {
     if (reduced) {
       draw() // un solo frame estático (running=false → no se reprograma)
     } else {
-      start()
+      draw()
     }
+
+    const unlockTimer = reduced ? 0 : window.setTimeout(() => {
+      animationUnlocked = true
+      start()
+    }, 1_000)
 
     // Pausa el loop cuando la pestaña está oculta (ahorro de CPU/batería)
     const onVisibility = () => { if (document.hidden) stop(); else start() }
@@ -322,7 +348,10 @@ export function Hero() {
 
     // Pausa el loop cuando el Hero sale del viewport
     const io = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) start(); else stop() },
+      ([entry]) => {
+        inViewport = entry.isIntersecting
+        if (inViewport) start(); else stop()
+      },
       { threshold: 0 }
     )
     io.observe(canvas)
@@ -331,6 +360,7 @@ export function Hero() {
       window.removeEventListener('resize', resize)
       document.removeEventListener('visibilitychange', onVisibility)
       io.disconnect()
+      if (unlockTimer) window.clearTimeout(unlockTimer)
       cancelAnimationFrame(rafRef.current)
     }
   }, [])
@@ -482,9 +512,8 @@ export function Hero() {
             href="#proyectos"
             onMouseEnter={() => setHoverPrimary(true)}
             onMouseLeave={() => setHoverPrimary(false)}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-white text-sm font-medium"
+            className="accent-solid inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-sm font-medium"
             style={{
-              backgroundColor: 'rgb(var(--accent))',
               opacity: hoverPrimary ? 0.9 : 1,
               boxShadow: hoverPrimary
                 ? '0 0 18px rgb(var(--accent) / 0.75), 0 0 45px rgb(var(--accent) / 0.35), 0 0 80px rgb(var(--accent) / 0.15)'

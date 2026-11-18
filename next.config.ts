@@ -14,6 +14,10 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  experimental: {
+    // Tailwind generates a small stylesheet, so inlining removes a render-blocking round trip.
+    inlineCss: true,
+  },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }]
   },

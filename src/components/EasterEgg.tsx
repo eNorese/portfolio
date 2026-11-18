@@ -406,8 +406,8 @@ function run(
 }
 
 /* ── Component ──────────────────────────────────────────────────────────── */
-export function EasterEgg() {
-  const [active, setActive]         = useState(false)
+export function EasterEgg({ initiallyOpen = false }: { initiallyOpen?: boolean } = {}) {
+  const [active, setActive]         = useState(initiallyOpen)
   const [booting, setBooting]       = useState(true)
   const [bootCount, setBootCount]   = useState(0)
   const [entries, setEntries]       = useState<HistoryEntry[]>([])

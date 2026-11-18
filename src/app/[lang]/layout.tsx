@@ -1,19 +1,10 @@
 import type { Metadata, Viewport } from 'next'
-import Script from 'next/script'
-import { Inter } from 'next/font/google'
 import '../globals.css'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ThemeProvider } from '@/components/ThemeProvider'
-import { GAPageView } from '@/components/GAPageView'
+import { DeferredTelemetry } from '@/components/DeferredTelemetry'
 import { LanguageProvider, type Language } from '@/contexts/LanguageContext'
 import en from '@/i18n/en.json'
 import es from '@/i18n/es.json'
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
 
 const messages = { en, es }
 const LOCALES: Language[] = ['es', 'en']
@@ -63,7 +54,7 @@ const KNOWS_ABOUT = [
 
 /** Grafo Schema.org (Person + WebSite + ProfilePage) para SEO/AIO. */
 function buildJsonLd(lang: Language) {
-  const base = 'https://enorese.dev'
+  const base = 'https://www.enorese.com'
   const pageUrl = `${base}/${lang}`
   const m = messages[lang]
 
@@ -148,12 +139,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const lang = normalize((await params).lang)
   const m = messages[lang]
-  const url = `https://enorese.dev/${lang}`
+  const url = `https://www.enorese.com/${lang}`
   const title = `${m.hero.name} — ${m.hero.title}`
   const description = DESCRIPTIONS[lang]
 
   return {
-    metadataBase: new URL('https://enorese.dev'),
+    metadataBase: new URL('https://www.enorese.com'),
     title,
     description,
     keywords: KEYWORDS[lang],
@@ -170,9 +161,9 @@ export async function generateMetadata({
     alternates: {
       canonical: url,
       languages: {
-        es: 'https://enorese.dev/es',
-        en: 'https://enorese.dev/en',
-        'x-default': 'https://enorese.dev/es',
+        es: 'https://www.enorese.com/es',
+        en: 'https://www.enorese.com/en',
+        'x-default': 'https://www.enorese.com/es',
       },
     },
     openGraph: {
@@ -212,38 +203,20 @@ export default async function RootLayout({
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
-        {/* Google Analytics (GA4) — solo en producción y con NEXT_PUBLIC_GA_ID definida */}
-        {gaEnabled && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga-gtag-init" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${gaId}');`}
-            </Script>
-          </>
-        )}
         {/* Prevent flash of unstyled content: apply dark class and data-theme before paint */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(['dark','ocean','midnight'].indexOf(t)!==-1)document.documentElement.classList.add('dark');}catch(e){}})()` }} />
-        <link rel="dns-prefetch" href="https://wa.me" />
-        <link rel="preconnect" href="https://wa.me" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} font-sans`}>
+      <body className="font-sans">
         <ThemeProvider>
           <LanguageProvider lang={lang}>
             {children}
           </LanguageProvider>
         </ThemeProvider>
-        <SpeedInsights />
-        {gaEnabled && gaId && <GAPageView gaId={gaId} />}
+        <DeferredTelemetry gaId={gaEnabled ? gaId : undefined} />
       </body>
     </html>
   )
