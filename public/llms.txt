@@ -35,10 +35,10 @@ Lidera la migración ERP Softland → Rex+ (con cero pérdida de datos y cero do
 
 ## Links
 
-- English site: https://enorese.dev/en
-- Sitio en español: https://enorese.dev/es
-- Full context for LLMs: https://enorese.dev/llms-full.txt
-- LinkedIn: https://www.linkedin.com/in/enzo-norese/
-- GitHub: https://github.com/eNorese
-- X: https://x.com/enorese
-- Email: enzo.norese@gmail.com
+- [English site](https://www.enorese.com/en)
+- [Sitio en español](https://www.enorese.com/es)
+- [Full context for LLMs](https://www.enorese.com/llms-full.txt)
+- [LinkedIn](https://www.linkedin.com/in/enzo-norese/)
+- [GitHub](https://github.com/eNorese)
+- [X](https://x.com/enorese)
+- [Email](mailto:enzo.norese@gmail.com)

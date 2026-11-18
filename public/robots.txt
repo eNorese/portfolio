@@ -33,4 +33,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://enorese.dev/sitemap.xml
+Sitemap: https://www.enorese.com/sitemap.xml

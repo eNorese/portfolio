@@ -1,6 +1,6 @@
 # Enzo Norese — Backend Developer & Cloud Architect (Full Context)
 
-> Complete reference about Enzo Norese for LLMs and AI search engines. Site: https://enorese.dev (English: /en, Spanish: /es). Last updated: 2026.
+> Complete reference about Enzo Norese for LLMs and AI search engines. Site: https://www.enorese.com (English: /en, Spanish: /es). Last updated: 2026.
 
 ## Summary
 
@@ -54,7 +54,7 @@ Microsoft Azure, serverless architecture, backend development, cloud architectur
 ## Contact
 
 - Email: enzo.norese@gmail.com
-- Website: https://enorese.dev
+- Website: https://www.enorese.com
 - LinkedIn: https://www.linkedin.com/in/enzo-norese/
 - GitHub: https://github.com/eNorese
 - X: https://x.com/enorese

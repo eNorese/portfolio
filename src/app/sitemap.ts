@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next'
 
 const LANGS = {
-  es: 'https://enorese.dev/es',
-  en: 'https://enorese.dev/en',
+  es: 'https://www.enorese.com/es',
+  en: 'https://www.enorese.com/en',
 }
 
 // hreflang: incluye x-default → /es (foco hispanohablante: LatAm/España por defecto).
