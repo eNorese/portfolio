@@ -261,7 +261,7 @@ export function Contact() {
             <button
               type="submit"
               disabled={isSending || isSent}
-              className="group relative self-start inline-flex items-center gap-2 px-7 py-3 rounded-full overflow-hidden bg-accent text-white text-sm font-medium transition-all duration-300 hover:shadow-[0_0_20px_var(--accent-glow)] active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-none"
+              className="accent-solid group relative self-start inline-flex items-center gap-2 px-7 py-3 rounded-full overflow-hidden text-sm font-medium transition-all duration-300 hover:shadow-[0_0_20px_var(--accent-glow)] active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-none"
             >
               {/* Shimmer sweep */}
               <span

@@ -300,23 +300,34 @@ section[id] {
 
 :root, [data-theme="light"] {
   --accent: 99 102 241;
+  --accent-strong: 67 56 202;
   --accent-glow: rgba(99, 102, 241, 0.45);
 }
 [data-theme="dark"] {
   --accent: 96 152 250;
+  --accent-strong: 29 78 216;
   --accent-glow: rgba(96, 152, 250, 0.45);
 }
 [data-theme="forest"] {
   --accent: 22 163 74;
+  --accent-strong: 21 128 61;
   --accent-glow: rgba(22, 163, 74, 0.45);
 }
 [data-theme="ocean"] {
   --accent: 6 182 212;
+  --accent-strong: 14 116 144;
   --accent-glow: rgba(6, 182, 212, 0.45);
 }
 [data-theme="midnight"] {
   --accent: 167 139 250;
+  --accent-strong: 109 40 217;
   --accent-glow: rgba(167, 139, 250, 0.45);
+}
+
+/* Solid CTAs use a darker theme tone so white text always meets WCAG AA. */
+.accent-solid {
+  background-color: rgb(var(--accent-strong));
+  color: #fff;
 }
 
 /* ── Background overrides for non-standard themes ───────────────────── */

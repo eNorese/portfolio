@@ -152,7 +152,7 @@ export function Services() {
             </p>
             <a
               href="#contacto"
-              className="group inline-flex items-center gap-2 px-7 py-3 rounded-full bg-accent text-white text-sm font-medium transition-all duration-300 hover:shadow-[0_0_22px_var(--accent-glow)] active:scale-95"
+              className="accent-solid group inline-flex items-center gap-2 px-7 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-[0_0_22px_var(--accent-glow)] active:scale-95"
             >
               {t('services.cta_button')}
               <svg

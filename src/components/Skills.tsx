@@ -116,7 +116,7 @@ export function Skills() {
                       onMouseLeave={() => setHoveredBadge(null)}
                       className={`text-xs px-2.5 py-1 rounded-md cursor-default select-none transition-all duration-200 ${
                         isHovered
-                          ? 'bg-accent text-white scale-105 shadow-sm shadow-accent/30 -translate-y-px'
+                          ? 'accent-solid scale-105 shadow-sm shadow-accent/30 -translate-y-px'
                           : isDimmed
                           ? 'bg-gray-100 dark:bg-gray-700/60 text-gray-400 dark:text-gray-500 scale-95 opacity-50'
                           : 'bg-gray-100 dark:bg-gray-700/60 text-gray-700 dark:text-gray-300'

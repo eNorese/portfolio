@@ -9,7 +9,7 @@ export default function NotFound() {
       </h1>
       <Link
         href="/es"
-        className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-white text-sm font-medium transition-transform hover:scale-105"
+        className="accent-solid mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-transform hover:scale-105"
       >
         ← Volver al inicio
       </Link>

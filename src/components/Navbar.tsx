@@ -12,6 +12,10 @@ export function Navbar() {
   const { language, setLanguage, t } = useLanguage()
   const logoClicksRef = useRef(0)
   const logoTimerRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const languageButtonText = language === 'en' ? 'ES' : 'EN'
+  const languageButtonLabel = language === 'en'
+    ? `${languageButtonText} — Cambiar idioma a español`
+    : `${languageButtonText} — Switch language to English`
 
   useEffect(() => {
     // Glass effect trigger on scroll
@@ -126,10 +130,10 @@ export function Navbar() {
             {/* Language toggle */}
             <button
               onClick={toggleLanguage}
-              aria-label="Toggle language"
+              aria-label={languageButtonLabel}
               className="h-8 px-2.5 rounded-md text-xs font-semibold tracking-wide text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200"
             >
-              {language === 'en' ? 'ES' : 'EN'}
+              {languageButtonText}
             </button>
 
             {/* Theme selector */}
