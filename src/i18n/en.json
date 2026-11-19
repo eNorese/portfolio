@@ -9,23 +9,19 @@
     "contact": "Contact"
   },
   "hero": {
-    "greeting": "Hi, I'm",
     "name": "Enzo Norese",
-    "title": "Backend Developer & Cloud Architect",
-    "slogan": "Augmented Engineering — Software, AI and architecture to scale businesses",
-    "description": "I design and implement backend architectures on cloud infrastructure, integrating scalable services and artificial intelligence to solve real business problems. Go-to engineer with experience in recruitment systems, ERP migration, and AI model integration.",
-    "cta_work": "View My Work",
-    "cta_services": "Automate your business",
-    "cta_contact": "Get In Touch",
-    "scroll": "Scroll to explore",
-    "cv_download": "Download CV"
+    "title": "Backend Engineer & Cloud Architect",
+    "slogan": "TypeScript · Azure · Serverless · Integrations · Applied AI",
+    "description": "I design backend systems and AI-enabled cloud architectures for operations that need to scale without losing reliability.",
+    "cta_work": "View projects",
+    "cta_services": "I need a solution",
+    "scroll": "Scroll to explore"
   },
   "about": {
     "section_title": "About Me",
-    "subtitle": "A little bit about who I am",
-    "bio_1": "Computer Engineer with a background in electronics, specialized in backend development and cloud solutions architecture. At TeamWork Capacitación Ltda. in Santiago, I operate as technical lead and solutions architect — designing and building high-impact systems that power real operations.",
-    "bio_2": "I lead two key initiatives: the Softland → Rex+ ERP migration (completed with zero data loss and zero downtime) and the Digital 24/7 Recruiter — an AI-powered mass recruitment agent on Azure serverless, with a cascaded multi-model pipeline (Claude, GPT-4o, Gemini) designed to process tens of thousands of applications during peak demand periods like Cyber Day.",
-    "bio_3": "My engineering philosophy — \"Augmented Engineering\" — positions AI tools as technical capability multipliers, not replacements for sound engineering judgment. My path from electronics technician to cloud architect gives me a broad perspective that spans from low-level fundamentals to modern distributed systems.",
+    "subtitle": "Technical judgment, curiosity, and focus on real operations",
+    "bio_1": "I am a Computer Engineer with an electronics background. I work across backend development and cloud architecture, turning operational needs into systems that are maintainable, observable, and ready to grow.",
+    "bio_2": "As a technical reference, I combine architecture decisions with hands-on implementation. I use AI as a capability multiplier without replacing analysis, security, or engineering accountability.",
     "capabilities": {
       "cloud_architecture": "Cloud architecture",
       "backend_systems": "Backend systems",
@@ -35,94 +31,82 @@
     "beyond_code": {
       "eyebrow": "Beyond code",
       "title": "Curiosity that moves and makes sound.",
-      "description": "Beyond engineering, I explore disciplines that combine technique, precision, and creativity. These are personal interests I am actively learning, not skills I claim to have mastered.",
+      "description": "I also learn disciplines where technique and creativity meet.",
       "fpv_title": "FPV drones",
-      "fpv_description": "I am learning drone piloting and control, with the goal of progressing toward freestyle and racing flights.",
+      "fpv_description": "Learning piloting, control, and freestyle flying.",
       "music_title": "DJing and music production",
-      "music_description": "I practice mixing with a controller, creating mashups, and taking my first steps in music production."
-    },
-    "years_value": "6+",
-    "projects_value": "40+",
-    "technologies_value": "30+",
-    "coffees_value": "∞",
-    "stats": {
-      "years": "Years Experience",
-      "projects": "Projects Delivered",
-      "technologies": "Technologies",
-      "coffees": "Coffees Consumed"
+      "music_description": "Practicing mixing, mashups, and music production."
     }
   },
   "services": {
     "section_title": "Services",
-    "subtitle": "Automation and custom software for your business",
-    "intro": "I turn manual processes and scattered systems into automated solutions that save time, cut errors, and scale with your business. Here's what I can build for you:",
+    "subtitle": "Software and automation for operations that need to move forward",
+    "intro": "I turn manual processes, fragile integrations, and systems that cannot scale into clear, maintainable solutions.",
     "items": [
       {
-        "title": "AI process automation",
-        "description": "I eliminate repetitive tasks by connecting your systems with artificial intelligence. Fewer manual hours, fewer errors, and faster decisions — so your team focuses on what truly matters."
-      },
-      {
-        "title": "AI agents & assistants",
-        "description": "I design assistants that handle, triage, and respond 24/7. Like the digital recruiter I built: it processes tens of thousands of applications with no human in the loop."
+        "title": "AI automation and agents",
+        "description": "I automate repetitive work and build assistants that classify, respond, and connect information with the controls and traceability needed for reliable operations."
       },
       {
         "title": "Backend & cloud architecture",
-        "description": "I build serverless systems on Azure that scale automatically with demand and only charge when used. Robust, secure, and ready to grow with you."
+        "description": "I design Azure serverless systems, APIs, and asynchronous workflows that scale with demand while remaining observable and maintainable."
       },
       {
-        "title": "Systems & API integration",
-        "description": "I connect your ERP, CRM, payment gateways, and external services into a single reliable flow. Your data stops living in silos and starts working together."
+        "title": "Integrations and migrations",
+        "description": "I connect ERPs, APIs, and external services, and plan migrations around data validation, compatibility, and operational continuity."
       },
       {
-        "title": "Zero-downtime cloud migration",
-        "description": "I move your systems to the cloud without losing data or stopping operations — like the ERP migration I ran with zero data loss and zero downtime."
-      },
-      {
-        "title": "Consulting & architecture review",
-        "description": "Is your system crashing, failing to scale, or costing too much? I audit your architecture and hand you a clear, prioritized, actionable improvement plan."
+        "title": "Architecture consulting",
+        "description": "I review performance, reliability, security, and cost to turn technical problems into a prioritized, actionable improvement plan."
       }
     ],
-    "cta_title": "Got a process you could automate?",
-    "cta_description": "Tell me which task eats your time or which system is holding you back. I'll analyze your case and propose a concrete solution — no strings attached.",
+    "cta_title": "What is slowing your operation down today?",
+    "cta_description": "Tell me about the process, integration, or system you want to improve. We will review the context and define a concrete next step.",
     "cta_button": "Let's talk about your project"
   },
   "experience": {
     "section_title": "Experience",
-    "subtitle": "My professional journey",
+    "subtitle": "Responsibilities and results, without inflating the title",
     "jobs": [
       {
         "role": "Backend Developer & Cloud Architect",
         "company": "TeamWork Capacitación Ltda.",
         "period": "Jul 2022 – Present",
-        "duration": "3 yrs 10 mos",
         "location": "Santiago, Chile · Full-time",
-        "description": "Technical lead and solutions architect, responsible for architecture decisions, team standards, and cloud service integration. Leading the ERP Softland → Rex+ migration, managing component analysis, cross-system schema mapping, and data integrity validation. Designing and implementing serverless architectures on Azure Functions v4, integrating services such as Service Bus, SignalR, Blob Storage, CosmosDB, and PostgreSQL.",
-        "tags": ["TypeScript", "Node.js", "Azure Functions", "PostgreSQL", "CosmosDB", "Azure Service Bus", "Azure SignalR", "Blob Storage", "GitHub Actions", "OAuth 2.0 / JWT", "React JS", "Python"]
+        "highlights": [
+          "Technical reference for architecture decisions, engineering standards, and cloud service integration.",
+          "Technical leadership of the Softland → Rex+ migration, including schema mapping and integrity validation.",
+          "Serverless solutions built with Azure Functions, Service Bus, SignalR, Blob Storage, and SQL/NoSQL databases."
+        ],
+        "tags": ["TypeScript", "Node.js", "Azure Functions", "PostgreSQL", "Service Bus", "CosmosDB"]
       },
       {
         "role": "Software Developer",
         "company": "Prodigio Chile",
         "period": "Apr 2021 – Jan 2022",
-        "duration": "10 mos",
         "location": "Chile · Part-time",
-        "description": "Maintained, debugged, and developed new features for integration APIs built with C# (.NET Core 3.1) and JavaScript (Node.js). Also responsible for maintaining continuous integration and deployment workflows.",
+        "highlights": [
+          "Maintained, debugged, and extended integration APIs built with C# and Node.js.",
+          "Supported integration flows and continuous delivery pipelines."
+        ],
         "tags": ["C# / .NET Core", "Node.js", "JavaScript", "CI/CD"]
       },
       {
         "role": "Electronics Technician",
         "company": "Sociedad Electronica Solari",
         "period": "Mar 2015 – Feb 2021",
-        "duration": "6 yrs",
         "location": "Greater Santiago · Full-time",
-        "description": "Responsible for repairing and maintaining a wide variety of electronic equipment, with specialization in digital cameras and printers.",
+        "highlights": [
+          "Diagnosed, repaired, and maintained digital cameras, printers, and other electronic equipment."
+        ],
         "tags": ["Electronics", "Hardware Repair", "Diagnostics"]
       }
     ]
   },
   "skills": {
-    "section_title": "Skills & Wins",
-    "subtitle": "Technologies I work with and milestones I'm proud of",
-    "stories_title": "Success Stories",
+    "section_title": "Stack and experience signals",
+    "subtitle": "Technologies I use in real systems",
+    "stories_title": "In production",
     "categories": {
       "frontend": "Frontend",
       "backend": "Backend",
@@ -133,50 +117,42 @@
       {
         "metric": "3+",
         "label": "AI Models Integrated",
-        "description": "Integrated and orchestrated language models (Claude, GPT-4o, Gemini) in a process automation system, evaluating accuracy and cost per model."
+        "description": "Claude, GPT-4o, and Gemini orchestrated around accuracy, availability, and cost."
       },
       {
         "metric": "3+",
         "label": "Years as Tech Lead",
-        "description": "Acted as de facto technical lead and solutions architect, driving architecture decisions and team standards without a formal title."
+        "description": "Architecture decisions, engineering standards, and technical guidance for the team."
       },
       {
         "metric": "5+",
         "label": "Azure Services in Production",
-        "description": "Designed and implemented architectures combining Azure Functions, Service Bus, SignalR, Blob Storage, and CosmosDB in real production systems."
-      },
-      {
-        "metric": "4+",
-        "label": "Years in Tech",
-        "description": "From electronics technician to cloud architect — a journey spanning hardware diagnostics, C#/.NET, and modern distributed systems on Azure."
+        "description": "Functions, Service Bus, SignalR, Blob Storage, and CosmosDB working together."
       }
     ]
   },
   "projects": {
     "section_title": "Projects",
-    "subtitle": "Real cases first: the problem, the decisions, and the impact.",
+    "subtitle": "Real problems, engineering decisions, and impact.",
     "corporate_kicker": "Selected work / real impact",
-    "corporate_title": "Corporate project stories",
-    "corporate_subtitle": "Real systems, engineering decisions, and the impact behind each solution.",
-    "case_studies_label": "in-depth case studies",
-    "corporate_index_label": "Corporate case study index",
+    "corporate_title": "Selected cases",
+    "corporate_subtitle": "The summary supports a quick evaluation; the complete story remains available on demand.",
+    "case_studies_label": "cases",
     "case_label": "Corporate case",
     "outcomes_label": "Impact at a glance",
     "full_story_label": "Complete story",
     "chapters_label": "chapters",
     "expand_label": "Explore the case",
     "context_label": "Context",
-    "other_title": "Other projects and experiments",
-    "other_subtitle": "Tools, proofs of concept, and products that complement my corporate work.",
-    "view_live": "Live Demo",
-    "view_code": "Source Code",
+    "other_title": "Lab",
+    "other_subtitle": "Products and proofs of concept exploring specific engineering problems.",
     "corporate_items": [
       {
         "category": "Enterprise software / Recruitment and selection",
         "title": "A system that grows with its people.",
-        "description": "From an Excel-based process to a faster, more maintainable recruitment application. My challenge was to evolve a prototype already in production, from its data model to the recruiters' experience.",
+        "description": "Evolved a production recruitment prototype into a faster, more maintainable application prepared for peak demand.",
         "roleLabel": "My contribution",
-        "role": "Backend development, database administration, and full-stack support for the frontend.",
+        "role": "Backend, database, and full-stack support without disrupting existing workflows.",
         "tags": ["TypeScript", "Azure Functions", "SQL", "Blob Storage", "Jest", "CI/CD"],
         "outcomes": [
           { "title": "Less waiting", "description": "Optimized queries and heavy tasks moved to the background." },
@@ -233,9 +209,9 @@
       {
         "category": "Campaign website + forms connected to the ATS",
         "title": "Apply once. Open more opportunities.",
-        "description": "I built a website adaptable to Cyber campaigns and a form system connected to TeamWork's ATS. Recruiters configure each campaign, and candidates can apply again without starting over.",
+        "description": "Campaign site and ATS-connected forms that reduce application friction and preserve source-level traceability.",
         "roleLabel": "My contribution",
-        "role": "Development of the site and application system: ATS integration, server-side rate limiting, and document validation using OCR, Azure Document Intelligence, and OpenAI vision models.",
+        "role": "Site development, ATS integration, submission protection, and AI-assisted document validation.",
         "tags": ["TypeScript", "Azure Functions", "Rate limiting", "OCR", "Azure Document Intelligence", "OpenAI Vision"],
         "outcomes": [
           { "title": "Less friction", "description": "Data reuse when applying to different openings." },
@@ -300,9 +276,9 @@
       {
         "category": "WhatsApp support + employee experience surveys",
         "title": "Resolve questions. Listen to experiences.",
-        "description": "I contributed to architecture planning and development of a system connecting WhatsApp support, a help desk, and surveys. The bot tries to solve each question and, when it cannot, hands it to an agent with a case number and resolution-time tracking.",
+        "description": "A system connecting WhatsApp, a help desk, and surveys to resolve questions and measure employee experience.",
         "roleLabel": "My participation",
-        "role": "Architecture planning and development, with significant complexity in the daily synchronization of large data volumes from multiple corporate sources.",
+        "role": "Architecture planning, development, and incremental synchronization of corporate data.",
         "tags": ["TypeScript", "Azure Functions", "SQL", "Blob Storage", "Message queues", "Poison queues"],
         "outcomes": [
           { "title": "Continuity in support", "description": "The bot hands the question to an agent when human intervention is required." },
@@ -360,56 +336,40 @@
     "items": [
       {
         "title": "Relational Model",
-        "description": "Figma-like tool exclusively for visual documentation of relational database models. Allows designing schemas, defining relationships, and exporting structured documentation.",
-        "tags": ["TypeScript", "React", "Node.js"],
-        "code": "#",
-        "codeDisabled": true
+        "description": "Visual editor for designing and documenting relational models.",
+        "tags": ["TypeScript", "React", "Node.js"]
       },
       {
         "title": "EuforIA",
-        "description": "AI chat interface that integrates multiple language models (Claude, GPT-4o, Gemini) in a single platform. Allows switching between models and comparing responses in real time.",
-        "tags": ["TypeScript", "React", "Claude API", "GPT-4o", "Gemini"],
-        "code": "#",
-        "codeDisabled": true
+        "description": "Interface for switching AI models and comparing responses.",
+        "tags": ["TypeScript", "React", "Claude API", "GPT-4o", "Gemini"]
       },
       {
         "title": "Auth System",
-        "description": "Complete authentication and authorization system with OAuth 2.0, OIDC, refresh token management, session revocation, and Redis-based blacklist. Designed as a reusable module for Azure architectures.",
-        "tags": ["TypeScript", "Node.js", "Redis", "JWT", "OAuth 2.0"],
-        "code": "#",
-        "codeDisabled": true
+        "description": "Reusable module for authentication, sessions, and authorization.",
+        "tags": ["TypeScript", "Node.js", "Redis", "JWT", "OAuth 2.0"]
       },
       {
         "title": "Azure Path",
-        "description": "Interactive study app for Microsoft Azure certification preparation. Organizes content by modules, includes practice questions, and tracks progress.",
-        "tags": ["TypeScript", "React", "Node.js", "Azure"],
-        "live": "#",
-        "liveDisabled": true,
-        "code": "#",
-        "codeDisabled": true
+        "description": "Study experience with modules, practice, and progress tracking.",
+        "tags": ["TypeScript", "React", "Node.js", "Azure"]
       },
       {
         "title": "Azure SignalR Real-time PoC",
-        "description": "Proof of concept for scalable real-time messaging using Azure SignalR Service with Azure Functions. Demonstrates event-driven WebSocket communication patterns for distributed applications.",
-        "tags": ["TypeScript", "Azure Functions", "Azure SignalR", "Node.js"],
-        "live": "#",
-        "liveDisabled": true,
-        "code": "#",
-        "codeDisabled": true
+        "description": "Event-driven WebSocket messaging with Azure Functions.",
+        "tags": ["TypeScript", "Azure Functions", "Azure SignalR", "Node.js"]
       },
       {
         "title": "TypeScript Backend Libraries",
-        "description": "Collection of utility libraries for Node.js: timezone adjustment in Azure serverless functions, Chilean RUT and phone validation/formatting, and a PostgreSQL query builder with injection vulnerability protection.",
-        "tags": ["TypeScript", "Node.js", "PostgreSQL", "Serverless", "Security"],
-        "code": "#",
-        "codeDisabled": true
+        "description": "Utilities for serverless, Chilean data, and safe PostgreSQL queries.",
+        "tags": ["TypeScript", "Node.js", "PostgreSQL", "Serverless", "Security"]
       }
     ]
   },
   "contact": {
     "section_title": "Contact",
-    "subtitle": "Let's work together",
-    "description": "Do you have a project, an opportunity, or just want to talk tech? Write to me directly — I respond.",
+    "subtitle": "Let's start with context",
+    "description": "Tell me what you need to solve, whether it is a project, an engineering improvement, or a professional opportunity.",
     "form": {
       "placeholder_name": "Name",
       "placeholder_email": "Email",
@@ -436,31 +396,23 @@
   },
   "faq": {
     "section_title": "Frequently Asked Questions",
-    "subtitle": "What people usually ask me",
+    "subtitle": "What you need before starting a conversation",
     "items": [
       {
-        "question": "What do you specialize in?",
-        "answer": "I specialize in backend development and cloud solutions architecture, with a focus on serverless architectures and AI integration to solve real business problems."
+        "question": "What kind of projects do you take on?",
+        "answer": "Backend systems, AI automation, integrations, migrations, and architecture reviews. I prioritize problems with operational impact and a scope we can define clearly."
       },
       {
-        "question": "Which technologies do you work with?",
-        "answer": "Mainly Microsoft Azure (Functions, Service Bus, SignalR, CosmosDB), TypeScript, Node.js, Python and C#/.NET, along with PostgreSQL and the orchestration of AI models such as Claude, GPT-4o and Gemini."
+        "question": "Can you work with an existing system?",
+        "answer": "Yes. I first review its architecture, dependencies, and risks, then propose incremental changes that improve the system without disrupting operations."
       },
       {
-        "question": "Do you have experience integrating AI into real systems?",
-        "answer": "Yes. I designed and built a 24/7 mass-recruitment agent on Azure serverless, with a cascaded multi-model pipeline able to process tens of thousands of applications during peak demand periods like Cyber Day."
+        "question": "How does a collaboration begin?",
+        "answer": "With a short conversation about the problem, constraints, and expected outcome. From there, we define a diagnosis, scope, or concrete engineering next step."
       },
       {
         "question": "Are you available for remote or freelance work?",
         "answer": "Yes. I'm based in Santiago, Chile, and open to remote work and international projects, in both Spanish and English."
-      },
-      {
-        "question": "What is Augmented Engineering?",
-        "answer": "It's my working philosophy: I use AI as a multiplier of technical capability, not as a replacement for engineering judgment. AI speeds up the work, but the decisions remain the engineer's responsibility."
-      },
-      {
-        "question": "How can we work together?",
-        "answer": "Reach out through the contact form, WhatsApp, or email (enzo.norese@gmail.com). I reply personally and we can talk about your project or opportunity."
       }
     ]
   },

@@ -21,12 +21,12 @@ function jsonLdGraphs(html) {
 const locales = {
   es: {
     url: 'https://www.enorese.com/es',
-    marker: 'Reclutador Digital 24/7',
+    marker: 'Problemas reales, decisiones técnicas e impacto.',
     language: 'es',
   },
   en: {
     url: 'https://www.enorese.com/en',
-    marker: 'Digital 24/7 Recruiter',
+    marker: 'Real problems, engineering decisions, and impact.',
     language: 'en',
   },
 }
@@ -86,7 +86,7 @@ check('Structured data', 1.5, 'Person has a stable @id', person?.['@id'] === 'ht
 check('Structured data', 1.5, 'Person includes full-name alias for entity resolution', person?.alternateName === 'Enzo Norese Rivera')
 check('Structured data', 1.5, 'Person links authoritative profiles', Array.isArray(person?.sameAs) && person.sameAs.length >= 3)
 check('Structured data', 1.5, 'Person declares expertise', Array.isArray(person?.knowsAbout) && person.knowsAbout.length >= 8)
-check('Structured data', 1, 'Person declares services offered', Array.isArray(person?.makesOffer) && person.makesOffer.length >= 5)
+check('Structured data', 1, 'Person declares services offered', Array.isArray(person?.makesOffer) && person.makesOffer.length >= 4)
 
 const llms = exists('public/llms.txt') ? read('public/llms.txt') : ''
 const llmsFull = exists('public/llms-full.txt') ? read('public/llms-full.txt') : ''

@@ -448,17 +448,17 @@ export function Hero() {
 
       {/* ── Main content ── */}
       <div
-        className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32 flex flex-col items-center text-center"
+        className="relative w-full min-w-0 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32 flex flex-col items-center text-center"
         style={{ zIndex: 10 }}
       >
-        {/* Eyebrow */}
+        {/* Name */}
         <span className="inline-block mb-5 text-xs font-mono tracking-[0.25em] uppercase text-accent">
-          {t('hero.greeting')}
+          {t('hero.name')}
         </span>
 
-        {/* Name */}
+        {/* Role */}
         <h1
-          className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-4 cursor-default select-none"
+          className="w-full max-w-4xl break-words text-3xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-6 cursor-default select-none"
           onMouseEnter={() => setGlowName(true)}
           onMouseLeave={() => setGlowName(false)}
           style={{
@@ -468,12 +468,12 @@ export function Hero() {
             transition: 'text-shadow 0.35s ease',
           }}
         >
-          {t('hero.name')}
+          {t('hero.title')}
         </h1>
 
-        {/* Title */}
+        {/* Value proposition */}
         <p
-          className="text-lg sm:text-xl lg:text-2xl font-light text-gray-600 dark:text-gray-300 mb-6 cursor-default select-none"
+          className="w-full max-w-2xl px-1 text-base sm:text-xl font-light leading-relaxed text-gray-600 dark:text-gray-300 mb-6 cursor-default select-none"
           onMouseEnter={() => setGlowTitle(true)}
           onMouseLeave={() => setGlowTitle(false)}
           style={{
@@ -483,11 +483,11 @@ export function Hero() {
             transition: 'text-shadow 0.35s ease',
           }}
         >
-          {t('hero.title')}
+          {t('hero.description')}
         </p>
 
-        {/* Slogan / tagline */}
-        <p className="max-w-xl text-xs sm:text-sm font-mono tracking-wide text-accent/90 mb-6">
+        {/* Proof line */}
+        <p className="w-full max-w-xl px-1 text-[11px] sm:text-sm font-mono leading-relaxed tracking-wide text-accent/90 mb-6">
           {t('hero.slogan')}
         </p>
 
@@ -497,13 +497,8 @@ export function Hero() {
           style={{ background: 'linear-gradient(90deg, transparent, rgb(var(--accent) / 0.7), transparent)' }}
         />
 
-        {/* Description */}
-        <p className="max-w-xl text-base sm:text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-10">
-          {t('hero.description')}
-        </p>
-
         {/* CTA buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-5">
+        <div className="flex flex-col sm:flex-row gap-3 mb-5 mt-4">
 
           {/* Primary — neon bloom */}
           <a
@@ -534,7 +529,7 @@ export function Hero() {
 
           {/* Secondary — border + inner glow */}
           <a
-            href="#contacto"
+            href="#servicios"
             onMouseEnter={() => setHoverSecondary(true)}
             onMouseLeave={() => setHoverSecondary(false)}
             className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium"
@@ -553,24 +548,12 @@ export function Hero() {
               transition: 'border-color 0.25s ease, color 0.25s ease, box-shadow 0.35s ease',
             }}
           >
-            {t('hero.cta_contact')}
+            {t('hero.cta_services')}
           </a>
         </div>
 
-        {/* CV download */}
-        <a
-          href="/cv.pdf"
-          download
-          className="inline-flex items-center gap-2 text-xs font-mono text-gray-400 dark:text-gray-500 hover:text-accent transition-colors duration-200 mb-7"
-        >
-          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-          </svg>
-          {t('hero.cv_download')}
-        </a>
-
         {/* Social links */}
-        <div className="flex items-center gap-4">
+        <div className="mt-2 flex items-center gap-4">
           <div className="h-px w-10 bg-gray-300/70 dark:bg-gray-700/60" />
           <SocialLinks size={20} baseClass="text-gray-400 dark:text-gray-500" />
           <div className="h-px w-10 bg-gray-300/70 dark:bg-gray-700/60" />

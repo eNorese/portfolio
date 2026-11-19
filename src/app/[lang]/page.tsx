@@ -21,11 +21,11 @@ export default function Home() {
       <MotionOrchestrator />
       {portfolioSections.navbar && <Navbar />}
       {portfolioSections.hero && <Hero />}
-      {portfolioSections.about && <About />}
       {portfolioSections.projects && <Projects />}
-      {portfolioSections.services && <Services />}
       {portfolioSections.experience && <Experience />}
+      {portfolioSections.services && <Services />}
       {portfolioSections.skills && <Skills />}
+      {portfolioSections.about && <About />}
       {portfolioSections.faq && <FAQ />}
       {portfolioSections.contact && <Contact />}
       {portfolioSections.footer && <Footer />}

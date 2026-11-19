@@ -84,7 +84,7 @@ export function Skills() {
         {/* Section header */}
         <div className="mb-14" data-reveal>
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            05 —
+            04 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {t('skills.section_title')}
@@ -137,7 +137,7 @@ export function Skills() {
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 text-center">
               {t('skills.stories_title')}
             </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid sm:grid-cols-3 gap-4">
               {stories.map((story, index) => (
                 <StoryCard
                   key={index}

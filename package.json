@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "audit:discoverability": "npm run build && node scripts/audit-discoverability.mjs",
+    "audit:layout": "node scripts/layout-smoke.mjs",
     "start": "next start",
     "lint": "next lint"
   },

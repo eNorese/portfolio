@@ -5,7 +5,7 @@ export const portfolioSections = {
   services: true,
   experience: true,
   skills: true,
-  successStories: false,
+  successStories: true,
   projects: true,
   faq: true,
   contact: true,
@@ -16,12 +16,10 @@ export const portfolioSections = {
 } as const
 
 export const navSections = [
-  { key: 'about', id: 'sobre-mi', href: '#sobre-mi' },
   { key: 'projects', id: 'proyectos', href: '#proyectos' },
-  { key: 'services', id: 'servicios', href: '#servicios' },
   { key: 'experience', id: 'experiencia', href: '#experiencia' },
-  { key: 'skills', id: 'habilidades', href: '#habilidades' },
-  { key: 'faq', id: 'faq', href: '#faq' },
+  { key: 'services', id: 'servicios', href: '#servicios' },
+  { key: 'about', id: 'sobre-mi', href: '#sobre-mi' },
   { key: 'contact', id: 'contacto', href: '#contacto' },
 ] as const
 

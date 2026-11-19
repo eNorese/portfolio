@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Enzo Norese — Backend Developer & Cloud Architect',
     short_name: 'eNorese',
-    description: 'Backend developer y arquitecto cloud especializado en infraestructura cloud, serverless e inteligencia artificial.',
+    description: 'Backend Engineer y Cloud Architect especializado en Azure, serverless, integraciones e IA aplicada.',
     start_url: '/',
     display: 'standalone',
     background_color: '#030712',

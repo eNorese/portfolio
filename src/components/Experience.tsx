@@ -32,9 +32,8 @@ type Job = {
   role: string
   company: string
   period: string
-  duration: string
   location: string
-  description: string
+  highlights: readonly string[]
   tags: readonly string[]
 }
 
@@ -87,7 +86,6 @@ function JobCard({ job, index }: { job: Job; index: number }) {
           </div>
           <div className="shrink-0 flex flex-col items-start sm:items-end gap-0.5">
             <span className="text-xs text-gray-500 dark:text-gray-400 font-mono">{job.period}</span>
-            <span className="text-xs text-gray-400 dark:text-gray-500 font-mono">{job.duration}</span>
           </div>
         </div>
 
@@ -100,10 +98,15 @@ function JobCard({ job, index }: { job: Job; index: number }) {
           {job.location}
         </p>
 
-        {/* Description */}
-        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-          {job.description}
-        </p>
+        {/* Evidence-first highlights */}
+        <ul className="mb-4 space-y-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          {job.highlights.map((highlight) => (
+            <li key={highlight} className="flex gap-2.5">
+              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+              <span>{highlight}</span>
+            </li>
+          ))}
+        </ul>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5">
@@ -207,7 +210,7 @@ export function Experience() {
           }}
         >
           <p className="text-xs font-mono tracking-widest uppercase text-accent mb-2">
-            04 —
+            02 —
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {t('experience.section_title')}

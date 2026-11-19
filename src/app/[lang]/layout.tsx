@@ -21,8 +21,8 @@ function normalize(lang: string): Language {
 }
 
 const DESCRIPTIONS: Record<Language, string> = {
-  es: 'Desarrollador backend e ingeniero de software especializado en arquitecturas cloud sobre Microsoft Azure, TypeScript y Node.js. Referente técnico con experiencia en arquitecturas serverless, integración de IA y migración de sistemas empresariales. Basado en Santiago, Chile, con foco en Latinoamérica y España.',
-  en: 'Backend developer and cloud architect specialized in Microsoft Azure, TypeScript and Node.js. Technical lead experienced in serverless architectures, AI integration, and enterprise system migrations. Based in Santiago, Chile.',
+  es: 'Backend Engineer y Cloud Architect especializado en Microsoft Azure, TypeScript y Node.js. Diseño sistemas serverless, integraciones y automatizaciones con IA para operaciones reales. Basado en Santiago, Chile y disponible para trabajo remoto.',
+  en: 'Backend Engineer and Cloud Architect specializing in Microsoft Azure, TypeScript, and Node.js. I build serverless systems, integrations, and AI automation for real operations. Based in Santiago, Chile and available for remote work.',
 }
 
 const KEYWORDS: Record<Language, string[]> = {
@@ -69,7 +69,7 @@ function buildJsonLd(lang: Language) {
         url: base,
         image: `${base}/og-image.png`,
         email: 'enzo.norese@gmail.com',
-        jobTitle: 'Backend Developer & Cloud Architect',
+        jobTitle: 'Backend Engineer & Cloud Architect',
         description: DESCRIPTIONS[lang],
         worksFor: { '@type': 'Organization', name: 'TeamWork Capacitación Ltda.' },
         address: { '@type': 'PostalAddress', addressLocality: 'Santiago', addressCountry: 'CL' },

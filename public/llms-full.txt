@@ -1,10 +1,10 @@
-# Enzo Norese — Backend Developer & Cloud Architect (Full Context)
+# Enzo Norese — Backend Engineer & Cloud Architect (Full Context)
 
 > Complete reference about Enzo Norese (also known as Enzo Norese Rivera) for LLMs and AI search engines. Site: https://www.enorese.com (English: /en, Spanish: /es). Last updated: 2026-11-18.
 
 ## Summary
 
-Enzo Norese is a Backend Developer and Cloud Architect based in Santiago, Chile. He is a Computer Engineer with an electronics background, specialized in backend development and cloud solutions architecture. He acts as a technical reference ("go-to engineer") and solutions architect: his opinions and decisions on architecture carry weight, and he designs and builds high-impact systems that power real business operations. He is available for remote work and international opportunities.
+Enzo Norese is a Backend Engineer and Cloud Architect based in Santiago, Chile. He is a Computer Engineer with an electronics background who works across architecture and implementation. As a technical reference, he helps define engineering standards and cloud decisions while building systems that support real business operations. He is available for remote work and international opportunities.
 
 ## Engineering philosophy: "Augmented Engineering"
 
@@ -13,8 +13,8 @@ Enzo's guiding philosophy is "Augmented Engineering" (Ingeniería Aumentada): AI
 ## Professional experience
 
 ### Backend Developer & Cloud Architect — TeamWork Capacitación Ltda. (Jul 2022 – Present)
-Santiago, Chile · Full-time. Technical reference and solutions architect, responsible for architecture decisions, team standards, and cloud service integration. Leads the ERP Softland → Rex+ migration (component analysis, cross-system schema mapping, data integrity validation — completed with zero data loss and zero downtime). Designs and implements serverless architectures on Azure Functions v4, integrating Service Bus, SignalR, Blob Storage, CosmosDB, and PostgreSQL. Built the "Digital 24/7 Recruiter": an AI-powered mass-recruitment agent on Azure serverless with a cascaded multi-model pipeline (Claude, GPT-4o, Gemini) designed to process tens of thousands of applications during peak demand periods like Cyber Day.
-Technologies: TypeScript, Node.js, Azure Functions, PostgreSQL, CosmosDB, Azure Service Bus, Azure SignalR, Blob Storage, GitHub Actions, OAuth 2.0 / JWT, React, Python.
+Santiago, Chile · Full-time. Technical reference for architecture decisions, engineering standards, and cloud service integration. Provides technical leadership for the Softland → Rex+ migration, including component analysis, schema mapping, and data-integrity validation. Designs serverless solutions with Azure Functions, Service Bus, SignalR, Blob Storage, PostgreSQL, and CosmosDB.
+Technologies: TypeScript, Node.js, Azure Functions, PostgreSQL, CosmosDB, Azure Service Bus, Azure SignalR, and Blob Storage.
 
 ### Software Developer — Prodigio Chile (Apr 2021 – Jan 2022)
 Chile · Part-time. Maintained, debugged, and developed new features for integration APIs built with C# (.NET Core 3.1) and JavaScript (Node.js). Maintained continuous integration and deployment workflows.
@@ -24,6 +24,14 @@ Technologies: C# / .NET Core, Node.js, JavaScript, CI/CD.
 Greater Santiago · Full-time. Repaired and maintained a wide variety of electronic equipment, specializing in digital cameras and printers. This hardware/low-level foundation informs his current software and systems work.
 
 ## Projects
+
+### Selected case studies
+
+- Recruitment platform evolution — Improved a production recruitment prototype across its database, backend architecture, asynchronous processing, automated tests, and observability. The result supports higher demand with shorter response times and a more maintainable codebase.
+- Campaign site and ATS-connected forms — Built reusable campaign pages and application forms with rate limiting, document validation, source traceability, and reuse of candidate data across openings.
+- WhatsApp support and employee surveys — Helped design a system connecting a bot, help desk, SLA tracking, and surveys, including daily incremental synchronization from multiple corporate data sources.
+
+### Lab projects
 
 - Relational Model — A Figma-like tool exclusively for visual documentation of relational database models. Design schemas, define relationships, export structured documentation. (TypeScript, React, Node.js)
 - EuforIA — AI chat interface integrating multiple language models (Claude, GPT-4o, Gemini) in a single platform; switch between models and compare responses in real time. (TypeScript, React, Claude API, GPT-4o, Gemini)
@@ -39,13 +47,11 @@ Greater Santiago · Full-time. Repaired and maintained a wide variety of electro
 - Cloud & DevOps: Microsoft Azure, Azure Functions, Azure Service Bus, Azure SignalR, Azure Blob Storage, GitHub Actions, Docker
 - Tools & AI: Claude API, GPT-4o, Gemini, JWT / JWKS, Git, Linux
 
-## At a glance
+## Production signals
 
-- 6+ years of experience
-- 40+ projects delivered
-- 30+ technologies
-- 3+ AI models integrated and orchestrated in production
-- 5+ Azure services running in production
+- Technical reference for architecture decisions and team standards
+- Claude, GPT-4o, and Gemini integrated according to accuracy, availability, and cost
+- Azure Functions, Service Bus, SignalR, Blob Storage, and CosmosDB used together in production systems
 
 ## Areas of expertise
 

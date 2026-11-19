@@ -1,20 +1,18 @@
-# Enzo Norese — Backend Developer & Cloud Architect
+# Enzo Norese — Backend Engineer & Cloud Architect
 
-> Backend developer and cloud architect based in Santiago, Chile. Specialized in cloud infrastructure, serverless architectures, and AI integration. Go-to engineer (technical reference) on architecture decisions, with hands-on experience in recruitment systems, ERP migration, and AI model integration. Site available in English (/en) and Spanish (/es).
+> Backend Engineer and Cloud Architect based in Santiago, Chile. Specialized in Azure serverless systems, integrations, migrations, and AI automation for real operations. Technical reference with hands-on implementation experience. Site available in English (/en) and Spanish (/es).
 
 ## About (English)
 
-Enzo Norese is a Computer Engineer with an electronics background, specialized in backend development and cloud solutions architecture. At TeamWork Capacitación Ltda. (Santiago, Chile) he works as technical reference and solutions architect, designing and building high-impact systems for real business operations.
+Enzo Norese is a Computer Engineer with an electronics background. He works across backend development and cloud architecture, turning operational needs into maintainable, observable systems. At TeamWork Capacitación Ltda. he acts as a technical reference while remaining hands-on with implementation.
 
-He leads two key initiatives: the Softland → Rex+ ERP migration (completed with zero data loss and zero downtime) and the "Digital 24/7 Recruiter" — an AI-powered mass-recruitment agent on Azure serverless, with a cascaded multi-model pipeline (Claude, GPT-4o, Gemini) able to process tens of thousands of applications during peak demand (e.g. Cyber Day).
-
-His engineering philosophy — "Augmented Engineering" — treats AI tools as multipliers of technical capability, not replacements for sound engineering judgment.
+His work includes recruitment platforms, ATS-connected campaign forms, WhatsApp support systems, Azure serverless architectures, and the Softland → Rex+ ERP migration. He treats AI as a capability multiplier without replacing analysis, security, or engineering accountability.
 
 ## Sobre mí (Español)
 
-Enzo Norese es Ingeniero en Informática con base en electrónica, especializado en desarrollo backend y arquitectura de soluciones cloud. En TeamWork Capacitación Ltda. (Santiago, Chile) se desempeña como referente técnico y arquitecto de soluciones, diseñando y construyendo sistemas de alto impacto para operaciones reales de negocio.
+Enzo Norese es Ingeniero en Informática con base en electrónica. Trabaja entre el desarrollo backend y la arquitectura cloud, convirtiendo necesidades operativas en sistemas mantenibles y observables. En TeamWork Capacitación Ltda. se desempeña como referente técnico con participación directa en la implementación.
 
-Lidera la migración ERP Softland → Rex+ (con cero pérdida de datos y cero downtime) y el "Reclutador Digital 24/7" — un agente de reclutamiento masivo con IA sobre Azure serverless, con un pipeline multi-modelo en cascada (Claude, GPT-4o, Gemini). Su filosofía es la "Ingeniería Aumentada": la IA como multiplicador de capacidad técnica, no como sustituto del criterio ingenieril.
+Su experiencia incluye plataformas de reclutamiento, formularios conectados a un ATS, atención por WhatsApp, arquitecturas serverless en Azure y la migración ERP Softland → Rex+. Usa la IA como multiplicador de capacidad sin reemplazar el análisis, la seguridad ni la responsabilidad de ingeniería.
 
 ## Stack / Tech
 
@@ -28,10 +26,9 @@ Lidera la migración ERP Softland → Rex+ (con cero pérdida de datos y cero do
 
 ## Key facts
 
-- Role: Backend Developer & Cloud Architect (technical reference / go-to engineer)
+- Role: Backend Engineer & Cloud Architect (technical reference / go-to engineer)
 - Location: Santiago, Chile — available for remote work and international opportunities
 - Languages: Spanish (native), English (professional)
-- Experience: 6+ years, 40+ projects, 30+ technologies
 
 ## Links
 

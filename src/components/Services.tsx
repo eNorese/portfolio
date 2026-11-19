@@ -98,6 +98,7 @@ function ServiceCard({ item, icon, index }: { item: ServiceItem; icon: React.Rea
 export function Services() {
   const { locale, t } = useLanguage()
   const items = locale.services.items as ServiceItem[]
+  const serviceIcons = [ICONS[0], ICONS[2], ICONS[3], ICONS[5]]
   const cta = useReveal(0.2)
 
   return (
@@ -121,9 +122,9 @@ export function Services() {
         </p>
 
         {/* Services grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 gap-5">
           {items.map((item, i) => (
-            <ServiceCard key={i} item={item} icon={ICONS[i] ?? ICONS[0]} index={i} />
+            <ServiceCard key={item.title} item={item} icon={serviceIcons[i] ?? ICONS[0]} index={i} />
           ))}
         </div>
 
