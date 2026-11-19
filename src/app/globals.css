@@ -166,6 +166,12 @@ section[id] {
   background: linear-gradient(90deg, rgb(var(--accent) / 0.35), rgb(var(--accent)), rgb(var(--accent) / 0.65));
   box-shadow: 0 0 12px rgb(var(--accent) / 0.45);
   will-change: transform;
+  animation: scroll-progress linear both;
+  animation-timeline: scroll(root block);
+}
+
+@keyframes scroll-progress {
+  to { transform: scaleX(1); }
 }
 
 /* Content is only hidden after the client orchestrator is ready. */

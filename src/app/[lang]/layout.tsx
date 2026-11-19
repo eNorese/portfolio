@@ -65,6 +65,7 @@ function buildJsonLd(lang: Language) {
         '@type': 'Person',
         '@id': `${base}/#person`,
         name: 'Enzo Norese',
+        alternateName: 'Enzo Norese Rivera',
         url: base,
         image: `${base}/og-image.png`,
         email: 'enzo.norese@gmail.com',

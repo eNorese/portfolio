@@ -133,10 +133,12 @@ export function Experience() {
   const trackRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+
     const update = () => {
-      const track = trackRef.current
       const line  = lineRef.current
-      if (!track || !line) return
+      if (!line) return
 
       const rect = track.getBoundingClientRect()
       const vh   = window.innerHeight
@@ -164,9 +166,30 @@ export function Experience() {
       }
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true })
-    update()
-    return () => window.removeEventListener('scroll', onScroll)
+    let listening = false
+    const toggleScrollListener = (active: boolean) => {
+      if (active === listening) return
+      listening = active
+      if (active) {
+        window.addEventListener('scroll', onScroll, { passive: true })
+        onScroll()
+      } else {
+        window.removeEventListener('scroll', onScroll)
+      }
+    }
+
+    // This timeline is far below the fold. Measure it only near the viewport,
+    // keeping invisible content out of the initial layout work.
+    const observer = new IntersectionObserver(
+      ([entry]) => toggleScrollListener(entry.isIntersecting),
+      { rootMargin: '100% 0px' }
+    )
+    observer.observe(track)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
   return (

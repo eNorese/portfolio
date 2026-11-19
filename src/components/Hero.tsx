@@ -186,19 +186,14 @@ export function Hero() {
 
     let isMobile = false
     let lastMobileFrame = 0
-    const resize = () => {
-      // Read layout once, then perform writes. Reading height after assigning
-      // canvas.width invalidates layout and creates a forced synchronous reflow.
-      const width = canvas.offsetWidth
-      const height = canvas.offsetHeight
+    let running = false
+    const resize = (width: number, height: number) => {
       canvas.width = width
       canvas.height = height
       isMobile = width < 768
       dropsRef.current = createDrops(isMobile ? 25 : 58, width, height)
       starsRef.current = createStars(isMobile ? 50 : 110, width, height)
     }
-    resize()
-    window.addEventListener('resize', resize)
 
     const draw = (frameTime = performance.now()) => {
       if (running && isMobile && frameTime - lastMobileFrame < 32) {
@@ -317,8 +312,17 @@ export function Hero() {
       if (running) rafRef.current = requestAnimationFrame(draw)
     }
 
+    // ResizeObserver supplies already-computed dimensions, avoiding synchronous
+    // offsetWidth/offsetHeight reads during hydration and on window resize.
+    const resizeObserver = new ResizeObserver(([entry]) => {
+      const width = Math.max(1, Math.round(entry.contentRect.width))
+      const height = Math.max(1, Math.round(entry.contentRect.height))
+      resize(width, height)
+      if (!running) draw()
+    })
+    resizeObserver.observe(canvas)
+
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let running = false
     let animationUnlocked = false
     let inViewport = true
     const start = () => {
@@ -329,12 +333,6 @@ export function Hero() {
     const stop = () => {
       running = false
       cancelAnimationFrame(rafRef.current)
-    }
-
-    if (reduced) {
-      draw() // un solo frame estático (running=false → no se reprograma)
-    } else {
-      draw()
     }
 
     const unlockTimer = reduced ? 0 : window.setTimeout(() => {
@@ -357,7 +355,7 @@ export function Hero() {
     io.observe(canvas)
 
     return () => {
-      window.removeEventListener('resize', resize)
+      resizeObserver.disconnect()
       document.removeEventListener('visibilitychange', onVisibility)
       io.disconnect()
       if (unlockTimer) window.clearTimeout(unlockTimer)

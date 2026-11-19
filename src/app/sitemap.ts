@@ -11,12 +11,14 @@ const ALTERNATES = {
   'x-default': LANGS.es,
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date()
+// Debe representar una actualización sustancial del contenido, no la fecha de cada build.
+// Actualizar junto con el contenido principal y los archivos llms*.txt.
+const CONTENT_LAST_MODIFIED = new Date('2026-11-18T00:00:00-03:00')
 
+export default function sitemap(): MetadataRoute.Sitemap {
   return Object.values(LANGS).map((url) => ({
     url,
-    lastModified,
+    lastModified: CONTENT_LAST_MODIFIED,
     changeFrequency: 'monthly',
     priority: 1,
     alternates: {
