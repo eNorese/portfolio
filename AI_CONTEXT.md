@@ -6,7 +6,7 @@
 
 ## Identidad del proyecto
 
-- **Propietario:** Enzo Norese — Ingeniero en Informática, Backend Developer & Cloud Architect en TeamWork Chile
+- **Propietario:** Enzo Norese — Ingeniero en Informática, Software Engineer · AI & Cloud Builder en TeamWork Chile
 - **Dominio:** https://enorese.dev
 - **Email de contacto:** enzo.norese@gmail.com
 - **Marca visual:** "eNorese." (punto en color accent — indigo)

@@ -5,9 +5,10 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { portfolioSections } from '@/config/sections'
 
 const SKILLS_DATA = {
-  frontend: ['React', 'TypeScript', 'JavaScript', 'HTML', 'CSS'],
-  backend: ['Node.js', 'TypeScript', 'Express', 'Python', 'C# (.NET)', 'PostgreSQL', 'SQL Server', 'CosmosDB', 'MongoDB', 'Redis'],
-  cloud: ['Microsoft Azure', 'Azure Functions', 'Azure Service Bus', 'Azure SignalR', 'Azure Blob Storage', 'GitHub Actions', 'Docker'],
+  frontend: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML', 'CSS'],
+  backend: ['Node.js', 'Express', 'Python', 'C# (.NET)', 'PostgreSQL', 'SQL Server', 'CosmosDB', 'MongoDB', 'Redis'],
+  cloud: ['Microsoft Azure', 'Vercel', 'Azure Functions', 'Azure Service Bus', 'Azure SignalR', 'Azure Blob Storage', 'Azure Bicep', 'GitHub Actions', 'Docker'],
+  quality: ['Jest', 'Automated Testing', 'CI/CD', 'Logging & Observability', 'Refactoring', 'Security by Design'],
   tools: ['Claude API', 'GPT-4o', 'Gemini', 'JWT / JWKS', 'Git', 'Linux'],
 } as const
 
@@ -93,13 +94,13 @@ export function Skills() {
         </div>
 
         {/* Skill category cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
           {(Object.keys(SKILLS_DATA) as Array<keyof typeof SKILLS_DATA>).map((category, index) => (
             <div
               key={category}
               className="motion-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-md hover:shadow-accent/5"
               data-reveal
-              data-reveal-delay={String(index + 1)}
+              data-reveal-delay={String((index % 4) + 1)}
             >
               <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">
                 {t(`skills.categories.${category}`)}

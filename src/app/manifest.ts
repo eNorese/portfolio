@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Enzo Norese — Backend Developer & Cloud Architect',
+    name: 'Enzo Norese — Software Engineer · AI & Cloud Builder',
     short_name: 'eNorese',
     description: 'Backend developer y arquitecto cloud especializado en infraestructura cloud, serverless e inteligencia artificial.',
     start_url: '/',
