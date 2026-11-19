@@ -21,13 +21,13 @@ function normalize(lang: string): Language {
 }
 
 const DESCRIPTIONS: Record<Language, string> = {
-  es: 'Desarrollador backend e ingeniero de software especializado en arquitecturas cloud sobre Microsoft Azure, TypeScript y Node.js. Referente técnico con experiencia en arquitecturas serverless, integración de IA y migración de sistemas empresariales. Basado en Santiago, Chile, con foco en Latinoamérica y España.',
-  en: 'Backend developer and cloud architect specialized in Microsoft Azure, TypeScript and Node.js. Technical lead experienced in serverless architectures, AI integration, and enterprise system migrations. Based in Santiago, Chile.',
+  es: 'Software Engineer, AI & Cloud Builder especializado en IA aplicada, arquitectura cloud, platform engineering e Infrastructure as Code con Azure Bicep. Experiencia llevando soluciones a producción en Azure y Vercel.',
+  en: 'Software Engineer, AI & Cloud Builder specializing in applied AI, cloud architecture, platform engineering, and Infrastructure as Code with Azure Bicep. Experienced shipping production solutions on Azure and Vercel.',
 }
 
 const KEYWORDS: Record<Language, string[]> = {
-  es: ['desarrollador backend', 'ingeniero de software', 'arquitecto cloud', 'arquitecto de soluciones', 'programador backend', 'Microsoft Azure', 'TypeScript', 'Node.js', 'Azure Functions', 'serverless', 'inteligencia artificial', 'desarrollador Chile', 'desarrollador Latinoamérica', 'backend remoto'],
-  en: ['backend developer', 'cloud architect', 'Microsoft Azure', 'TypeScript', 'Node.js', 'Azure Functions', 'serverless', 'artificial intelligence', 'Santiago Chile', 'software engineer'],
+  es: ['ingeniero de software', 'AI builder', 'IA aplicada', 'desarrollador backend', 'arquitecto cloud', 'platform engineering', 'Infrastructure as Code', 'Azure Bicep', 'Microsoft Azure', 'Vercel', 'TypeScript', 'Node.js', 'Azure Functions', 'testing automatizado', 'desarrollador Chile', 'desarrollador Latinoamérica'],
+  en: ['software engineer', 'AI builder', 'applied AI engineer', 'backend developer', 'cloud architect', 'platform engineering', 'Infrastructure as Code', 'Azure Bicep', 'Microsoft Azure', 'Vercel', 'TypeScript', 'Node.js', 'Azure Functions', 'automated testing', 'Santiago Chile'],
 }
 
 // Color de la barra del navegador según el esquema (tema por defecto: dark → gray-950).
@@ -44,10 +44,16 @@ const KNOWS_ABOUT = [
   'TypeScript',
   'Node.js',
   'Azure Functions',
+  'Azure Bicep',
+  'Infrastructure as Code',
   'Serverless Architecture',
   'Artificial Intelligence',
+  'Applied AI',
   'Backend Development',
   'Cloud Architecture',
+  'Platform Engineering',
+  'Vercel',
+  'Automated Testing',
   'PostgreSQL',
   'CosmosDB',
 ]
@@ -69,7 +75,7 @@ function buildJsonLd(lang: Language) {
         url: base,
         image: `${base}/og-image.png`,
         email: 'enzo.norese@gmail.com',
-        jobTitle: 'Backend Developer & Cloud Architect',
+        jobTitle: 'Software Engineer, AI & Cloud Builder',
         description: DESCRIPTIONS[lang],
         worksFor: { '@type': 'Organization', name: 'TeamWork Capacitación Ltda.' },
         address: { '@type': 'PostalAddress', addressLocality: 'Santiago', addressCountry: 'CL' },

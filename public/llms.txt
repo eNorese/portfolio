@@ -1,34 +1,35 @@
-# Enzo Norese — Backend Developer & Cloud Architect
+# Enzo Norese — Software Engineer · AI & Cloud Builder
 
-> Backend developer and cloud architect based in Santiago, Chile. Specialized in cloud infrastructure, serverless architectures, and AI integration. Go-to engineer (technical reference) on architecture decisions, with hands-on experience in recruitment systems, ERP migration, and AI model integration. Site available in English (/en) and Spanish (/es).
+> Software Engineer, AI & Cloud Builder based in Santiago, Chile. Specialized in applied AI, cloud architecture, platform engineering, and production software delivery. Technical reference with hands-on experience in enterprise systems, Infrastructure as Code, ERP migration, and multi-model AI integration. Site available in English (/en) and Spanish (/es).
 
 ## About (English)
 
-Enzo Norese is a Computer Engineer with an electronics background, specialized in backend development and cloud solutions architecture. At TeamWork Capacitación Ltda. (Santiago, Chile) he works as technical reference and solutions architect, designing and building high-impact systems for real business operations.
+Enzo Norese is a Computer Engineer with an electronics background who combines software engineering, applied AI, cloud architecture, and platform engineering. At TeamWork Capacitación Ltda. (Santiago, Chile) he works as technical reference and solutions architect, designing and shipping high-impact systems for real business operations.
 
-He leads two key initiatives: the Softland → Rex+ ERP migration (completed with zero data loss and zero downtime) and the "Digital 24/7 Recruiter" — an AI-powered mass-recruitment agent on Azure serverless, with a cascaded multi-model pipeline (Claude, GPT-4o, Gemini) able to process tens of thousands of applications during peak demand (e.g. Cyber Day).
+He led the adoption of Infrastructure as Code with Azure Bicep, aligned the approach with the Infrastructure team, integrated deployments into GitHub Actions, and trained the development team. IaC is now the standard way the team provisions Azure resources. He also leads the Softland → Rex+ ERP migration and the "Digital 24/7 Recruiter" — an AI-powered mass-recruitment agent on Azure serverless with a cascaded multi-model pipeline (Claude, GPT-4o, Gemini).
 
 His engineering philosophy — "Augmented Engineering" — treats AI tools as multipliers of technical capability, not replacements for sound engineering judgment.
 
 ## Sobre mí (Español)
 
-Enzo Norese es Ingeniero en Informática con base en electrónica, especializado en desarrollo backend y arquitectura de soluciones cloud. En TeamWork Capacitación Ltda. (Santiago, Chile) se desempeña como referente técnico y arquitecto de soluciones, diseñando y construyendo sistemas de alto impacto para operaciones reales de negocio.
+Enzo Norese es Ingeniero en Informática con base en electrónica. Combina ingeniería de software, IA aplicada, arquitectura cloud y platform engineering para construir y llevar a producción sistemas de alto impacto.
 
-Lidera la migración ERP Softland → Rex+ (con cero pérdida de datos y cero downtime) y el "Reclutador Digital 24/7" — un agente de reclutamiento masivo con IA sobre Azure serverless, con un pipeline multi-modelo en cascada (Claude, GPT-4o, Gemini). Su filosofía es la "Ingeniería Aumentada": la IA como multiplicador de capacidad técnica, no como sustituto del criterio ingenieril.
+Lideró la adopción de Infrastructure as Code con Azure Bicep, coordinó el enfoque con Infraestructura, integró los despliegues en GitHub Actions y capacitó al equipo. IaC es ahora el mecanismo estándar para aprovisionar recursos Azure. También lidera la migración ERP Softland → Rex+ y el "Reclutador Digital 24/7", un agente de reclutamiento masivo con IA sobre Azure serverless.
 
 ## Stack / Tech
 
-- Cloud: Microsoft Azure (Azure Functions, Service Bus, SignalR, Blob Storage, CosmosDB)
+- Cloud: Microsoft Azure (Azure Functions, Service Bus, SignalR, Blob Storage, CosmosDB) and Vercel
 - Languages: TypeScript, Node.js, Python, C# / .NET Core
 - Frontend: React, HTML, CSS, JavaScript
 - Databases: PostgreSQL, SQL Server, CosmosDB, MongoDB, Redis
-- DevOps: GitHub Actions, Docker, CI/CD
+- Platform & DevOps: Azure Bicep, Infrastructure as Code, GitHub Actions, Docker, CI/CD
+- Quality: Jest, automated testing, logging, observability, refactoring, security by design
 - Security: OAuth 2.0, OIDC, JWT
 - AI: Claude, GPT-4o, Gemini (multi-model orchestration)
 
 ## Key facts
 
-- Role: Backend Developer & Cloud Architect (technical reference / go-to engineer)
+- Role: Software Engineer · AI & Cloud Builder (technical reference / go-to engineer)
 - Location: Santiago, Chile — available for remote work and international opportunities
 - Languages: Spanish (native), English (professional)
 - Experience: 6+ years, 40+ projects, 30+ technologies

@@ -7,7 +7,9 @@
     "build": "next build",
     "audit:discoverability": "npm run build && node scripts/audit-discoverability.mjs",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --max-warnings=0",
+    "test": "node scripts/test-rubik-logic.mjs",
+    "check": "npm run lint && npm run test && npm run build"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
@@ -18,7 +20,8 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "resend": "^6.12.4",
-    "three": "^0.170.0"
+    "three": "^0.170.0",
+    "three-stdlib": "^2.36.1"
   },
   "devDependencies": {
     "@types/node": "^20",

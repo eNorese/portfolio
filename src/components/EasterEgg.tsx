@@ -59,7 +59,7 @@ const SKILLS_RUN: Line[] = [
 const FILES: Record<string, Line[]> = {
   'about.txt': [
     { text: 'Name:     Enzo Norese',                         cls: 'text-white' },
-    { text: 'Role:     Backend Developer & Cloud Architect', cls: 'text-gray-300' },
+    { text: 'Role:     Software Engineer · AI & Cloud Builder', cls: 'text-gray-300' },
     { text: 'Company:  TeamWork Chile',                      cls: 'text-gray-300' },
     { text: 'Location: Chile 🇨🇱',                         cls: 'text-gray-300' },
     { text: '' },

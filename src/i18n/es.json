@@ -11,9 +11,9 @@
   "hero": {
     "greeting": "Hola, soy",
     "name": "Enzo Norese",
-    "title": "Desarrollador Backend & Arquitecto Cloud",
+    "title": "Software Engineer · AI & Cloud Builder",
     "slogan": "Ingeniería Aumentada — Software, IA y arquitectura para escalar negocios",
-    "description": "Diseño e implemento arquitecturas backend sobre infraestructura cloud, integrando servicios escalables e inteligencia artificial para resolver problemas reales de negocio. Referente técnico con experiencia en sistemas de reclutamiento, migración de ERP e integración de modelos de IA.",
+    "description": "Diseño, construyo y llevo a producción sistemas de software, automatización e IA sobre plataformas cloud. Transformo procesos reales de negocio en soluciones escalables, confiables y mantenibles.",
     "cta_work": "Ver Mi Trabajo",
     "cta_services": "Automatiza tu negocio",
     "cta_contact": "Contactarme",
@@ -23,12 +23,12 @@
   "about": {
     "section_title": "Sobre Mí",
     "subtitle": "Un poco sobre quién soy",
-    "bio_1": "Ingeniero en Informática con base en electrónica, especializado en desarrollo backend y arquitectura de soluciones cloud. Me desempeño como referente técnico y arquitecto de soluciones — diseñando y construyendo sistemas de alto impacto que potencian operaciones reales de negocio.",
+    "bio_1": "Ingeniero en Informática con base en electrónica. Combino ingeniería de software, IA aplicada, arquitectura cloud y platform engineering para diseñar y llevar a producción sistemas de alto impacto que potencian operaciones reales de negocio.",
     "bio_2": "Lidero dos iniciativas clave: la migración de ERP Softland → Rex+ (completada con cero pérdida de datos y cero tiempo de inactividad) y el Reclutador Digital 24/7 — un agente de reclutamiento masivo impulsado por IA sobre Azure serverless, con un pipeline multi-modelo en cascada (Claude, GPT-4o, Gemini) diseñado para procesar decenas de miles de postulaciones en periodos de alta demanda como el Cyber Day.",
-    "bio_3": "Mi filosofía — \"Ingeniería Aumentada\" — posiciona las herramientas de IA como multiplicadores de capacidad técnica, no como sustitutos del criterio ingenieril. Mi trayectoria desde técnico electrónico hasta arquitecto cloud me otorga una visión amplia que abarca desde los fundamentos de bajo nivel hasta los sistemas distribuidos modernos.",
+    "bio_3": "Mi filosofía — \"Ingeniería Aumentada\" — posiciona las herramientas de IA como multiplicadores de capacidad técnica, no como sustitutos del criterio ingenieril. Construyo más allá de una sola capa del software: conecto producto, backend, infraestructura y operación para convertir una idea en una solución funcionando en producción.",
     "capabilities": {
       "cloud_architecture": "Arquitectura cloud",
-      "backend_systems": "Sistemas backend",
+      "platform_engineering": "Platform engineering",
       "applied_ai": "IA aplicada",
       "technical_leadership": "Liderazgo técnico"
     },
@@ -66,8 +66,8 @@
         "description": "Diseño asistentes que atienden, clasifican y responden 24/7. Como el reclutador digital que construí: procesa decenas de miles de solicitudes sin intervención humana."
       },
       {
-        "title": "Arquitectura backend & cloud",
-        "description": "Construyo sistemas serverless sobre Azure que escalan solos con tu demanda y solo cobran cuando se usan. Robustos, seguros y listos para crecer contigo."
+        "title": "Ingeniería de software & cloud",
+        "description": "Construyo sistemas escalables sobre Azure y Vercel, automatizando infraestructura y despliegues cuando el producto lo requiere. Soluciones robustas, seguras y listas para crecer contigo."
       },
       {
         "title": "Integración de sistemas y APIs",
@@ -91,19 +91,21 @@
     "subtitle": "Mi trayectoria profesional",
     "jobs": [
       {
-        "role": "Backend Developer & Cloud Architect",
+        "role": "Software Engineer & Cloud Architect",
         "company": "TeamWork Capacitación Ltda.",
         "period": "jul. 2022 – actualidad",
-        "duration": "3 años 10 meses",
+        "startDate": "2022-07",
+        "endDate": null,
         "location": "Santiago, Chile · Jornada completa",
-        "description": "Referente técnico y arquitecto de soluciones, responsable de decisiones de arquitectura, estándares del equipo e integración de servicios cloud. Lidero la migración ERP Softland → Rex+, gestionando análisis de componentes, mapeo de esquemas entre sistemas y validación de integridad de datos. Diseño e implemento arquitecturas serverless sobre Azure Functions v4, integrando servicios como Service Bus, SignalR, Blob Storage, CosmosDB y PostgreSQL.",
-        "tags": ["TypeScript", "Node.js", "Azure Functions", "PostgreSQL", "CosmosDB", "Azure Service Bus", "Azure SignalR", "Blob Storage", "GitHub Actions", "OAuth 2.0 / JWT", "React JS", "Python"]
+        "description": "Referente técnico y arquitecto de soluciones, responsable de decisiones de arquitectura, estándares del equipo e integración de servicios cloud. Lideré la adopción de Infrastructure as Code con Azure Bicep: coordiné estándares y permisos con Infraestructura, creé workflows de GitHub Actions y capacité al equipo. IaC se convirtió en el mecanismo habitual para aprovisionar recursos Azure de forma autónoma, consistente y versionada. También lidero la migración ERP Softland → Rex+ y diseño sistemas serverless e integraciones de IA para operaciones reales de negocio.",
+        "tags": ["TypeScript", "Node.js", "Azure", "Azure Bicep", "Infrastructure as Code", "GitHub Actions", "Azure Functions", "PostgreSQL", "CosmosDB", "Service Bus", "SignalR", "Applied AI"]
       },
       {
         "role": "Software Developer",
         "company": "Prodigio Chile",
         "period": "abr. 2021 – ene. 2022",
-        "duration": "10 meses",
+        "startDate": "2021-04",
+        "endDate": "2022-01",
         "location": "Chile · Jornada parcial",
         "description": "Encargado de mantener, resolver incidencias y desarrollar nuevas funcionalidades de APIs de integración programadas con C# (.NET Core 3.1) y JavaScript (Node.js). Mantención de flujos de integración y despliegue continuo (CI/CD).",
         "tags": ["C# / .NET Core", "Node.js", "JavaScript", "CI/CD"]
@@ -112,7 +114,8 @@
         "role": "Técnico Electrónico",
         "company": "Sociedad Electronica Solari",
         "period": "mar. 2015 – feb. 2021",
-        "duration": "6 años",
+        "startDate": "2015-03",
+        "endDate": "2021-02",
         "location": "Gran Santiago · Jornada completa",
         "description": "Encargado de reparar y hacer mantención a una variedad de equipos electrónicos, especializado en cámaras digitales e impresoras.",
         "tags": ["Electrónica", "Reparación de Hardware", "Diagnóstico"]
@@ -125,9 +128,10 @@
     "stories_title": "Historias de Éxito",
     "categories": {
       "frontend": "Frontend",
-      "backend": "Backend",
-      "cloud": "Cloud & DevOps",
-      "tools": "Herramientas & Datos"
+      "backend": "Backend & Datos",
+      "cloud": "Cloud, IaC & DevOps",
+      "quality": "Testing & Calidad",
+      "tools": "IA & Herramientas"
     },
     "stories": [
       {
@@ -146,9 +150,9 @@
         "description": "Diseñé e implementé arquitecturas que combinan Azure Functions, Service Bus, SignalR, Blob Storage y CosmosDB en sistemas productivos reales."
       },
       {
-        "metric": "4+",
-        "label": "Años en Tecnología",
-        "description": "De técnico electrónico a arquitecto cloud — una trayectoria que abarca diagnóstico de hardware, C#/.NET y sistemas distribuidos modernos en Azure."
+        "metric": "100%",
+        "label": "Infraestructura como Código",
+        "description": "Implementé Bicep y workflows de GitHub Actions como estándar del equipo para desplegar nueva infraestructura Azure de manera versionada y repetible."
       }
     ]
   },
@@ -167,7 +171,7 @@
     "expand_label": "Explorar el caso",
     "context_label": "Contexto",
     "other_title": "Otros proyectos y experimentos",
-    "other_subtitle": "Herramientas, pruebas de concepto y productos que complementan mi trabajo corporativo.",
+    "other_subtitle": "Herramientas, pruebas de concepto y productos que complementan mi trabajo corporativo, varios de ellos desplegados y operados en Vercel.",
     "view_live": "Demo en Vivo",
     "view_code": "Código Fuente",
     "corporate_items": [
@@ -440,11 +444,11 @@
     "items": [
       {
         "question": "¿En qué te especializas?",
-        "answer": "Me especializo en desarrollo backend y arquitectura de soluciones cloud, con foco en arquitecturas serverless e integración de inteligencia artificial para resolver problemas reales de negocio."
+        "answer": "Construyo y llevo a producción sistemas de software, automatización e IA. Combino backend, arquitectura cloud, platform engineering e integración de sistemas para resolver procesos reales de negocio de punta a punta."
       },
       {
         "question": "¿Qué tecnologías utilizas?",
-        "answer": "Trabajo principalmente con Microsoft Azure (Functions, Service Bus, SignalR, CosmosDB), TypeScript, Node.js, Python y C#/.NET, además de PostgreSQL y la orquestación de modelos de IA como Claude, GPT-4o y Gemini."
+        "answer": "Trabajo con Microsoft Azure, Vercel, TypeScript, Node.js, Python y C#/.NET. En cloud utilizo Azure Functions, Service Bus, SignalR, CosmosDB, Bicep y GitHub Actions; también integro modelos como Claude, GPT-4o y Gemini y aplico testing automatizado con Jest."
       },
       {
         "question": "¿Tienes experiencia integrando IA en sistemas reales?",

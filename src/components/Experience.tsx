@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { useLanguage } from '@/contexts/LanguageContext'
+import { useLanguage, type Language } from '@/contexts/LanguageContext'
 
 // ── Minimal scroll-reveal hook ────────────────────────────────────────
 function useReveal(threshold = 0.12) {
@@ -32,15 +32,45 @@ type Job = {
   role: string
   company: string
   period: string
-  duration: string
+  startDate: string
+  endDate: string | null
   location: string
   description: string
   tags: readonly string[]
 }
 
-function JobCard({ job, index }: { job: Job; index: number }) {
+const DURATION_LABELS = {
+  es: { year: 'año', years: 'años', month: 'mes', months: 'meses' },
+  en: { year: 'yr', years: 'yrs', month: 'mo', months: 'mos' },
+} as const
+
+function formatDuration(startDate: string, endDate: string | null, language: Language) {
+  const [startYear, startMonth] = startDate.split('-').map(Number)
+  const now = new Date()
+  const [endYear, endMonth] = endDate
+    ? endDate.split('-').map(Number)
+    : [now.getUTCFullYear(), now.getUTCMonth() + 1]
+
+  // Past roles include their final calendar month; current roles count elapsed full months.
+  const totalMonths = Math.max(
+    0,
+    (endYear - startYear) * 12 + (endMonth - startMonth) + (endDate ? 1 : 0)
+  )
+  const years = Math.floor(totalMonths / 12)
+  const months = totalMonths % 12
+  const labels = DURATION_LABELS[language]
+  const parts: string[] = []
+
+  if (years > 0) parts.push(`${years} ${years === 1 ? labels.year : labels.years}`)
+  if (months > 0 || years === 0) parts.push(`${months} ${months === 1 ? labels.month : labels.months}`)
+
+  return parts.join(' ')
+}
+
+function JobCard({ job, index, language }: { job: Job; index: number; language: Language }) {
   const { ref, visible } = useReveal(0.1)
   const delay = index * 160  // stagger
+  const duration = formatDuration(job.startDate, job.endDate, language)
 
   return (
     <div ref={ref} className="relative">
@@ -87,7 +117,7 @@ function JobCard({ job, index }: { job: Job; index: number }) {
           </div>
           <div className="shrink-0 flex flex-col items-start sm:items-end gap-0.5">
             <span className="text-xs text-gray-500 dark:text-gray-400 font-mono">{job.period}</span>
-            <span className="text-xs text-gray-400 dark:text-gray-500 font-mono">{job.duration}</span>
+            <span className="text-xs text-gray-400 dark:text-gray-500 font-mono">{duration}</span>
           </div>
         </div>
 
@@ -123,7 +153,7 @@ function JobCard({ job, index }: { job: Job; index: number }) {
 
 // ── Section ───────────────────────────────────────────────────────────
 export function Experience() {
-  const { locale, t } = useLanguage()
+  const { locale, t, language } = useLanguage()
   const jobs = locale.experience.jobs
 
   const header = useReveal(0.2)
@@ -251,7 +281,7 @@ export function Experience() {
           />
 
           {jobs.map((job, index) => (
-            <JobCard key={index} job={job} index={index} />
+            <JobCard key={index} job={job} index={index} language={language} />
           ))}
         </div>
       </div>

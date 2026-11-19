@@ -1,10 +1,10 @@
-# Enzo Norese — Backend Developer & Cloud Architect (Full Context)
+# Enzo Norese — Software Engineer · AI & Cloud Builder (Full Context)
 
 > Complete reference about Enzo Norese (also known as Enzo Norese Rivera) for LLMs and AI search engines. Site: https://www.enorese.com (English: /en, Spanish: /es). Last updated: 2026-11-18.
 
 ## Summary
 
-Enzo Norese is a Backend Developer and Cloud Architect based in Santiago, Chile. He is a Computer Engineer with an electronics background, specialized in backend development and cloud solutions architecture. He acts as a technical reference ("go-to engineer") and solutions architect: his opinions and decisions on architecture carry weight, and he designs and builds high-impact systems that power real business operations. He is available for remote work and international opportunities.
+Enzo Norese is a Software Engineer, AI & Cloud Builder based in Santiago, Chile. He is a Computer Engineer with an electronics background who combines software engineering, applied AI, cloud architecture, and platform engineering. He acts as a technical reference ("go-to engineer") and solutions architect, designing and shipping high-impact systems that power real business operations. He is available for remote work and international opportunities.
 
 ## Engineering philosophy: "Augmented Engineering"
 
@@ -12,9 +12,9 @@ Enzo's guiding philosophy is "Augmented Engineering" (Ingeniería Aumentada): AI
 
 ## Professional experience
 
-### Backend Developer & Cloud Architect — TeamWork Capacitación Ltda. (Jul 2022 – Present)
-Santiago, Chile · Full-time. Technical reference and solutions architect, responsible for architecture decisions, team standards, and cloud service integration. Leads the ERP Softland → Rex+ migration (component analysis, cross-system schema mapping, data integrity validation — completed with zero data loss and zero downtime). Designs and implements serverless architectures on Azure Functions v4, integrating Service Bus, SignalR, Blob Storage, CosmosDB, and PostgreSQL. Built the "Digital 24/7 Recruiter": an AI-powered mass-recruitment agent on Azure serverless with a cascaded multi-model pipeline (Claude, GPT-4o, Gemini) designed to process tens of thousands of applications during peak demand periods like Cyber Day.
-Technologies: TypeScript, Node.js, Azure Functions, PostgreSQL, CosmosDB, Azure Service Bus, Azure SignalR, Blob Storage, GitHub Actions, OAuth 2.0 / JWT, React, Python.
+### Software Engineer & Cloud Architect — TeamWork Capacitación Ltda. (Jul 2022 – Present)
+Santiago, Chile · Full-time. Technical reference and solutions architect responsible for architecture decisions, team standards, and cloud integration. Led the adoption of Infrastructure as Code with Azure Bicep: aligned standards and permissions with the Infrastructure team, built GitHub Actions workflows, and trained the development team. IaC became the standard way to provision Azure resources autonomously, consistently, and under version control. Leads the Softland → Rex+ ERP migration and builds serverless and applied AI systems for real business operations, including the "Digital 24/7 Recruiter" multi-model agent.
+Technologies: TypeScript, Node.js, Microsoft Azure, Azure Bicep, GitHub Actions, Azure Functions, PostgreSQL, CosmosDB, Service Bus, SignalR, Applied AI.
 
 ### Software Developer — Prodigio Chile (Apr 2021 – Jan 2022)
 Chile · Part-time. Maintained, debugged, and developed new features for integration APIs built with C# (.NET Core 3.1) and JavaScript (Node.js). Maintained continuous integration and deployment workflows.
@@ -36,7 +36,8 @@ Greater Santiago · Full-time. Repaired and maintained a wide variety of electro
 
 - Frontend: React, TypeScript, JavaScript, HTML, CSS
 - Backend: Node.js, TypeScript, Express, Python, C# (.NET), PostgreSQL, SQL Server, CosmosDB, MongoDB, Redis
-- Cloud & DevOps: Microsoft Azure, Azure Functions, Azure Service Bus, Azure SignalR, Azure Blob Storage, GitHub Actions, Docker
+- Cloud, IaC & DevOps: Microsoft Azure, Vercel, Azure Functions, Azure Service Bus, Azure SignalR, Azure Blob Storage, Azure Bicep, GitHub Actions, Docker
+- Testing & Quality: Jest, automated testing, CI/CD, logging and observability, refactoring, security by design
 - Tools & AI: Claude API, GPT-4o, Gemini, JWT / JWKS, Git, Linux
 
 ## At a glance
@@ -46,10 +47,11 @@ Greater Santiago · Full-time. Repaired and maintained a wide variety of electro
 - 30+ technologies
 - 3+ AI models integrated and orchestrated in production
 - 5+ Azure services running in production
+- Infrastructure as Code established as the standard for new Azure infrastructure deployments
 
 ## Areas of expertise
 
-Microsoft Azure, serverless architecture, backend development, cloud architecture, AI/LLM integration and orchestration, distributed systems, ERP migration, authentication & security (OAuth 2.0 / OIDC / JWT), real-time systems (SignalR / WebSockets), PostgreSQL, CosmosDB.
+Applied AI, Microsoft Azure, Vercel, serverless architecture, software engineering, backend development, cloud architecture, platform engineering, Infrastructure as Code with Azure Bicep, automated testing, AI/LLM integration and orchestration, distributed systems, ERP migration, authentication and security, real-time systems, PostgreSQL, and CosmosDB.
 
 ## Contact
 

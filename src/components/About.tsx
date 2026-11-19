@@ -14,7 +14,7 @@ const capabilityCards = [
     ),
   },
   {
-    key: 'backend_systems',
+    key: 'platform_engineering',
     icon: (
       <svg viewBox="0 0 24 24" className="w-8 h-8 text-accent" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="4" y="4" width="16" height="6" rx="1.5" />
