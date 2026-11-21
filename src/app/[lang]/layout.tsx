@@ -174,7 +174,7 @@ export async function generateMetadata({
       url,
       locale: lang === 'es' ? 'es_CL' : 'en_US',
       alternateLocale: lang === 'es' ? ['es_ES', 'es_MX', 'es_AR', 'es_PE', 'en_US'] : ['es_CL', 'es_ES', 'es_MX'],
-      images: [{ url: '/og-image.png', width: 1731, height: 909, alt: title }],
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: 'summary_large_image',
